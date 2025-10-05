@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Icon Manifest</title>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark" />
+    <style>
+      :root {
+        --size: 128px;
+        font-size: 10px;
+      }
+      body {
+        background: ButtonFace;
+      }
+      article {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(min(calc(var(--size) * 1.1), 100%),1fr)
+        );
+        > * {
+          width: min-content;
+          --radius: calc(var(--size) / 6);
+          > *:first-child {
+            text-align: center;
+          }
+          > *:last-child {
+            max-width: var(--size);
+            max-height: var(--size);
+            min-width: var(--size);
+            min-height: var(--size);
+            border: 2px inset #fffc;
+            border-radius: var(--radius);
+            background: #e5e5e5;
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Icon Manifest</h1>
+    </header>
+    <article>
+      <div>
+        <div>GenericFile</div>
+        <image src="./GenericFile.svg" />
+      </div>
+      <div>
+        <div>ClosedFolder</div>
+        <image src="./ClosedFolder.svg" />
+      </div>
+      <div>
+        <div>OpenFolder</div>
+        <image src="./OpenFolder.svg" />
+      </div>
+    </article>
+  </body>
+</html>

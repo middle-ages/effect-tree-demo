@@ -1,0 +1,80 @@
+<svg
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns-xlink="http://www.w3.org/1999/xlink"
+     preserve-aspect-ratio="none"
+     viewBox="-3 8 112 108">
+  <defs>
+    <linearGradient
+                    id="f"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+     >
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset=".4" stop-color="#dddddd" />
+      <stop offset=".8" stop-color="#888888" />
+      <stop offset="1" stop-color="#444444" />
+    </linearGradient>
+    <linearGradient
+                    id="g"
+                    x1="1.2"
+                    y1="0"
+                    x2="0"
+                    y2="0" >
+      <stop offset="0" stop-color="#000000" />
+      <stop offset="0.2" stop-color="#202020" />
+      <stop offset="0.6" stop-color="#e0e0e0" />
+      <stop offset="1" stop-color="#ffffff" />
+    </linearGradient>
+    <linearGradient
+                    id="h"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                    >
+      <stop offset=".0" stop-color="#eee" />
+      <stop offset=".5" stop-color="#ccc" />
+      <stop offset="1" stop-color="#555" />
+    </linearGradient>
+    <radialGradient
+                    id="i"
+                    cx="0.5"
+                    cy="0.2"
+                    r="0.85"
+                    fx="0"
+                    fy="0"
+>
+      <stop offset="0" stop-color="#000000" />
+      <stop offset=".6" stop-color="#888888" />
+      <stop offset=".8" stop-color="#d0d0d0" />
+      <stop offset="1" stop-color="#ffffff" />
+    </radialGradient>
+  </defs>
+  <g
+     fill-rule="nonzero"
+     transform="matrix(1.25 0 0 1.18 -24 -11)"
+     paint-order="stroke fill markers">
+    <path
+          fill="none"
+          stroke="#000"
+          stroke-width="5"
+          d="M32.2 28.7c-3.4 0-6.2 3-6.2 6.7 0 3.6 3 6.9 6.2 6.6 3.5 0 5.7.1 7.7.5a194.2 194.2 0 0 1-1 45.7v-.7 1.4c0 3.6 2.6 6.7 6.3 6.7H87c3.4 0 6.2-3 6.2-6.7s-2-5-6.2-6.7a271.2 271.2 0 0 1 0-46.6c.3-4-2.8-6.7-6.4-6.7-16.1.3-44-.2-48.4-.2z" />
+    <path
+          fill="url(#i)"
+          d="M32.9 42.3c3.7 0 6.6-3 6.6-6.7s-3-6.7-6.6-6.7c-3.6 0-6.6 3-6.6 6.7s3 6.7 6.6 6.7z" />
+    <path
+          fill="url(#f)"
+          d="M45.2 95.6c-3.7 0-6.4-3-6.4-6.7s2.6-6.7 6.4-6.7H87c3.4 0 6.2 3 6.2 6.7s-2.8 6.7-6.2 6.7z" />
+    <path
+          fill="url(#g)"
+          d="M40.2 42.6c-1-.4-4.8-.5-7.5-.3 3.4 0 6.4-3 6.4-6.7.3 2.2 1.2 4.8 1 7z" />
+    <path
+          fill="url(#h)"
+          d="M32.7 28.9h48c3.5 0 6.6 2.7 6.3 6.7-1.4 15.4-1.3 31 0 46.6H45c-3.4 0-6.2 3-6.1 6.7 1.7-16.9 3.5-33.6 0-53.8-.8-4.1-2.8-6.2-6.2-6.2z" />
+    <path
+          fill="url(#i)"
+          d="M45.2 95.6c3.7 0 6.6-3 6.6-6.7s-3-6.7-6.6-6.7c-4 0-6.6 3-6.6 6.7s3 6.7 6.6 6.7z" />
+  </g>
+</svg>

@@ -1,0 +1,128 @@
+{
+  "name": "effect-tree-demo",
+  "description": "A demo site for the effect-tree library.",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "Ran Eilam <ran@haag59.com> (https://middle-ages.github.io/)",
+  "license": "ISC",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "clean": "dev/clean",
+    "lint": "dev/lint --cache",
+    "lint:fix": "dev/lint-fix --cache",
+    "lint:clean": "dev/lint",
+    "lint::clean:fix": "dev/lint-fix",
+    "test": "dev/test-run",
+    "test:watch": "dev/test-watch",
+    "coverage": "dev/coverage",
+    "typecheck": "dev/typecheck",
+    "circular": "dev/circular",
+    "build:storybook": "storybook build",
+    "build": "dev/build",
+    "build:all": "dev/build-all"
+  },
+  "devDependencies": {
+    "@effect/vitest": "catalog:",
+    "@eslint/js": "catalog:",
+    "@fast-check/vitest": "catalog:",
+    "@storybook/addon-docs": "catalog:",
+    "@storybook/react-vite": "catalog:",
+    "@testing-library/jest-dom": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@tsconfig/node24": "catalog:",
+    "@tsconfig/strictest": "catalog:",
+    "@tsconfig/vite-react": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@vitest/browser": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "dependency-cruiser": "catalog:",
+    "effect-schema-viz": "catalog:",
+    "effect-ts-laws": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "eslint-plugin-prettier": "catalog:",
+    "eslint-plugin-react": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "eslint-plugin-react-refresh": "catalog:",
+    "eslint-plugin-sonarjs": "catalog:",
+    "eslint-plugin-unicorn": "catalog:",
+    "fast-check": "catalog:",
+    "globals": "catalog:",
+    "happy-dom": "catalog:",
+    "jiti": "catalog:",
+    "playwright": "catalog:",
+    "storybook": "catalog:",
+    "storybook-addon-pseudo-states": "catalog:",
+    "tsx": "catalog:",
+    "typedoc": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vitest": "catalog:",
+    "vite": "catalog:"
+  },
+  "dependencies": {
+    "@effect/typeclass": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "effect": "catalog:",
+    "prettier": "catalog:",
+    "react": "catalog:",
+    "react-compinators": "catalog:",
+    "react-dom": "catalog:",
+    "tailwindcss": "catalog:",
+    "tty-strings": "catalog:"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.ts",
+        "import": "./index.js"
+      }
+    }
+  },
+  "imports": {
+    "#components/*": {
+      "import": {
+        "types": "./src/components/components.d.ts",
+        "import": "./src/components/components.js"
+      }
+    }
+  },
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "private": false,
+  "homepage": "https://github.com/middle-ages/effect-tree-demo",
+  "bugs": "https://github.com/middle-ages/effect-tree-demo/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/middle-ages/effect-tree-demo"
+  },
+  "keywords": [
+    "tree",
+    "typescript",
+    "react"
+  ],
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "bracketSpacing": false,
+    "bracketSameLine": true,
+    "printWidth": 80,
+    "endOfLine": "lf"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@7.1.14"
+    }
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "display": "browser.test",
+  "extends": "./tsconfig.browser.json",
+  "compilerOptions": {
+    "noEmit": true,
+  },
+  "include": [
+    "../src/test.ts",
+    "../src/test.setup.ts",
+    "../src/test/**/*.ts",
+    "../src/test/**/*.tsx",
+    "../src/**/*.test.ts",
+    "../src/**/*.test.tsx",
+    "../src/**/*.test-d.*"
+  ]
+}

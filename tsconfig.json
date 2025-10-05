@@ -1,0 +1,10 @@
+{
+  "display": "root",
+  "files": [],
+  "references": [
+    {"path": "./config/tsconfig.browser.main.json"},
+    {"path": "./config/tsconfig.node.dev.json"},
+    {"path": "./config/tsconfig.browser.test.json"},
+    {"path": "./config/tsconfig.browser.stories.json"}
+  ]
+}
