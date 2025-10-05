@@ -8,7 +8,7 @@ import {
   unlines,
   unwords,
   takeWhile,
-} from './String.js'
+} from './String'
 
 describe('String', () => {
   describe('surround', () => {

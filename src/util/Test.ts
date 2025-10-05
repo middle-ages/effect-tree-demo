@@ -1,6 +1,6 @@
 import {tinyArray} from 'effect-ts-laws'
 import fc from 'fast-check'
-import * as These from './These.js'
+import * as These from './These'
 
 export const getTheseArbitrary =
   <E>(e: fc.Arbitrary<E>) =>

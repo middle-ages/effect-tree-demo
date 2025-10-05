@@ -18,9 +18,9 @@ import {
 import {testTypeclassLaws, verboseLawSets} from 'effect-ts-laws/vitest'
 import {type Equivalence} from 'effect/Equivalence'
 import fc from 'fast-check'
-import {type Pair, pair} from '../Pair.js'
-import {getTheseArbitrary, getZipResultsArbitrary} from '../Test.js'
-import * as These from '../These.js'
+import {type Pair, pair} from '../Pair'
+import {getTheseArbitrary, getZipResultsArbitrary} from '../Test'
+import * as These from '../These'
 import {describe, expect, test} from '@effect/vitest'
 
 describe('These', () => {

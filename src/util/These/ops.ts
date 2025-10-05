@@ -1,6 +1,6 @@
 import type {Semigroup} from '@effect/typeclass/Semigroup'
 import {Array, Either, flow, Function, identity, Option, pipe} from 'effect'
-import {fanout} from '../Pair.js'
+import {fanout} from '../Pair'
 import {
   Both,
   isBoth,
@@ -10,7 +10,7 @@ import {
   match,
   Right,
   type These,
-} from './index.js'
+} from './index'
 
 /** Build a `Both` from left and right values. */
 export const both = <R, E>(left: E, right: R): These<R, E> =>

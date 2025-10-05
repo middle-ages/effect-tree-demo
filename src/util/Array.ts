@@ -18,10 +18,10 @@ import {
   type NonEmptyReadonlyArray,
 } from 'effect/Array'
 import {Number, pipe, String} from 'effect'
-import type {EndoOf} from './Function.js'
+import type {EndoOf} from './Function'
 
 export * from 'effect/Array'
-export {transpose, type NonEmptyArray2} from './Array/transpose.js'
+export {transpose, type NonEmptyArray2} from './Array/transpose'
 
 export const append = Object.assign(_append, {
   flipped:

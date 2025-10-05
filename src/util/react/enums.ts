@@ -1,4 +1,4 @@
-import * as Pair from '../Pair.js'
+import * as Pair from '../Pair'
 
 export type Axis = 'horizontal' | 'vertical'
 export type Face = 'convex' | 'concave'

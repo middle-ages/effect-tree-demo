@@ -7,6 +7,8 @@
   "license": "ISC",
   "scripts": {
     "storybook": "storybook dev -p 6006",
+    "dev": "vite dev",
+    "tailwind:watch": "dev/tailwind-watch",
     "clean": "dev/clean",
     "lint": "dev/lint --cache",
     "lint:fix": "dev/lint-fix --cache",
@@ -27,6 +29,7 @@
     "@fast-check/vitest": "catalog:",
     "@storybook/addon-docs": "catalog:",
     "@storybook/react-vite": "catalog:",
+    "@tailwindcss/cli": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@tsconfig/node24": "catalog:",
@@ -60,17 +63,18 @@
     "typedoc": "catalog:",
     "typescript": "catalog:",
     "typescript-eslint": "catalog:",
-    "vitest": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vitest": "catalog:"
   },
   "dependencies": {
     "@effect/typeclass": "catalog:",
-    "@tailwindcss/vite": "catalog:",
     "effect": "catalog:",
+    "effect-tree": "catalog:",
     "prettier": "catalog:",
     "react": "catalog:",
     "react-compinators": "catalog:",
     "react-dom": "catalog:",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "catalog:",
     "tty-strings": "catalog:"
   },
@@ -83,10 +87,52 @@
     }
   },
   "imports": {
-    "#components/*": {
+    "#components": {
       "import": {
-        "types": "./src/components/components.d.ts",
-        "import": "./src/components/components.js"
+        "types": "./src/components.d.ts",
+        "import": "./src/components.js"
+      }
+    },
+    "#demos": {
+      "import": {
+        "types": "./src/demos.d.ts",
+        "import": "./src/demos.js"
+      }
+    },
+    "#Function": {
+      "import": {
+        "types": "./src/util/Function.d.ts",
+        "import": "./src/util/Function.js"
+      }
+    },
+    "#Array": {
+      "import": {
+        "types": "./src/util/Array.d.ts",
+        "import": "./src/util/Array.js"
+      }
+    },
+    "#String": {
+      "import": {
+        "types": "./src/util/String.d.ts",
+        "import": "./src/util/String.js"
+      }
+    },
+    "#Pair": {
+      "import": {
+        "types": "./src/util/Pair.d.ts",
+        "import": "./src/util/Pair.js"
+      }
+    },
+    "#Record": {
+      "import": {
+        "types": "./src/util/Record.d.ts",
+        "import": "./src/util/Record.js"
+      }
+    },
+    "#util": {
+      "import": {
+        "types": "./src/util.d.ts",
+        "import": "./src/util.js"
       }
     }
   },

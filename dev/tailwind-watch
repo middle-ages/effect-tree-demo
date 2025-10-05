@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+COLOR="${COLOR:-true}"
+
+. "$(dirname "${0}")/lib/_"
+
+show_done 'clean'
+
+id=-1
+killed=0
+
+cleanup() {
+  if [[ $killed == 0 ]]; then
+    kill $id
+    killed=1
+    echo "# Killing process ‘$(color_head $id)’"
+    show_done 'watch:tailwind'
+    exit
+  fi
+}
+
+all_sources() {
+  fd '\.((tsx?$)|css)' src
+}
+
+trap cleanup INT
+
+all_sources |
+  entr -s 'pnpm tailwindcss -i src/style.css -o public/style.css' &
+
+id=$!
+
+echo "# tailwind running with process id ‘$(color_head $id)’"
+
+wait

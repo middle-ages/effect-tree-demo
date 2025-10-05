@@ -18,6 +18,7 @@ function prepare() {
   export ICON_DIR="${dir}/public/icons"
   export ICON_INDEX_DIR="${dir}/src/icons"
   export DEV_DIR="${dir}/dev"
+  export SRC_DIR="${dir}/src"
 }
 
 prepare "${DIR}"

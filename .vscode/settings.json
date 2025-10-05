@@ -36,6 +36,7 @@
     "cartesian",
     "cata",
     "Cata",
+    "Cayley's",
     "cellborder",
     "cellspacing",
     "clusterrank",
@@ -58,6 +59,7 @@
     "Eilam",
     "endo",
     "Endo",
+    "entr",
     "esbuild",
     "eslintcache",
     "expando",
@@ -119,7 +121,10 @@
     "prismjs",
     "proteasesite",
     "proteinstab",
+    "prufer",
     "Prufer",
+    "prüfer",
+    "Prüfer",
     "rankdir",
     "ranksep",
     "rarrow",
@@ -186,5 +191,19 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "eslint.run": "onSave",
   "files.autoSave": "onFocusChange",
-  "svg.preview.background": "white"
+  "svg.preview.background": "white",
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "typescriptreact": "typescriptreact",
+    "typescript": "typescript",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.configFile": "src/style.css"
 }

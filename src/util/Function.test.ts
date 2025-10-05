@@ -1,4 +1,4 @@
-import {apply0} from './Function.js'
+import {apply0} from './Function'
 import {describe, expect, test} from '@effect/vitest'
 
 describe('Function', () => {

@@ -1,5 +1,5 @@
 import {describe, expectTypeOf, test} from '@effect/vitest'
-import type {Init, Tail, UnionToTuple} from './Tuple.js'
+import type {Init, Tail, UnionToTuple} from './Tuple'
 
 type SomeTuple = readonly ['a', 'b', 'c']
 

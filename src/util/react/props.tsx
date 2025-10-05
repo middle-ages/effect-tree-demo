@@ -6,9 +6,9 @@ import type {
   PropsWithChildren,
   SetStateAction,
 } from 'react'
-import * as Array from '../Array.js'
-import {pipe} from '../Function.js'
-import * as Record from '../Record.js'
+import * as Array from '../Array'
+import {pipe} from '../Function'
+import * as Record from '../Record'
 
 /** A component that allows external styling of one of its elements. */
 export interface StyledProps {

@@ -13,7 +13,7 @@
     "checkJs": false,
 
     "moduleDetection": "force",
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "noUncheckedSideEffectImports": true,
     "verbatimModuleSyntax": true,
     "esModuleInterop": true

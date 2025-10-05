@@ -1,5 +1,4 @@
-import {Array} from 'effect'
-import type {TupleOf, UnionToIntersection} from 'effect/Types'
+import type {UnionToIntersection} from 'effect/Types'
 
 export * from 'effect/Tuple'
 
@@ -57,18 +56,3 @@ type PopUnion<U> =
   ) => void
     ? A
     : never
-
-export const map =
-  <T, U>(f: (t: T) => U) =>
-  <N extends number>(t: Readonly<TupleOf<N, T>>): Readonly<TupleOf<N, U>> =>
-    Array.map(t, f) as TupleOf<N, U>
-
-export const map3 =
-  <T, U>(f: (t: T) => U) =>
-  (t: Readonly<TupleOf<3, T>>): Readonly<TupleOf<3, U>> =>
-    map(f)<3>(t)
-
-export const map4 =
-  <T, U>(f: (t: T) => U) =>
-  (t: Readonly<TupleOf<4, T>>): Readonly<TupleOf<4, U>> =>
-    map(f)<4>(t)

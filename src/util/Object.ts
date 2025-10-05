@@ -1,7 +1,7 @@
 import {type NonEmptyArray, map} from 'effect/Array'
 import {swap} from 'effect/Tuple'
 import {type Simplify, type UnionToIntersection} from 'effect/Types'
-import {type Tail, type UnionToTuple} from './Tuple.js'
+import {type Tail, type UnionToTuple} from './Tuple'
 
 /** `Object.keys` for literal records */
 export const typedKeys = <const T extends object>(o: T): KeyList<T> =>

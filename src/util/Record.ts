@@ -23,13 +23,6 @@ export const withKey =
   <const V>(v: V) =>
     ({[k]: v}) as Record<K, V>
 
-export const mergeWith =
-  <Self extends {}>(self: Self) =>
-  <That extends {}>(that: That): Self & That => ({
-    ...self,
-    ...that,
-  })
-
 /** Pluck the value associated with a key from a record. */
 export const pluck =
   <const K extends string>(key: K) =>

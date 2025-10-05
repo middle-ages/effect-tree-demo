@@ -1,5 +1,5 @@
 import {Number} from 'effect'
-import {applyPair, fanout, pair, pairMap, square} from './Pair.js'
+import {applyPair, fanout, pair, pairMap, square} from './Pair'
 import {describe, expect, test} from '@effect/vitest'
 
 describe('Pair', () => {

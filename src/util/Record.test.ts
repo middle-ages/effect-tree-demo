@@ -1,4 +1,4 @@
-import {monoRecord, pluck, pluckOf, withKey} from './Record.js'
+import {monoRecord, pluck, pluckOf, withKey} from './Record'
 import {pipe} from 'effect'
 import {describe, expect, test} from '@effect/vitest'
 

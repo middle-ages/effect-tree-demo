@@ -1,10 +1,10 @@
 import {flow, pipe, Predicate, String} from 'effect'
 import * as tty from 'tty-strings'
-import * as Array from './Array.js'
-import {type EndoOf} from './Function.js'
-import * as Number from './Number.js'
-import {floorMod} from './Number.js'
-import {fanout, type Pair} from './Pair.js'
+import * as Array from './Array'
+import {type EndoOf} from './Function'
+import * as Number from './Number'
+import {floorMod} from './Number'
+import {fanout, type Pair} from './Pair'
 
 export * from 'effect/String'
 
@@ -142,17 +142,6 @@ export const prefix =
 
 /** Suffix a string. A curried version of `String.concat`. */
 export const suffix: (suffix: string) => EndoOf<string> = String.concat
-
-/** Add an `s` suffix to the word unless the given number equals one. */
-export const plural = (word: string, n: number): string =>
-  n === 1 ? word : `${word}s`
-
-/**
- * Add an `s` suffix to the word unless the given number equals one,
- * and prefix with the string of the given numeric value.
- */
-export const pluralNumber = (word: string, n: number): string =>
-  unwords.spaced.rest(n.toString(), plural(word, n))
 
 /** Call `toString()` on the given number. */
 export const fromNumber = (n: number): string => n.toString()

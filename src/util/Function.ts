@@ -1,4 +1,4 @@
-import type {FunctionN} from 'effect/Function'
+import type {LazyArg, FunctionN} from 'effect/Function'
 
 export * from 'effect/Function'
 
@@ -55,3 +55,12 @@ export const flipCurried =
 
 /** Do nothing, short for `no operator`. */
 export const noop = (..._: unknown[]): void => {}
+
+/**
+ * Alias for `constant`.
+ * @category util
+ */
+export const K =
+  <T>(value: T): LazyArg<T> =>
+  () =>
+    value

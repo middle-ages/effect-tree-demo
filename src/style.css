@@ -1,0 +1,194 @@
+@import 'tailwindcss';
+
+:root {
+  --bg: #e8e8ee;
+  --control: #e0e0e5;
+  --controlDisabled: #d7d7d7;
+  --controlFg: #30303a;
+  --controlFgDisabled: #7a7a7a;
+  --toolbar: #dedee4;
+  --controlHover: #e4e4ea;
+  --textHighlight: #ececf3;
+  --controlActive: #d5d5dc;
+  --controlBorderTop: #fcfcfc;
+  --controlBorderLeft: #b0b0b0;
+  --controlBorderRight: #cacaca;
+  --controlBorderBottom: #959595;
+  --font-mono: 'Fira Code';
+
+  --href: lab(5% 30 -70);
+  --href-hover: lab(20% 50 -90);
+  --href-active: lab(30% 80 140);
+  --href-visited: lab(10% 50 -50);
+  --href-visited-hover: lab(35% 70 -70);
+}
+
+body {
+  font-family: Inter;
+}
+
+@layer components {
+  .demo {
+    background: var(--bg);
+  }
+
+  .button {
+    position: relative;
+    box-sizing: content-box;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-inline: --spacing(3);
+    padding-block: --spacing(1);
+    text-align: center;
+    line-height: 1.5;
+    color: var(--controlFg);
+    background-color: var(--control);
+    border-radius: 0.5ch;
+    text-shadow:
+      0px 1px 1px #fffe,
+      0.5px 1.5px 2px #fff8;
+    transition: all 250ms;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-top-color: var(--controlBorderTop);
+      border-right-color: var(--controlBorderRight);
+      border-bottom-color: var(--controlBorderBottom);
+      border-left-color: var(--controlBorderLeft);
+      border-radius: 0.5ch;
+      border-width: 2px;
+      border-style: solid;
+      opacity: 0.5;
+      transition: all 250ms;
+    }
+    &:hover:not(:disabled) {
+      background-color: var(--controlHover);
+      text-shadow:
+        0px 1px 1px #fffd,
+        0.5px 1.5px 2px #fffb;
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &:active:not(:disabled) {
+      color: black;
+      background-color: var(--controlActive);
+      text-shadow:
+        0px -1px 1px #fffa,
+        -0.5px -1.5px 2px #fff4;
+      &::after {
+        border-top-color: var(--controlBorderBottom);
+        border-right-color: var(--controlBorderLeft);
+        border-bottom-color: var(--controlBorderTop);
+        border-left-color: var(--controlBorderRight);
+        opacity: 0.6;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      color: var(--controlFgDisabled);
+      background: var(--controlDisabled);
+      text-shadow:
+        0px 1px 1px #fff8,
+        0.5px 1.5px 2px #fff4;
+    }
+  }
+
+  .textView {
+    box-sizing: content-box;
+    font-size: 2em;
+    color: #8aff00;
+    background: #000000;
+    border-top-color: var(--controlBorderBottom);
+    border-right-color: var(--controlBorderLeft);
+    border-bottom-color: var(--controlBorderTop);
+    border-left-color: var(--controlBorderRight);
+    border-radius: 0.75rch;
+    border-width: 3px;
+    border-style: solid;
+  }
+
+  .separator {
+    @apply mt-3 mb-2;
+    width: 100%;
+    border-top-color: var(--controlBorderBottom);
+    border-bottom-color: var(--controlBorderTop);
+    border-width: 1.5px;
+    border-style: solid;
+    opacity: 0.5;
+  }
+
+  .numeric {
+    @apply relative px-2 inline-block rounded-lg
+           font-mono text-black bg-[var(--textHighlight)];
+    margin: 1.5px;
+    transition: all 250ms;
+
+    &::after {
+      @apply rounded-lg;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-width: 1.5px;
+      border-style: solid;
+      border-top-color: var(--controlBorderBottom);
+      border-right-color: var(--controlBorderLeft);
+      border-bottom-color: var(--controlBorderTop);
+      border-left-color: var(--controlBorderRight);
+      opacity: 0.3;
+      transition: all 250ms;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@layer base {
+  h1 {
+    @apply h-10 px-3 flex gap-3 justify-center
+         text-2xl leading-10 text-[#445];
+    transition: all 250ms;
+    text-shadow:
+      0px 1px 1px #fffc,
+      0.5px 1.5px 1.5px #fffa;
+  }
+
+  a {
+    color: var(--href);
+    transition: all 250ms;
+
+    &:hover {
+      text-decoration: underline;
+
+      color: var(--href-hover);
+      &:visited {
+        color: var(--href-visited-hover);
+      }
+    }
+
+    &:active {
+      color: var(--href-active);
+    }
+
+    &:visited {
+      color: var(--href-visited);
+      &:active {
+        color: var(--href-active);
+      }
+    }
+  }
+}

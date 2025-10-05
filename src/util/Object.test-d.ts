@@ -1,4 +1,4 @@
-import type {FromEntries, InvertedObject, KeyList, ValueList} from './Object.js'
+import type {FromEntries, InvertedObject, KeyList, ValueList} from './Object'
 import {describe, expectTypeOf, test} from '@effect/vitest'
 
 interface MyObject {

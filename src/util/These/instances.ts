@@ -7,7 +7,7 @@ import {
   Right,
   type These,
   type TheseTypeLambda,
-} from './index.js'
+} from './index'
 
 export const bimap: BI.Bicovariant<TheseTypeLambda>['bimap'] = Function.dual(
   3,

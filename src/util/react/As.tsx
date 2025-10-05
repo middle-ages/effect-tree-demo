@@ -1,5 +1,5 @@
 import type {HTMLElementType} from 'react'
-import type {HasElement, StyledPropsWithChildren} from './props.js'
+import type {HasElement, StyledPropsWithChildren} from './props'
 
 export const As = <Tag extends HTMLElementType>({
   as: As,
