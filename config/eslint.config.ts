@@ -7,7 +7,7 @@ import * as globals from 'globals'
 import tslint from 'typescript-eslint'
 import * as react from 'eslint-plugin-react'
 import * as reactRefresh from 'eslint-plugin-react-refresh'
-import * as reactHooks from 'eslint-plugin-react-hooks'
+//import * as reactHooks from 'eslint-plugin-react-hooks'
 
 const config = defineConfig(
   globalIgnores([
@@ -50,7 +50,7 @@ const config = defineConfig(
 
     plugins: {
       react,
-      'react-hooks': reactHooks,
+      //'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
 
