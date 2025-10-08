@@ -4,7 +4,7 @@ import type {
   PillActionId,
   PrimedModifyActionMap,
   VoidAction,
-} from './actions'
+} from '../actions'
 
 interface Props {
   actions: Pick<PrimedModifyActionMap, PillActionId>

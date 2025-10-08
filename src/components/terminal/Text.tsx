@@ -11,7 +11,7 @@ export const Text = ({lines, style, className}: Props) => {
       className={twMerge('font-mono *:leading-tight *:truncate', className)}
       {...{style}}>
       {lines.map((line, i) => (
-        <div key={i}>{line.trimEnd().replaceAll(' ', '\u00a0')}</div>
+        <div key={i}>{line.trimEnd().replaceAll(' ', '\u00A0')}</div>
       ))}
     </div>
   )

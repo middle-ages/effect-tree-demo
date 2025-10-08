@@ -11,6 +11,5 @@ echo "# ⚖ Checking…"
 pnpm circular
 pnpm typecheck
 pnpm test
-pnpm build:examples
 
 show_done 'coverage'

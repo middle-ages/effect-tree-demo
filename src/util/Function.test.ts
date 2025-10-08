@@ -1,8 +1,6 @@
 import {apply0} from './Function'
-import {describe, expect, test} from '@effect/vitest'
+import {expect, test} from '@effect/vitest'
 
-describe('Function', () => {
-  test('apply0', () => {
-    expect(apply0(() => 123)).toBe(123)
-  })
+test('apply0', () => {
+  expect(apply0(() => 123)).toBe(123)
 })

@@ -12,7 +12,7 @@ interface Props extends StyledProps {
 export const TextTree = ({tree, ...props}: Props) => {
   const lines: Array.NonEmptyArray<string> = useMemo(() => {
     const [head, ...tail] = drawTree(tree)
-    return ['─' + head, ...pipe(tail, Array.map(prefix('\u00a0')))]
+    return ['─' + head, ...pipe(tail, Array.map(prefix('\u00A0')))]
   }, [tree])
 
   return <Text {...{lines}} {...props} />

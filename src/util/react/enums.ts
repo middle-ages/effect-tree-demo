@@ -2,8 +2,6 @@ import * as Pair from '../Pair'
 
 export type Axis = 'horizontal' | 'vertical'
 export type Face = 'convex' | 'concave'
-export type RoundGradient = 'radial' | 'conic'
-export type Gradient = RoundGradient | 'linear'
 export type AsTag = 'div' | 'button'
 
 export interface Direction {
@@ -16,9 +14,7 @@ export type HorizontalDirection = Direction['horizontal']
 export type VerticalDirection = Direction['vertical']
 export type AnyDirection = Direction['any']
 
-const axisValues: Axis[] = ['horizontal', 'vertical'],
-  roundGradientTypes: RoundGradient[] = ['radial', 'conic'],
-  gradientTypes: Gradient[] = [...roundGradientTypes, 'linear']
+const axisValues: Axis[] = ['horizontal', 'vertical']
 
 export const faces: Face[] = ['convex', 'concave']
 
@@ -30,19 +26,6 @@ export const axis = {
     f('horizontal'),
     f('vertical'),
   ],
-}
-
-export const gradient = {
-  round: roundGradientTypes,
-  all: gradientTypes,
-  match:
-    <R>(onLinear: R, onRadial: R, onConic: R) =>
-    (gradient: Gradient): R =>
-      gradient === 'linear'
-        ? onLinear
-        : gradient === 'radial'
-          ? onRadial
-          : onConic,
 }
 
 export const direction: {

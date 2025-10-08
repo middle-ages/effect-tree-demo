@@ -1,5 +1,5 @@
 import {toEntries} from '#Record'
-import type {ModifyActionId, PrimedModifyActionMap, VoidAction} from './actions'
+import type {ModifyActionId, PrimedModifyActionMap, VoidAction} from './types'
 
 interface Props {
   modifyActions: PrimedModifyActionMap

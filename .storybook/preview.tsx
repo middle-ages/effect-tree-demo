@@ -6,8 +6,7 @@ const preview = {
     backgrounds: {
       options: {
         dark: {name: 'Dark', value: '#555'},
-        light: {name: 'Light', value: '#ffffff'},
-        grey: {name: 'Grey', value: '#eaeaea'},
+        light: {name: 'Light', value: '#e8e8ee'},
       },
       grid: {
         opacity: 0.3,
@@ -17,7 +16,7 @@ const preview = {
   },
   initialGlobals: {
     backgrounds: {
-      value: 'grey',
+      value: 'light',
     },
   },
 }

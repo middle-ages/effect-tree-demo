@@ -12,8 +12,8 @@ import * as Record from '../Record'
 
 /** A component that allows external styling of one of its elements. */
 export interface StyledProps {
-  className?: string
-  style?: CSSProperties
+  className?: string | undefined
+  style?: CSSProperties | undefined
 }
 
 export type StyledPropsWithChildren = PropsWithChildren<StyledProps>
@@ -26,6 +26,11 @@ export type StyledPropsWithChildren = PropsWithChildren<StyledProps>
 export interface Clickable<Args extends unknown[] = []> {
   isDisabled?: boolean
   onClick?: (...args: Args) => void
+}
+
+/** A component with an optional string ID. */
+export interface Identified {
+  id?: string
 }
 
 /**

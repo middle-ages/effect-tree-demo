@@ -10,16 +10,12 @@ const config: StorybookConfig = {
   },
   staticDirs: [
     {
-      from: '../src/style',
+      from: '../public',
       to: 'css',
     },
     {
-      from: '../doc',
-      to: 'doc',
-    },
-    {
-      from: '../public/icons',
-      to: 'icons',
+      from: '../public/fonts',
+      to: 'fonts',
     },
   ],
 

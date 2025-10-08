@@ -1,5 +1,65 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunrm.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: italic;
+  font-weight: 500;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunti.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunbx.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: italic;
+  font-weight: 700;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunbi.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/FiraMono-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/FiraMono-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Inter-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/Inter-Medium.woff') format('woff');
+}
+
 :root {
   --bg: #e8e8ee;
   --control: #e0e0e5;
@@ -10,17 +70,20 @@
   --controlHover: #e4e4ea;
   --textHighlight: #ececf3;
   --controlActive: #d5d5dc;
-  --controlBorderTop: #fcfcfc;
-  --controlBorderLeft: #b0b0b0;
-  --controlBorderRight: #cacaca;
-  --controlBorderBottom: #959595;
-  --font-mono: 'Fira Code';
+  --controlBorderTop: #f6f6fa;
+  --controlBorderLeft: #acacac;
+  --controlBorderRight: #c4c4c4;
+  --controlBorderBottom: #888888;
 
   --href: lab(5% 30 -70);
   --href-hover: lab(20% 50 -90);
   --href-active: lab(30% 80 140);
   --href-visited: lab(10% 50 -50);
   --href-visited-hover: lab(35% 70 -70);
+
+  --font-sans: 'Inter';
+  --font-mono: 'Fira Mono';
+  --font-serif: 'CMU Serif';
 }
 
 body {
@@ -103,7 +166,7 @@ body {
 
   .textView {
     box-sizing: content-box;
-    font-size: 2em;
+    font-size: 1.5em;
     color: #8aff00;
     background: #000000;
     border-top-color: var(--controlBorderBottom);
@@ -126,20 +189,16 @@ body {
   }
 
   .numeric {
-    @apply relative px-2 inline-block rounded-lg
-           font-mono text-black bg-[var(--textHighlight)];
-    margin: 1.5px;
+    @apply relative inline-block rounded-md
+           font-normal leading-7 h-6
+           pl-1 pr-1.5 text-right overflow-hidden whitespace-nowrap
+           font-serif text-black bg-[var(--textHighlight)];
     transition: all 250ms;
 
     &::after {
-      @apply rounded-lg;
+      @apply absolute top-0 left-0 size-full rounded-md;
       content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-width: 1.5px;
+      border-width: 2px;
       border-style: solid;
       border-top-color: var(--controlBorderBottom);
       border-right-color: var(--controlBorderLeft);

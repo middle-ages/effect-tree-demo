@@ -1,7 +1,7 @@
 import {type LazyArg} from '#Function'
 import {Layout} from './Layout'
 import {StatsView} from './StatsView'
-import {Toolbar} from './Toolbar'
+import {Toolbar} from './actions'
 import {usePruferCode} from './usePruferCode'
 import {TextView} from './TextView'
 import {Header} from './Header'
@@ -18,7 +18,7 @@ export const PruferGlyphs = ({initialCode}: Props) => {
     <Layout
       className="demo"
       header={<Header messages={['The Enumerated Tree']} />}
-      view={<TextView {...{tree}} />}
+      view={<TextView {...{tree}} format="lowerAscii" />}
       stats={<StatsView {...{stats}} />}
       toolbar={<Toolbar {...{modifyActions}} />}
       footer={<Footer {...{code}} />}

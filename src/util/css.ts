@@ -1,0 +1,11 @@
+export const px = (x: number): string => `${x.toFixed(2)}px`,
+  ch = (x: number): string => `${x.toFixed(2)}ch`,
+  rch = (x: number): string => `${x.toFixed(2)}rch`,
+  em = (x: number): string => `${x.toFixed(3)}em`,
+  rem = (x: number): string => `${x.toFixed(3)}rem`,
+  per = (x: number): string => `${x.toFixed(0)}%`,
+  deg = (x: number): string => `${x.toFixed(0)}deg`,
+  turn = (x: number): string => `${x.toFixed(2)}turn`,
+  ms = (x: number): string => `${x.toFixed(0)}ms`,
+  cqw = (x: number): string => `${x.toFixed(3)}cqw`,
+  cqh = (x: number): string => `${x.toFixed(3)}cqh`

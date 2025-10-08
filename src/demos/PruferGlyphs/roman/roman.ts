@@ -1,9 +1,21 @@
 import {segmentString, unwords} from '#String'
 import {Array, pipe} from '#util'
+import type {EndoOf} from '#Function'
 
-export const MAX_ROMAN = 3_999
+export const MAX_ROMAN = 3999
 
-export const upToTen = {
+export const romanFormats = [
+  'upper',
+  'lower',
+  'upperAscii',
+  'lowerAscii',
+] as const
+export const numericFormats = ['decimal', ...romanFormats] as const
+
+export type RomanFormat = (typeof romanFormats)[number]
+export type NumericFormat = (typeof numericFormats)[number]
+
+export const upToTen: Record<RomanFormat, string[]> = {
   upper: ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ', 'Ⅵ', 'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ', 'Ⅺ', 'Ⅻ'],
   lower: ['ⅰ', 'ⅱ', 'ⅲ', 'ⅳ', 'ⅴ', 'ⅵ', 'ⅶ', 'ⅷ', 'ⅸ', 'ⅹ', 'ⅺ', 'ⅻ'],
   upperAscii: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'],
@@ -53,6 +65,13 @@ const convertToLower = (s: string) => convert(s)[0]
 const convertToUpperAscii = (s: string) => convert(s)[1]
 const convertToLowerAscii = (s: string) => convert(s)[2]
 
+const convertFormat =
+  (format: RomanFormat): EndoOf<string> =>
+  s =>
+    format === 'upper'
+      ? s
+      : convert(s)[format === 'lower' ? 0 : format === 'upperAscii' ? 1 : 2]
+
 export const toRoman = (n: number): string => {
   if (n < 1 || n > MAX_ROMAN) {
     return ' '
@@ -74,3 +93,13 @@ toRoman.upperAscii = (n: number): string =>
 
 toRoman.lowerAscii = (n: number): string =>
   pipe(n, toRoman, segmentString, Array.map(convertToLowerAscii), unwords)
+
+export const formatRoman =
+  (format: NumericFormat) =>
+  (n: number): string => {
+    if (format === 'decimal') {
+      return n.toLocaleString()
+    }
+    const f = convertFormat(format)
+    return pipe(n, toRoman, segmentString, Array.map(f), unwords)
+  }

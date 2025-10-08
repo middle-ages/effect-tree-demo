@@ -12,6 +12,8 @@ export * as Test from './util/Test'
 export * as These from './util/These'
 export * as Tuple from './util/Tuple'
 
+export * from './util/css'
+
 export * from './util/react'
 
 export {flow, identity, pipe} from 'effect'

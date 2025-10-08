@@ -2,9 +2,9 @@ import {create} from 'storybook/theming'
 
 const theme = create({
   base: 'light',
-  brandTitle: 'Bevel Components',
+  brandTitle: 'effect-tree Demo Site Stories',
   brandUrl: 'https://middle-ages.github.io',
-  brandImage: '/icons/BevelLogo.svg',
+  //  brandImage: '/icons/BevelLogo.svg',
   brandTarget: '_self',
   fontBase: 'Inter, sans-serif',
   fontCode: 'Fira Code',

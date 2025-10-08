@@ -3,7 +3,7 @@ import {withKey} from '#Record'
 import {flow, Number, Predicate} from 'effect'
 import {Codec} from 'effect-tree'
 import type {ModifyAction, ModifyActionId, ModifyActionMap} from './types'
-import {MAX_NODE_COUNT} from '../stats'
+import {MAX_NODE_COUNT} from '../StatsView/stats'
 
 const {Prufer} = Codec
 

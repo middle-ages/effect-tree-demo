@@ -4,7 +4,7 @@ import {Codec, type Tree} from 'effect-tree'
 import {useMemo, useState} from 'react'
 import type {Dispatcher} from '#util'
 import {actionMap, type PrimedModifyActionMap} from './actions'
-import {type Stats, stats} from './stats'
+import {type Stats, stats} from './StatsView/stats'
 
 const {Prufer} = Codec
 
@@ -23,7 +23,7 @@ export const usePruferCode = (
   const tree: Tree<number> = useMemo(() => Prufer.decode(code), [code])
   const modifyActions = useMemo(() => makeActionMap(code, setCode), [code])
 
-  return {code, tree, modifyActions, stats: stats(code)}
+  return {code, tree, modifyActions, stats: stats(code, tree)}
 }
 
 // Prime all actions and predicates with current code and dispatcher.

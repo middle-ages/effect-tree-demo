@@ -1,13 +1,13 @@
 import * as eslint from '@eslint/js'
 import prettierRecommended from 'eslint-plugin-prettier/recommended'
-//import sonarjs from 'eslint-plugin-sonarjs'
-//import eslintPluginUnicorn from 'eslint-plugin-unicorn'
+import sonarjs from 'eslint-plugin-sonarjs'
+import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import {globalIgnores, defineConfig} from 'eslint/config'
-import * as globals from 'globals'
+import globals from 'globals'
 import tslint from 'typescript-eslint'
-import * as react from 'eslint-plugin-react'
-import * as reactRefresh from 'eslint-plugin-react-refresh'
-//import * as reactHooks from 'eslint-plugin-react-hooks'
+import react from 'eslint-plugin-react'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import reactHooks from 'eslint-plugin-react-hooks'
 
 const config = defineConfig(
   globalIgnores([
@@ -21,8 +21,8 @@ const config = defineConfig(
   ...tslint.configs.recommended,
   eslint.configs.recommended,
   tslint.configs.strictTypeChecked,
-  // eslintPluginUnicorn.configs.recommended,
-  // sonarjs.configs.recommended,
+  eslintPluginUnicorn.configs.recommended,
+  sonarjs.configs.recommended,
   prettierRecommended,
 
   {
@@ -50,12 +50,15 @@ const config = defineConfig(
 
     plugins: {
       react,
-      //'react-hooks': reactHooks,
+      'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
 
     rules: {
       ...reactRefresh.configs.recommended.rules,
+
+      'react-hooks/exhaustive-deps': 'error',
+      'react-hooks/rules-of-hooks': 'error',
 
       // Duplicated in eslint rules.
       'unicorn/prevent-abbreviations': 'off',
@@ -89,6 +92,7 @@ const config = defineConfig(
       'sonarjs/no-nested-conditional': 'off',
       'sonarjs/void-use': 'off',
       'sonarjs/class-name': 'off',
+      'sonarjs/function-return-type': 'off',
 
       // Can't do module augmentation.
       '@typescript-eslint/no-namespace': 'off',

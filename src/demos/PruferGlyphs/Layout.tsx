@@ -27,6 +27,7 @@ export const Layout = ({
           flex flex-col p-2
           bg-[var(--toolbar)] rounded-lg`}>
           {toolbar}
+          <div className="separator" />
           {stats}
         </div>
         {view}
