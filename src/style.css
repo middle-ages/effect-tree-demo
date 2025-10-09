@@ -1,34 +1,11 @@
 @import 'tailwindcss';
+@import './style/text.css';
+@import './style/color.css';
+@import './style/base.css';
+@import './style/border.css';
 
-:root {
-  --bg: #e8e8ee;
-  --control: #e0e0e5;
-  --controlDisabled: #d7d7d7;
-  --controlFg: #30303a;
-  --controlFgHover: #4a4a4f;
-  --controlFgDisabled: #7a7a7a;
-  --toolbar: #dedee4;
-  --controlHover: #e4e4ea;
-  --textHighlight: #ececf3;
-  --controlActive: #d5d5dc;
-  --controlBorderTop: #f6f6fa;
-  --controlBorderLeft: #acacac;
-  --controlBorderRight: #c4c4c4;
-  --controlBorderBottom: #888888;
-
-  --href: lab(5% 30 -70);
-  --href-hover: lab(20% 50 -90);
-  --href-active: lab(30% 80 140);
-  --href-visited: lab(10% 50 -50);
-  --href-visited-hover: lab(35% 70 -70);
-
-  --font-sans: 'Inter';
-  --font-mono: 'Fira Mono';
-  --font-serif: 'CMU Serif';
-}
-
-body {
-  font-family: Inter;
+@utility transition {
+  transition: all 250ms;
 }
 
 @layer components {
@@ -37,34 +14,19 @@ body {
   }
 
   .button {
-    @apply px-2.5 relative truncate w-full transition-all;
-    line-height: 2;
+    @apply border-outset text-center text-inset px-2.5;
+    line-height: 1.75;
     color: var(--controlFg);
     background-color: var(--control);
-    border-radius: 0.5ch;
-    text-shadow:
-      0px 1px 1px #fffe,
-      0.5px 1.5px 2px #fff8;
 
     &::after {
-      @apply absolute border-2 top-0 left-0 size-full box-border
-             transition-all text-center;
-      content: '';
-      border-top-color: var(--controlBorderTop);
-      border-right-color: var(--controlBorderRight);
-      border-bottom-color: var(--controlBorderBottom);
-      border-left-color: var(--controlBorderLeft);
-      border-radius: 0.5ch;
-      border-style: solid;
-      opacity: 0.5;
+      @apply border-[2.5px] opacity-35;
     }
 
     &:hover:not(:disabled) {
+      @apply text-inset-deep;
       color: var(--controlFgHover);
       background-color: var(--controlHover);
-      text-shadow:
-        0px 1px 1px #fffd,
-        0.5px 1.5px 2px #fffb;
 
       &::after {
         opacity: 1;
@@ -72,17 +34,12 @@ body {
     }
 
     &:active:not(:disabled) {
+      @apply text-outset;
       color: black;
       background-color: var(--controlActive);
-      text-shadow:
-        0px -1px 1px #fffa,
-        -0.5px -1.5px 2px #fff4;
+
       &::after {
-        border-top-color: var(--controlBorderBottom);
-        border-right-color: var(--controlBorderLeft);
-        border-bottom-color: var(--controlBorderTop);
-        border-left-color: var(--controlBorderRight);
-        opacity: 0.6;
+        @apply border-inset-after;
       }
     }
 
@@ -90,24 +47,7 @@ body {
       opacity: 0.6;
       color: var(--controlFgDisabled);
       background: var(--controlDisabled);
-      text-shadow:
-        0px 1px 1px #fff8,
-        0.5px 1.5px 2px #fff4;
     }
-  }
-
-  .textView {
-    @apply box-content;
-    font-size: 1.5em;
-    color: #8aff00;
-    background: #000000;
-    border-top-color: var(--controlBorderBottom);
-    border-right-color: var(--controlBorderLeft);
-    border-bottom-color: var(--controlBorderTop);
-    border-left-color: var(--controlBorderRight);
-    border-radius: 0.75rch;
-    border-width: 3px;
-    border-style: solid;
   }
 
   .separator {
@@ -121,122 +61,19 @@ body {
   }
 
   .numeric {
-    @apply relative inline-block rounded-md
-           font-normal leading-7 h-6 transition-all
+    @apply inline-block border-inset font-normal leading-7 h-6
            pl-1 pr-1.5 text-right overflow-hidden whitespace-nowrap
            font-serif text-black bg-[var(--textHighlight)];
 
     &::after {
-      @apply absolute top-0 left-0 size-full
-             rounded-md transition-all;
-      content: '';
-      border-width: 2px;
-      border-style: solid;
-      border-top-color: var(--controlBorderBottom);
-      border-right-color: var(--controlBorderLeft);
-      border-bottom-color: var(--controlBorderTop);
-      border-left-color: var(--controlBorderRight);
-      opacity: 0.3;
+      @apply border-2;
+      opacity: 0.5;
+    }
 
     &:hover {
       &::after {
-        opacity: 1;
+        opacity: 0.9;
       }
     }
   }
-}
-
-@layer base {
-  h1 {
-    @apply h-10 px-3 flex gap-3 justify-center
-         text-2xl leading-10 text-[#445];
-    transition: all 250ms;
-    text-shadow:
-      0px 1px 1px #fffc,
-      0.5px 1.5px 1.5px #fffa;
-  }
-
-  a {
-    @apply transition-all text-[var(--href)];
-
-    &:hover {
-      text-decoration: underline;
-
-      @apply text-[var(--href-hover)];
-      &:visited {
-        @apply text-[var(--href-visited-hover)];
-      }
-    }
-
-    &:active {
-      color: var(--href-active);
-    }
-
-    &:visited {
-      color: var(--href-visited);
-      &:active {
-        color: var(--href-active);
-      }
-    }
-  }
-}
-
-@font-face {
-  font-family: 'CMU Serif';
-  font-style: normal;
-  font-weight: 500;
-  font-feature-settings: 'liga' 0;
-  src: url('/fonts/cmunrm.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'CMU Serif';
-  font-style: italic;
-  font-weight: 500;
-  font-feature-settings: 'liga' 0;
-  src: url('/fonts/cmunti.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'CMU Serif';
-  font-style: normal;
-  font-weight: 700;
-  font-feature-settings: 'liga' 0;
-  src: url('/fonts/cmunbx.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'CMU Serif';
-  font-style: italic;
-  font-weight: 700;
-  font-feature-settings: 'liga' 0;
-  src: url('/fonts/cmunbi.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Fira Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/FiraMono-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Fira Mono';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/FiraMono-Medium.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/Inter-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/Inter-Medium.woff') format('woff');
 }

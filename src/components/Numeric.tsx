@@ -10,6 +10,7 @@ interface Props extends StyledProps {
   value: bigint | number | string
   maxWidthPx?: number | undefined
   width?: string
+  sizeFactor?: number
 }
 
 // 16px CMU Serif
@@ -53,6 +54,7 @@ export const Numeric = ({
   value,
   maxWidthPx,
   width: givenWidth,
+  sizeFactor = 1,
   className,
   style,
 }: Props) => {
@@ -60,7 +62,7 @@ export const Numeric = ({
   const title = isBig ? value.toLocaleString() : ''
   const [isOverflow, width] =
     givenWidth === undefined && maxWidthPx !== undefined
-      ? overflowWidth(maxWidthPx, formatted)
+      ? overflowWidth(maxWidthPx, formatted, sizeFactor)
       : [false, givenWidth]
 
   return (
@@ -83,8 +85,9 @@ export const Numeric = ({
 const overflowWidth = (
   maxWidthPx: number,
   formatted: string,
+  sizeFactor: number,
 ): [boolean, string] => {
-  const measuredPx = measure(formatted)
+  const measuredPx = measure(formatted) * sizeFactor
   const availablePx = maxWidthPx - horizontalSpacingPx
   const widthPx = Math.min(measuredPx, availablePx) + horizontalSpacingPx
 

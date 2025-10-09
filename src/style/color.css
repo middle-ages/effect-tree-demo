@@ -1,0 +1,51 @@
+:root {
+  --bg: #e8e8ee;
+
+  --control: #e0e0e5;
+  --controlDisabled: #d7d7d7;
+  --controlFg: #38383c;
+  --controlFgHover: #50505a;
+  --controlFgDisabled: #7a7a7a;
+  --controlHover: #e7e7ef;
+  --controlActive: #d5d5dc;
+
+  --controlBorderTop: #f6f6fa;
+  --controlBorderLeft: #acacac;
+  --controlBorderRight: #c4c4c4;
+  --controlBorderBottom: #888888;
+
+  --toolbar: #e2e2e8;
+  --textHighlight: #ececf3;
+
+  --terminalText: #8aff00;
+
+  --href: lab(5% 30 -70);
+  --href-hover: lab(20% 50 -90);
+  --href-active: lab(30% 80 140);
+  --href-visited: lab(10% 50 -50);
+  --href-visited-hover: lab(35% 70 -70);
+}
+
+@utility text-inset {
+  text-shadow:
+    0px 1px 1px #fffc,
+    0.5px 1.5px 2px #fff9;
+}
+
+@utility text-inset-shallow {
+  text-shadow:
+    0px 1px 1px #fff8,
+    0.5px 1.5px 2px #fff4;
+}
+
+@utility text-inset-deep {
+  text-shadow:
+    0px 1px 1px #fffd,
+    0.5px 1.5px 2px #fffb;
+}
+
+@utility text-outset {
+  text-shadow:
+    0px -1px 1px #fffa,
+    -0.5px -1.5px 2px #fff4;
+}

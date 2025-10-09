@@ -3,7 +3,8 @@ import {Record, Tuple} from 'effect'
 import {Codec, type Tree} from 'effect-tree'
 import {useMemo, useState} from 'react'
 import type {Dispatcher} from '#util'
-import {actionMap, type PrimedModifyActionMap} from './Toolbar'
+import {type PrimedModifyActionMap} from './Toolbar/types'
+import {modifyActionMap} from './Toolbar/actions'
 import {type Stats, stats} from './StatsView/stats'
 
 const {Prufer} = Codec
@@ -32,7 +33,7 @@ const makeActionMap = (
   setCode: Dispatcher<number[]>,
 ): PrimedModifyActionMap =>
   pipe(
-    actionMap,
+    modifyActionMap,
     Record.mapEntries(({apply, disable, ...action}, key) => [
       key,
       {

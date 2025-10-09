@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "storybook": "storybook dev -p 6006",
-    "dev": "vite dev",
+    "dev": "vite -c config/vite.config.ts dev",
     "tailwind:watch": "dev/tailwind-watch",
     "clean": "dev/clean",
     "lint": "dev/lint --cache",
@@ -19,9 +19,9 @@
     "coverage": "dev/coverage",
     "typecheck": "dev/typecheck",
     "circular": "dev/circular",
-    "build:storybook": "storybook build",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build:storybook": "storybook build --output-dir docs/storybook",
+    "build": "vite -c config/vite.config.ts build",
+    "preview": "vite -c config/vite.config.ts preview"
   },
   "devDependencies": {
     "@effect/vitest": "^0.26.0",
@@ -30,12 +30,13 @@
     "@storybook/addon-docs": "^9.1.10",
     "@storybook/react-vite": "^9.1.10",
     "@tailwindcss/cli": "^4.1.14",
+    "@tailwindcss/vite": "^4.1.14",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@tsconfig/node24": "^24.0.1",
     "@tsconfig/strictest": "^2.0.6",
     "@tsconfig/vite-react": "^7.0.1",
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.7.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
     "@vitejs/plugin-react": "^5.0.4",
@@ -46,17 +47,20 @@
     "eslint": "^9.37.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-react-hooks": "^6.1.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.4.23",
     "eslint-plugin-sonarjs": "^3.0.5",
     "eslint-plugin-unicorn": "^61.0.2",
     "fast-check": "^4.3.0",
     "globals": "^16.4.0",
-    "happy-dom": "^19.0.2",
+    "happy-dom": "^20.0.0",
     "jiti": "^2.6.1",
     "playwright": "^1.56.0",
     "prettier": "^3.6.2",
     "storybook": "^9.1.10",
     "storybook-addon-pseudo-states": "^9.1.10",
+    "tailwindcss": "^4.1.14",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0",
@@ -66,14 +70,11 @@
   "dependencies": {
     "@effect/typeclass": "^0.37.0",
     "effect": "^3.18.4",
-    "effect-tree": "^1.0.33",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-refresh": "^0.4.23",
+    "effect-tree": "^1.0.34",
     "react": "^19.2.0",
     "react-compinators": "^1.0.55",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.14",
     "tty-strings": "^1.5.2"
   },
   "exports": {
@@ -89,6 +90,12 @@
       "import": {
         "types": "./src/components.d.ts",
         "import": "./src/components.js"
+      }
+    },
+    "#compinators": {
+      "import": {
+        "types": "./src/compinators.d.ts",
+        "import": "./src/compinators.js"
       }
     },
     "#storybook": {

@@ -1,0 +1,76 @@
+:root {
+  --font-sans: 'Inter';
+  --font-mono: 'Fira Mono';
+  --font-serif: 'CMU Serif';
+}
+
+body {
+  font-family: Inter;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunrm.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: italic;
+  font-weight: 500;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunti.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunbx.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: italic;
+  font-weight: 700;
+  font-feature-settings: 'liga' 0;
+  src: url('/fonts/cmunbi.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/FiraMono-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/FiraMono-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/Inter-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Inter-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/Inter-Medium.woff') format('woff');
+}

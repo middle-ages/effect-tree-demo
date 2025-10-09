@@ -6,6 +6,6 @@ COLOR="${COLOR:-true}"
 
 . "$(dirname "${0}")/lib/_"
 
-vitest run --coverage "$@"
+vitest run --config "$CONFIG_DIR"/vitest.config.ts --coverage "$@"
 
 show_done 'coverage'

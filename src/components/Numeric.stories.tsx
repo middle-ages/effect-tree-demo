@@ -1,9 +1,9 @@
-import {parameters} from '#storybook'
+import {FrameDecorator, parameters} from '#storybook'
 import {px} from '#util'
 import type {Meta, StoryObj} from '@storybook/react-vite'
 import type {FC} from 'react'
 import {mapProp} from 'react-compinators'
-import {Numeric as Component} from './Numeric.js'
+import {Numeric as Component} from './Numeric'
 import code from './Numeric.jsx?raw'
 
 const Wrapper: FC<{
@@ -22,15 +22,7 @@ const meta = {
     value: '1',
     maxWidthPx: 200,
   },
-  render: props => (
-    <div
-      className={`
-      w-fit p-1 h-8
-      rounded-[10px] bg-[#0001]
-      `}>
-      <Wrapper {...props} />
-    </div>
-  ),
+  decorators: [FrameDecorator({})],
 } satisfies Meta<typeof Wrapper>
 
 export default meta

@@ -1,5 +1,5 @@
 import {test, expect} from 'vitest'
-import {bigIntToExponential} from './Number.js'
+import {bigIntToExponential} from './Number'
 import {String} from 'effect'
 
 test('bigIntToExponential', () => {

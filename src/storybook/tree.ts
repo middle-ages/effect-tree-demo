@@ -4,7 +4,6 @@ import {Codec} from 'effect-tree'
 import {stats, type Stats} from '../demos/PruferGlyphs/StatsView/stats'
 
 export const stringToCode = (code: string): number[] =>
-  // eslint-disable-next-line sonarjs/slow-regex
   code.split(/\s*,\s*/).map(s => Number.parseInt(s))
 
 export const fromCode = (code: string): Stats =>

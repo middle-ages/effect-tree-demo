@@ -1,27 +1,27 @@
 import type {Predicate} from 'effect'
+import type {VoidAction} from '#components'
 
-export const pillActionIds = [
+export const codePillActionIds = [
   'firstCode',
   'lastCode',
   'decCode',
   'incCode',
 ] as const
 
-export const modifyActionIds = [
-  ...pillActionIds,
-  'decNodes',
-  'incNodes',
-] as const
+export const nodePillActionIds = ['decNodes', 'incNodes'] as const
 
-export const setActionIds = [
-  'setCode',
+export const actionIds = [
+  ...codePillActionIds,
+  ...nodePillActionIds,
   'randomCode',
-  'setNodes',
   'randomNodes',
 ] as const
 
-export type PillActionId = (typeof pillActionIds)[number]
-export type ModifyActionId = (typeof modifyActionIds)[number]
+export const setActionIds = ['setCode', 'setNodes'] as const
+
+export type CodePillActionId = (typeof codePillActionIds)[number]
+export type NodePillActionId = (typeof nodePillActionIds)[number]
+export type ModifyActionId = (typeof actionIds)[number]
 export type SetActionId = (typeof setActionIds)[number]
 
 export interface BaseAction<Id, In extends unknown[] = [], Out = number[]> {
@@ -34,12 +34,8 @@ export interface BaseAction<Id, In extends unknown[] = [], Out = number[]> {
     | undefined
 }
 
-export interface VoidAction<Id>
-  extends Omit<BaseAction<Id, [], void>, 'disable'> {
-  disable: [isDisabled: boolean, disabledNote: string] | undefined
-}
-
 export interface ModifyAction extends BaseAction<ModifyActionId, [number[]]> {}
+
 export interface ModifyActionMap extends Record<ModifyActionId, ModifyAction> {}
 
 export interface PrimedModifyActionMap

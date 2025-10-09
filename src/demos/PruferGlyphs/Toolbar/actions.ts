@@ -1,9 +1,10 @@
-import {type EndoOf} from '#Function'
+import {apply0, type EndoOf} from '#Function'
 import {withKey} from '#Record'
-import {flow, Number, Predicate} from 'effect'
+import {pipe, flow, Number, Predicate} from 'effect'
 import {Codec} from 'effect-tree'
-import type {ModifyAction, ModifyActionId, ModifyActionMap} from './types'
 import {MAX_NODE_COUNT} from '../StatsView/stats'
+import {sampleNodeCount, samplePruferCode} from '../arbitrary'
+import type {ModifyAction, ModifyActionId, ModifyActionMap} from './types'
 
 const {Prufer} = Codec
 
@@ -18,7 +19,12 @@ const [firstCodeNote, lastCodeNote] = [
   noFurtherNote('last'),
 ]
 
-export const actionMap: ModifyActionMap = {
+export const modifyActionMap: ModifyActionMap = {
+  ...modifyAction(
+    'randomCode',
+    'Random Code',
+  )('Jump to a random tree with the same number of nodes.')(samplePruferCode()),
+
   ...modifyAction('decCode', '⯇ Previous')('Step back to previous tree.', [
     code => code.length === 0,
     'You are at the first Prüfer encodable tree and can go no further.',
@@ -27,7 +33,7 @@ export const actionMap: ModifyActionMap = {
   ...modifyAction('incCode', 'Next ⯈')('Step forwards to the next tree.', [
     Predicate.and(Prufer.isLastCode, isMaxNodeCount),
     'You are at the last Prüfer encodable tree of node count ≤ ' +
-      `${MAX_NODE_COUNT.toString()} and can go no further.`,
+      `${MAX_NODE_COUNT.toLocaleString()} and can go no further.`,
   ])(Prufer.nextCode),
 
   ...modifyAction('firstCode', '⏮ First')(
@@ -39,6 +45,15 @@ export const actionMap: ModifyActionMap = {
     'Jump to the last tree in current node count.',
     [Prufer.isLastCode, lastCodeNote],
   )(flow(Prufer.computeNodeCount, Prufer.getLastCodeFor)),
+
+  ...modifyAction(
+    'randomNodes',
+    'Random Size',
+  )(
+    `Set a random node count between 2 and ${MAX_NODE_COUNT.toLocaleString()}.`,
+  )(() =>
+    pipe(MAX_NODE_COUNT, sampleNodeCount, apply0, Prufer.getFirstCodeFor),
+  ),
 
   ...modifyAction('decNodes', 'Remove Node')('Remove a node from the tree.', [
     isMinNodeCount,
@@ -86,22 +101,6 @@ export const setNodesAction: Action<'setNodes', [number]> = {
   apply: Prufer.getFirstCodeFor,
 }
 
-export const randomCodeAction: Action<'randomCode'> = {
-  id: 'randomCode',
-  label: 'Random Tree',
-  note: 'Goto a random tree with the same number of nodes.',
-  disabledNote: undefined,
-  apply: samplePruferCode(),
-}
-
-export const randomNodesAction: Action<'randomNodes'> = {
-  id: 'randomNodes',
-  label: 'Random Size',
-  note: 'Set a random node count.',
-  disabledNote: undefined,
-  apply: (seed?: number) =>
-    pipe(MAX_NODE_COUNT, sampleNodeCount, apply(seed), Prufer.getFirstCodeFor),
-}
   */
 
 function noFurtherNote(ordinal: string): string {

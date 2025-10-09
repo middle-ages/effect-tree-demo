@@ -10,7 +10,7 @@ import {
 
 const {Prufer} = Codec
 
-export const MAX_NODE_COUNT = 100n
+export const MAX_NODE_COUNT: number = 100
 
 export type StatId = (typeof statIds)[number]
 
@@ -68,17 +68,17 @@ export const stats = (code: number[], tree: Tree<number>): Stats => {
       'maxNodes',
       'Max Nodes',
       'Maximum node count limit.',
-    )(K(MAX_NODE_COUNT)),
+    )(K(BigInt(MAX_NODE_COUNT))),
 
     maxDepth: make(
       'maxDepth',
-      'Depth',
+      'max depth',
       'Maximum hops from a leaf node to root.',
     )((_, tree) => BigInt(maximumNodeHeight(tree))),
 
     maxDegree: make(
       'maxDegree',
-      'Degree',
+      'max degree',
       'Size of the  largest forest.',
     )((_, tree) => BigInt(maximumNodeDegree(tree))),
   }

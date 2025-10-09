@@ -2,6 +2,7 @@ import {Numeric} from '#components'
 import {type StyledPropsWithChildren} from '#util'
 import {twMerge} from 'tailwind-merge'
 import {type Stats} from './stats'
+import type {PropsWithChildren} from 'react'
 
 interface Props {
   stats: Stats
@@ -11,38 +12,35 @@ interface Props {
 export const StatsView = ({
   stats: {treeIndex, treeCount, nodeCount},
   maxWidthPx,
-}: Props) => (
-  <>
-    <div
-      className={`
-          flex flex-col p-1
-          text-[var(--controlFg)]
-          *:whitespace-nowrap *:overflow-hidden *:h-7
-          *:transition-all *:*:transition-all transition-all
-      `}>
-      <div>
-        <Text className="pr-px" suffix="">
-          Tree #
-        </Text>
-        <Numeric {...{maxWidthPx}} value={treeIndex.value} />
-      </div>
+}: Props) => {
+  return (
+    <>
+      <div className="flex flex-col p-1 text-[var(--controlFg)]">
+        <Row>
+          <Text className="pr-px" suffix="">
+            Tree #
+          </Text>
+          <Numeric {...{maxWidthPx}} value={treeIndex.value} />
+        </Row>
 
-      <div>
-        <Text>out of all</Text>
-        <Numeric {...{maxWidthPx}} value={treeCount.value} />
-      </div>
+        <Row>
+          <Text>out of all</Text>
+          <Numeric {...{maxWidthPx}} value={treeCount.value} />
+        </Row>
 
-      <div>
-        <Text>possible</Text>
-        <Numeric {...{maxWidthPx}} value={nodeCount.value} />
-        <Text>node</Text>
+        <Row>
+          <Text>possible</Text>
+          <Numeric {...{maxWidthPx}} value={nodeCount.value} />
+          <Text>node</Text>
+        </Row>
+
+        <Row>
+          <Text className="leading-9">vertex labeled trees.</Text>
+        </Row>
       </div>
-      <div>
-        <Text className="leading-9">vertex labeled trees.</Text>
-      </div>
-    </div>
-  </>
-)
+    </>
+  )
+}
 
 const Text = ({
   children,
@@ -61,4 +59,14 @@ const Text = ({
     </span>
     {suffix}
   </>
+)
+
+const Row = ({children}: PropsWithChildren) => (
+  <div
+    className={`
+          whitespace-nowrap overflow-hidden h-7
+          transition *:transition
+      `}>
+    {children}
+  </div>
 )

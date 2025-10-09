@@ -1,0 +1,49 @@
+@utility border-outset {
+  @apply border-parent;
+  &::after {
+    @apply border-outset-after;
+  }
+}
+
+@utility border-inset {
+  @apply border-parent;
+  &::after {
+    @apply border-inset-after;
+  }
+}
+
+@utility border-outset-after {
+  @apply border-after border-outset-colors;
+  content: '';
+  border-style: solid;
+  opacity: 0.5;
+}
+
+@utility border-inset-after {
+  @apply border-after border-inset-colors;
+  content: '';
+  opacity: 0.7;
+}
+
+@utility border-parent {
+  @apply relative w-full rounded-md transition;
+}
+
+@utility border-after {
+  @apply absolute top-0 left-0 size-full text-center transition
+         box-border rounded-md border-[3px];
+}
+
+@utility border-outset-colors {
+  border-top-color: var(--controlBorderTop);
+  border-right-color: var(--controlBorderRight);
+  border-bottom-color: var(--controlBorderBottom);
+  border-left-color: var(--controlBorderLeft);
+}
+
+@utility border-inset-colors {
+  border-top-color: var(--controlBorderBottom);
+  border-right-color: var(--controlBorderLeft);
+  border-bottom-color: var(--controlBorderTop);
+  border-left-color: var(--controlBorderRight);
+}

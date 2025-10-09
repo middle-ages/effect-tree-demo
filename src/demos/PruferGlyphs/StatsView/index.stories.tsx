@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from '@storybook/react-vite'
 import {pipe} from 'effect'
 import type {FC} from 'react'
 import {mapProp} from 'react-compinators'
-import {StatsView as Component} from './index.js'
+import {StatsView as Component} from './index'
 import code from './index.jsx?raw'
 
 const Wrapper: FC<{

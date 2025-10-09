@@ -1,5 +1,6 @@
-import {segmentString, unwords} from '#String'
-import {Array, pipe} from '#util'
+import {replaceAll, trimEnd, prefix, segmentString, unwords} from '#String'
+import {drawTree, map, type Tree} from 'effect-tree'
+import {flow, Array, pipe} from '#util'
 import type {EndoOf} from '#Function'
 
 export const MAX_ROMAN = 3999
@@ -103,3 +104,21 @@ export const formatRoman =
     const f = convertFormat(format)
     return pipe(n, toRoman, segmentString, Array.map(f), unwords)
   }
+
+export const drawRomanTree = (
+  self: Tree<number>,
+  format: NumericFormat,
+): string[] => {
+  const mapped: Tree<string> = map(self, n =>
+    pipe(
+      n > MAX_ROMAN ? n.toLocaleString() : formatRoman(format)(n),
+      prefix(' '),
+    ),
+  )
+
+  return pipe(
+    mapped,
+    drawTree,
+    Array.map(flow(trimEnd, replaceAll(' ', '\u00A0'))),
+  )
+}

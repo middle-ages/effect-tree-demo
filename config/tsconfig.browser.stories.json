@@ -6,6 +6,7 @@
   },
   "include": [
     "../.storybook/preview.tsx",
+    "../.storybook/css.d.ts",
     "../src/storybook.ts",
     "../**/*.stories.ts",
     "../**/*.stories.tsx",

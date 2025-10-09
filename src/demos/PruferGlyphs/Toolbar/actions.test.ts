@@ -1,28 +1,28 @@
 import {describe, expect, test} from 'vitest'
-import {actionMap} from './actions'
+import {modifyActionMap} from './actions'
 
 describe('modify actions', () => {
   test('decCode', () => {
-    expect(actionMap.decCode.apply([1, 2])).toEqual([1, 1])
+    expect(modifyActionMap.decCode.apply([1, 2])).toEqual([1, 1])
   })
 
   test('incCode', () => {
-    expect(actionMap.incCode.apply([1, 1])).toEqual([1, 2])
+    expect(modifyActionMap.incCode.apply([1, 1])).toEqual([1, 2])
   })
 
   test('firstCode', () => {
-    expect(actionMap.firstCode.apply([1, 2])).toEqual([1, 1])
+    expect(modifyActionMap.firstCode.apply([1, 2])).toEqual([1, 1])
   })
 
   test('lastCode', () => {
-    expect(actionMap.lastCode.apply([1])).toEqual([3])
+    expect(modifyActionMap.lastCode.apply([1])).toEqual([3])
   })
 
   test('decNodes', () => {
-    expect(actionMap.decNodes.apply([1, 1])).toEqual([3])
+    expect(modifyActionMap.decNodes.apply([1, 1])).toEqual([3])
   })
 
   test('incNodes', () => {
-    expect(actionMap.incNodes.apply([1])).toEqual([1, 1])
+    expect(modifyActionMap.incNodes.apply([1])).toEqual([1, 1])
   })
 })

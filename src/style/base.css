@@ -1,0 +1,33 @@
+@layer base {
+  h1 {
+    @apply h-10 px-3 flex gap-3 justify-center
+         text-2xl leading-10 text-[#445] transition;
+    text-shadow:
+      0px 1px 1px #fffa,
+      0.5px 1.5px 1.5px #fff7;
+  }
+
+  a {
+    @apply transition text-[var(--href)];
+
+    &:hover {
+      text-decoration: underline;
+
+      @apply text-[var(--href-hover)];
+      &:visited {
+        @apply text-[var(--href-visited-hover)];
+      }
+    }
+
+    &:active {
+      color: var(--href-active);
+    }
+
+    &:visited {
+      color: var(--href-visited);
+      &:active {
+        color: var(--href-active);
+      }
+    }
+  }
+}
