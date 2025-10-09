@@ -7,7 +7,7 @@ interface Props {
 
 export const Toolbar = ({modifyActions}: Props) => {
   return (
-    <div className="flex flex-col gap-1 truncate">
+    <div className="flex flex-col gap-1 truncate *:grow-0 *:shrink-0">
       {toEntries(modifyActions).map(([id, button]) => (
         <Button key={id} {...button} />
       ))}

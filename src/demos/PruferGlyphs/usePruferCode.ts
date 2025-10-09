@@ -3,7 +3,7 @@ import {Record, Tuple} from 'effect'
 import {Codec, type Tree} from 'effect-tree'
 import {useMemo, useState} from 'react'
 import type {Dispatcher} from '#util'
-import {actionMap, type PrimedModifyActionMap} from './actions'
+import {actionMap, type PrimedModifyActionMap} from './Toolbar'
 import {type Stats, stats} from './StatsView/stats'
 
 const {Prufer} = Codec

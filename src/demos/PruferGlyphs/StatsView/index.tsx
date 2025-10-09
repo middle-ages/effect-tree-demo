@@ -1,6 +1,6 @@
 import {Numeric} from '#components'
+import {type StyledPropsWithChildren} from '#util'
 import {twMerge} from 'tailwind-merge'
-import {px, type StyledPropsWithChildren} from '#util'
 import {type Stats} from './stats'
 
 interface Props {
@@ -11,48 +11,38 @@ interface Props {
 export const StatsView = ({
   stats: {treeIndex, treeCount, nodeCount},
   maxWidthPx,
-}: Props) => {
-  const index = treeIndex.value
-  return (
-    <>
-      <div
-        className={`
-          flex flex-col p-2
+}: Props) => (
+  <>
+    <div
+      className={`
+          flex flex-col p-1
           text-[var(--controlFg)]
           *:whitespace-nowrap *:overflow-hidden *:h-7
+          *:transition-all *:*:transition-all transition-all
       `}>
-        <div>
-          {index === 1n ? (
-            <Text>The</Text>
-          ) : (
-            <Text className="pr-px" suffix="">
-              Tree #
-            </Text>
-          )}
-          <Numeric
-            {...{maxWidthPx}}
-            {...(index === 1n && {width: px(72)})}
-            value={index === 1n ? 'first tree' : index}
-          />
-        </div>
-
-        <div>
-          <Text>out of all</Text>
-          <Numeric {...{maxWidthPx}} value={treeCount.value} />
-        </div>
-
-        <div>
-          <Text>possible</Text>
-          <Numeric {...{maxWidthPx}} value={nodeCount.value} />
-          <Text>node</Text>
-        </div>
-        <div>
-          <Text className="leading-9">vertex labeled trees.</Text>
-        </div>
+      <div>
+        <Text className="pr-px" suffix="">
+          Tree #
+        </Text>
+        <Numeric {...{maxWidthPx}} value={treeIndex.value} />
       </div>
-    </>
-  )
-}
+
+      <div>
+        <Text>out of all</Text>
+        <Numeric {...{maxWidthPx}} value={treeCount.value} />
+      </div>
+
+      <div>
+        <Text>possible</Text>
+        <Numeric {...{maxWidthPx}} value={nodeCount.value} />
+        <Text>node</Text>
+      </div>
+      <div>
+        <Text className="leading-9">vertex labeled trees.</Text>
+      </div>
+    </div>
+  </>
+)
 
 const Text = ({
   children,

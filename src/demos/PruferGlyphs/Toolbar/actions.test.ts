@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest'
-import {actionMap} from './index'
+import {actionMap} from './actions'
 
 describe('modify actions', () => {
   test('decCode', () => {
