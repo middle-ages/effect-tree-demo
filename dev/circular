@@ -6,6 +6,6 @@ COLOR="${COLOR:-true}"
 
 . "$(dirname "${0}")/lib/_"
 
-depcruise -c "$CONFIG_DIR"/dependency-cruiser.cjs index.ts src
+depcruise -c "$CONFIG_DIR"/dependency-cruiser.cjs index.tsx src
 
 show_done 'circular'

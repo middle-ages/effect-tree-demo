@@ -12,7 +12,15 @@ export const disable = <const Names extends readonly string[]>(
 ) =>
   Object.fromEntries(
     Array.map(
-      ['id', 'onClick', 'children', 'className', 'options', ...names],
+      [
+        'id',
+        'onClick',
+        'onChange',
+        'children',
+        'className',
+        'options',
+        ...names,
+      ],
       name => [name, {table: {disable: true}}] as const,
     ),
   ) as {

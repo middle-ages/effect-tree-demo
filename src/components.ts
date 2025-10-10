@@ -1,4 +1,5 @@
-export * from './components/Numeric'
-export * from './components/Button'
-
-export type * from './components/types'
+export * from './components/OrdinalLabel'
+export * from './components/Select/index'
+export * from './components/Numeric/index'
+export * from './components/Button/index'
+export * from './components/types'

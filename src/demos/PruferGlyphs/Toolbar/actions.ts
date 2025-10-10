@@ -1,17 +1,17 @@
 import {apply0, type EndoOf} from '#Function'
 import {withKey} from '#Record'
-import {pipe, flow, Number, Predicate} from 'effect'
+import {pipe, flow, Number} from '#util'
+import {type Predicate, and} from 'effect/Predicate'
 import {Codec} from 'effect-tree'
-import {MAX_NODE_COUNT} from '../StatsView/stats'
-import {sampleNodeCount, samplePruferCode} from '../arbitrary'
+import {MAX_NODE_COUNT, sampleNodeCount, samplePruferCode} from '#tree'
 import type {ModifyAction, ModifyActionId, ModifyActionMap} from './types'
 
 const {Prufer} = Codec
 
-const isMaxNodeCount: Predicate.Predicate<number[]> = code =>
+const isMaxNodeCount: Predicate<number[]> = code =>
   Prufer.computeNodeCount(code) >= MAX_NODE_COUNT
 
-const isMinNodeCount: Predicate.Predicate<number[]> = code =>
+const isMinNodeCount: Predicate<number[]> = code =>
   Prufer.computeNodeCount(code) <= 2
 
 const [firstCodeNote, lastCodeNote] = [
@@ -20,10 +20,13 @@ const [firstCodeNote, lastCodeNote] = [
 ]
 
 export const modifyActionMap: ModifyActionMap = {
-  ...modifyAction(
-    'randomCode',
-    'Random Code',
-  )('Jump to a random tree with the same number of nodes.')(samplePruferCode()),
+  ...modifyAction('randomCode', 'Random Code')(
+    'Jump to a random tree with the same number of nodes.',
+    [
+      flow(Prufer.computeNodeCount, Number.isEqualTo(2)),
+      'Nowhere to jump: there is only a single tree with two nodes.',
+    ],
+  )(samplePruferCode()),
 
   ...modifyAction('decCode', '⯇ Previous')('Step back to previous tree.', [
     code => code.length === 0,
@@ -31,7 +34,7 @@ export const modifyActionMap: ModifyActionMap = {
   ])(Prufer.previousCode),
 
   ...modifyAction('incCode', 'Next ⯈')('Step forwards to the next tree.', [
-    Predicate.and(Prufer.isLastCode, isMaxNodeCount),
+    and(Prufer.isLastCode, isMaxNodeCount),
     'You are at the last Prüfer encodable tree of node count ≤ ' +
       `${MAX_NODE_COUNT.toLocaleString()} and can go no further.`,
   ])(Prufer.nextCode),
@@ -68,17 +71,14 @@ export const modifyActionMap: ModifyActionMap = {
 
 function modifyAction(id: ModifyActionId, label: string) {
   return (
-      note: string,
-      disable?: [
-        predicate: Predicate.Predicate<number[]>,
-        disabledNote: string,
-      ],
+      title: string,
+      disable?: [predicate: Predicate<number[]>, disabledNote: string],
     ) =>
     (apply: EndoOf<number[]>): Record<ModifyActionId, ModifyAction> =>
       withKey(id)({
         id,
         label,
-        note,
+        title,
         apply,
         disable,
       })

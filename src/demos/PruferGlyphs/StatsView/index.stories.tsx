@@ -15,7 +15,7 @@ const Wrapper: FC<{
 
 const meta = {
   component: Wrapper,
-  parameters: {...parameters.centeredLayout, ...parameters.source(code)},
+  parameters: {...parameters.paddedLayout, ...parameters.source(code)},
   args: {stats: '1, 2, 3, 4, 5, 6, 7, 8', maxWidthPx: 200},
 } satisfies Meta<typeof Wrapper>
 

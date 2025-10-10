@@ -1,0 +1,24 @@
+@layer components {
+  .button {
+    @apply px-2.5 truncate
+           text-center text-inset leading-7
+           set-control border-outset-dim;
+
+    &,
+    & * {
+      @apply dom-play;
+    }
+
+    &:hover:not(:disabled) {
+      @apply text-inset-deep set-control-hover border-outset;
+    }
+
+    &:active:not(:disabled) {
+      @apply text-outset border-inset-dim set-bg-control-active;
+    }
+
+    &:disabled {
+      @apply set-control-disabled;
+    }
+  }
+}

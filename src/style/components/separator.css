@@ -1,0 +1,6 @@
+@layer components {
+  .separator {
+    @apply w-full border-color-inset-dim border-[1.5px] opacity-55;
+    border-style: solid;
+  }
+}

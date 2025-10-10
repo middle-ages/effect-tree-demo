@@ -1,0 +1,46 @@
+@layer base {
+  :root {
+    --bg: #ededf3;
+    --bgDark: #eae8ed;
+    --bgLight: #f0f0fb;
+    --bgInput: #f5eef9;
+    --bgInputHover: #f0f2fa;
+    --bgInputActive: #fcfafd;
+    --bgReverse: #101010;
+
+    --bgControl: #eceaee;
+    --bgControlHover: #f3edf5;
+    --bgControlDisabled: #e3e0e9;
+    --bgControlActive: #dedcdf;
+
+    --fgHead: #56505a;
+
+    --fgControl: #514e54;
+    --fgControlHover: #69666e;
+    --fgControlDisabled: #89868f;
+
+    --bgTerminal: #f6f6f6;
+    --fgTerminal: #1d2320;
+    --fgTerminalDim: #4a4e48;
+    /*
+    --fgTerminal: #5adf30;
+    --fgTerminalDim: #3acf02;
+    */
+
+    --controlBorderTop: #f7f4f9;
+    --controlBorderRight: #b1b0b4;
+    --controlBorderBottom: #90909a;
+    --controlBorderLeft: #d4d4d8;
+
+    --ring: #105fba;
+    --ringInner: #afc0df;
+
+    --href: lab(5% 30 -70);
+    --href-hover: lab(20% 50 -90);
+    --href-active: lab(30% 80 140);
+    --href-visited: lab(10% 50 -50);
+    --href-visited-hover: lab(35% 70 -70);
+
+    --scrollShadow: var(--controlBorderBottom);
+  }
+}

@@ -1,0 +1,26 @@
+@layer base {
+  a {
+    @apply block dom-play set-fg-href;
+
+    &:hover {
+      @apply set-fg-href-hover underline;
+      text-decoration-thickness: 1.25px;
+      text-underline-offset: 1px;
+
+      &:visited {
+        @apply set-fg-href-visited-hover;
+      }
+    }
+    &:active {
+      @apply set-fg-href-active;
+    }
+
+    &:visited {
+      @apply set-fg-href-visited;
+
+      &:active {
+        @apply set-fg-href-active;
+      }
+    }
+  }
+}

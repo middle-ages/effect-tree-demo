@@ -18,15 +18,13 @@ export const StoryFrame = ({
   className,
   style,
   children,
-}: Props) => {
-  return (
-    <div
-      className={twMerge(
-        'relative overflow-hidden resize m-1.5 p-1',
-        className,
-      )}
-      style={{...(isStriped && striped), ...style}}>
-      <div className="bg-[var(--bg)] size-full">{children}</div>
-    </div>
-  )
-}
+}: Props) => (
+  <div
+    className={twMerge(
+      'relative overflow-hidden m-1.5 p-0.5 *:dom-play resize',
+      className,
+    )}
+    style={{...(isStriped && striped), ...style}}>
+    <div className="bg-[var(--bg)] size-full">{children}</div>
+  </div>
+)

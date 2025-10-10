@@ -1,0 +1,36 @@
+@utility text-inset {
+  text-shadow:
+    0px 1px 1px #fffc,
+    0.5px 1.5px 2px #fff9;
+}
+
+@utility text-inset-shallow {
+  text-shadow:
+    0px 1px 1px #fff8,
+    0.5px 1.5px 2px #fff4;
+}
+
+@utility text-inset-deep {
+  text-shadow:
+    0px 1px 1px #fffd,
+    0.5px 1.5px 2px #fffb;
+}
+
+@utility text-outset {
+  @apply text-black;
+  text-shadow:
+    0px -1px 1px #fff9,
+    -0.5px -1.5px 2px #fff4;
+}
+
+@utility set-scroll-shadow-top {
+  box-shadow:
+    #2342 0 0 3px 1px,
+    #4673 0 0 8px 4px;
+}
+
+@utility set-scroll-shadow-bottom {
+  box-shadow:
+    #2342 0 0px 2px 1px,
+    #4672 0 0px 7px 5px;
+}

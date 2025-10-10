@@ -1,0 +1,47 @@
+@layer base {
+  :root {
+    --headerHeight: calc(9 * var(--spacing));
+    --formRowHeight: calc(7 * var(--spacing));
+    --formRowInnerHeight: calc(6 * var(--spacing));
+  }
+}
+
+@utility absolute-full {
+  @apply absolute top-0 left-0 size-full;
+}
+
+@utility size-container {
+  container-type: size;
+}
+
+@utility fill-container-w {
+  @apply w-[100cqw];
+}
+
+@utility fill-container-h {
+  @apply h-[100cqh];
+}
+
+@utility fill-container {
+  @apply fill-container-w fill-container-h;
+}
+
+@utility cqw-4 {
+  width: calc(100cqw - 4 * var(--spacing));
+}
+
+@utility cqh-4 {
+  height: calc(100cqh - 4 * var(--spacing));
+}
+
+@utility cq-4 {
+  @apply cqw-4 cqh-4;
+}
+
+@utility form-row-h {
+  @apply h-[var(--formRowHeight)] leading-[var(--formRowHeight)];
+}
+
+@utility form-row-inner-h {
+  @apply h-[var(--formRowInnerHeight)] leading-[var(--formRowInnerHeight)];
+}

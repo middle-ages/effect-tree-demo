@@ -10,13 +10,20 @@ import * as Array from '../Array'
 import {pipe} from '../Function'
 import * as Record from '../Record'
 
+/** A component with a required `className`. */
+export interface HasClass {
+  className: string
+}
+
 /** A component that allows external styling of one of its elements. */
 export interface StyledProps {
   className?: string | undefined
   style?: CSSProperties | undefined
 }
 
-export type StyledPropsWithChildren = PropsWithChildren<StyledProps>
+/** A component with class, style, and children. */
+export interface StyledPropsWithChildren
+  extends PropsWithChildren<StyledProps> {}
 
 /**
  * A component that can be clicked and disabled. It requires an event handler that
@@ -50,7 +57,7 @@ export interface HasData {
  * 3. You can set any of the attributes associated with the tag in the
  *    `attributes` prop and they will be set on the element.
  */
-export interface HasElement<Tag extends HTMLElementType> extends HasData {
+export interface HasElement<Tag extends HTMLElementType> {
   /** Element tag of component element. */
   as: Tag
   /** ID of component element that has pseudo-classes applied to it. */

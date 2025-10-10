@@ -8,7 +8,7 @@ const preview = {
     backgrounds: {
       options: {
         dark: {name: 'Dark', value: '#555'},
-        light: {name: 'Light', value: '#e8e8ee'},
+        light: {name: 'Light', value: 'var(--bg)'},
       },
       grid: {
         opacity: 0.3,

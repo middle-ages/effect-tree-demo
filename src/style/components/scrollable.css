@@ -1,0 +1,42 @@
+@custom-variant @can-scroll-up {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: bottom) {
+      @slot;
+    }
+  }
+}
+
+@custom-variant @can-scroll-down {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: top) {
+      @slot;
+    }
+  }
+}
+
+@layer components {
+  .scrollable {
+    @apply scroll-container relative
+           overflow-y-auto overflow-x-clip;
+
+    &::before {
+      @apply base-scrollable top-0 -translate-y-[var(--topShadowUp)]
+             @can-scroll-down:set-scroll-shadow-top;
+    }
+
+    &::after {
+      @apply base-scrollable translate-y-[var(--bottomShadowDown)]
+             @can-scroll-up:set-scroll-shadow-bottom;
+    }
+  }
+}
+
+@utility base-scrollable {
+  @apply block fill-container-w sticky h-0 left-0 z-1
+         dom-play duration-250 transition-shadow;
+  content: ' ';
+}
+
+@utility scroll-container {
+  container-type: size scroll-state;
+}

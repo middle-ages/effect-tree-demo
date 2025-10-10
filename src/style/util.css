@@ -1,0 +1,4 @@
+@utility dom-play {
+  transition: all 200ms linear;
+  transition-behavior: allow-discrete;
+}

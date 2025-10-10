@@ -1,6 +1,6 @@
 :root {
-  --font-sans: 'Inter';
-  --font-mono: 'Fira Mono';
+  --font-sans: Inter;
+  --font-mono: 'Iosevka Term Slab Web';
   --font-serif: 'CMU Serif';
 }
 
@@ -8,11 +8,16 @@ body {
   font-family: Inter;
 }
 
+@utility ordinal {
+  @apply text-[11px] set-fg-control-hover;
+  font-family: 'LM Roman 12';
+  font-feature-settings: 'onum' 1;
+}
+
 @font-face {
   font-family: 'CMU Serif';
   font-style: normal;
   font-weight: 500;
-  font-feature-settings: 'liga' 0;
   src: url('/fonts/cmunrm.woff') format('woff');
 }
 
@@ -20,7 +25,6 @@ body {
   font-family: 'CMU Serif';
   font-style: italic;
   font-weight: 500;
-  font-feature-settings: 'liga' 0;
   src: url('/fonts/cmunti.woff') format('woff');
 }
 
@@ -28,7 +32,6 @@ body {
   font-family: 'CMU Serif';
   font-style: normal;
   font-weight: 700;
-  font-feature-settings: 'liga' 0;
   src: url('/fonts/cmunbx.woff') format('woff');
 }
 
@@ -36,41 +39,60 @@ body {
   font-family: 'CMU Serif';
   font-style: italic;
   font-weight: 700;
-  font-feature-settings: 'liga' 0;
   src: url('/fonts/cmunbi.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Fira Mono';
-  font-style: normal;
+  font-family: 'Iosevka Term Slab Web';
+  font-display: swap;
   font-weight: 400;
-  src: url('/fonts/FiraMono-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Fira Mono';
+  font-stretch: normal;
   font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/FiraMono-Medium.woff') format('woff');
+  src: url('/fonts/IosevkaTermSlab-Regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Iosevka Term Slab Web';
+  font-display: swap;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: italic;
+  src: url('/fonts/IosevkaTermSlab-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Iosevka Term Slab Web';
+  font-display: swap;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  src: url('/fonts/IosevkaTermSlab-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
   font-style: normal;
   font-weight: 300;
   src: url('/fonts/Inter-Light.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Inter';
+  font-family: Inter;
   font-style: normal;
   font-weight: 400;
   src: url('/fonts/Inter-Regular.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Inter';
+  font-family: Inter;
   font-style: normal;
   font-weight: 500;
   src: url('/fonts/Inter-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'LM Roman 12';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/lmroman12-regular.otf') format('opentype');
 }

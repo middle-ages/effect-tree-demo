@@ -1,1 +1,0 @@
-import{b as e,p as o,d as a,e as p}from"./decorators-COc7judH.js";const r=s=>s.split(/\s*,\s*/).map(t=>Number.parseInt(t)),m=s=>s.length===0?e([],a([])):o(s,r,p.mapSecond(a),e.tupled);export{m as f,r as s};

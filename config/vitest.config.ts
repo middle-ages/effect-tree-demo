@@ -16,9 +16,8 @@ export default defineConfig({
       reportsDirectory: './node_modules/.coverage',
       exclude: [
         './dist',
+        './docs',
         './config',
-        './api-docs',
-        './storybook-static',
         './dev',
         './src/**/*.test.ts',
         './src/**/*.test-d.ts',

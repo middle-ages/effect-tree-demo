@@ -16,7 +16,9 @@ export const floorMod2 = (
   isPositive: Predicate.Predicate<number> = n => n > 0,
   isNonZero: Predicate.Predicate<number> = n => n !== 0,
   isEven: Predicate.Predicate<number> = n => n % 2 === 0,
-  isOdd: Predicate.Predicate<number> = n => n % 2 !== 0
+  isOdd: Predicate.Predicate<number> = n => n % 2 !== 0,
+  isEqualTo: (that: number) => Predicate.Predicate<number> = that => n =>
+    n === that
 
 export const bigIntToExponential = (value: bigint): string => {
   const s = value.toString()

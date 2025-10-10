@@ -1,5 +1,5 @@
 import type {Predicate} from 'effect'
-import type {VoidAction} from '#components'
+import type {BaseItem, VoidAction} from '#components'
 
 export const codePillActionIds = [
   'firstCode',
@@ -24,10 +24,11 @@ export type NodePillActionId = (typeof nodePillActionIds)[number]
 export type ModifyActionId = (typeof actionIds)[number]
 export type SetActionId = (typeof setActionIds)[number]
 
-export interface BaseAction<Id, In extends unknown[] = [], Out = number[]> {
-  id: Id
-  label: string
-  note: string
+export interface BaseAction<
+  Id extends string,
+  In extends unknown[] = [],
+  Out = number[],
+> extends BaseItem<Id> {
   apply: (...input: In) => Out
   disable:
     | [predicate: Predicate.Predicate<number[]>, disabledNote: string]

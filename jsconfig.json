@@ -4,6 +4,6 @@
     "target": "ES6",
     "strictNullChecks": true
   },
-  "exclude": ["node_modules", "dist", "dev", "api-docs"],
+  "exclude": ["node_modules", "docs", "dev"],
   "include": ["**/*.js", "**/*.cjs"]
 }

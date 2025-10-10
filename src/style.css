@@ -3,77 +3,12 @@
 @import './style/color.css';
 @import './style/base.css';
 @import './style/border.css';
-
-@utility transition {
-  transition: all 250ms;
-}
+@import './style/components.css';
+@import './style/shadow.css';
+@import './style/util.css';
 
 @layer components {
   .demo {
     background: var(--bg);
-  }
-
-  .button {
-    @apply border-outset text-center text-inset px-2.5;
-    line-height: 1.75;
-    color: var(--controlFg);
-    background-color: var(--control);
-
-    &::after {
-      @apply border-[2.5px] opacity-35;
-    }
-
-    &:hover:not(:disabled) {
-      @apply text-inset-deep;
-      color: var(--controlFgHover);
-      background-color: var(--controlHover);
-
-      &::after {
-        opacity: 1;
-      }
-    }
-
-    &:active:not(:disabled) {
-      @apply text-outset;
-      color: black;
-      background-color: var(--controlActive);
-
-      &::after {
-        @apply border-inset-after;
-      }
-    }
-
-    &:disabled {
-      opacity: 0.6;
-      color: var(--controlFgDisabled);
-      background: var(--controlDisabled);
-    }
-  }
-
-  .separator {
-    @apply mt-3 mb-2;
-    width: 100%;
-    border-top-color: var(--controlBorderBottom);
-    border-bottom-color: var(--controlBorderTop);
-    border-width: 1.5px;
-    border-style: solid;
-    opacity: 0.5;
-  }
-
-  .numeric {
-    @apply inline-block border-inset font-normal leading-7 h-6
-           pl-1 pr-1.5 text-right overflow-hidden whitespace-nowrap
-           font-serif text-black bg-[var(--textHighlight)];
-
-    &::after {
-      @apply border-2;
-      opacity: 0.5;
-    }
-
-    &:hover {
-      &::after {
-        opacity: 0.9;
-      }
-    }
   }
 }

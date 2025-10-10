@@ -1,29 +1,38 @@
 import {type LazyArg} from '#Function'
+import type {DecodeRequest} from '#tree'
+import {Footer} from './Footer'
+import {Header} from './Header.js'
 import {Layout} from './Layout'
 import {StatsView} from './StatsView/index'
+import {StylePanel} from './StylePanel'
+import {TextView} from './TextView'
 import {Toolbar} from './Toolbar/index'
 import {usePruferCode} from './usePruferCode'
-import {TextView} from './TextView'
-import {Footer} from './Footer'
 
 interface Props {
-  initialCode: LazyArg<number[]>
+  initial?: LazyArg<DecodeRequest>
 }
 
-export const PruferGlyphs = ({initialCode}: Props) => {
-  const {code, tree, modifyActions, stats} = usePruferCode(initialCode)
-  const {maxDepth, maxDegree} = stats
+export const PruferGlyphs = ({initial}: Props) => {
+  const {
+    format,
+    theme,
+    setFormat,
+    setTheme,
+    code,
+    modifyActions,
+    stats,
+    ...rest
+  } = usePruferCode(initial)
+
   return (
     <Layout
       className="demo"
-      header={
-        <h1>
-          <span className="font-mono medium">effect-tree</span> Demo
-        </h1>
-      }
-      view={<TextView {...{tree, maxDepth, maxDegree}} format="lowerAscii" />}
-      stats={<StatsView {...{stats}} maxWidthPx={400} />}
+      header={<Header />}
+      stats={<StatsView {...{stats}} />}
       toolbar={<Toolbar {...{modifyActions}} />}
+      stylePanel={<StylePanel {...{format, setFormat, theme, setTheme}} />}
+      view={<TextView {...{...rest, stats, format, theme}} />}
       footer={<Footer {...{code}} />}
     />
   )

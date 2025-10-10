@@ -1,17 +1,17 @@
 import {square} from '#Pair'
+import {primeStats, type PrimedStats} from '#tree'
 import {pipe} from '#util'
 import {Codec} from 'effect-tree'
-import {stats, type Stats} from '../demos/PruferGlyphs/StatsView/stats'
 
 export const stringToCode = (code: string): number[] =>
   code.split(/\s*,\s*/).map(s => Number.parseInt(s))
 
-export const fromCode = (code: string): Stats =>
+export const fromCode = (code: string): PrimedStats =>
   code.length === 0
-    ? stats([], Codec.Prufer.decode([]))
+    ? primeStats([], Codec.Prufer.decode([]))
     : pipe(
         code,
         stringToCode,
         square.mapSecond(Codec.Prufer.decode),
-        stats.tupled,
+        primeStats.tupled,
       )

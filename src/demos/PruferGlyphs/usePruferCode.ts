@@ -1,30 +1,52 @@
 import {pipe, type LazyArg} from '#Function'
-import {Record, Tuple} from 'effect'
-import {Codec, type Tree} from 'effect-tree'
-import {useMemo, useState} from 'react'
+import {
+  drawRomanTree,
+  primeStats,
+  type DecodeRequest,
+  type DecodeResponse,
+  type NumericFormat,
+} from '#tree'
 import type {Dispatcher} from '#util'
-import {type PrimedModifyActionMap} from './Toolbar/types'
+import {Record, Tuple} from 'effect'
+import {Codec, type Draw} from 'effect-tree'
+import {useMemo, useState} from 'react'
 import {modifyActionMap} from './Toolbar/actions'
-import {type Stats, stats} from './StatsView/stats'
+import {type PrimedModifyActionMap} from './Toolbar/types'
 
-const {Prufer} = Codec
-
-export interface UsePruferCode {
-  code: number[]
-  tree: Tree<number>
+export interface UsePruferCode extends DecodeResponse {
   modifyActions: PrimedModifyActionMap
-  stats: Stats
+  setFormat: Dispatcher<NumericFormat>
+  setTheme: Dispatcher<Draw.ThemeName>
 }
 
 export const usePruferCode = (
-  initialCode: LazyArg<number[]>,
+  initial: LazyArg<DecodeRequest> = () => ({
+    code: [1, 2, 3, 4, 3, 2, 1],
+    format: 'lowerAscii',
+    theme: 'thin',
+  }),
 ): UsePruferCode => {
-  const [code, setCode] = useState(initialCode)
+  const [code, setCode] = useState(() => initial().code)
+  const [format, setFormat] = useState(() => initial().format)
+  const [theme, setTheme] = useState(() => initial().theme)
 
-  const tree: Tree<number> = useMemo(() => Prufer.decode(code), [code])
+  const tree = Codec.Prufer.decode(code)
+  const lines = drawRomanTree(tree, format, theme)
+  const stats = primeStats(code, tree)
+
   const modifyActions = useMemo(() => makeActionMap(code, setCode), [code])
 
-  return {code, tree, modifyActions, stats: stats(code, tree)}
+  return {
+    code,
+    format,
+    theme,
+    tree,
+    lines,
+    stats,
+    modifyActions,
+    setFormat,
+    setTheme,
+  }
 }
 
 // Prime all actions and predicates with current code and dispatcher.

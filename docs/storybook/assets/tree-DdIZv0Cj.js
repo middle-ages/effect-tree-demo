@@ -1,0 +1,1 @@
+import{h as e,b as o,i as t,j as p}from"./index-DN-unnOX.js";import"./iframe-BCheXTli.js";const r=s=>s.split(/\s*,\s*/).map(a=>Number.parseInt(a)),n=s=>s.length===0?e([],t([])):o(s,r,p.mapSecond(t),e.tupled);export{n as f,r as s};

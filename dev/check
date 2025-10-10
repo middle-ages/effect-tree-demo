@@ -8,8 +8,11 @@ COLOR="${COLOR:-true}"
 
 echo "# ⚖ Checking…"
 
-pnpm circular
-pnpm typecheck
-pnpm test
+pnpm circular &
+pnpm typecheck &
+pnpm test &
+pnpm lint &
+
+wait
 
 show_done 'coverage'

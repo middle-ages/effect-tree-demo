@@ -1,0 +1,51 @@
+@layer base {
+  select {
+    @apply w-full relative px-2 form-row-h
+           border-inset-dim set-bg-input set-fg-control
+           dom-play rounded-md!;
+    appearance: base-select;
+
+    &:hover {
+      @apply border-inset set-bg-input-hover set-fg-control-hover;
+
+      &::picker-icon {
+        @apply text-black;
+      }
+    }
+
+    &::picker(select) {
+      @apply: dom-play opacity-0;
+      appearance: base-select;
+    }
+
+    &::picker-icon {
+      @apply px-1 rotate-90 set-fg-control-hover text-[12px] dom-play;
+      content: '❯';
+    }
+
+    &::picker(select) {
+      @apply border-1 border-transparent p-1.5
+             set-bg-light shadow-md shadow-neutral-400 rounded;
+    }
+
+    &:open {
+      @apply set-bg-input-active text-black;
+
+      &::picker-icon {
+        @apply -rotate-90;
+      }
+    }
+
+    option {
+      @apply rounded-[3px] dom-play;
+
+      &:checked {
+        background: #0043962a;
+      }
+
+      &:hover {
+        background: #0043d67a;
+      }
+    }
+  }
+}

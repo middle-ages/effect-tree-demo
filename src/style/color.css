@@ -1,51 +1,161 @@
+@import './color/light.css';
+
 :root {
-  --bg: #e8e8ee;
-
-  --control: #e0e0e5;
-  --controlDisabled: #d7d7d7;
-  --controlFg: #38383c;
-  --controlFgHover: #50505a;
-  --controlFgDisabled: #7a7a7a;
-  --controlHover: #e7e7ef;
-  --controlActive: #d5d5dc;
-
-  --controlBorderTop: #f6f6fa;
-  --controlBorderLeft: #acacac;
-  --controlBorderRight: #c4c4c4;
-  --controlBorderBottom: #888888;
-
-  --toolbar: #e2e2e8;
-  --textHighlight: #ececf3;
-
-  --terminalText: #8aff00;
-
-  --href: lab(5% 30 -70);
-  --href-hover: lab(20% 50 -90);
-  --href-active: lab(30% 80 140);
-  --href-visited: lab(10% 50 -50);
-  --href-visited-hover: lab(35% 70 -70);
+  --controlBorderTopDim: color-mix(
+    in srgb,
+    var(--controlBorderTop),
+    transparent 50%
+  );
+  --controlBorderRightDim: color-mix(
+    in srgb,
+    var(--controlBorderRight),
+    transparent 50%
+  );
+  --controlBorderBottomDim: color-mix(
+    in srgb,
+    var(--controlBorderBottom),
+    transparent 50%
+  );
+  --controlBorderLeftDim: color-mix(
+    in srgb,
+    var(--controlBorderLeft),
+    transparent 50%
+  );
 }
 
-@utility text-inset {
-  text-shadow:
-    0px 1px 1px #fffc,
-    0.5px 1.5px 2px #fff9;
+@utility set-bg {
+  @apply bg-[var(--bg)];
 }
 
-@utility text-inset-shallow {
-  text-shadow:
-    0px 1px 1px #fff8,
-    0.5px 1.5px 2px #fff4;
+@utility set-bg-light {
+  @apply bg-[var(--bgLight)];
 }
 
-@utility text-inset-deep {
-  text-shadow:
-    0px 1px 1px #fffd,
-    0.5px 1.5px 2px #fffb;
+@utility set-bg-input {
+  @apply bg-[var(--bgInput)];
 }
 
-@utility text-outset {
-  text-shadow:
-    0px -1px 1px #fffa,
-    -0.5px -1.5px 2px #fff4;
+@utility set-bg-input-hover {
+  @apply bg-[var(--bgInputHover)];
+}
+
+@utility set-bg-input-active {
+  @apply bg-[var(--bgInputActive)];
+}
+
+@utility set-bg-reverse {
+  @apply bg-[var(--bgReverse)];
+}
+
+@utility set-bg-control {
+  @apply bg-[var(--bgControl)];
+}
+
+@utility set-bg-control-disabled {
+  @apply bg-[var(--bgControlDisabled)];
+}
+
+@utility set-bg-control-hover {
+  @apply bg-[var(--bgControlHover)];
+}
+
+@utility set-bg-dark {
+  @apply bg-[var(--bgDark)];
+}
+
+@utility set-bg-control-active {
+  @apply bg-[var(--bgControlActive)];
+}
+
+@utility set-bg-terminal {
+  @apply bg-[var(--bgTerminal)];
+}
+
+@utility set-fg-head {
+  @apply text-[var(--fgHead)];
+}
+
+@utility set-fg-control {
+  @apply text-[var(--fgControl)];
+}
+
+@utility set-fg-control-hover {
+  @apply text-[var(--fgControlHover)];
+}
+
+@utility set-fg-control-disabled {
+  @apply text-[var(--fgControlDisabled)];
+}
+
+@utility set-fg-terminal {
+  @apply text-[var(--fgTerminal)];
+}
+
+@utility set-fg-terminal-dim {
+  @apply text-[var(--fgTerminalDim)];
+}
+
+@utility set-control {
+  @apply set-fg-control set-bg-control;
+}
+
+@utility set-control-hover {
+  @apply set-fg-control-hover set-bg-control-hover;
+}
+
+@utility set-control-disabled {
+  @apply set-bg-control-disabled set-fg-control-disabled
+         opacity-75;
+}
+
+@utility set-terminal {
+  @apply set-fg-terminal set-bg-terminal;
+}
+
+@utility border-color-outset {
+  border-top-color: var(--controlBorderTop);
+  border-right-color: var(--controlBorderRight);
+  border-bottom-color: var(--controlBorderBottom);
+  border-left-color: var(--controlBorderLeft);
+}
+
+@utility border-color-inset {
+  border-top-color: var(--controlBorderBottom);
+  border-right-color: var(--controlBorderLeft);
+  border-bottom-color: var(--controlBorderTop);
+  border-left-color: var(--controlBorderRight);
+}
+
+@utility border-color-outset-dim {
+  border-top-color: var(--controlBorderTopDim);
+  border-right-color: var(--controlBorderRightDim);
+  border-bottom-color: var(--controlBorderBottomDim);
+  border-left-color: var(--controlBorderLeftDim);
+}
+
+@utility border-color-inset-dim {
+  border-top-color: var(--controlBorderBottomDim);
+  border-right-color: var(--controlBorderLeftDim);
+  border-bottom-color: var(--controlBorderTopDim);
+  border-left-color: var(--controlBorderRightDim);
+}
+
+@utility set-fg-href {
+  @apply text-[var(--href)];
+}
+
+@utility set-fg-href-hover {
+  @apply text-[var(--href-hover)];
+}
+
+@utility set-fg-href-active {
+  @apply text-[var(--href-active)];
+}
+
+@utility set-fg-href-visited {
+  @apply text-[var(--href-visited)];
+}
+
+@utility set-fg-href-visited-hover {
+  @apply text-[var(--href-visited-hover)];
 }

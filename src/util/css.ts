@@ -1,3 +1,5 @@
+import type {CSSProperties} from 'react'
+
 export const px = (x: number): string => `${x.toFixed(2)}px`,
   ch = (x: number): string => `${x.toFixed(2)}ch`,
   rch = (x: number): string => `${x.toFixed(2)}rch`,
@@ -7,5 +9,8 @@ export const px = (x: number): string => `${x.toFixed(2)}px`,
   deg = (x: number): string => `${x.toFixed(0)}deg`,
   turn = (x: number): string => `${x.toFixed(2)}turn`,
   ms = (x: number): string => `${x.toFixed(0)}ms`,
-  cqw = (x: number): string => `${x.toFixed(3)}cqw`,
-  cqh = (x: number): string => `${x.toFixed(3)}cqh`
+  cqw = (x: number): string => `${x.toFixed(3)}cqw`
+
+export const scrollContainer = {
+  containerType: 'scroll-state',
+} as unknown as CSSProperties

@@ -1,0 +1,24 @@
+@layer base {
+  select,
+  input[type='text'],
+  option,
+  button,
+  a,
+  .numeric-beveled {
+    @apply relative outline-solid outline-0 outline-offset-0 outline-blue-200
+           ring-0 ring-offset-0 ring-[var(--ring)];
+
+    &:focus-visible:not(:disabled) {
+      @apply outline-2 -outline-offset-1
+             ring-1 ring-offset-1;
+    }
+  }
+
+  a,
+  select {
+    &:focus:not(:disabled) {
+      @apply outline-2 -outline-offset-1
+             ring-1 ring-offset-1;
+    }
+  }
+}

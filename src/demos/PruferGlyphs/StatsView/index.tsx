@@ -1,72 +1,51 @@
 import {Numeric} from '#components'
+import {type PrimedStats} from '#tree'
 import {type StyledPropsWithChildren} from '#util'
 import {twMerge} from 'tailwind-merge'
-import {type Stats} from './stats'
-import type {PropsWithChildren} from 'react'
 
 interface Props {
-  stats: Stats
+  stats: PrimedStats
   maxWidthPx?: number
 }
 
 export const StatsView = ({
   stats: {treeIndex, treeCount, nodeCount},
-  maxWidthPx,
+  maxWidthPx = 332,
 }: Props) => {
   return (
     <>
-      <div className="flex flex-col p-1 text-[var(--controlFg)]">
+      <div className="flex flex-col gap-1 set-fg-control">
         <Row>
-          <Text className="pr-px" suffix="">
-            Tree #
-          </Text>
+          <div className="pr-1">Showing tree #</div>
           <Numeric {...{maxWidthPx}} value={treeIndex.value} />
         </Row>
 
         <Row>
-          <Text>out of all</Text>
-          <Numeric {...{maxWidthPx}} value={treeCount.value} />
+          <div className="pr-1">out of all</div>
+          <Numeric.Flat {...{maxWidthPx}} value={treeCount.value} />
         </Row>
 
         <Row>
-          <Text>possible</Text>
-          <Numeric {...{maxWidthPx}} value={nodeCount.value} />
-          <Text>node</Text>
-        </Row>
-
-        <Row>
-          <Text className="leading-9">vertex labeled trees.</Text>
+          <div>possible</div>
+          <Numeric.FixedWidth
+            digits={3}
+            value={nodeCount.value}
+            className="mx-1"
+          />
+          <div>node vertex labeled trees.</div>
         </Row>
       </div>
     </>
   )
 }
 
-const Text = ({
-  children,
-  className,
-  style,
-  suffix = ' ',
-}: StyledPropsWithChildren & {
-  suffix?: string
-}) => (
-  <>
-    {' '}
-    <span
-      {...{style}}
-      className={twMerge('inline-block leading-7 -translate-y-1.5', className)}>
-      {children}
-    </span>
-    {suffix}
-  </>
-)
-
-const Row = ({children}: PropsWithChildren) => (
+const Row = ({children, className, style}: StyledPropsWithChildren) => (
   <div
-    className={`
-          whitespace-nowrap overflow-hidden h-7
-          transition *:transition
-      `}>
+    className={twMerge(
+      'flex items-center *:whitespace-nowrap *:first:form-row-h',
+      className,
+    )}
+    {...{style}}>
     {children}
   </div>
 )

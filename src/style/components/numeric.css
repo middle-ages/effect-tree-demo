@@ -1,0 +1,27 @@
+@utility numeric-base {
+  @apply inline-block px-1 form-row-inner-h
+         set-bg-input set-fg-control
+         font-serif whitespace-nowrap overflow-hidden
+         rounded-md! dom-play;
+}
+
+@layer components {
+  .numeric-beveled {
+    @apply numeric-base border-inset-dim;
+
+    &:hover {
+      @apply set-bg-input-hover set-fg-control-hover border-inset;
+    }
+
+    &:focus-visible:hover,
+    &:focus:hover,
+    &:focus-visible,
+    &:focus {
+      @apply set-bg-input-active text-black border-inset;
+    }
+  }
+
+  .numeric-flat {
+    @apply numeric-base set-light-border-dim box-content leading-[26px];
+  }
+}
