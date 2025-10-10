@@ -4,6 +4,7 @@ import {bigIntToExponential, sumAll} from '#Number'
 import {monoRecord} from '#Record'
 import {fromNumber} from '#String'
 import {pipe, px, type StyledProps} from '#util'
+import {assumeProp} from 'react-compinators'
 import {twMerge} from 'tailwind-merge'
 
 interface Props extends StyledProps {
@@ -11,6 +12,7 @@ interface Props extends StyledProps {
   maxWidthPx?: number | undefined
   width?: string
   sizeFactor?: number
+  isFlat?: boolean
 }
 
 // 16px CMU Serif
@@ -37,8 +39,8 @@ const horizontalSpacingPx = 4 + 6 + 2 * 2
  * When it is numeric, we normalize with no loss of precision into `bigint` and
  * format so:
  *
- * 1. If the value `< 10⁷` we display the number/bigint as a nice locale string.
- * 2. If the value `≥ 10⁷` we display the number/bigint in exponential notation,
+ * 1. If the value `< 10³⁶` we display the number/bigint as a nice locale string.
+ * 2. If the value `≥ 10³⁶` we display the number/bigint in exponential notation,
  *    but add a tooltip with the full expansion of the value.
  *
  * The element width will be set to the width of the displayed value. For string
@@ -57,6 +59,7 @@ export const Numeric = ({
   sizeFactor = 1,
   className,
   style,
+  isFlat = false,
 }: Props) => {
   const [isBig, formatted] = normalize(value)
   const title = isBig ? value.toLocaleString() : ''
@@ -70,6 +73,7 @@ export const Numeric = ({
       <span
         className={twMerge(
           'numeric',
+          isFlat && 'numeric-flat',
           typeof value === 'string' && 'italic',
           isOverflow && 'truncate',
           className,
@@ -119,7 +123,9 @@ const normalize = (
   value: bigint | number | string,
 ): [isBig: boolean, formatted: string] =>
   typeof value === 'number' || typeof value === 'bigint'
-    ? value >= Math.pow(10, 7)
+    ? value >= Math.pow(10, 36)
       ? [true, bigIntToExponential(BigInt(value))]
       : [false, value.toLocaleString()]
     : [false, value]
+
+Numeric.Flat = assumeProp(Numeric, 'isFlat')(true)

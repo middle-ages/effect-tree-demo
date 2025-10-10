@@ -2,8 +2,15 @@ import {replaceAll, trimEnd, prefix, segmentString, unwords} from '#String'
 import {drawTree, map, type Tree} from 'effect-tree'
 import {flow, Array, pipe} from '#util'
 import type {EndoOf} from '#Function'
+import type {ReactNode} from 'react'
 
 export const MAX_ROMAN = 3999
+
+export interface FormatEntry {
+  icon: ReactNode
+  label: ReactNode
+  title: string
+}
 
 export const romanFormats = [
   'upper',
@@ -11,6 +18,37 @@ export const romanFormats = [
   'upperAscii',
   'lowerAscii',
 ] as const
+
+export const formats: Record<NumericFormat, FormatEntry> = {
+  lower: {
+    icon: 'ⅰ,ⅱ,ⅲ',
+    label: 'Roman Unicode',
+    title:
+      'Use lowercase Unicode Roman numerals from the ‘Number Forms’ block (U+2150…U+218F)',
+  },
+  upper: {
+    icon: 'Ⅰ,Ⅱ,Ⅲ',
+    label: 'Roman Unicode (uppercase)',
+    title:
+      'Use uppercase Unicode Roman numerals from the ‘Number Forms’ block (U+2150…U+218F)',
+  },
+  lowerAscii: {
+    icon: 'i,ii,iii',
+    label: 'Roman ASCII',
+    title: 'Use lowercase ASCII emulation of Roman numerals.',
+  },
+  upperAscii: {
+    icon: 'I,II,III',
+    label: 'Roman ASCII (uppercase)',
+    title: 'Use uppercase ASCII emulation of Roman numerals.',
+  },
+  decimal: {
+    icon: '1,2,3',
+    label: 'Decimal',
+    title: 'Format labels as decimals.',
+  },
+}
+
 export const numericFormats = ['decimal', ...romanFormats] as const
 
 export type RomanFormat = (typeof romanFormats)[number]

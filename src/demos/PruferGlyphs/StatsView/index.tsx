@@ -2,7 +2,6 @@ import {Numeric} from '#components'
 import {type StyledPropsWithChildren} from '#util'
 import {twMerge} from 'tailwind-merge'
 import {type Stats} from './stats'
-import type {PropsWithChildren} from 'react'
 
 interface Props {
   stats: Stats
@@ -15,7 +14,7 @@ export const StatsView = ({
 }: Props) => {
   return (
     <>
-      <div className="flex flex-col p-1 text-[var(--controlFg)]">
+      <div className="flex flex-col p-1 text-[var(--controlFg)] *:h-7">
         <Row>
           <Text className="pr-px" suffix="">
             Tree #
@@ -25,7 +24,7 @@ export const StatsView = ({
 
         <Row>
           <Text>out of all</Text>
-          <Numeric {...{maxWidthPx}} value={treeCount.value} />
+          <Numeric.Flat {...{maxWidthPx}} value={treeCount.value} />
         </Row>
 
         <Row>
@@ -34,7 +33,7 @@ export const StatsView = ({
           <Text>node</Text>
         </Row>
 
-        <Row>
+        <Row className="max-h-6">
           <Text className="leading-9">vertex labeled trees.</Text>
         </Row>
       </div>
@@ -61,12 +60,14 @@ const Text = ({
   </>
 )
 
-const Row = ({children}: PropsWithChildren) => (
+const Row = ({children, className, style}: StyledPropsWithChildren) => (
   <div
-    className={`
-          whitespace-nowrap overflow-hidden h-7
-          transition *:transition
-      `}>
+    className={twMerge(
+      'whitespace-nowrap overflow-hidden',
+      'transition *:transition',
+      className,
+    )}
+    {...{style}}>
     {children}
   </div>
 )

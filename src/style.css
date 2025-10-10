@@ -6,6 +6,7 @@
 
 @utility transition {
   transition: all 250ms;
+  transition-behavior: allow-discrete;
 }
 
 @layer components {
@@ -20,7 +21,7 @@
     background-color: var(--control);
 
     &::after {
-      @apply border-[2.5px] opacity-35;
+      @apply border-[2px] opacity-45;
     }
 
     &:hover:not(:disabled) {
@@ -29,7 +30,7 @@
       background-color: var(--controlHover);
 
       &::after {
-        opacity: 1;
+        opacity: 0.8;
       }
     }
 
@@ -39,7 +40,7 @@
       background-color: var(--controlActive);
 
       &::after {
-        @apply border-inset-after;
+        @apply border-inset-after border-[3px];
       }
     }
 
@@ -51,13 +52,12 @@
   }
 
   .separator {
-    @apply mt-3 mb-2;
     width: 100%;
     border-top-color: var(--controlBorderBottom);
     border-bottom-color: var(--controlBorderTop);
     border-width: 1.5px;
     border-style: solid;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .numeric {
@@ -74,6 +74,13 @@
       &::after {
         opacity: 0.9;
       }
+    }
+  }
+
+  .numeric-flat {
+    @apply bg-[var(--textHighlightLow)];
+    &::after {
+      border-color: transparent;
     }
   }
 }

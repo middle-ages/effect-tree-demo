@@ -4,14 +4,18 @@ import {twMerge} from 'tailwind-merge'
 
 interface Props
   extends StyledProps,
-    Record<'header' | 'footer' | 'view' | 'stats' | 'toolbar', ReactNode> {}
+    Record<
+      'header' | 'footer' | 'view' | 'toolbar' | 'stats' | 'stylePanel',
+      ReactNode
+    > {}
 
 export const Layout = ({
   header,
   footer,
   view,
-  stats,
   toolbar,
+  stats,
+  stylePanel,
   className,
   style,
 }: Props) => {
@@ -23,12 +27,13 @@ export const Layout = ({
       <div className="min-h-0 flex gap-3 p-1 flex-1">
         <div
           className={`
-          w-[50rch] overflow-hidden
-          flex flex-col p-2
+          w-[50rch] overflow-hidden flex flex-col p-2
           bg-[var(--toolbar)] rounded-lg`}>
           {toolbar}
-          <div className="separator" />
+          <div className="separator mt-2 mb-1" />
           {stats}
+          <div className="separator mb-2" />
+          {stylePanel}
         </div>
         {view}
       </div>

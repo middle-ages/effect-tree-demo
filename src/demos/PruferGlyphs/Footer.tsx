@@ -17,13 +17,15 @@ export const Footer = ({code}: Props) => {
         href={paper}
         target="_blank"
         title="“Prüfer Encoding and a Proof of Cayley's Tree Formula”"
-        className="inline-block w-fit text-sm h-6 leading-5 truncate mx-auto">
+        className={`inline-block w-fit text-sm mb-1.5 h-[18px]
+                    truncate mx-auto rounded px-1
+        `}>
         Prüfer Code
         <span className="inline-block text-3xl leading-2 pl-1 translate-y-1">
           ☞
         </span>
       </a>
-      <div className="flex gap-1 mb-2 h-7 mx-auto transition">
+      <div className="flex gap-1 mb-1.5 h-7 mx-auto transition">
         {code.map((code, i) => (
           <Numeric
             className="text-2xl leading-8 h-7 shrink-0"

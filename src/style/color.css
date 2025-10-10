@@ -6,7 +6,7 @@
   --controlFg: #38383c;
   --controlFgHover: #50505a;
   --controlFgDisabled: #7a7a7a;
-  --controlHover: #e7e7ef;
+  --controlHover: #e6e6ea;
   --controlActive: #d5d5dc;
 
   --controlBorderTop: #f6f6fa;
@@ -15,10 +15,12 @@
   --controlBorderBottom: #888888;
 
   --toolbar: #e2e2e8;
+  --textHighlightLow: #e9e9ef;
   --textHighlight: #ececf3;
 
   --terminalText: #8aff00;
 
+  --outline: #00367a9b;
   --href: lab(5% 30 -70);
   --href-hover: lab(20% 50 -90);
   --href-active: lab(30% 80 140);

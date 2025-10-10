@@ -7,6 +7,87 @@
       0.5px 1.5px 1.5px #fff7;
   }
 
+  button,
+  select,
+  a,
+  option {
+    @apply outline-none outline-2 outline-[var(--outline)]
+           appearance-none bg-[var(--highlightText)] px-2;
+
+    &:focus-visible {
+      @apply outline-solid;
+    }
+  }
+
+  a {
+    &:focus {
+      @apply outline-dotted;
+    }
+  }
+
+  select {
+    @apply block relative bg-[var(--textHighlight)] rounded-md
+           overflow-hidden transition *:transition text-[15px] box-border;
+    line-height: 22px;
+    height: 22px;
+    width: calc(100% - 1ch);
+    border-width: 2px;
+    border-color: transparent;
+    border-style: solid;
+
+    &:hover {
+      @apply border-inset-colors;
+
+      &::picker-icon {
+        @apply text-black;
+      }
+    }
+
+    &,
+    &::picker(select) {
+      @apply: transition *:transition;
+      appearance: base-select;
+    }
+
+    &::picker-icon {
+      @apply transition rotate-90 text-gray-500 text-[12px] px-1;
+      content: '❯';
+    }
+
+    &::picker(select) {
+      @apply border-0 bg-[var(--textHighlight)] p-2;
+    }
+
+    &:open {
+      @apply border-inset-colors;
+
+      &::picker-icon {
+        @apply rotate-270;
+      }
+
+      &::picker(select) {
+        @apply border-1 border-gray-300;
+      }
+    }
+
+    option {
+      @apply px-2 rounded-[3px];
+
+      &:checked {
+        background: #0043962a;
+      }
+
+      &:hover,
+      &:focus-visible {
+        background: #0043d67a;
+      }
+
+      &::checkmark {
+        display: none;
+      }
+    }
+  }
+
   a {
     @apply transition text-[var(--href)];
 

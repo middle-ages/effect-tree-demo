@@ -10,6 +10,7 @@ const Wrapper: FC<{
   value: string
   maxWidthPx: number
   width?: string
+  isFlat?: boolean
 }> = mapProp((value: string): bigint | string | number => {
   const numeric = value.replaceAll('_', '')
   return /^\d+$/.test(numeric) ? BigInt(numeric) : value
@@ -17,10 +18,11 @@ const Wrapper: FC<{
 
 const meta = {
   component: Wrapper,
-  parameters: {...parameters.centeredLayout, ...parameters.source(code)},
+  parameters: {...parameters.paddedLayout, ...parameters.source(code)},
   args: {
     value: '1',
     maxWidthPx: 200,
+    isFlat: false,
   },
   decorators: [FrameDecorator({})],
 } satisfies Meta<typeof Wrapper>
@@ -30,6 +32,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Basic: Story = {}
+
+export const Flat: Story = {args: {isFlat: true}}
 
 export const StringMessage: Story = {
   args: {
@@ -52,4 +56,8 @@ export const MoreThanTenMillion: Story = {
 
 export const FiftyExpFifty: Story = {
   args: {value: (50n ** 50n).toString()},
+}
+
+export const FiftyExpFiftyFlat: Story = {
+  args: {...FiftyExpFifty.args, ...Flat.args},
 }

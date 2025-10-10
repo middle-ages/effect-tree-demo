@@ -8,7 +8,7 @@ interface Props {
 
 export const Toolbar = ({modifyActions}: Props) => {
   return (
-    <div className="flex flex-col gap-0.5 truncate *:grow-0 *:shrink-0">
+    <div className="flex flex-col gap-1 p-1 truncate flex-none">
       {toEntries(modifyActions).map(([id, button]) => (
         <Button key={id} {...button} />
       ))}
