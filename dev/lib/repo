@@ -13,6 +13,7 @@ function prepare() {
   dir="${1}"
   export PACKAGE_JSON="${dir}/package.json"
   export CONFIG_DIR="${dir}/config"
+  export DOCS_DIR="${dir}/docs"
   export DIST_DIR="${dir}/dist"
   export API_DOCS_DIR="${dir}/api-docs"
   export ICON_DIR="${dir}/public/icons"

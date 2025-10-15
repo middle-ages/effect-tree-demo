@@ -22,6 +22,7 @@
     "circular": "dev/circular",
     "build:storybook": "storybook build --output-dir docs/storybook",
     "build": "vite -c config/vite.config.ts build",
+    "build:all": "dev/build-all",
     "preview": "vite -c config/vite.config.ts preview"
   },
   "devDependencies": {
@@ -74,7 +75,6 @@
     "@effect/typeclass": "^0.37.0",
     "effect": "^3.18.4",
     "effect-tree": "^1.0.34",
-    "effect-tree-demo": "link:",
     "react": "^19.2.0",
     "react-compinators": "^1.0.55",
     "react-dom": "^19.2.0",

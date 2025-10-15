@@ -1,7 +1,7 @@
 import {withClassName} from '#compinators'
 import {type PrimedStat} from '#tree'
 import {twMerge} from 'tailwind-merge'
-import type {StyledProps} from '../../util.js'
+import type {StyledProps} from '#util'
 
 type TreeStats = Record<'maxDegree' | 'maxDepth', PrimedStat>
 
@@ -39,17 +39,13 @@ const Overlay = ({maxDegree, maxDepth}: TreeStats) => {
   return (
     <div className="absolute top-0 right-4 overflow-hidden">
       <div
-        className={`grid grid-cols-[min-content_3ch] gap-x-1
-                    text-right pr-1 pt-1`}>
-        <div
-          className="grid grid-cols-subgrid col-span-2"
-          title={maxDegree.title}>
+        className={`grid grid-cols-[min-content_3ch] gap-x-1 text-right pr-1 pt-1
+                    *:grid *:grid-cols-subgrid *:col-span-2`}>
+        <div title={maxDegree.title}>
           <Label>{maxDegree.label}:</Label>
           <Value>{maxDegree.value.toLocaleString()}</Value>
         </div>
-        <div
-          className="grid grid-cols-subgrid col-span-2"
-          title={maxDepth.title}>
+        <div title={maxDepth.title}>
           <Label>{maxDepth.label}:</Label>
           <Value>{maxDepth.value.toLocaleString()}</Value>
         </div>

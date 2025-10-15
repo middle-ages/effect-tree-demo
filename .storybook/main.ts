@@ -50,6 +50,11 @@ const config: StorybookConfig = {
     'storybook-addon-pseudo-states',
     '@storybook/addon-vitest',
   ],
+
+  viteFinal: config => {
+    config.esbuild = {...config.esbuild, jsx: 'automatic'}
+    return config
+  },
 }
 
 export default config

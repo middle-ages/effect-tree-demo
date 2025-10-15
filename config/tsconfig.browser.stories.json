@@ -15,7 +15,8 @@
     "../src/**/stories/**/*.ts",
     "../src/**/stories/**/*.tsx",
     "./vitest.config.storybook.ts",
-    "../vitest.shims.d.ts"
+    "../vitest.shims.d.ts",
+    "../vitest.config.ts"
   ],
   "mdx": {
     "checkMdx": true

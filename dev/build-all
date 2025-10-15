@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+COLOR="${COLOR:-true}"
+
+. "$(dirname "${0}")/lib/_"
+
+pnpm check
+
+echo "# ⚙️ Building…"
+
+source=src/style.css
+target=node_modules/.style/style.index.css
+
+pnpm build &
+pnpm build:storybook &
+pnpm tailwindcss -i "$source" -o "$target"
+
+wait
+
+perl -pi -E "s|url.'/fonts/|url('/effect-tree-demo/fonts/|g" "$target"
+
+vite_css="$(find "$DOCS_DIR/assets" -name '*.css')"
+storybook_css="$(find "$DOCS_DIR/storybook/assets" -name '*.css')"
+
+cp "$target" "$vite_css"
+cp "$target" "$storybook_css"
+
+git add .
+git commit -m build
+
+show_done 'build:all'
+
+git rebase -i HEAD~2

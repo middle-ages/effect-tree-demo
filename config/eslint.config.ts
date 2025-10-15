@@ -16,6 +16,7 @@ const config = defineConfig(
     './config/dependency-cruiser.cjs',
     './docs',
     './src/tree/worker.ts',
+    './.storybook/vitest.setup.ts',
   ]),
 
   eslint.configs.recommended,
