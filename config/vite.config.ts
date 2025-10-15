@@ -10,6 +10,11 @@ export default defineConfig({
     tailwindCss(),
   ],
   worker: {format: 'es'},
-  build: {outDir: 'docs'},
+  build: {
+    outDir: 'docs',
+    cssCodeSplit: false,
+    cssTarget: 'chrome141',
+    cssMinify: false,
+  },
   base: '/effect-tree-demo/',
 })

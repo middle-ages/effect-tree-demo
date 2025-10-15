@@ -14,13 +14,13 @@ export const Footer = ({code}: Props) => {
   return (
     <div
       className={`
-        flex flex-col place-items-center pt-1
-        *:dom-play dom-play overflow-hidden set-bg-light z-1`}>
+        flex flex-col h-fill pt-1
+        *:dom-play dom-play set-bg-light z-1`}>
       <a
         href={paper}
         target="_blank"
         title="“Prüfer Encoding and a Proof of Cayley's Tree Formula”"
-        className={`inline-block w-fit mb-1 h-[23px]
+        className={`inline-block w-fit h-[22px]
                     truncate mx-auto rounded px-1
         `}>
         Prüfer Code
@@ -28,24 +28,25 @@ export const Footer = ({code}: Props) => {
           ☞
         </span>
       </a>
-      <div
-        className={`mb-1.5 mt-0.5 h-[calc(7_*_var(--spacing)_+_15px+_4px)]
-                    *:*:mb-2 max-w-full`}>
+      <div className="shrink-0 grow-0 h-11 px-2">
         <div
+          style={{scrollbarWidth: 'thin'}}
           className={twMerge(
-            'flex gap-1.5 dom-play *:shrink-0 overflow-y-hidden',
-            !isFirstTree && 'overflow-x-auto',
+            'flex gap-1.5 items-center dom-play h-full justify-center-safe',
+            !isFirstTree && 'scrollable-x',
           )}>
-          {code.length !== 0 &&
+          {code.length === 0 ? (
+            <div className="font-serif text-xl">[ ]</div>
+          ) : (
             code.map((code, i) => (
               <Numeric
-                className="text-2xl form-row-h"
-                key={code ** 2 * i}
+                className="shrink-0 bottom-0"
+                key={`key-${i.toString()}`}
                 value={code}
-                maxWidthPx={72}
-                fontSizePx={24}
+                maxWidthPx={51}
               />
-            ))}
+            ))
+          )}
         </div>
       </div>
     </div>

@@ -6,13 +6,16 @@
   },
   "include": [
     "../.storybook/preview.tsx",
+    "../.storybook/vitest.setup.ts",
     "../src/storybook.ts",
     "../**/*.stories.ts",
     "../**/*.stories.tsx",
     "../src/storybook/**/*.ts",
     "../src/storybook/**/*.tsx",
     "../src/**/stories/**/*.ts",
-    "../src/**/stories/**/*.tsx"
+    "../src/**/stories/**/*.tsx",
+    "./vitest.config.storybook.ts",
+    "../vitest.shims.d.ts"
   ],
   "mdx": {
     "checkMdx": true

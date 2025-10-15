@@ -23,6 +23,10 @@
   @apply border-1 border-[var(--controlBorderLeft)];
 }
 
+@utility set-dark-border {
+  @apply border-1 border-[var(--darkBorder)];
+}
+
 @utility set-light-border-dim {
   @apply border-1 border-[var(--controlBorderLeftDim)];
 }

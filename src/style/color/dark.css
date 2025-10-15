@@ -2,7 +2,7 @@
   :root {
     --bg: #ededf3;
     --bgDark: #e3e1eb;
-    --bgLight: #f4f0f9;
+    --bgLight: #f0f0fb;
     --bgInput: #f5eef9;
     --bgInputHover: #f0f2fa;
     --bgInputActive: #fcfafd;
@@ -10,7 +10,7 @@
 
     --bgControl: #eceaee;
     --bgControlHover: #f3edf5;
-    --bgControlDisabled: #e2dee4;
+    --bgControlDisabled: #e3e0e9;
     --bgControlActive: #dedcdf;
 
     --fgHead: #56505a;
@@ -19,16 +19,14 @@
     --fgControlHover: #69666e;
     --fgControlDisabled: #89868f;
 
-    --bgTerminal: #f6f6f6;
-    --fgTerminal: #1d2320;
-    --fgTerminalDim: #4a4e48;
+    --bgTerminal: #000000;
+    --fgTerminal: #5adf30;
+    --fgTerminalDim: #3acf02;
 
-    --controlBorderTop: #e9e2e2;
-    --controlBorderRight: #b8aeb2;
-    --controlBorderBottom: #9a969d;
+    --controlBorderTop: #f7f4f9;
+    --controlBorderRight: #b1b0b4;
+    --controlBorderBottom: #90909a;
     --controlBorderLeft: #d4d4d8;
-
-    --darkBorder: #d7d0d9;
 
     --ring: #105fba;
     --ringInner: #afc0df;

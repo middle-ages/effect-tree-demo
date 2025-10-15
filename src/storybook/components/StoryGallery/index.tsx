@@ -34,7 +34,7 @@ export const GroupGallery = <Groups extends Record<string, Imported<any>>>({
         className={twMerge(
           scrollableHeight,
           '[--topShadowUp:4px] [--bottomShadowDown:8px]',
-          'px-2 pt-1 pb-2 set-bg-control scrollable',
+          'px-2 pt-1 pb-2 set-bg-control scrollable-y',
           'set-light-border rounded-[20px] [&::after]:bottom-0',
         )}>
         <div

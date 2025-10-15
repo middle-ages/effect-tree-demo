@@ -11,6 +11,7 @@
         @apply set-fg-href-visited-hover;
       }
     }
+
     &:active {
       @apply set-fg-href-active;
     }

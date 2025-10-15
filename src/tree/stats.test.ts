@@ -1,6 +1,6 @@
 import {Codec} from 'effect-tree'
 import {expect, test} from 'vitest'
-import {primeStats, type StatId} from './stats'
+import {MAX_NODE_COUNT, primeStats, type StatId} from './stats'
 import {Array, pipe, Record} from 'effect'
 
 test('primeStats', () => {
@@ -16,7 +16,7 @@ test('primeStats', () => {
     ['nodeCount', 6n],
     ['treeCount', 1296n],
     ['treeIndex', 52n],
-    ['maxNodes', 100n],
+    ['maxNodes', BigInt(MAX_NODE_COUNT)],
     ['maxDepth', 5n],
     ['maxDegree', 2n],
   ])

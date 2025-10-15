@@ -30,8 +30,7 @@ const glyphWidthPx = {
 const horizontalSpacingPx = 4 * 2 + 2 * 2
 
 /**
- * A component that displays a numeric value or a string message. The message
- * type can be:
+ * A component that displays a numeric value. The message type can be:
  *
  * 1. `number`
  * 2. `bigint`
@@ -110,12 +109,19 @@ const overflowWidth = (
   return [isOverflow, px(widthPx)]
 }
 
+const widthPxCache = new Map<string, number>()
+
 const measure = (s: string): number => {
+  const cached = widthPxCache.get(s)
+  if (cached !== undefined) {
+    return cached
+  }
+
   const occurrences = new Map<string, number>()
   for (const c of s) {
     occurrences.set(c, (occurrences.get(c) ?? 0) + 1)
   }
-  return sumAll(
+  const widthPx = sumAll(
     [...occurrences.entries()].map(([c, count]) => {
       const measured = glyphWidthPx[c as keyof typeof glyphWidthPx] as
         | number
@@ -124,6 +130,9 @@ const measure = (s: string): number => {
       return count * (measured ?? 10)
     }),
   )
+
+  widthPxCache.set(s, widthPx)
+  return widthPx
 }
 
 const normalize = (

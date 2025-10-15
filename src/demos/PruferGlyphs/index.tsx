@@ -14,16 +14,8 @@ interface Props {
 }
 
 export const PruferGlyphs = ({initial}: Props) => {
-  const {
-    format,
-    theme,
-    setFormat,
-    setTheme,
-    code,
-    modifyActions,
-    stats,
-    ...rest
-  } = usePruferCode(initial)
+  const {format, theme, code, modifyActions, stats, tree, lines, ...setters} =
+    usePruferCode(initial)
 
   return (
     <Layout
@@ -31,8 +23,8 @@ export const PruferGlyphs = ({initial}: Props) => {
       header={<Header />}
       stats={<StatsView {...{stats}} />}
       toolbar={<Toolbar {...{modifyActions}} />}
-      stylePanel={<StylePanel {...{format, setFormat, theme, setTheme}} />}
-      view={<TextView {...{...rest, stats, format, theme}} />}
+      stylePanel={<StylePanel {...setters} {...{format, theme}} />}
+      view={<TextView {...{tree, lines, stats, format, theme}} />}
       footer={<Footer {...{code}} />}
     />
   )

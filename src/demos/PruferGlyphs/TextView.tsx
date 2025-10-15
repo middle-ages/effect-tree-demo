@@ -23,7 +23,7 @@ export const TextView = ({lines, style, className, stats}: Props) => {
       className={twMerge('relative overflow-hidden', className)}>
       <div
         className={`h-[100cqh] rounded-md set-bg-terminal border-inset
-                    scrollable [&::after]:top-full min-h-14`}>
+                    scrollable-y [&::after]:top-full min-h-14`}>
         <pre
           className={`px-1 font-mono leading-none
                       absolute-full *:first:mt-1 text-xl`}>

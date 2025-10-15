@@ -45,7 +45,11 @@ const config: StorybookConfig = {
     },
   },
 
-  addons: ['@storybook/addon-docs', 'storybook-addon-pseudo-states'],
+  addons: [
+    '@storybook/addon-docs',
+    'storybook-addon-pseudo-states',
+    '@storybook/addon-vitest',
+  ],
 }
 
 export default config

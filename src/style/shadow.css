@@ -34,3 +34,10 @@
     #2342 0 0px 2px 1px,
     #4672 0 0px 7px 5px;
 }
+
+@utility set-scroll-shadow-h {
+  box-shadow:
+    #0004 0 0 2px 1px,
+    #0003 0 0 8px 6px,
+    #0002 0 0 11px 7px;
+}

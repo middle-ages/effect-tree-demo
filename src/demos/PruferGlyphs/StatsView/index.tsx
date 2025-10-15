@@ -12,6 +12,7 @@ export const StatsView = ({
   stats: {treeIndex, treeCount, nodeCount},
   maxWidthPx = 332,
 }: Props) => {
+  const isFirst = treeCount.value === 1n
   return (
     <>
       <div className="flex flex-col gap-1 set-fg-control">
@@ -21,8 +22,14 @@ export const StatsView = ({
         </Row>
 
         <Row>
-          <div className="pr-1">out of all</div>
-          <Numeric.Flat {...{maxWidthPx}} value={treeCount.value} />
+          {isFirst ? (
+            <div>of the single</div>
+          ) : (
+            <>
+              <div className="pr-1">out of all</div>
+              <Numeric.Flat {...{maxWidthPx}} value={treeCount.value} />
+            </>
+          )}
         </Row>
 
         <Row>
@@ -32,7 +39,7 @@ export const StatsView = ({
             value={nodeCount.value}
             className="mx-1"
           />
-          <div>node vertex labeled trees.</div>
+          <div>node vertex labeled tree{isFirst ? '' : 's'}.</div>
         </Row>
       </div>
     </>

@@ -1,4 +1,4 @@
-import{c as v,s as P,a as b,m as S,N as F}from"./index-DN-unnOX.js";import{s as x}from"./pseudo-CqWyTUsk.js";import"./iframe-BCheXTli.js";const w=`import {map, range} from '#Array'
+import{c as v,s as P,a as b,m as w,N as S}from"./index-DIeet80g.js";import{s as x}from"./pseudo-4nrmMcN5.js";import"./iframe-CvpaWoqK.js";const F=`import {map, range} from '#Array'
 import {tupled} from '#Function'
 import {bigIntToExponential, sumAll} from '#Number'
 import {monoRecord} from '#Record'
@@ -30,8 +30,7 @@ const glyphWidthPx = {
 const horizontalSpacingPx = 4 * 2 + 2 * 2
 
 /**
- * A component that displays a numeric value or a string message. The message
- * type can be:
+ * A component that displays a numeric value. The message type can be:
  *
  * 1. \`number\`
  * 2. \`bigint\`
@@ -110,12 +109,19 @@ const overflowWidth = (
   return [isOverflow, px(widthPx)]
 }
 
+const widthPxCache = new Map<string, number>()
+
 const measure = (s: string): number => {
+  const cached = widthPxCache.get(s)
+  if (cached !== undefined) {
+    return cached
+  }
+
   const occurrences = new Map<string, number>()
   for (const c of s) {
     occurrences.set(c, (occurrences.get(c) ?? 0) + 1)
   }
-  return sumAll(
+  const widthPx = sumAll(
     [...occurrences.entries()].map(([c, count]) => {
       const measured = glyphWidthPx[c as keyof typeof glyphWidthPx] as
         | number
@@ -124,6 +130,9 @@ const measure = (s: string): number => {
       return count * (measured ?? 10)
     }),
   )
+
+  widthPxCache.set(s, widthPx)
+  return widthPx
 }
 
 const normalize = (
@@ -148,7 +157,7 @@ Numeric.FixedWidth = mapProps(
     className: twMerge('text-right', className),
   }),
 )(Numeric)
-`,y=S(f=>{const h=f.replaceAll("_","");return BigInt(h)},"value")(F),_={component:y,parameters:{...b,...P(w)},args:{value:"1",isFlat:!1,maxWidthPx:160}},e={},t=x.hover(),s=x.focus(),o=x.focusVisible(),r={...e,args:{isFlat:!0}},i={...e,args:{value:"9_999_999"}},c={...e,args:{value:"10_000_000"}},l={...e,args:{value:"10_000_000",maxWidthPx:80}},m={...e,args:{value:"10_000_001"}},a={...e,args:{value:(50n**50n).toString()}},d={...e,args:{...a.args,...r.args}},u={...e,args:{width:v(24),value:"111"}},n={args:{className:"text-2xl h-9 leading-9",fontSizePx:24}},p={args:{...n.args,value:"123_456_789"}},g={args:{...n.args,value:"123_456_789_123_456_789"}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:"{}",...e.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:"pseudo.story.hover<Props>()",...t.parameters?.docs?.source}}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:"pseudo.story.focus<Props>()",...s.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:"pseudo.story.focusVisible<Props>()",...o.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+`,y=w(h=>{const f=h.replaceAll("_","");return BigInt(f)},"value")(S),_={component:y,parameters:{...b,...P(F)},args:{value:"1",isFlat:!1,maxWidthPx:160}},e={},t=x.hover(),s=x.focus(),o=x.focusVisible(),r={...e,args:{isFlat:!0}},i={...e,args:{value:"9_999_999"}},c={...e,args:{value:"10_000_000"}},l={...e,args:{value:"10_000_000",maxWidthPx:80}},d={...e,args:{value:"10_000_001"}},a={...e,args:{value:(50n**50n).toString()}},m={...e,args:{...a.args,...r.args}},u={...e,args:{width:v(24),value:"111"}},n={args:{className:"text-2xl h-9 leading-9",fontSizePx:24}},p={args:{...n.args,value:"123_456_789"}},g={args:{...n.args,value:"123_456_789_123_456_789"}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:"{}",...e.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:"pseudo.story.hover<Props>()",...t.parameters?.docs?.source}}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:"pseudo.story.focus<Props>()",...s.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:"pseudo.story.focusVisible<Props>()",...o.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
   ...Basic,
   args: {
     isFlat: true
@@ -169,23 +178,23 @@ Numeric.FixedWidth = mapProps(
     value: '10_000_000',
     maxWidthPx: 80
   }
-}`,...l.parameters?.docs?.source}}};m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`{
+}`,...l.parameters?.docs?.source}}};d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
   ...Basic,
   args: {
     value: '10_000_001'
   }
-}`,...m.parameters?.docs?.source}}};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+}`,...d.parameters?.docs?.source}}};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
   ...Basic,
   args: {
     value: (50n ** 50n).toString()
   }
-}`,...a.parameters?.docs?.source}}};d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+}`,...a.parameters?.docs?.source}}};m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`{
   ...Basic,
   args: {
     ...FiftyExpFifty.args,
     ...Flat.args
   }
-}`,...d.parameters?.docs?.source}}};u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+}`,...m.parameters?.docs?.source}}};u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
   ...Basic,
   args: {
     width: px(24),
@@ -206,4 +215,4 @@ Numeric.FixedWidth = mapProps(
     ...FontSize2xl.args,
     value: '123_456_789_123_456_789'
   }
-}`,...g.parameters?.docs?.source}}};const z=["Basic","Hover","Focus","FocusVisible","Flat","LessThanTenMillion","TenMillion","TenMillionConstrained","MoreThanTenMillion","FiftyExpFifty","FiftyExpFiftyFlat","FixedWidth","FontSize2xl","FontSize2xlBig","FontSize2xlConstrained"],T=Object.freeze(Object.defineProperty({__proto__:null,Basic:e,FiftyExpFifty:a,FiftyExpFiftyFlat:d,FixedWidth:u,Flat:r,Focus:s,FocusVisible:o,FontSize2xl:n,FontSize2xlBig:p,FontSize2xlConstrained:g,Hover:t,LessThanTenMillion:i,MoreThanTenMillion:m,TenMillion:c,TenMillionConstrained:l,__namedExportsOrder:z,default:_},Symbol.toStringTag,{value:"Module"}));export{T as a};
+}`,...g.parameters?.docs?.source}}};const z=["Basic","Hover","Focus","FocusVisible","Flat","LessThanTenMillion","TenMillion","TenMillionConstrained","MoreThanTenMillion","FiftyExpFifty","FiftyExpFiftyFlat","FixedWidth","FontSize2xl","FontSize2xlBig","FontSize2xlConstrained"],T=Object.freeze(Object.defineProperty({__proto__:null,Basic:e,FiftyExpFifty:a,FiftyExpFiftyFlat:m,FixedWidth:u,Flat:r,Focus:s,FocusVisible:o,FontSize2xl:n,FontSize2xlBig:p,FontSize2xlConstrained:g,Hover:t,LessThanTenMillion:i,MoreThanTenMillion:d,TenMillion:c,TenMillionConstrained:l,__namedExportsOrder:z,default:_},Symbol.toStringTag,{value:"Module"}));export{T as a};

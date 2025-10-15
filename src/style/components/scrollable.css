@@ -6,6 +6,14 @@
   }
 }
 
+@custom-variant @can-scroll-right {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: right) {
+      @slot;
+    }
+  }
+}
+
 @custom-variant @can-scroll-down {
   @supports (container-type: scroll-state) {
     @container scroll-state(scrollable: top) {
@@ -14,26 +22,54 @@
   }
 }
 
+@custom-variant @can-scroll-left {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: left) {
+      @slot;
+    }
+  }
+}
+
 @layer components {
-  .scrollable {
-    @apply scroll-container relative
-           overflow-y-auto overflow-x-clip;
+  .scrollable-x {
+    @apply scroll-container relative overflow-x-auto overflow-y-hidden;
 
     &::before {
-      @apply base-scrollable top-0 -translate-y-[var(--topShadowUp)]
+      @apply base-scrollable-x left-0 @can-scroll-left:set-scroll-shadow-h;
+    }
+
+    &::after {
+      @apply base-scrollable-x right-0 @can-scroll-right:set-scroll-shadow-h;
+    }
+  }
+
+  .scrollable-y {
+    @apply scroll-container relative overflow-y-auto overflow-x-clip;
+
+    &::before {
+      @apply base-scrollable-y top-0 -translate-y-[var(--topShadowUp)]
              @can-scroll-down:set-scroll-shadow-top;
     }
 
     &::after {
-      @apply base-scrollable translate-y-[var(--bottomShadowDown)]
+      @apply base-scrollable-y translate-y-[var(--bottomShadowDown)]
              @can-scroll-up:set-scroll-shadow-bottom;
     }
   }
 }
 
+@utility base-scrollable-x {
+  @apply base-scrollable fill-container-h w-0 top-0;
+  content: ' ';
+}
+
+@utility base-scrollable-y {
+  @apply base-scrollable fill-container-w h-0 left-0;
+  content: ' ';
+}
+
 @utility base-scrollable {
-  @apply block fill-container-w sticky h-0 left-0 z-1
-         dom-play duration-250 transition-shadow;
+  @apply block sticky z-1 dom-play duration-250 transition-shadow;
   content: ' ';
 }
 

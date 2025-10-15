@@ -143,6 +143,34 @@ export const formatRoman =
     return pipe(n, toRoman, segmentString, Array.map(f), unwords)
   }
 
+const themePrefix: Record<Draw.ThemeName, string> = {
+  dashed: '╴',
+  dashedWide: '╴',
+  dotted: '╴',
+  double: ' ',
+  hDouble: ' ',
+  hThick: '╸',
+  hThickDashed: '╸',
+  hThickDashedWide: '╸',
+  hThickDotted: '╸',
+  round: '╴',
+  thick: '╸',
+  thickDashed: '╸',
+  thickDashedWide: '╸',
+  thickDotted: '╸',
+  thin: '╴',
+  unix: '',
+  unixRound: '',
+  space: '',
+  bullets: ' ',
+  ascii: ' ',
+  vDouble: '╴',
+  vThick: '╴',
+  vThickDashed: '╴',
+  vThickDashedWide: '╴',
+  vThickDotted: '╴',
+}
+
 export const drawRomanTree = (
   self: Tree<number>,
   format: NumericFormat,
@@ -150,7 +178,11 @@ export const drawRomanTree = (
 ): string[] =>
   pipe(
     self,
-    map(n => (n > MAX_ROMAN ? n.toLocaleString() : formatRoman(format)(n))),
+    map(
+      n =>
+        themePrefix[theme] +
+        (n > MAX_ROMAN ? n.toLocaleString() : formatRoman(format)(n)),
+    ),
     drawTree[theme],
     Array.map(flow(trimEnd, replaceAll(' ', '\u00A0'))),
   )
