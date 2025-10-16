@@ -10,10 +10,6 @@ const preview = {
         dark: {name: 'Dark', value: '#555'},
         light: {name: 'Light', value: 'var(--bg)'},
       },
-      grid: {
-        opacity: 0.3,
-        cellAmount: 8,
-      },
     },
   },
   initialGlobals: {

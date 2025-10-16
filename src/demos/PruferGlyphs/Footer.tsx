@@ -19,7 +19,8 @@ export const Footer = ({code}: Props) => {
         <div
           style={{scrollbarWidth: 'thin'}}
           className={twMerge(
-            'h-full pt-1 pb-0.5 flex gap-1 items-center justify-center-safe rounded-lg',
+            'h-full pt-1 pb-0.5 rounded-[9px]',
+            'flex gap-1 items-center justify-center-safe',
             !isFirstTree && 'scrollable-x',
           )}>
           {code.length === 0 ? (
@@ -27,7 +28,7 @@ export const Footer = ({code}: Props) => {
           ) : (
             code.map((code, i) => (
               <Numeric
-                className="shrink-0 bottom-0"
+                className="shrink-0"
                 key={`key-${i.toString()}`}
                 value={code}
                 maxWidthPx={51}

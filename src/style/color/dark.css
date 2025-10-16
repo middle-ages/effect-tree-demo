@@ -37,6 +37,35 @@
     --href-visited: lab(10% 50 -50);
     --href-visited-hover: lab(35% 70 -70);
 
-    --scrollShadow: var(--controlBorderBottom);
+    --scrollShadowTop: #2035432a;
+    --scrollShadowBottom: #4065732a;
+    --scrollShadowXHigh: #00000040;
+    --scrollShadowXMedium: #00000030;
+    --scrollShadowXLow: #00000020;
   }
+}
+
+@utility text-inset {
+  text-shadow:
+    0px 1px 1px #fffc,
+    0.5px 1.5px 2px #fff9;
+}
+
+@utility text-inset-shallow {
+  text-shadow:
+    0px 1px 1px #fff8,
+    0.5px 1.5px 2px #fff4;
+}
+
+@utility text-inset-deep {
+  text-shadow:
+    0px 1px 1px #fffd,
+    0.5px 1.5px 2px #fffb;
+}
+
+@utility text-outset {
+  @apply text-black;
+  text-shadow:
+    0px -1px 1px #fff9,
+    -0.5px -1.5px 2px #fff4;
 }
