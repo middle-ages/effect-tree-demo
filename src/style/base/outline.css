@@ -10,16 +10,16 @@
            ring-0 ring-offset-0 ring-[var(--ring)] ring-offset-[var(--ringInner)];
 
     &:focus-visible:not(:disabled) {
-      @apply outline-2 -outline-offset-[0.5px]
-             ring-1 ring-offset-[1.5px];
+      @apply outline-2 -outline-offset-1
+             ring-1 ring-offset-1;
     }
   }
 
   a,
   select {
     &:focus:not(:disabled) {
-      @apply outline-2 -outline-offset-[0.5px]
-             ring-1 ring-offset-[1.5px];
+      @apply outline-2 -outline-offset-1
+             ring-1 ring-offset-1;
     }
   }
 }

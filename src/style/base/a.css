@@ -1,6 +1,6 @@
 @layer base {
   a {
-    @apply block dom-play set-fg-href;
+    @apply inline-block dom-play set-fg-href;
 
     &:hover {
       @apply set-fg-href-hover underline;

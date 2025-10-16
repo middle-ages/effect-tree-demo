@@ -22,6 +22,7 @@
     "typecheck": "dev/typecheck",
     "circular": "dev/circular",
     "build:storybook": "storybook build --output-dir docs/storybook",
+    "build-storybook": "storybook build --output-dir docs/storybook",
     "build": "vite -c config/vite.config.ts build",
     "build:all": "dev/build-all",
     "preview": "vite -c config/vite.config.ts preview",
@@ -95,12 +96,6 @@
     }
   },
   "imports": {
-    "#components": {
-      "import": {
-        "types": "./src/components.d.ts",
-        "import": "./src/components.js"
-      }
-    },
     "#Numeric": {
       "import": {
         "types": "./src/components/Numeric/index.d.ts",
@@ -123,6 +118,12 @@
       "import": {
         "types": "./src/components/Button/index.d.ts",
         "import": "./src/components/Button/index.js"
+      }
+    },
+    "#Pill": {
+      "import": {
+        "types": "./src/components/Pill.d.ts",
+        "import": "./src/components/Pill.js"
       }
     },
     "#Link": {
@@ -195,6 +196,12 @@
       "import": {
         "types": "./src/util.d.ts",
         "import": "./src/util.js"
+      }
+    },
+    "#types": {
+      "import": {
+        "types": "./src/components/types.d.ts",
+        "import": "./src/components/types.js"
       }
     }
   },

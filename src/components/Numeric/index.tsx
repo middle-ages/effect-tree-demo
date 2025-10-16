@@ -27,7 +27,11 @@ const glyphWidthPx = {
   '.': 4.448,
 }
 
-const horizontalSpacingPx = 4 * 2 + 2 * 2
+const horizontalPaddingPx = 2 * 4
+const beveledBorderPx = 2 * 2
+const flatBorderPx = 2 * 1
+const horizontalSpacingPx = (isFlat: boolean) =>
+  horizontalPaddingPx + (isFlat ? flatBorderPx : beveledBorderPx)
 
 /**
  * A component that displays a numeric value. The message type can be:
@@ -63,8 +67,11 @@ export const Numeric = ({
   const [isBig, formatted] = normalize(value)
   const [isOverflow, width] =
     givenWidth === undefined && maxWidthPx !== undefined
-      ? overflowWidth(maxWidthPx, formatted, fontSizePx)
-      : [false, `calc(${givenWidth ?? '0'} + ${px(horizontalSpacingPx)})`]
+      ? overflowWidth(isFlat, maxWidthPx, formatted, fontSizePx)
+      : [
+          false,
+          `calc(${givenWidth ?? '0'} + ${px(horizontalSpacingPx(isFlat))})`,
+        ]
   const title = isBig || isOverflow ? value.toLocaleString() : ''
 
   return (
@@ -79,10 +86,7 @@ export const Numeric = ({
         {...{id, title}}
         style={{
           width,
-          ...(givenWidth !== undefined && {
-            textAlign: 'right',
-            paddingRight: 4.5,
-          }),
+          ...(givenWidth !== undefined && {textAlign: 'right'}),
           ...style,
         }}>
         {formatted}
@@ -92,14 +96,16 @@ export const Numeric = ({
 }
 
 const overflowWidth = (
+  isFlat: boolean,
   maxWidthPx: number,
   formatted: string,
   fontSizePx: number,
 ): [boolean, string] => {
   const sizeFactor = fontSizePx / baseFontSizePx
   const measuredPx = measure(formatted) * sizeFactor
-  const availablePx = maxWidthPx - horizontalSpacingPx
-  const widthPx = Math.min(measuredPx, availablePx) + horizontalSpacingPx
+  const availablePx = maxWidthPx - horizontalSpacingPx(isFlat)
+  const widthPx =
+    Math.min(measuredPx, availablePx) + horizontalSpacingPx(isFlat)
 
   // We do not want to add “truncate” before overflow
   // because you see to many ‘...’ on the transition
@@ -147,13 +153,8 @@ const normalize = (
 Numeric.Flat = assumeProp(Numeric, 'isFlat')(true)
 
 Numeric.FixedWidth = mapProps(
-  ({
-    digits,
-    className,
-    ...props
-  }: Omit<Props, 'width'> & {digits: number}): Props => ({
+  ({digits, ...props}: Omit<Props, 'width'> & {digits: number}): Props => ({
     ...props,
     width: px(digits * digitWidthPx),
-    className: twMerge('text-right', className),
   }),
 )(Numeric)

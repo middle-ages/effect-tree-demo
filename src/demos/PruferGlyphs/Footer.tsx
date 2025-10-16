@@ -11,16 +11,15 @@ export const Footer = ({code}: Props) => {
 
   return (
     <div
-      className={`
-        flex flex-col h-fill pt-1
-        *:dom-play dom-play set-bg-light z-1`}>
+      className={`flex flex-col *:dom-play dom-play
+                     set-bg-dark rounded-md`}>
       <Link.PruferPaper />
-      <div className="shrink-0 grow-0 h-11 px-2">
+      <div className="no-flex h-11">
         <div
           style={{scrollbarWidth: 'thin'}}
           className={twMerge(
-            'h-full pt-1 pb-0.5 rounded-[9px]',
-            'flex gap-1 items-center justify-center-safe',
+            'h-full rounded-[9px]',
+            'flex gap-1 place-items-center-safe place-content-center-safe',
             !isFirstTree && 'scrollable-x',
           )}>
           {code.length === 0 ? (
@@ -28,7 +27,7 @@ export const Footer = ({code}: Props) => {
           ) : (
             code.map((code, i) => (
               <Numeric
-                className="shrink-0"
+                className="no-flex"
                 key={`key-${i.toString()}`}
                 value={code}
                 maxWidthPx={51}

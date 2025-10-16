@@ -1,37 +1,37 @@
 @layer base {
   :root {
-    --bg: #ededf3;
-    --bgDark: #e3e1eb;
+    --bg: #ededf4;
+    --bgDark: #ebe8ea;
     --bgLight: #f4f0f9;
-    --bgInput: #f5eef9;
+    --bgInput: #f6f6f6;
     --bgInputHover: #f0f2fa;
     --bgInputActive: #fcfafd;
-    --bgReverse: #101010;
 
     --bgControl: #eceaee;
     --bgControlHover: #f3edf5;
     --bgControlDisabled: #e2dee4;
     --bgControlActive: #dedcdf;
 
-    --fgHead: #56505a;
+    --fgHead: #58545a;
 
-    --fgControl: #595254;
-    --fgControlHover: #49474d;
+    --fgControl: var(--fgHead);
+    --fgControlHover: #48424a;
     --fgControlDisabled: #7f7679;
+    --fgControlActive: #1e1c22;
 
-    --bgTerminal: #f6f6f6;
-    --fgTerminal: #1d2320;
-    --fgTerminalDim: #4a4e48;
+    --bgTerminal: var(--bgInput);
+    --fgTerminal: var(--fgControlActive);
+    --fgTerminalDim: var(--fgControl);
 
-    --controlBorderTop: #e9e2e2;
-    --controlBorderRight: #b8aeb2;
-    --controlBorderBottom: #9a969d;
+    --controlBorderTop: #e4e2e8;
+    --controlBorderRight: #cbcacd;
+    --controlBorderBottom: #b3b0b7;
     --controlBorderLeft: #d4d4d8;
 
-    --darkBorder: #d7d0d9;
+    --darkBorder: var(--controlBorderLeft);
 
-    --ring: #306fca;
-    --ringInner: #b8daff;
+    --ring: #406fca;
+    --ringInner: #c8daff;
 
     --href: lab(5% 30 -70);
     --href-hover: lab(20% 50 -90);
@@ -49,8 +49,8 @@
 
 @utility text-inset {
   text-shadow:
-    0px 1px 1px #fffc,
-    0.5px 1.5px 2px #fff9;
+    0px 1px 1px #fff9,
+    0.5px 1.5px 2px #fff5;
 }
 
 @utility text-inset-shallow {
@@ -60,14 +60,11 @@
 }
 
 @utility text-inset-deep {
-  text-shadow:
-    0px 1px 1px #fffd,
-    0.5px 1.5px 2px #fffb;
+  text-shadow: 0px 1px 1px #fffa 0.5px 1.5px 2px #fff6;
 }
 
 @utility text-outset {
-  @apply text-black;
   text-shadow:
-    0px -1px 1px #fff9,
-    -0.5px -1.5px 2px #fff4;
+    0px -1px 1px #fff4,
+    -0.5px -1.5px 2px #fff2;
 }

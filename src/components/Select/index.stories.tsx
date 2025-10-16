@@ -11,7 +11,7 @@ type Alpha = 'a' | 'b' | 'c' | 'd' | 'e'
 
 const Component = Generic<Alpha>
 
-type Props = ComponentProps<typeof Component>
+type Props = ComponentProps<typeof Component> & {label: string}
 
 const items: SelectItem[] = [
   {id: 'a', label: 'A', title: 'a⇒A', icon: 'a⇐A'},
@@ -34,19 +34,25 @@ const meta = {
 
   argTypes: argTypes.disable('value', 'items'),
   args: {
+    label: 'Sixty zippers',
     value: items[3] as SelectItem,
     items,
     onChange: fn(),
     title: 'Select Title',
   },
   decorators: FrameDecorator({className: '*:p-2'}),
-  render: function Render({onChange: propsOnChange, ...props}) {
+  render: function Render({label, onChange: propsOnChange, ...props}) {
     const [value, setValue] = useState<SelectItem>(items[3] as SelectItem)
     const onChange = (value: Alpha) => {
       setValue(getItem(value))
       propsOnChange(value)
     }
-    return <Component {...props} {...{value, onChange}} />
+    return (
+      <label className="form-row-h flex gap-2 set-fg-control h-6">
+        <div className="truncate w-fit leading-7">{label}</div>
+        <Component {...props} {...{value, onChange, label}} />
+      </label>
+    )
   },
 } satisfies Meta<FC<Props>>
 

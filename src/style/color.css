@@ -4,22 +4,22 @@
   --controlBorderTopDim: color-mix(
     in srgb,
     var(--controlBorderTop),
-    transparent 50%
+    transparent 40%
   );
   --controlBorderRightDim: color-mix(
     in srgb,
     var(--controlBorderRight),
-    transparent 50%
+    transparent 40%
   );
   --controlBorderBottomDim: color-mix(
     in srgb,
     var(--controlBorderBottom),
-    transparent 50%
+    transparent 40%
   );
   --controlBorderLeftDim: color-mix(
     in srgb,
     var(--controlBorderLeft),
-    transparent 50%
+    transparent 40%
   );
 }
 
@@ -41,10 +41,6 @@
 
 @utility set-bg-input-active {
   @apply bg-[var(--bgInputActive)];
-}
-
-@utility set-bg-reverse {
-  @apply bg-[var(--bgReverse)];
 }
 
 @utility set-bg-control {
@@ -87,6 +83,10 @@
   @apply text-[var(--fgControlDisabled)];
 }
 
+@utility set-fg-control-active {
+  @apply text-[var(--fgControlActive)];
+}
+
 @utility set-fg-terminal {
   @apply text-[var(--fgTerminal)];
 }
@@ -101,6 +101,10 @@
 
 @utility set-control-hover {
   @apply set-fg-control-hover set-bg-control-hover;
+}
+
+@utility set-control-active {
+  @apply set-fg-control-active set-bg-control-active;
 }
 
 @utility set-control-disabled {

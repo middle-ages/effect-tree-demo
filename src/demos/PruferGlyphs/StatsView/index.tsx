@@ -26,8 +26,8 @@ export const StatsView = ({
             <div>of the single</div>
           ) : (
             <>
-              <div className="pr-1">out of all</div>
-              <Numeric.Flat maxWidthPx={288} value={treeCount.value} />
+              <div className="pr-1.5">out of all</div>
+              <Numeric.Flat maxWidthPx={296} value={treeCount.value} />
             </>
           )}
         </Row>

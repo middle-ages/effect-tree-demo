@@ -15,7 +15,7 @@
 }
 
 @utility set-border {
-  @apply rounded-[3px] border-[1.5px];
+  @apply rounded-md border-2;
   border-style: solid;
 }
 

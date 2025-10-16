@@ -14,7 +14,11 @@ export const Link = ({children, className, href, ...rest}: Props) => {
     <a
       {...{rest}}
       href={href.toString()}
-      className={twMerge('inline-block w-fit truncate', className)}
+      className={twMerge(
+        'inline-block w-fit truncate rounded-md',
+        'h-[22px] mt-2 leading-[22px] px-1.5',
+        className,
+      )}
       target="_blank">
       {children}
     </a>
@@ -26,7 +30,7 @@ Link.PruferPaper = () => {
     <Link
       href={new URL(paper)}
       title="“Prüfer Encoding and a Proof of Cayley's Tree Formula”"
-      className="mx-auto rounded px-1">
+      className="self-center">
       Prüfer Code
       <span className="inline-block text-3xl leading-2 pl-1 translate-y-1">
         ☞

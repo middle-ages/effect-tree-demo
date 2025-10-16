@@ -1,24 +1,68 @@
+@property --button-gradient-high {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: true;
+}
+
+@property --button-gradient-low {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: true;
+}
+
 @layer components {
   .button {
-    @apply px-2.5 truncate
-           text-center text-inset leading-7
-           set-control border-outset-dim;
+    --duration: 200ms;
+
+    @apply my-0.5 px-2 truncate text-center text-inset text-sm
+           set-control border-outset-dim h-6 leading-[21px];
+    --button-gradient-high: #edeaef;
+    --button-gradient-low: #dad9dd;
+    background: linear-gradient(
+      var(--button-gradient-high),
+      var(--button-gradient-low) 100%
+    );
 
     &,
     & * {
-      @apply dom-play;
-    }
-
-    &:hover:not(:disabled) {
-      @apply text-inset-deep set-control-hover border-outset;
+      transition-property: all, --button-gradient-high, --button-gradient-low;
+      transition-duration: var(--duration);
+      transition-timing-function: ease-in-out;
     }
 
     &:active:not(:disabled) {
-      @apply text-outset border-inset-dim set-bg-control-active;
+      @apply text-outset border-inset set-control-active;
+
+      --button-gradient-high: #c8c6ca;
+      --button-gradient-low: #dad8dd;
+    }
+
+    &:hover:not(:disabled):not(:active) {
+      @apply text-inset-deep set-control-hover border-outset
+             contrast-[125%] brightness-[90%] saturate-[150%];
     }
 
     &:disabled {
-      @apply set-control-disabled;
+      @apply set-control-disabled contrast-[90%];
     }
+  }
+
+  .pill-left {
+    @apply pill rounded-r-none! rounded-l-lg! border-r-1!;
+  }
+
+  .pill-right {
+    @apply pill rounded-l-none! rounded-r-lg! border-l-1!;
+  }
+
+  .pill-center {
+    @apply pill rounded-none! border-l-1! border-r-1!;
+  }
+}
+
+@utility pill {
+  @apply relative;
+  &:focus-visible {
+    @apply z-1;
   }
 }

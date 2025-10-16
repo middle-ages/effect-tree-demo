@@ -1,8 +1,8 @@
 @layer base {
   select {
-    @apply w-full relative px-2 form-row-h
+    @apply relative px-2 form-row-inner-h
            border-inset-dim set-bg-input set-fg-control
-           dom-play rounded-md!;
+           dom-play box-content;
     appearance: base-select;
 
     &:hover {

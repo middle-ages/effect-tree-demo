@@ -1,9 +1,9 @@
-import {map} from '#Array'
-import {simpleItem, type SelectItem} from '#components'
+import {sort, map} from '#Array'
+import {simpleItem, type SelectItem} from '#types'
 import {Select} from '#Select'
 import {fromEntries, toEntries} from '#Record'
 import {formats, type NumericFormat} from '#tree'
-import {pipe, type Dispatcher} from '#util'
+import {String, pipe, type Dispatcher} from '#util'
 import {Draw} from 'effect-tree'
 import type {PropsWithChildren} from 'react'
 
@@ -22,6 +22,7 @@ const formatItems: SelectItem[] = pipe(
 
 const themes: Record<Draw.ThemeName, SelectItem> = pipe(
   Draw.themeNames,
+  sort(String.Order),
   map(name => [name, simpleItem(name)] as [Draw.ThemeName, SelectItem]),
   fromEntries,
 )
@@ -55,8 +56,8 @@ export const StylePanel = ({format, theme, setFormat, setTheme}: Props) => {
 }
 
 const Row = ({label, children}: {label: string} & PropsWithChildren) => (
-  <label className="grid grid-cols-subgrid col-span-2 *:form-row-h">
-    <div className="truncate form-row-h">{label}</div>
+  <label className="form-row-h grid grid-cols-subgrid col-span-2 h-7">
+    <div className="truncate leading-7">{label}</div>
     {children}
   </label>
 )

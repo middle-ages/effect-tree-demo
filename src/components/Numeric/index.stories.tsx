@@ -6,7 +6,10 @@ import {mapProp} from 'react-compinators'
 import {Numeric as Component} from './index'
 import code from './index.jsx?raw'
 
-type Props = Omit<ComponentProps<typeof Component>, 'value'> & {value: string}
+type Props = Omit<ComponentProps<typeof Component>, 'value'> & {
+  value: string
+  label: string
+}
 
 const Wrapper: FC<Props> = mapProp((value: string): bigint | number => {
   const numeric = value.replaceAll('_', '')
@@ -20,7 +23,14 @@ const meta = {
     value: '1',
     isFlat: false,
     maxWidthPx: 160,
+    label: 'The quick brown fox',
   },
+  render: ({label, ...props}) => (
+    <div className="flex gap-2 set-fg-control">
+      <div className="truncate">{label}</div>
+      <Wrapper {...props} {...{label}} />
+    </div>
+  ),
 } satisfies Meta<typeof Wrapper>
 
 type Story = StoryObj<typeof meta>
@@ -34,6 +44,11 @@ export const Focus: Story = pseudo.story.focus<Props>()
 export const FocusVisible: Story = pseudo.story.focusVisible<Props>()
 
 export const Flat: Story = {...Basic, args: {isFlat: true}}
+
+export const FlatFixedWidth: Story = {
+  ...Basic,
+  args: {isFlat: true, width: px(3 * 8)},
+}
 
 export const LessThanTenMillion: Story = {
   ...Basic,

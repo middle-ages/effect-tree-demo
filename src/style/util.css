@@ -2,3 +2,7 @@
   transition: all 250ms ease-in-out;
   transition-behavior: allow-discrete;
 }
+
+@utility no-flex {
+  @apply shrink-0 grow-0;
+}

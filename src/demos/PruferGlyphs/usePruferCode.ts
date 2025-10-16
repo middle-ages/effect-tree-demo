@@ -1,4 +1,4 @@
-import {pipe, type LazyArg} from '#Function'
+import {type LazyArg} from '#Function'
 import {
   drawRomanTree,
   primeStats,
@@ -6,15 +6,15 @@ import {
   type DecodeResponse,
   type NumericFormat,
 } from '#tree'
-import type {Dispatcher} from '#util'
-import {Record, Tuple} from 'effect'
+import type {VoidAction} from '#types'
+import {Array, Record, Tuple, type Dispatcher} from '#util'
 import {Codec, type Draw} from 'effect-tree'
 import {useMemo, useState} from 'react'
-import {modifyActionMap} from './Toolbar/actions'
-import {type PrimedModifyActionMap} from './Toolbar/types'
+import {actionMap} from './Toolbar/actions'
+import {type ModifyAction, type PrimedActionMap} from './Toolbar/types'
 
 export interface UsePruferCode extends DecodeResponse {
-  modifyActions: PrimedModifyActionMap
+  actions: PrimedActionMap
   setFormat: Dispatcher<NumericFormat>
   setTheme: Dispatcher<Draw.ThemeName>
 }
@@ -34,7 +34,7 @@ export const usePruferCode = (
   const lines = drawRomanTree(tree, format, theme)
   const stats = primeStats(code, tree)
 
-  const modifyActions = useMemo(() => makeActionMap(code, setCode), [code])
+  const actions = useMemo(() => makeActionMap(code, setCode), [code])
 
   return {
     code,
@@ -43,7 +43,7 @@ export const usePruferCode = (
     tree,
     lines,
     stats,
-    modifyActions,
+    actions,
     setFormat,
     setTheme,
   }
@@ -53,20 +53,17 @@ export const usePruferCode = (
 const makeActionMap = (
   code: number[],
   setCode: Dispatcher<number[]>,
-): PrimedModifyActionMap =>
-  pipe(
-    modifyActionMap,
-    Record.mapEntries(({apply, disable, ...action}, key) => [
-      key,
-      {
-        ...action,
-        apply: () => {
-          setCode(apply)
-        },
-        disable:
-          disable === undefined
-            ? undefined
-            : Tuple.mapFirst(disable, predicate => predicate(code)),
-      },
-    ]),
-  )
+): PrimedActionMap => Record.map(actionMap, Array.map(action(code, setCode)))
+
+const action =
+  (code: number[], setCode: Dispatcher<number[]>) =>
+  ({apply, disable, ...action}: ModifyAction): VoidAction => ({
+    ...action,
+    apply: () => {
+      setCode(apply)
+    },
+    disable:
+      disable === undefined
+        ? undefined
+        : Tuple.mapFirst(disable, predicate => predicate(code)),
+  })

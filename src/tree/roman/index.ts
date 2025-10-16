@@ -1,7 +1,7 @@
-import type {SelectItem} from '#components'
 import type {EndoOf} from '#Function'
 import {mapEntries} from '#Record'
 import {replaceAll, segmentString, trimEnd, unwords} from '#String'
+import type {SelectItem} from '#types'
 import {Array, flow, pipe} from '#util'
 import {drawTree, map, type Draw, type Tree} from 'effect-tree'
 

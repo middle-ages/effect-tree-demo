@@ -1,5 +1,5 @@
 @utility numeric-base {
-  @apply inline-block px-1 form-row-inner-h
+  @apply inline-block form-row-inner-h p-1
          set-bg-input set-fg-control
          font-serif whitespace-nowrap overflow-hidden
          rounded-md! dom-play;
@@ -7,7 +7,7 @@
 
 @layer components {
   .numeric-beveled {
-    @apply numeric-base border-inset-dim border-2! leading-[23px];
+    @apply numeric-base border-inset-dim leading-[15px];
 
     &:hover {
       @apply set-bg-input-hover set-fg-control-hover border-inset;
@@ -22,6 +22,6 @@
   }
 
   .numeric-flat {
-    @apply numeric-base set-dark-border box-content leading-[26.5px] text-right;
+    @apply numeric-base set-dark-border leading-[16.5px] text-center;
   }
 }

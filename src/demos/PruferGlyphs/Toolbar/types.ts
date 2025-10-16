@@ -1,27 +1,28 @@
 import type {Predicate} from 'effect'
-import type {BaseItem, VoidAction} from '#components'
+import {type NonEmptyArray} from '#Array'
+import type {BaseItem, VoidAction} from '#types'
 
-export const codePillActionIds = [
+export const codeJumpIds = [
   'firstCode',
   'lastCode',
   'decCode',
   'incCode',
 ] as const
 
-export const nodePillActionIds = ['decNodes', 'incNodes'] as const
-
-export const actionIds = [
-  ...codePillActionIds,
-  ...nodePillActionIds,
-  'randomCode',
-  'randomNodes',
+export const nodeCountJumpIds = [
+  'firstNodeCount',
+  'decNodes',
+  'incNodes',
+  'lastNodeCount',
 ] as const
+
+export const randomJumpIds = ['randomCode', 'randomNodes'] as const
 
 export const setActionIds = ['setCode', 'setNodes'] as const
 
-export type CodePillActionId = (typeof codePillActionIds)[number]
-export type NodePillActionId = (typeof nodePillActionIds)[number]
-export type ModifyActionId = (typeof actionIds)[number]
+export type CodeJumpId = (typeof codeJumpIds)[number]
+export type NodeCountJumpId = (typeof nodeCountJumpIds)[number]
+export type RandomJumpId = (typeof randomJumpIds)[number]
 export type SetActionId = (typeof setActionIds)[number]
 
 export interface BaseAction<
@@ -35,9 +36,13 @@ export interface BaseAction<
     | undefined
 }
 
-export interface ModifyAction extends BaseAction<ModifyActionId, [number[]]> {}
+export interface ModifyAction<Id extends string = string>
+  extends BaseAction<Id, [number[]]> {}
 
-export interface ModifyActionMap extends Record<ModifyActionId, ModifyAction> {}
+export const actionKeys = ['code', 'nodeCount', 'random'] as const
 
-export interface PrimedModifyActionMap
-  extends Record<ModifyActionId, VoidAction<ModifyActionId>> {}
+export type ActionKey = (typeof actionKeys)[number]
+
+export type ActionMap = Record<ActionKey, NonEmptyArray<ModifyAction>>
+
+export type PrimedActionMap = Record<ActionKey, NonEmptyArray<VoidAction>>
