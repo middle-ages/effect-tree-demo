@@ -1,5 +1,3 @@
-'use client'
-
 import {Array, pipe, type Identified} from '#util'
 import {type SelectItem} from '../types'
 
@@ -7,16 +5,18 @@ interface Props<Value extends string> extends Identified {
   value: SelectItem
   items: SelectItem[]
   onChange: (value: Value) => void
+  title: string
 }
 
 export const Select = <Value extends string>({
-  id,
   value: {id: value},
   items,
   onChange,
+  ...props
 }: Props<Value>) => (
   <select
-    {...{id, value}}
+    {...props}
+    {...{value}}
     onChange={e => {
       onChange(e.target.value as Value)
     }}>

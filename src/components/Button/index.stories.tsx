@@ -1,10 +1,11 @@
 import {argTypes, parameters, pseudo} from '#storybook'
 import type {Meta, StoryObj} from '@storybook/react-vite'
-import type {ComponentProps, FC} from 'react'
+import {useCallback, useState, type ComponentProps, type FC} from 'react'
 import {action} from 'storybook/actions'
 import {Button as Component} from './index'
 import code from './index.jsx?raw'
 import {mapProp} from 'react-compinators'
+import {expect} from 'storybook/test'
 import {pipe} from 'effect'
 
 type Props = Omit<ComponentProps<typeof Component>, 'disable'> & {
@@ -63,4 +64,23 @@ export const DisabledActive: Story = {
 export const DisabledFocus: Story = {
   parameters: Focus.parameters as {},
   args: {...Disabled.args, ...Focus.args},
+}
+
+export const ClickTest: Story = {
+  args: {label: 'before'},
+  render: function Render({apply: propsApply, ...props}) {
+    const [label, setLabel] = useState('before')
+
+    const apply = useCallback(() => {
+      propsApply()
+      setLabel('after')
+    }, [propsApply])
+
+    return <Wrapper {...props} {...{apply, label}} />
+  },
+  play: async ({canvas, userEvent}) => {
+    const button = canvas.getByText('before')
+    await userEvent.click(button)
+    await expect(canvas.getByText('after')).toBeInTheDocument()
+  },
 }

@@ -1,4 +1,4 @@
-import {OrdinalLabel} from '#components'
+import {OrdinalLabel} from '#OrdinalLabel'
 import type {FC} from 'react'
 import {twMerge} from 'tailwind-merge'
 

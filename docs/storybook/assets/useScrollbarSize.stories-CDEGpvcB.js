@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-EAAf7b9g.js";import{s as a,o as c}from"./index-d02C2rMV.js";import{r as i}from"./iframe-DcXzJmtC.js";import"./preload-helper-PPVm8Dsz.js";const l=`import {parameters} from '#storybook'
+import{j as n}from"./jsx-runtime-CG1xpAJ6.js";import{s as a,B as c}from"./index-BSv6a1fl.js";import{r as i}from"./iframe-BogCSYVz.js";import"./preload-helper-PPVm8Dsz.js";const l=`import {parameters} from '#storybook'
 import type {Meta, StoryObj} from '@storybook/react-vite'
 import code from './useScrollbarSize.stories.jsx?raw'
 import {useScrollbarSize} from './useScrollbarSize'

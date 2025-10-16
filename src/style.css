@@ -7,6 +7,9 @@
 @import './style/shadow.css';
 @import './style/util.css';
 
+@source "../src/*.tsx";
+@source "../src/*.ts";
+
 @layer components {
   .demo {
     background: var(--bg);

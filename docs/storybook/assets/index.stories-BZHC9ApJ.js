@@ -1,4 +1,4 @@
-import{c as v,s as P,a as b,m as w,N as S}from"./index-d02C2rMV.js";import{s as x}from"./pseudo-DhMozvuA.js";import"./iframe-DcXzJmtC.js";const F=`import {map, range} from '#Array'
+import{c as v,s as P,a as b,m as w}from"./index-BSv6a1fl.js";import{s as x}from"./pseudo-C8PbS2Z9.js";import"./iframe-BogCSYVz.js";import{N as S}from"./index-CoauWrOv.js";const F=`import {map, range} from '#Array'
 import {tupled} from '#Function'
 import {bigIntToExponential, sumAll} from '#Number'
 import {monoRecord} from '#Record'
@@ -215,4 +215,4 @@ Numeric.FixedWidth = mapProps(
     ...FontSize2xl.args,
     value: '123_456_789_123_456_789'
   }
-}`,...g.parameters?.docs?.source}}};const z=["Basic","Hover","Focus","FocusVisible","Flat","LessThanTenMillion","TenMillion","TenMillionConstrained","MoreThanTenMillion","FiftyExpFifty","FiftyExpFiftyFlat","FixedWidth","FontSize2xl","FontSize2xlBig","FontSize2xlConstrained"],T=Object.freeze(Object.defineProperty({__proto__:null,Basic:e,FiftyExpFifty:a,FiftyExpFiftyFlat:m,FixedWidth:u,Flat:r,Focus:s,FocusVisible:o,FontSize2xl:n,FontSize2xlBig:p,FontSize2xlConstrained:g,Hover:t,LessThanTenMillion:i,MoreThanTenMillion:d,TenMillion:c,TenMillionConstrained:l,__namedExportsOrder:z,default:_},Symbol.toStringTag,{value:"Module"}));export{T as a};
+}`,...g.parameters?.docs?.source}}};const z=["Basic","Hover","Focus","FocusVisible","Flat","LessThanTenMillion","TenMillion","TenMillionConstrained","MoreThanTenMillion","FiftyExpFifty","FiftyExpFiftyFlat","FixedWidth","FontSize2xl","FontSize2xlBig","FontSize2xlConstrained"],B=Object.freeze(Object.defineProperty({__proto__:null,Basic:e,FiftyExpFifty:a,FiftyExpFiftyFlat:m,FixedWidth:u,Flat:r,Focus:s,FocusVisible:o,FontSize2xl:n,FontSize2xlBig:p,FontSize2xlConstrained:g,Hover:t,LessThanTenMillion:i,MoreThanTenMillion:d,TenMillion:c,TenMillionConstrained:l,__namedExportsOrder:z,default:_},Symbol.toStringTag,{value:"Module"}));export{B as a};

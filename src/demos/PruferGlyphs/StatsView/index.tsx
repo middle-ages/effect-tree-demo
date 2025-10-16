@@ -1,4 +1,4 @@
-import {Numeric} from '#components'
+import {Numeric} from '#Numeric'
 import {type PrimedStats} from '#tree'
 import {type StyledPropsWithChildren} from '#util'
 import {twMerge} from 'tailwind-merge'
@@ -10,12 +10,12 @@ interface Props {
 
 export const StatsView = ({
   stats: {treeIndex, treeCount, nodeCount},
-  maxWidthPx = 332,
+  maxWidthPx = 250,
 }: Props) => {
   const isFirst = treeCount.value === 1n
   return (
     <>
-      <div className="flex flex-col gap-1 set-fg-control">
+      <div className="flex flex-col gap-0.5 set-fg-control">
         <Row>
           <div className="pr-1">Showing tree #</div>
           <Numeric {...{maxWidthPx}} value={treeIndex.value} />
@@ -27,7 +27,7 @@ export const StatsView = ({
           ) : (
             <>
               <div className="pr-1">out of all</div>
-              <Numeric.Flat {...{maxWidthPx}} value={treeCount.value} />
+              <Numeric.Flat maxWidthPx={288} value={treeCount.value} />
             </>
           )}
         </Row>
@@ -49,7 +49,7 @@ export const StatsView = ({
 const Row = ({children, className, style}: StyledPropsWithChildren) => (
   <div
     className={twMerge(
-      'flex items-center *:whitespace-nowrap *:first:form-row-h',
+      'flex items-center *:whitespace-nowrap *:first:form-row-h *:shrink-0',
       className,
     )}
     {...{style}}>

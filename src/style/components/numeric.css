@@ -7,7 +7,7 @@
 
 @layer components {
   .numeric-beveled {
-    @apply numeric-base border-inset-dim;
+    @apply numeric-base border-inset-dim border-2! leading-[23px];
 
     &:hover {
       @apply set-bg-input-hover set-fg-control-hover border-inset;
@@ -22,6 +22,6 @@
   }
 
   .numeric-flat {
-    @apply numeric-base set-dark-border box-content leading-[26px] text-right;
+    @apply numeric-base set-dark-border box-content leading-[26.5px] text-right;
   }
 }

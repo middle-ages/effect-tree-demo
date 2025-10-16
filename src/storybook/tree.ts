@@ -4,7 +4,7 @@ import {pipe} from '#util'
 import {Codec} from 'effect-tree'
 
 export const stringToCode = (code: string): number[] =>
-  code.split(/\s*,\s*/).map(s => Number.parseInt(s))
+  code === '' ? [] : code.split(/\s*,\s*/).map(s => Number.parseInt(s))
 
 export const fromCode = (code: string): PrimedStats =>
   code.length === 0

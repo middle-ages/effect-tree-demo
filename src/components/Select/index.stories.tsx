@@ -1,10 +1,11 @@
-import {pseudo, argTypes, FrameDecorator, parameters} from '#storybook'
-import type {Meta, StoryObj} from '@storybook/react-vite'
+import {argTypes, FrameDecorator, parameters, pseudo} from '#storybook'
+import type {Meta, ReactRenderer, StoryObj} from '@storybook/react-vite'
 import {useState, type ComponentProps, type FC} from 'react'
-import {action} from 'storybook/actions'
+import type {BaseAnnotations} from 'storybook/internal/csf'
+import {expect, fn} from 'storybook/test'
+import type {SelectItem} from '../types'
 import {Select as Generic} from './index'
 import code from './index.jsx?raw'
-import type {SelectItem} from '../types'
 
 type Alpha = 'a' | 'b' | 'c' | 'd' | 'e'
 
@@ -35,7 +36,8 @@ const meta = {
   args: {
     value: items[3] as SelectItem,
     items,
-    onChange: action('onChange'),
+    onChange: fn(),
+    title: 'Select Title',
   },
   decorators: FrameDecorator({className: '*:p-2'}),
   render: function Render({onChange: propsOnChange, ...props}) {
@@ -54,4 +56,19 @@ type Story = StoryObj<typeof meta>
 
 export const Select: Story = {}
 
-export const FocusVisible: Story = pseudo.story.focusVisible<Props>()
+export const FocusVisible: Story = {
+  parameters: pseudo.story.focusVisible<Props>().parameters as BaseAnnotations<
+    ReactRenderer,
+    Props
+  >['parameters'] & {},
+  args: {id: 'focusVisible'},
+}
+
+export const SelectTest: Story = {
+  play: async ({canvas, userEvent}) => {
+    const select: HTMLSelectElement = canvas.getByRole('combobox')
+    await expect(select).toHaveValue('d')
+    await userEvent.selectOptions(select, 'b')
+    await expect(select).toHaveValue('b')
+  },
+}

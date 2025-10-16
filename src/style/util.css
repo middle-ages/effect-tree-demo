@@ -1,4 +1,4 @@
 @utility dom-play {
-  transition: all 200ms linear;
+  transition: all 250ms ease-in-out;
   transition-behavior: allow-discrete;
 }

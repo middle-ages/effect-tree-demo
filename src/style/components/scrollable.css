@@ -32,7 +32,7 @@
 
 @layer components {
   .scrollable-x {
-    @apply scroll-container relative overflow-x-auto overflow-y-hidden;
+    @apply scroll-container relative overflow-x-scroll overflow-y-hidden;
 
     &::before {
       @apply base-scrollable-x left-0 @can-scroll-left:set-scroll-shadow-h;

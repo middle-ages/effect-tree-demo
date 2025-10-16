@@ -1,4 +1,5 @@
 *.log
+dev/chromatic
 node_modules
 dist
 tmp

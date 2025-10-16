@@ -1,5 +1,6 @@
 import {map} from '#Array'
-import {simpleItem, Select, type SelectItem} from '#components'
+import {simpleItem, type SelectItem} from '#components'
+import {Select} from '#Select'
 import {fromEntries, toEntries} from '#Record'
 import {formats, type NumericFormat} from '#tree'
 import {pipe, type Dispatcher} from '#util'
@@ -31,28 +32,31 @@ export const StylePanel = ({format, theme, setFormat, setTheme}: Props) => {
   const selectedFormat = {...formats[format], key: format}
   const selectedTheme = {...themes[theme], key: theme}
   return (
-    <div className="grid grid-cols-[min-content_1fr] gap-3 set-fg-control">
-      <Row>
-        <div className="truncate form-row-h">Label format</div>
+    <div className="grid grid-cols-[min-content_1fr] gap-[5px] set-fg-control">
+      <Row label="Label format">
         <Select<NumericFormat>
           value={selectedFormat}
           items={formatItems}
           onChange={setFormat}
+          title="Select a format for tree labels"
         />
       </Row>
 
-      <Row>
-        <div className="truncate form-row-h">Tree theme</div>
+      <Row label="Tree theme">
         <Select<Draw.ThemeName>
           value={selectedTheme}
           items={themeItems}
           onChange={setTheme}
+          title="Select a tree theme."
         />
       </Row>
     </div>
   )
 }
 
-const Row = ({children}: PropsWithChildren) => (
-  <label className="grid grid-cols-subgrid col-span-2">{children}</label>
+const Row = ({label, children}: {label: string} & PropsWithChildren) => (
+  <label className="grid grid-cols-subgrid col-span-2 *:form-row-h">
+    <div className="truncate form-row-h">{label}</div>
+    {children}
+  </label>
 )

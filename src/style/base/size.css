@@ -30,6 +30,18 @@
   width: calc(100cqw - 4 * var(--spacing));
 }
 
+@utility cqh-px {
+  height: calc(100cqh - 1px);
+}
+
+@utility cqh-1 {
+  height: calc(100cqh - 1 * var(--spacing));
+}
+
+@utility cqh-2 {
+  height: calc(100cqh - 2 * var(--spacing));
+}
+
 @utility cqh-4 {
   height: calc(100cqh - 4 * var(--spacing));
 }

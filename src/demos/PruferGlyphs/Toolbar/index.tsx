@@ -1,5 +1,5 @@
 import {toEntries} from '#Record'
-import {Button} from '#components'
+import {Button} from '#Button'
 import type {PrimedModifyActionMap} from './types'
 
 interface Props {

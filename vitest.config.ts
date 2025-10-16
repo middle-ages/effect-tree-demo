@@ -15,11 +15,19 @@ export default defineConfig({
     }),
     tailwindCss(),
   ],
+  optimizeDeps: {
+    include: ['@mdx-js/react', 'markdown-to-jsx'],
+  },
   test: {
     projects: [
       {
         extends: true,
-        plugins: [storybookTest({configDir: path.join(dirname, '.storybook')})],
+        plugins: [
+          storybookTest({
+            configDir: path.join(dirname, '.storybook'),
+            storybookScript: 'pnpm storybook --no-open',
+          }),
+        ],
         test: {
           name: 'storybook',
           browser: {

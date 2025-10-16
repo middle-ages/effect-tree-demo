@@ -25,7 +25,7 @@ const config: StorybookConfig = {
     builder: {
       name: '@storybook/builder-vite',
       options: {
-        viteConfigPath: 'config/vite.config.ts',
+        viteConfigPath: 'vitest.config.ts',
       },
     },
   },
@@ -49,6 +49,7 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
     'storybook-addon-pseudo-states',
     '@storybook/addon-vitest',
+    '@chromatic-com/storybook',
   ],
 
   viteFinal: config => {
