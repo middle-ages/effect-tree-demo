@@ -10,7 +10,7 @@ interface Props {
 
 export const StatsView = ({
   stats: {treeIndex, treeCount, nodeCount},
-  maxWidthPx = 250,
+  maxWidthPx = 267,
 }: Props) => {
   const isFirst = treeCount.value === 1n
   return (
@@ -27,7 +27,7 @@ export const StatsView = ({
           ) : (
             <>
               <div className="pr-1.5">out of all</div>
-              <Numeric.Flat maxWidthPx={296} value={treeCount.value} />
+              <Numeric.Flat maxWidthPx={313} value={treeCount.value} />
             </>
           )}
         </Row>
@@ -49,7 +49,7 @@ export const StatsView = ({
 const Row = ({children, className, style}: StyledPropsWithChildren) => (
   <div
     className={twMerge(
-      'flex items-center *:whitespace-nowrap *:first:form-row-h *:shrink-0',
+      'flex items-center *:whitespace-nowrap *:first:form-row-h',
       className,
     )}
     {...{style}}>

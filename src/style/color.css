@@ -4,22 +4,22 @@
   --controlBorderTopDim: color-mix(
     in srgb,
     var(--controlBorderTop),
-    transparent 40%
+    transparent 30%
   );
   --controlBorderRightDim: color-mix(
     in srgb,
     var(--controlBorderRight),
-    transparent 40%
+    transparent 30%
   );
   --controlBorderBottomDim: color-mix(
     in srgb,
     var(--controlBorderBottom),
-    transparent 40%
+    transparent 30%
   );
   --controlBorderLeftDim: color-mix(
     in srgb,
     var(--controlBorderLeft),
-    transparent 40%
+    transparent 30%
   );
 }
 
@@ -57,6 +57,10 @@
 
 @utility set-bg-dark {
   @apply bg-[var(--bgDark)];
+}
+
+@utility set-bg-darker {
+  @apply bg-[var(--bgDarker)];
 }
 
 @utility set-bg-control-active {

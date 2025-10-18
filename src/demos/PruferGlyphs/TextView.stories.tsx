@@ -14,6 +14,12 @@ const meta = {
   args: {
     lines: drawRomanTree(Codec.Prufer.decode(pruferCode), 'lowerAscii', 'thin'),
     stats: {
+      nodeCount: {
+        id: 'nodeCount',
+        label: 'node count',
+        title: 'title foo',
+        value: 112n,
+      },
       maxDegree: {
         id: 'maxDegree',
         label: 'max degree',

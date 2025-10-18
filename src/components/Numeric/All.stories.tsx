@@ -10,7 +10,7 @@ const Component = () => (
   <GroupGallery
     groups={{all}}
     name="Numeric"
-    minColumnWidth={rem(13)}
+    minColumnWidth={rem(20)}
     maxColumnWidth={per(7)}
     storyFrameClass="rounded-[15px] px-3 pt-[15px]"
   />

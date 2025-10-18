@@ -4,12 +4,20 @@
   --font-serif: 'CMU Serif';
 }
 
+@theme {
+  --text-smaller: 0.8125rem; /** 13px */
+  --text-smaller--line-height: 1rem; /* 16px */
+
+  --text-tiny: 0.6875rem; /** 11px */
+  --text-tiny--line-height: 0.875rem; /* 14px */
+}
+
 body {
   font-family: Inter;
 }
 
-@utility ordinal {
-  @apply text-[11px] set-fg-control-hover;
+@utility text-ordinal {
+  @apply text-tiny set-fg-control-disabled;
   font-family: 'LM Roman 12';
   font-feature-settings: 'onum' 1;
 }
@@ -22,27 +30,6 @@ body {
 }
 
 @font-face {
-  font-family: 'CMU Serif';
-  font-style: italic;
-  font-weight: 500;
-  src: url('/fonts/cmunti.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'CMU Serif';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/fonts/cmunbx.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'CMU Serif';
-  font-style: italic;
-  font-weight: 700;
-  src: url('/fonts/cmunbi.woff') format('woff');
-}
-
-@font-face {
   font-family: 'Iosevka Term Slab Web';
   font-display: swap;
   font-weight: 400;
@@ -52,42 +39,10 @@ body {
 }
 
 @font-face {
-  font-family: 'Iosevka Term Slab Web';
-  font-display: swap;
-  font-weight: 400;
-  font-stretch: normal;
-  font-style: italic;
-  src: url('/fonts/IosevkaTermSlab-Italic.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Iosevka Term Slab Web';
-  font-display: swap;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  src: url('/fonts/IosevkaTermSlab-Medium.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 300;
-  src: url('/fonts/Inter-Light.woff') format('woff');
-}
-
-@font-face {
   font-family: Inter;
   font-style: normal;
   font-weight: 400;
   src: url('/fonts/Inter-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/Inter-Medium.woff') format('woff');
 }
 
 @font-face {

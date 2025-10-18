@@ -1,14 +1,19 @@
 import {twMerge} from 'tailwind-merge'
 import type {StyledProps} from '../../util.js'
-import type {VoidAction} from '../types'
+import type {MouseListener, VoidAction} from '../types'
 
-interface Props extends VoidAction, StyledProps {}
+interface Props extends VoidAction, StyledProps {
+  isActive?: boolean | undefined
+  listener?: MouseListener
+}
 
 export const Button = ({
   label,
   title: note,
   apply,
   disable,
+  isActive = false,
+  listener,
   className,
   ...props
 }: Props) => {
@@ -16,8 +21,10 @@ export const Button = ({
   const title: string = disabled && disable !== undefined ? disable[1] : note
   return (
     <button
-      className={twMerge('button', className)}
+      className={twMerge('button flex', className)}
+      {...(isActive && {'data-state': 'active'})}
       {...props}
+      {...listener}
       {...{title, disabled}}
       onClick={() => {
         if (!disabled) {

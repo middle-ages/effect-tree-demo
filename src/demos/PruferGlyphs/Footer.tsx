@@ -11,14 +11,14 @@ export const Footer = ({code}: Props) => {
 
   return (
     <div
-      className={`flex flex-col *:dom-play dom-play
-                     set-bg-dark rounded-md`}>
+      className={`flex flex-col
+                  set-bg-dark rounded-md`}>
       <Link.PruferPaper />
-      <div className="no-flex h-11">
+      <div className="mx-2 no-flex h-11">
         <div
           style={{scrollbarWidth: 'thin'}}
           className={twMerge(
-            'h-full rounded-[9px]',
+            'h-full rounded-md set-bg-darker inner-shadow',
             'flex gap-1 place-items-center-safe place-content-center-safe',
             !isFirstTree && 'scrollable-x',
           )}>

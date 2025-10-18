@@ -1,33 +1,69 @@
-import type {NonEmptyArray} from '#Array'
 import {Pill} from '#Pill'
-import type {VoidAction} from '#types'
-import type {PrimedActionMap} from './types'
+import type {Tuple3} from '#Tuple'
+import type {MouseListener, VoidAction} from '#types'
+import {
+  useMemo,
+  useState,
+  type PropsWithChildren,
+  type PointerEvent,
+} from 'react'
+import {type PrimedActionMap} from './types'
+
+type State = 'active' | undefined
 
 interface Props {
   actions: PrimedActionMap
 }
 
 export const Toolbar = ({actions: {code, nodeCount, random}}: Props) => {
+  const [state, setState] = useState<State>()
+  const isActive = state === 'active'
+
+  const listener: MouseListener = useMemo(
+    () => ({
+      onPointerDown: (event: PointerEvent): void => {
+        setCapture(event)
+        setState('active')
+      },
+      onPointerUp: (event: PointerEvent): void => {
+        releaseCapture(event)
+        setState(undefined)
+      },
+    }),
+    [],
+  )
+
   return (
-    <div className="grid grid-cols-[min-content_1fr] gap-2">
-      <Row actions={code} label="Prüfer code" />
-      <Row actions={nodeCount} label="Node count" />
-      <Row actions={random} label="Random jumps" />
+    <div className="w-fit grid grid-cols-[11ch_1fr] gap-0.5">
+      <Row label="Prüfer code">
+        <Pill actions={code} />
+      </Row>
+      <Row label="Node count">
+        <Pill actions={nodeCount} />
+      </Row>
+      <Row label="Randomize">
+        <Pill.MultiPress
+          {...{listener, isActive}}
+          actions={random as unknown as Tuple3<VoidAction>}
+        />
+      </Row>
     </div>
   )
 }
 
-const Row = ({
-  actions,
-  label,
-}: {
-  actions: NonEmptyArray<VoidAction>
-  label: string
-}) => (
-  <div
-    className={`form-row-h grid grid-cols-subgrid col-span-2 h-7
-                *:last:self-center *:truncate`}>
+const Row = ({children, label}: PropsWithChildren<{label: string}>) => (
+  <div className="form-row-h grid grid-cols-subgrid col-span-2">
     <div className="set-fg-control">{label}</div>
-    <Pill {...{actions}} />
+    {children}
   </div>
 )
+
+function setCapture(event: PointerEvent): void {
+  const target = event.target as HTMLElement
+  target.setPointerCapture(event.pointerId)
+}
+
+function releaseCapture(event: PointerEvent): void {
+  const target = event.target as HTMLElement
+  target.releasePointerCapture(event.pointerId)
+}

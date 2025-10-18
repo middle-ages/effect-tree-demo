@@ -23,7 +23,7 @@ const meta = {
     value: '1',
     isFlat: false,
     maxWidthPx: 160,
-    label: 'The quick brown fox',
+    label: 'Sixty zippers',
   },
   render: ({label, ...props}) => (
     <div className="flex gap-2 set-fg-control">
@@ -83,18 +83,6 @@ export const FiftyExpFiftyFlat: Story = {
 export const FixedWidth: Story = {
   ...Basic,
   args: {width: px(24), value: '111'},
-}
-
-export const FontSize2xl: Story = {
-  args: {className: 'text-2xl h-9 leading-9', fontSizePx: 24},
-}
-
-export const FontSize2xlBig: Story = {
-  args: {...FontSize2xl.args, value: '123_456_789'},
-}
-
-export const FontSize2xlConstrained: Story = {
-  args: {...FontSize2xl.args, value: '123_456_789_123_456_789'},
 }
 
 export default meta

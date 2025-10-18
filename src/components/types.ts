@@ -1,6 +1,11 @@
+import {type NonEmptyArray} from '#Array'
+import {type Tuple3} from '#Tuple'
+import type {PointerEventHandler, ReactNode} from 'react'
+import type {StyledProps} from '../util.js'
+
 export interface BaseItem<Id extends string = string> {
   id: Id
-  label: string
+  label: ReactNode
   title: string
 }
 
@@ -13,7 +18,7 @@ export interface VoidAction<Id extends string = string> extends BaseItem<Id> {
 }
 
 export interface SelectItem extends BaseItem {
-  icon: string
+  icon: ReactNode
 }
 
 export const simpleItem = (label: string): SelectItem => ({
@@ -22,3 +27,19 @@ export const simpleItem = (label: string): SelectItem => ({
   icon: '',
   title: '',
 })
+
+export interface MouseListener {
+  onPointerDown?: PointerEventHandler
+  onPointerUp?: PointerEventHandler
+}
+
+export interface PillProps extends StyledProps {
+  actions: NonEmptyArray<VoidAction>
+  isActive?: boolean
+}
+
+export interface MultiPressProps {
+  actions: Tuple3<VoidAction>
+  isActive: boolean
+  listener: MouseListener
+}

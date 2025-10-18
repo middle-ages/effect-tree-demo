@@ -15,32 +15,32 @@ export const romanFormats = [
 ] as const
 
 const _formats: Record<NumericFormat, Omit<SelectItem, 'id'>> = {
+  decimal: {
+    icon: '1,2,3',
+    label: 'Decimal',
+    title: 'Format labels as decimals.',
+  },
   lower: {
     icon: 'ⅰ,ⅱ,ⅲ',
-    label: 'Roman Unicode',
+    label: 'Unicode',
     title:
       'Use lowercase Unicode Roman numerals from the ‘Number Forms’ block (U+2150…U+218F)',
   },
   upper: {
     icon: 'Ⅰ,Ⅱ,Ⅲ',
-    label: 'Roman Unicode (uppercase)',
+    label: 'Unicode Caps',
     title:
       'Use uppercase Unicode Roman numerals from the ‘Number Forms’ block (U+2150…U+218F)',
   },
   lowerAscii: {
     icon: 'i,ii,iii',
-    label: 'Roman ASCII',
+    label: 'ASCII',
     title: 'Use lowercase ASCII emulation of Roman numerals.',
   },
   upperAscii: {
     icon: 'I,II,III',
-    label: 'Roman ASCII (uppercase)',
+    label: 'ASCII Caps',
     title: 'Use uppercase ASCII emulation of Roman numerals.',
-  },
-  decimal: {
-    icon: '1,2,3',
-    label: 'Decimal',
-    title: 'Format labels as decimals.',
   },
 }
 

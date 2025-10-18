@@ -6,8 +6,12 @@
   }
 }
 
+@utility absolute-0 {
+  @apply absolute top-0 left-0;
+}
+
 @utility absolute-full {
-  @apply absolute top-0 left-0 size-full;
+  @apply absolute-0 size-full;
 }
 
 @utility size-container {

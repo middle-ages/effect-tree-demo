@@ -10,16 +10,24 @@
            ring-0 ring-offset-0 ring-[var(--ring)] ring-offset-[var(--ringInner)];
 
     &:focus-visible:not(:disabled) {
-      @apply outline-2 -outline-offset-1
-             ring-1 ring-offset-1;
+      @apply outline-2 -outline-offset-2 ring-1 ring-offset-1;
     }
   }
 
   a,
   select {
     &:focus:not(:disabled) {
-      @apply outline-2 -outline-offset-1
-             ring-1 ring-offset-1;
+      @apply outline-2 -outline-offset-2 ring-1 ring-offset-1;
     }
+  }
+}
+
+@utility outline-reverse {
+  @apply outline-solid outline-0 -outline-offset-0 outline-[var(--ring)]
+         ring-0 ring-offset-0 ring-[var(--ringInner)]
+         border-l-[0.5px] border-r-[0.5px];
+
+  &:focus-visible:not(:disabled) {
+    @apply z-2 outline-[1.5px] outline-offset-[2.5px] ring-[3px];
   }
 }

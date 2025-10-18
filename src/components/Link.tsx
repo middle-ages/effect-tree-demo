@@ -15,8 +15,8 @@ export const Link = ({children, className, href, ...rest}: Props) => {
       {...{rest}}
       href={href.toString()}
       className={twMerge(
-        'inline-block w-fit truncate rounded-md',
-        'h-[22px] mt-2 leading-[22px] px-1.5',
+        'inline-block w-fit truncate rounded',
+        'h-[20px] mt-2 leading-[21px] mb-1.5 px-1.5 pb-1',
         className,
       )}
       target="_blank">

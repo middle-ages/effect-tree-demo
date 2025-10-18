@@ -1,8 +1,8 @@
 @layer base {
   select {
-    @apply relative px-2 form-row-inner-h
+    @apply relative px-2 rounded-md form-row-inner-h border-2
            border-inset-dim set-bg-input set-fg-control
-           dom-play box-content;
+           dom-play w-full;
     appearance: base-select;
 
     &:hover {
@@ -19,7 +19,7 @@
     }
 
     &::picker-icon {
-      @apply px-1 rotate-90 set-fg-control-hover text-[12px] dom-play;
+      @apply px-1 rotate-90 set-fg-control-hover text-smaller dom-play;
       content: '❯';
     }
 

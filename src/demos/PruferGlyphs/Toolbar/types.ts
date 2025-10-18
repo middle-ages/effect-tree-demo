@@ -4,19 +4,27 @@ import type {BaseItem, VoidAction} from '#types'
 
 export const codeJumpIds = [
   'firstCode',
-  'lastCode',
+  'decHalfCode',
   'decCode',
   'incCode',
+  'incHalfCode',
+  'lastCode',
 ] as const
 
 export const nodeCountJumpIds = [
   'firstNodeCount',
+  'decHalfNodeCount',
   'decNodes',
   'incNodes',
+  'incHalfNodeCount',
   'lastNodeCount',
 ] as const
 
-export const randomJumpIds = ['randomCode', 'randomNodes'] as const
+export const randomJumpIds = [
+  'randomCode',
+  'randomNodes',
+  'randomBoth',
+] as const
 
 export const setActionIds = ['setCode', 'setNodes'] as const
 

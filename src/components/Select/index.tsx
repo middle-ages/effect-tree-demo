@@ -24,8 +24,12 @@ export const Select = <Value extends string>({
       items,
       Array.map(({id, label, title, icon}) => (
         <option key={id} value={id} {...{title}}>
-          {icon}
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          {icon !== '' && (
+            <>
+              {icon}
+              &nbsp;&nbsp;&nbsp;
+            </>
+          )}
           {label}
         </option>
       )),

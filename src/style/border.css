@@ -15,8 +15,7 @@
 }
 
 @utility set-border {
-  @apply rounded-md border-2;
-  border-style: solid;
+  @apply border-2 border-solid;
 }
 
 @utility set-light-border {

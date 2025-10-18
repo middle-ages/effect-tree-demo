@@ -33,7 +33,7 @@ export const StylePanel = ({format, theme, setFormat, setTheme}: Props) => {
   const selectedFormat = {...formats[format], key: format}
   const selectedTheme = {...themes[theme], key: theme}
   return (
-    <div className="grid grid-cols-[min-content_1fr] gap-[5px] set-fg-control">
+    <div className="grid grid-cols-[11ch_1fr] gap-0.5 set-fg-control">
       <Row label="Label format">
         <Select<NumericFormat>
           value={selectedFormat}
@@ -57,7 +57,7 @@ export const StylePanel = ({format, theme, setFormat, setTheme}: Props) => {
 
 const Row = ({label, children}: {label: string} & PropsWithChildren) => (
   <label className="form-row-h grid grid-cols-subgrid col-span-2 h-7">
-    <div className="truncate leading-7">{label}</div>
+    <div className="truncate leading-7 h-7">{label}</div>
     {children}
   </label>
 )

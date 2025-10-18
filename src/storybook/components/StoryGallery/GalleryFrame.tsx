@@ -20,9 +20,7 @@ export const GalleryFrame = ({
   <div className="flex flex-col gap-px h-min overflow-hidden">
     <OrdinalLabel
       ordinal={index}
-      label={
-        <div className="set-fg-control font-light tracking-wide">{name}</div>
-      }
+      label={<div className="set-fg-control tracking-wide">{name}</div>}
       topOrdinal={topIndex}
       className="ml-1"
     />

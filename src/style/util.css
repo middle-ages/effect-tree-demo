@@ -6,3 +6,23 @@
 @utility no-flex {
   @apply shrink-0 grow-0;
 }
+
+@utility flex-gap {
+  @apply flex gap-1.5;
+}
+
+@utility flex-gap-col {
+  @apply flex-gap flex-col;
+}
+
+@utility flex-center {
+  @apply flex place-content-center place-items-center;
+}
+
+@utility flex-center-col {
+  @apply flex-center flex-col;
+}
+
+@utility subgrid-2 {
+  @apply grid grid-cols-subgrid col-span-2;
+}

@@ -1,7 +1,8 @@
 @layer base {
   :root {
-    --bg: #ededf4;
-    --bgDark: #ebe8ea;
+    --bg: #ebebf2;
+    --bgDark: #e4e4e8;
+    --bgDarker: #e2e0e4;
     --bgLight: #f4f0f9;
     --bgInput: #f6f6f6;
     --bgInputHover: #f0f2fa;
@@ -12,26 +13,26 @@
     --bgControlDisabled: #e2dee4;
     --bgControlActive: #dedcdf;
 
-    --fgHead: #58545a;
+    --fgHead: #545258;
 
     --fgControl: var(--fgHead);
-    --fgControlHover: #48424a;
+    --fgControlHover: #3d393a;
     --fgControlDisabled: #7f7679;
     --fgControlActive: #1e1c22;
 
     --bgTerminal: var(--bgInput);
     --fgTerminal: var(--fgControlActive);
-    --fgTerminalDim: var(--fgControl);
+    --fgTerminalDim: var(--fgControlDisabled);
 
-    --controlBorderTop: #e4e2e8;
-    --controlBorderRight: #cbcacd;
-    --controlBorderBottom: #b3b0b7;
-    --controlBorderLeft: #d4d4d8;
+    --controlBorderTop: #f8f2f6;
+    --controlBorderRight: #dad4d8;
+    --controlBorderBottom: #bcb9ba;
+    --controlBorderLeft: #dddadd;
 
     --darkBorder: var(--controlBorderLeft);
 
-    --ring: #406fca;
-    --ringInner: #c8daff;
+    --ring: #506acf;
+    --ringInner: #cfdaff;
 
     --href: lab(5% 30 -70);
     --href-hover: lab(20% 50 -90);
@@ -49,22 +50,28 @@
 
 @utility text-inset {
   text-shadow:
-    0px 1px 1px #fff9,
-    0.5px 1.5px 2px #fff5;
+    0px 1px 1px #fff6,
+    0.5px 1.5px 2px #fff4;
 }
 
 @utility text-inset-shallow {
   text-shadow:
-    0px 1px 1px #fff8,
-    0.5px 1.5px 2px #fff4;
+    0px 1px 1px #fff6,
+    0.5px 1.5px 2px #fff3;
 }
 
 @utility text-inset-deep {
-  text-shadow: 0px 1px 1px #fffa 0.5px 1.5px 2px #fff6;
+  text-shadow: 0px 1px 1px #fff9 0.5px 1.5px 2px #fff4;
 }
 
 @utility text-outset {
   text-shadow:
-    0px -1px 1px #fff4,
-    -0.5px -1.5px 2px #fff2;
+    0px -1px 1px #fff8,
+    -0.5px -1.5px 2px #fff5;
+}
+
+@utility inner-shadow {
+  box-shadow:
+    inset 2px 3px 4px 1px #bbb3,
+    inset 0.5px 1px 2px 0.5px #9994;
 }

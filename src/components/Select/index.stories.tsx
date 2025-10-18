@@ -40,7 +40,7 @@ const meta = {
     onChange: fn(),
     title: 'Select Title',
   },
-  decorators: FrameDecorator({className: '*:p-2'}),
+  decorators: FrameDecorator({className: '*:pt-2 *:px-2 *:pb-3'}),
   render: function Render({label, onChange: propsOnChange, ...props}) {
     const [value, setValue] = useState<SelectItem>(items[3] as SelectItem)
     const onChange = (value: Alpha) => {

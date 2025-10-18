@@ -12,9 +12,7 @@ export default defineConfig({
   worker: {format: 'es'},
   build: {
     outDir: 'docs',
-    cssCodeSplit: false,
     cssTarget: 'chrome141',
-    cssMinify: false,
   },
   base: '/effect-tree-demo/',
 })

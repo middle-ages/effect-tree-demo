@@ -44,7 +44,7 @@ const stats: Stats = pipe(
   [
     make(
       'nodeCount',
-      'Nodes',
+      'node count',
       'Number of nodes.',
     )(flow(Prufer.computeNodeCount, BigInt)),
 

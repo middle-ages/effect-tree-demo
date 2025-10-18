@@ -1,5 +1,5 @@
 @utility numeric-base {
-  @apply inline-block form-row-inner-h p-1
+  @apply inline-block form-row-inner-h p-1 border-2
          set-bg-input set-fg-control
          font-serif whitespace-nowrap overflow-hidden
          rounded-md! dom-play;
@@ -22,6 +22,6 @@
   }
 
   .numeric-flat {
-    @apply numeric-base set-dark-border leading-[16.5px] text-center;
+    @apply numeric-base set-dark-border leading-[17px] text-center;
   }
 }

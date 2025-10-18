@@ -1,68 +1,96 @@
-@property --button-gradient-high {
+@layer components {
+  .button {
+    --allDuration: 250ms;
+    --duration: 300ms;
+
+    @apply flex px-2 place-content-center place-items-center
+           text-inset text-sm rounded set-control border-outset border-1
+           h-6 leading-[24px] truncate w-full cursor-pointer;
+    --button-gradient-highest: #e9e6ea;
+    --button-gradient-high: #dfdcdf;
+    --button-gradient-low: #dad8dc;
+    --button-gradient-lowest: #cfccd2;
+    background: linear-gradient(
+      var(--button-gradient-highest),
+      var(--button-gradient-high) 25%,
+      var(--button-gradient-low) 75%,
+      var(--button-gradient-lowest) 100%
+    );
+
+    &,
+    & * {
+      transition:
+        --button-gradient-highest var(--duration) ease-in-out,
+        --button-gradient-high var(--duration) ease-in-out,
+        --button-gradient-low var(--duration) ease-in-out,
+        --button-gradient-lowest var(--duration) ease-in-out,
+        all var(--allDuration) ease-in-out;
+    }
+
+    &:hover:not(:disabled) {
+      @apply text-inset-deep set-control-hover 
+             contrast-[110%] brightness-[100%] saturate-[120%];
+    }
+
+    &:active:not(:disabled),
+    &[data-state='active']:not(:disabled) {
+      @apply text-outset set-control-active border-inset
+             contrast-[100%] brightness-[97%] saturate-[100%];
+
+      --button-gradient-highest: #ccc8cf;
+      --button-gradient-high: #d9d6da;
+      --button-gradient-low: #e3e0e3;
+      --button-gradient-lowest: #eae9ec;
+    }
+
+    &:disabled {
+      @apply set-control-disabled contrast-[85%];
+    }
+  }
+
+  .pill-left {
+    @apply pill rounded-r-none! rounded-l-lg! border-r-0!;
+  }
+
+  .pill-right {
+    @apply pill rounded-l-none! rounded-r-lg! border-l-0!;
+  }
+
+  .pill-center {
+    @apply pill rounded-none! border-l-[0.5px]! border-r-[0.5px]!;
+  }
+}
+
+@utility pill {
+  @apply border-[#cac8cc]! border-1 text-[12px];
+  &:focus-visible:not(:disabled) {
+    @apply z-2;
+  }
+}
+
+@utility cross-pill {
+  @apply outline-reverse;
+}
+
+@property --button-gradient-highest {
   syntax: '<color>';
   initial-value: #000;
   inherits: true;
 }
 
+@property --button-gradient-high {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: true;
+}
 @property --button-gradient-low {
   syntax: '<color>';
   initial-value: #000;
   inherits: true;
 }
 
-@layer components {
-  .button {
-    --duration: 200ms;
-
-    @apply my-0.5 px-2 truncate text-center text-inset text-sm
-           set-control border-outset-dim h-6 leading-[21px];
-    --button-gradient-high: #edeaef;
-    --button-gradient-low: #dad9dd;
-    background: linear-gradient(
-      var(--button-gradient-high),
-      var(--button-gradient-low) 100%
-    );
-
-    &,
-    & * {
-      transition-property: all, --button-gradient-high, --button-gradient-low;
-      transition-duration: var(--duration);
-      transition-timing-function: ease-in-out;
-    }
-
-    &:active:not(:disabled) {
-      @apply text-outset border-inset set-control-active;
-
-      --button-gradient-high: #c8c6ca;
-      --button-gradient-low: #dad8dd;
-    }
-
-    &:hover:not(:disabled):not(:active) {
-      @apply text-inset-deep set-control-hover border-outset
-             contrast-[125%] brightness-[90%] saturate-[150%];
-    }
-
-    &:disabled {
-      @apply set-control-disabled contrast-[90%];
-    }
-  }
-
-  .pill-left {
-    @apply pill rounded-r-none! rounded-l-lg! border-r-1!;
-  }
-
-  .pill-right {
-    @apply pill rounded-l-none! rounded-r-lg! border-l-1!;
-  }
-
-  .pill-center {
-    @apply pill rounded-none! border-l-1! border-r-1!;
-  }
-}
-
-@utility pill {
-  @apply relative;
-  &:focus-visible {
-    @apply z-1;
-  }
+@property --button-gradient-lowest {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: true;
 }

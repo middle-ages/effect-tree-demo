@@ -6,6 +6,8 @@
 
     "moduleResolution": "nodenext",
     "module": "NodeNext",
+    "target": "esnext",
+    "lib": ["ESNext"],
     "incremental": true,
     "noErrorTruncation": false,
 

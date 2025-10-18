@@ -48,3 +48,32 @@ export const sampleNodeCount =
 
     return code
   }
+
+export const nodeCountAndCodeArbitrary = (
+  max: number,
+): fc.Arbitrary<[number, number[]]> =>
+  fc
+    .integer({min: 2, max})
+    .chain(nodeCount =>
+      fc.tuple(fc.constant(nodeCount), getPruferCodeArbitrary(nodeCount)),
+    )
+
+/**
+ * Sample a random node count and node.
+ */
+export const sampleNodeCountAndCode =
+  (max: number) =>
+  (seed?: number): [nodeCount: number, code: number[]] => {
+    const arbitrary = nodeCountAndCodeArbitrary(max)
+
+    const [head] = fc.sample(arbitrary, {
+      numRuns: 1,
+      ...(seed !== undefined && {seed}),
+    })
+
+    if (head === undefined) {
+      throw new Error('Cannot sample node count and code arbitrary.')
+    }
+
+    return head
+  }
