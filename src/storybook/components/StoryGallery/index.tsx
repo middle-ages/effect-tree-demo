@@ -1,8 +1,8 @@
 import {Array, per, pipe, rch, Record} from '#util'
 import {composeStories} from '@storybook/react-vite'
+import {ScrollPanel} from '../ScrollPanel'
 import {GalleryFrame} from './GalleryFrame'
 import type {Imported} from './types'
-import {twMerge} from 'tailwind-merge'
 
 interface Props<Groups extends Record<string, Imported<any>>> {
   name: string
@@ -13,8 +13,6 @@ interface Props<Groups extends Record<string, Imported<any>>> {
 
   storyFrameClass?: string
 }
-
-const scrollableHeight = 'h-[calc(100%-_var(--headerHeight))]'
 
 export const GroupGallery = <Groups extends Record<string, Imported<any>>>({
   name,
@@ -28,35 +26,24 @@ export const GroupGallery = <Groups extends Record<string, Imported<any>>>({
 
   let i = 0
   return (
-    <div className="px-1.5 pb-1.5 set-bg-light fill-container overflow-hidden">
-      <h1>{name}</h1>
+    <ScrollPanel header={name}>
       <div
-        className={twMerge(
-          scrollableHeight,
-          '[--topShadowUp:4px] [--bottomShadowDown:8px]',
-          'px-2 pt-1 pb-2 set-bg-control scrollable-y',
-          'set-light-border rounded-[20px] [&::after]:bottom-0',
-        )}>
-        <div
-          className="grid gap-3"
-          style={{
-            gridTemplateColumns: `repeat(auto-fill,${minmax})`,
-          }}>
-          {pipe(
-            entries,
-            Array.map(([prefix, stories]) => (
-              <StoryGroup
-                key={prefix}
-                index={i++}
-                {...props}
-                {...{stories}}
-                prefix={entries.length === 1 ? undefined : prefix}
-              />
-            )),
-          )}
-        </div>
+        className="grid gap-3"
+        style={{gridTemplateColumns: `repeat(auto-fill,${minmax})`}}>
+        {pipe(
+          entries,
+          Array.map(([prefix, stories]) => (
+            <StoryGroup
+              key={prefix}
+              index={i++}
+              {...props}
+              {...{stories}}
+              prefix={entries.length === 1 ? undefined : prefix}
+            />
+          )),
+        )}
       </div>
-    </div>
+    </ScrollPanel>
   )
 }
 

@@ -1,8 +1,8 @@
 @utility numeric-base {
-  @apply inline-block form-row-inner-h p-1 border-2
-         set-bg-input set-fg-control
+  @apply inline-block form-row-inner-h p-1
+         set-bg-input set-fg-control border-2 
          font-serif whitespace-nowrap overflow-hidden
-         rounded-md! dom-play;
+         rounded! dom-play;
 }
 
 @layer components {

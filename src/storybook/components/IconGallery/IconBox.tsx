@@ -18,12 +18,11 @@ export const IconBox = ({index, name, icon, iconColor, iconSizePx}: Props) => {
   return (
     <div
       className={`flex-col h-min overflow-hidden inner-shadow
-                  set-bg p-2 place-items-center rounded-xl`}
+                  set-bg p-2 place-items-center rounded-md`}
       style={{paddingTop}}>
-      <OrdinalLabel label={name} ordinal={index} className="w-min" />
+      <OrdinalLabel label={name} ordinal={index} className="w-fit" />
       <div
-        className={`box-content set-border-inset flex
-                    place-items-center place-content-center`}
+        className="set-border-inset flex-center"
         style={{
           borderRadius: innerRadiusPx,
           width: px(iconSizePx),

@@ -72,6 +72,7 @@ export const Numeric = ({
           false,
           `calc(${givenWidth ?? '0'} + ${px(horizontalSpacingPx(isFlat))})`,
         ]
+
   const title = isBig || isOverflow ? value.toLocaleString() : ''
 
   return (

@@ -1,10 +1,16 @@
+@theme {
+  --color-line-light: #dddadd;
+  --color-line-dark: #cccccc;
+  --color-line-darkest: #bbbbbb;
+}
+
 @layer base {
   :root {
     --bg: #ebebf2;
     --bgDark: #e4e4e8;
     --bgDarker: #e2e0e4;
     --bgLight: #f4f0f9;
-    --bgInput: #f6f6f6;
+    --bgInput: #f4eff3;
     --bgInputHover: #f0f2fa;
     --bgInputActive: #fcfafd;
 
@@ -24,12 +30,14 @@
     --fgTerminal: var(--fgControlActive);
     --fgTerminalDim: var(--fgControlDisabled);
 
-    --controlBorderTop: #f8f2f6;
+    --controlBorderTop: #efedf2;
     --controlBorderRight: #dad4d8;
     --controlBorderBottom: #bcb9ba;
-    --controlBorderLeft: #dddadd;
+    --controlBorderLeft: var(--color-line-light);
 
     --darkBorder: var(--controlBorderLeft);
+    --darkerBorder: #ccc;
+    --darkestBorder: #bbb;
 
     --ring: #506acf;
     --ringInner: #cfdaff;
@@ -44,7 +52,7 @@
     --scrollShadowBottom: #4065732a;
     --scrollShadowXHigh: #00000040;
     --scrollShadowXMedium: #00000030;
-    --scrollShadowXLow: #00000020;
+    --scrollShadowXLow: var(--darkestBorder);
   }
 }
 
@@ -67,7 +75,7 @@
 @utility text-outset {
   text-shadow:
     0px -1px 1px #fff8,
-    -0.5px -1.5px 2px #fff5;
+    -0.5px -1.5px 2px #fff6;
 }
 
 @utility inner-shadow {

@@ -22,7 +22,7 @@ export interface UsePruferCode extends DecodeResponse {
 export const usePruferCode = (
   initial: LazyArg<DecodeRequest> = () => ({
     code: [1, 2, 3, 4, 3, 2, 1],
-    format: 'lowerAscii',
+    format: 'decimal',
     theme: 'thin',
   }),
 ): UsePruferCode => {

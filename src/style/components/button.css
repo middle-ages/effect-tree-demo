@@ -3,16 +3,15 @@
     --allDuration: 250ms;
     --duration: 300ms;
 
-    @apply flex px-2 place-content-center place-items-center
-           text-inset text-sm rounded set-control border-outset border-1
-           h-6 leading-[24px] truncate w-full cursor-pointer;
-    --button-gradient-highest: #e9e6ea;
-    --button-gradient-high: #dfdcdf;
-    --button-gradient-low: #dad8dc;
-    --button-gradient-lowest: #cfccd2;
+    @apply flex-center px-3 form-row-h cursor-pointer
+           text-inset text-sm rounded-md set-control border-outset-dim-1;
+    --button-gradient-highest: #e9e7ea;
+    --button-gradient-high: #dfdde2;
+    --button-gradient-low: #d6d4d9;
+    --button-gradient-lowest: #d2d0d4;
     background: linear-gradient(
       var(--button-gradient-highest),
-      var(--button-gradient-high) 25%,
+      var(--button-gradient-high) 30%,
       var(--button-gradient-low) 75%,
       var(--button-gradient-lowest) 100%
     );
@@ -28,48 +27,71 @@
     }
 
     &:hover:not(:disabled) {
-      @apply text-inset-deep set-control-hover 
+      @apply text-inset-deep set-control-hover border-outset-1
              contrast-[110%] brightness-[100%] saturate-[120%];
     }
 
     &:active:not(:disabled),
     &[data-state='active']:not(:disabled) {
-      @apply text-outset set-control-active border-inset
-             contrast-[100%] brightness-[97%] saturate-[100%];
+      @apply text-outset set-control-active border-inset-1
+             contrast-[100%] brightness-[95%] saturate-[100%];
 
-      --button-gradient-highest: #ccc8cf;
-      --button-gradient-high: #d9d6da;
-      --button-gradient-low: #e3e0e3;
-      --button-gradient-lowest: #eae9ec;
+      --button-gradient-highest: #c9c6c9;
+      --button-gradient-high: #d3d0d3;
+      --button-gradient-low: #dcdadc;
+      --button-gradient-lowest: #e6e3e6;
+
+      path,
+      rect {
+        color: var(--fgControlActive);
+        filter: drop-shadow(0px -2px 0.4px #fff6);
+      }
     }
 
     &:disabled {
-      @apply set-control-disabled contrast-[85%];
+      @apply set-control-disabled contrast-[90%];
+
+      path,
+      rect {
+        @apply set-fg-control-disabled;
+        filter: drop-shadow(0px 0px 0px #fff0);
+      }
+    }
+
+    path,
+    rect {
+      @apply set-fg-control dom-play;
+      filter: drop-shadow(0px 1px 0.6px #fffa);
     }
   }
 
   .pill-left {
-    @apply pill rounded-r-none! rounded-l-lg! border-r-0!;
+    @apply pill rounded-r-none! rounded-l-full! border-r-line-darkest;
   }
 
   .pill-right {
-    @apply pill rounded-l-none! rounded-r-lg! border-l-0!;
+    @apply pill rounded-l-none! rounded-r-full! border-l-line-darkest;
   }
 
   .pill-center {
-    @apply pill rounded-none! border-l-[0.5px]! border-r-[0.5px]!;
+    @apply pill rounded-none
+           border-l-line-darkest border-r-line-darkest;
   }
 }
 
+@utility pill-panel {
+  @apply border-line-darkest rounded-full border-1;
+}
+
 @utility pill {
-  @apply border-[#cac8cc]! border-1 text-[12px];
+  @apply set-fg-control;
   &:focus-visible:not(:disabled) {
     @apply z-2;
   }
 }
 
 @utility cross-pill {
-  @apply outline-reverse;
+  @apply outline-reverse z-1 relative border-outset-dim-1.5;
 }
 
 @property --button-gradient-highest {

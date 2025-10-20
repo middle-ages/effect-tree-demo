@@ -1,7 +1,7 @@
 export const IncHalfNodeCount = (
   <svg
-    className="m-1.5 w-3"
-    viewBox="0 0 21 16"
+    className="m-1 w-4"
+    viewBox="0 0 21 18"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg">
     <path

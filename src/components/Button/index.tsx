@@ -21,7 +21,7 @@ export const Button = ({
   const title: string = disabled && disable !== undefined ? disable[1] : note
   return (
     <button
-      className={twMerge('button flex', className)}
+      className={twMerge('button', className)}
       {...(isActive && {'data-state': 'active'})}
       {...props}
       {...listener}

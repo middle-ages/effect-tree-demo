@@ -1,7 +1,7 @@
 @layer base {
   :root {
     --headerHeight: calc(9 * var(--spacing));
-    --formRowHeight: calc(7 * var(--spacing));
+    --formRowHeight: calc(8 * var(--spacing));
     --formRowInnerHeight: calc(6 * var(--spacing));
   }
 }

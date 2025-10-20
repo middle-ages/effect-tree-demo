@@ -15,15 +15,11 @@ const Value = withClassName.div('text-lg truncate font-serif')
 
 export const TextView = ({lines, style, className, stats}: Props) => {
   return (
-    <div
-      {...{style}}
-      className={twMerge('relative overflow-hidden min-w-72', className)}>
+    <div {...{style}} className={twMerge('relative min-w-72', className)}>
       <div
-        className={`fill-container-h rounded-md set-bg-terminal
-                    border-inset scrollable-y [&::after]:top-full`}>
-        <pre
-          className={`p-1 font-mono leading-none
-                      absolute-full *:first:mt-1 text-lg`}>
+        className={`fill-container-h rounded-md set-bg-terminal focusable
+                    border-inset-2 scrollable-y [&::after]:top-full`}>
+        <pre className="p-1 font-mono leading-none absolute-full *:first:mt-1">
           {lines.join('\n')}
         </pre>
       </div>

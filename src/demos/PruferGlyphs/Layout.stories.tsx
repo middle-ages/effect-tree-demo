@@ -1,4 +1,4 @@
-import {FrameDecorator, parameters} from '#storybook'
+import {parameters} from '#storybook'
 import {type HasClass} from '#util'
 import type {Meta, StoryObj} from '@storybook/react-vite'
 import type {PropsWithChildren} from 'react'
@@ -10,10 +10,12 @@ const Box = ({children, className}: PropsWithChildren<HasClass>) => (
   <div
     className={twMerge(
       'h-full flex place-items-center place-content-center rounded-lg',
-      'border-2 border-black',
+      'inner-shadow',
       className,
     )}>
-    <div className="bg-[#fff6] rounded-lg p-1 m-1">{children}</div>
+    <div className="relative m-1 p-1 text-white text-shadow-[0px_1px_2px] text-shadow-gray-800">
+      {children}
+    </div>
   </div>
 )
 
@@ -21,16 +23,15 @@ const meta = {
   component: Component,
   parameters: parameters.source(code),
   args: {
-    header: <Box className="bg-red-400 h-10">header</Box>,
-    stats: <Box className="bg-orange-400 max-h-24">stats</Box>,
-    toolbar: <Box className="bg-yellow-400 max-h-32">toolbar</Box>,
-    stylePanel: <Box className="bg-green-400 max-h-16">stylePanel</Box>,
-    view: <Box className="bg-cyan-400 min-h-0">view</Box>,
-    footer: <Box className="bg-purple-400 h-10">footer</Box>,
+    header: <Box className="bg-red-400 h-9">header</Box>,
+    stats: <Box className="bg-orange-400 min-h-16">stats</Box>,
+    toolbar: <Box className="bg-yellow-400 min-h-24">toolbar</Box>,
+    stylePanel: (
+      <Box className="bg-green-400 min-h-12 min-w-48">stylePanel</Box>
+    ),
+    view: <Box className="bg-cyan-400 min-h-24 min-w-72">view</Box>,
+    footer: <Box className="bg-purple-400 h-20">footer</Box>,
   },
-  decorators: FrameDecorator({
-    className: 'm-2 p-0 *:p-2 *:size-container *:cqh-4',
-  }),
 } satisfies Meta<typeof Component>
 
 export default meta

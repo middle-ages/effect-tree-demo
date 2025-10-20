@@ -17,7 +17,7 @@ export const Separator = ({spacing, className, style}: Props) => {
         className,
       )}
       style={{...setVars({top, bottom}), ...style}}>
-      <div className="border-color-inset border-1 opacity-65" />
+      <div className="border-color-inset border-[1.5px] opacity-50" />
     </div>
   )
 }

@@ -26,6 +26,7 @@ body {
   font-family: 'CMU Serif';
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
   src: url('/fonts/cmunrm.woff') format('woff');
 }
 
@@ -35,6 +36,7 @@ body {
   font-weight: 400;
   font-stretch: normal;
   font-style: normal;
+  font-display: swap;
   src: url('/fonts/IosevkaTermSlab-Regular.woff2') format('woff2');
 }
 
@@ -42,6 +44,7 @@ body {
   font-family: Inter;
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: url('/fonts/Inter-Regular.woff') format('woff');
 }
 
@@ -49,5 +52,6 @@ body {
   font-family: 'LM Roman 12';
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
   src: url('/fonts/lmroman12-regular.otf') format('opentype');
 }

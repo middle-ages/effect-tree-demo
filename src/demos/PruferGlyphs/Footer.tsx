@@ -10,16 +10,13 @@ export const Footer = ({code}: Props) => {
   const isFirstTree = code.length === 0
 
   return (
-    <div
-      className={`flex flex-col
-                  set-bg-dark rounded-md`}>
+    <>
       <Link.PruferPaper />
       <div className="mx-2 no-flex h-11">
         <div
-          style={{scrollbarWidth: 'thin'}}
           className={twMerge(
             'h-full rounded-md set-bg-darker inner-shadow',
-            'flex gap-1 place-items-center-safe place-content-center-safe',
+            'gap-1 flex place-items-center-safe place-content-center-safe',
             !isFirstTree && 'scrollable-x',
           )}>
           {code.length === 0 ? (
@@ -30,12 +27,12 @@ export const Footer = ({code}: Props) => {
                 className="no-flex"
                 key={`key-${i.toString()}`}
                 value={code}
-                maxWidthPx={51}
+                maxWidthPx={4 * 10}
               />
             ))
           )}
         </div>
       </div>
-    </div>
+    </>
   )
 }

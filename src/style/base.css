@@ -3,7 +3,6 @@
 @import './base/h1.css';
 @import './base/select.css';
 @import './base/size.css';
-@import './base/input-text.css';
 
 @layer base {
   :root {

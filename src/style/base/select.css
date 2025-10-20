@@ -1,12 +1,12 @@
 @layer base {
   select {
-    @apply relative px-2 rounded-md form-row-inner-h border-2
-           border-inset-dim set-bg-input set-fg-control
-           dom-play w-full;
+    @apply relative px-2 rounded leading-6 h-5 -translate-y-1
+           border-inset-dim-2 set-bg-input set-fg-control
+           dom-play box-content w-[calc(100%_-_2rch)];
     appearance: base-select;
 
     &:hover {
-      @apply border-inset set-bg-input-hover set-fg-control-hover;
+      @apply border-inset-2 set-bg-input-hover set-fg-control-hover;
 
       &::picker-icon {
         @apply text-black;
@@ -19,7 +19,7 @@
     }
 
     &::picker-icon {
-      @apply px-1 rotate-90 set-fg-control-hover text-smaller dom-play;
+      @apply p-1.5 set-fg-control-hover text-smaller dom-play rotate-90;
       content: '❯';
     }
 
@@ -32,7 +32,7 @@
       @apply set-bg-input-active text-black;
 
       &::picker-icon {
-        @apply -rotate-90;
+        @apply rotate-270;
       }
     }
 

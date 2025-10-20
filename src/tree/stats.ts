@@ -10,7 +10,7 @@ import {
 
 const {Prufer} = Codec
 
-export const MAX_NODE_COUNT: number = 300
+export const MAX_NODE_COUNT: number = 200
 
 export type StatId = (typeof statIds)[number]
 

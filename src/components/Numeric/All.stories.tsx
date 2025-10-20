@@ -12,7 +12,7 @@ const Component = () => (
     name="Numeric"
     minColumnWidth={rem(20)}
     maxColumnWidth={per(7)}
-    storyFrameClass="rounded-[15px] px-3 pt-[15px]"
+    storyFrameClass="rounded-lg"
   />
 )
 

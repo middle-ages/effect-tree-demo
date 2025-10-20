@@ -1,6 +1,6 @@
 export const IncHalfCode = (
   <svg
-    className="ml-1.5 w-2.5 mr-2"
+    className="m-1.5 w-3"
     viewBox="0 0 24 16"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg">

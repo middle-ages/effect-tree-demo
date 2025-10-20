@@ -1,7 +1,5 @@
 @layer base {
   h1 {
-    @apply text-xl px-3 flex gap-2 justify-center
-           leading-[var(--headerHeight)] h-[var(--headerHeight)]
-           text-inset set-fg-head;
+    @apply text-xl px-3 text-center text-inset set-fg-head;
   }
 }

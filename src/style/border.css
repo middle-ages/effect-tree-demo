@@ -2,20 +2,57 @@
   @apply set-border border-color-outset;
 }
 
+@utility border-outset-1 {
+  @apply border-outset border-1;
+}
+
+@utility border-outset-2 {
+  @apply border-outset border-2;
+}
+
 @utility border-inset {
   @apply set-border border-color-inset;
+}
+
+@utility border-inset-1 {
+  @apply border-inset border-1;
+}
+
+@utility border-inset-2 {
+  @apply border-inset border-2;
 }
 
 @utility border-outset-dim {
   @apply set-border border-color-outset-dim;
 }
 
+@utility border-outset-dim-1 {
+  @apply border-outset-dim border-1;
+}
+
+@utility border-outset-dim-1.5 {
+  @apply border-l-[var(--darkerBorder)]! border-r-[var(--darkerBorder)]!
+         border-t-[var(--darkBorder)] border-[1.5px];
+}
+
+@utility border-outset-dim-2 {
+  @apply border-outset-dim border-2;
+}
+
 @utility border-inset-dim {
   @apply set-border border-color-inset-dim;
 }
 
+@utility border-inset-dim-1 {
+  @apply border-inset-dim border-1;
+}
+
+@utility border-inset-dim-2 {
+  @apply border-inset-dim border-2;
+}
+
 @utility set-border {
-  @apply border-2 border-solid;
+  @apply border-solid;
 }
 
 @utility set-light-border {

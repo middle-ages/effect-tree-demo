@@ -26,3 +26,7 @@
 @utility subgrid-2 {
   @apply grid grid-cols-subgrid col-span-2;
 }
+
+@utility dark-col {
+  @apply flex flex-col rounded-md set-bg-dark;
+}

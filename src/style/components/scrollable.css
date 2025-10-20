@@ -76,3 +76,15 @@
 @utility scroll-container {
   container-type: size scroll-state;
 }
+
+@property --topShadowUp {
+  syntax: '<length>';
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --bottomShadowDown {
+  syntax: '<length>';
+  initial-value: 0;
+  inherits: true;
+}

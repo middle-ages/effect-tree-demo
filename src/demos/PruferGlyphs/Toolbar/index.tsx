@@ -34,7 +34,7 @@ export const Toolbar = ({actions: {code, nodeCount, random}}: Props) => {
   )
 
   return (
-    <div className="w-fit grid grid-cols-[11ch_1fr] gap-0.5">
+    <div className="w-full grid grid-cols-[11ch_1fr]">
       <Row label="Prüfer code">
         <Pill actions={code} />
       </Row>
@@ -53,8 +53,8 @@ export const Toolbar = ({actions: {code, nodeCount, random}}: Props) => {
 
 const Row = ({children, label}: PropsWithChildren<{label: string}>) => (
   <div className="form-row-h grid grid-cols-subgrid col-span-2">
-    <div className="set-fg-control">{label}</div>
-    {children}
+    <div className="set-fg-control leading-8">{label}</div>
+    <div className="flex-center">{children}</div>
   </div>
 )
 

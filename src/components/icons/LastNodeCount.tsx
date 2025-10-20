@@ -1,6 +1,6 @@
 export const LastNodeCount = (
   <svg
-    viewBox="0 0 50 15"
+    viewBox="0 0 49 16"
     className="w-6"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg">

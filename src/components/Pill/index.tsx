@@ -17,7 +17,7 @@ export const Pill = ({
   return (
     <div
       className={twMerge(
-        'min-w-[232px] flex *:min-w-[4.5rch] p-0.5',
+        'pill-panel form-row-inner-h *:h-[23px] w-full flex-center *:min-w-fit *:flex-1',
         className,
       )}
       {...{style}}>

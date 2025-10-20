@@ -8,24 +8,23 @@ export const MultiPress = ({
   actions: [head, middle, last],
   listener,
 }: MultiPressProps) => (
-  <div className="flex p-0.5 *:leading-7!">
+  <div className="pill-panel form-row-inner-h *:h-[23px] w-full flex-center *:min-w-fit *:flex-1">
     <Button
       key="first"
       {...head}
       {...{isActive}}
-      className="pill-left min-w-[35%]"
+      className="px-4 pill-left border-r-0!"
     />
     <Button
       key="middle"
       {...middle}
       {...{isActive, listener}}
-      className="pill cross-pill relative z-1 rounded-lg -left-2 min-w-[30%]"
+      className="cross-pill px-4 rounded-lg -m-2 border-[1.5px]! border-outset-dim-1.5"
       style={
         {
           cornerShape: 'notch',
           transitionDelay: ms(100),
           transitionDuration: ms(350),
-          borderRadius: 8,
         } as CSSProperties
       }
     />{' '}
@@ -33,7 +32,7 @@ export const MultiPress = ({
       key="last"
       {...last}
       {...{isActive}}
-      className="pill-right min-w-[min(35%_+_16px)] relative -left-4"
+      className="px-4 pill-right border-l-0!"
     />
   </div>
 )

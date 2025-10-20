@@ -48,8 +48,8 @@ const meta = {
       propsOnChange(value)
     }
     return (
-      <label className="form-row-h flex gap-2 set-fg-control h-6">
-        <div className="truncate w-fit leading-7">{label}</div>
+      <label className="form-row-h flex gap-2 set-fg-control">
+        <div className="truncate w-fit leading-8">{label}</div>
         <Component {...props} {...{value, onChange, label}} />
       </label>
     )

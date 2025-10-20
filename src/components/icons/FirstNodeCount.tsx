@@ -1,7 +1,7 @@
 export const FirstNodeCount = (
   <svg
-    viewBox="0 0 20 14"
-    className="ml-1.5 w-3"
+    viewBox="0 0 20 16"
+    className="ml-2 w-3 mr-1"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg">
     <path

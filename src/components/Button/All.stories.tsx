@@ -12,7 +12,7 @@ const Component = () => (
     name="Button"
     minColumnWidth={rem(8)}
     maxColumnWidth={per(11)}
-    storyFrameClass="rounded-2xl p-3"
+    storyFrameClass="rounded-lg"
   />
 )
 

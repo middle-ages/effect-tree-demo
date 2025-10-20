@@ -23,13 +23,13 @@ export const Layout = ({
   return (
     <div
       className={twMerge(
-        'px-2 flex-gap-col h-screen overflow-hidden',
+        'px-2 flex flex-col fill-container-h overflow-hidden set-fg-control',
         className,
       )}
       {...{style}}>
-      {header}
-      <div className={`flex gap-1.5 flex-1`}>
-        <div className="flex flex-col rounded-lg set-bg-dark p-2">
+      <div className="h-9 *:leading-9">{header}</div>
+      <div className={`flex-gap flex-1 mb-1.5`}>
+        <div className="p-2 dark-col">
           {stats}
           <Separator spacing={[3, 3 + 1 / 2]} />
           {toolbar}
@@ -38,7 +38,7 @@ export const Layout = ({
         </div>
         <div className="flex-1 size-container">{view}</div>
       </div>
-      {footer}
+      <div className="h-20 dark-col">{footer}</div>
     </div>
   )
 }

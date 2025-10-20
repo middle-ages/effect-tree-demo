@@ -26,7 +26,7 @@ export const GalleryFrame = ({
     />
     <div
       className={twMerge(
-        'w-fit p-2 border-1 set-light-border rounded-md',
+        'w-fit p-2 border-1 set-light-border',
         storyFrameClass,
       )}>
       <Story />
