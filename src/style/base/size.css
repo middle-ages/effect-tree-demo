@@ -26,6 +26,10 @@
   @apply h-[100cqh];
 }
 
+@utility max-container-h {
+  @apply max-h-[100cqh];
+}
+
 @utility fill-container {
   @apply fill-container-w fill-container-h;
 }

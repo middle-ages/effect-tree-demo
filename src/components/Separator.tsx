@@ -12,8 +12,8 @@ export const Separator = ({spacing, className, style}: Props) => {
     <div
       className={twMerge(
         'w-full px-1',
-        'pt-[calc(var(--top)_*_var(--spacing))]',
-        'pb-[calc(var(--bottom)_*_var(--spacing))]',
+        'pt-[calc(var(--top)*var(--spacing))]',
+        'pb-[calc(var(--bottom)*var(--spacing))]',
         className,
       )}
       style={{...setVars({top, bottom}), ...style}}>

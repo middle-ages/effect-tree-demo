@@ -22,6 +22,6 @@
   }
 
   .numeric-flat {
-    @apply numeric-base set-dark-border leading-[17px] text-center;
+    @apply numeric-base set-dark-border leading-[17px] text-center outline-0;
   }
 }

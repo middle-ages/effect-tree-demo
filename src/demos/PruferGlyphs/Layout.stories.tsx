@@ -29,8 +29,11 @@ const meta = {
     stylePanel: (
       <Box className="bg-green-400 min-h-12 min-w-48">stylePanel</Box>
     ),
+    graphPanel: (
+      <Box className="bg-purple-400 min-h-12 min-w-48">graphPanel</Box>
+    ),
     view: <Box className="bg-cyan-400 min-h-24 min-w-72">view</Box>,
-    footer: <Box className="bg-purple-400 h-20">footer</Box>,
+    footer: <Box className="bg-blue-400 h-20">footer</Box>,
   },
 } satisfies Meta<typeof Component>
 

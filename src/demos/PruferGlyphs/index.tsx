@@ -1,7 +1,8 @@
 import {type LazyArg} from '#Function'
 import type {DecodeRequest} from '#tree'
 import {Footer} from './Footer'
-import {Header} from './Header.js'
+import {GraphPanel} from './GraphPanel'
+import {Header} from './Header'
 import {Layout} from './Layout'
 import {StatsView} from './StatsView/index'
 import {StylePanel} from './StylePanel'
@@ -24,6 +25,7 @@ export const PruferGlyphs = ({initial}: Props) => {
       stats={<StatsView {...{stats}} />}
       toolbar={<Toolbar {...{actions}} />}
       stylePanel={<StylePanel {...setters} {...{format, theme}} />}
+      graphPanel={<GraphPanel {...{tree}} />}
       view={<TextView {...{tree, lines, stats, format, theme}} />}
       footer={<Footer {...{code}} />}
     />

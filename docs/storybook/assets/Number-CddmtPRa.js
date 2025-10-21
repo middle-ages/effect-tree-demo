@@ -1,0 +1,1 @@
+const c=t=>t(),l=(...t)=>{},r=t=>o=>o===t,e=t=>{const o=t.toString(),n=o.length-1;if(n===0)return o+"e+0";let s=o.charAt(0);return o.length>1&&(s+="."+o.slice(1)),s+"e+"+n.toString()},a=t=>o=>o/t,f=a(2n),i=t=>o=>Math.floor(o/t),g=i(2);export{f as a,e as b,c,g as f,r as i,l as n};
