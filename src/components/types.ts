@@ -1,3 +1,4 @@
+import type {StyledPropsWithChildren} from '#react'
 import type {
   KeyboardEventHandler,
   MouseEventHandler,
@@ -5,15 +6,15 @@ import type {
   ReactNode,
 } from 'react'
 
-export interface BaseItem<Id extends string = string> {
+export interface BaseItem<Id extends string = string, LabelType = ReactNode> {
   id: Id
-  label: ReactNode
+  label: LabelType
   title: string
 }
 
 export interface DisabledProps {
   isDisabled: boolean
-  disabledNote?: string
+  disabledNote?: string | undefined
 }
 
 export const disabledProps = (disabledNote: string): DisabledProps => ({
@@ -23,15 +24,16 @@ export const disabledProps = (disabledNote: string): DisabledProps => ({
 
 export const enabledProps: DisabledProps = {isDisabled: false}
 
-export interface DisabledItem<Id extends string = string>
-  extends BaseItem<Id>,
-    DisabledProps {}
+export interface DisabledItemProps<Id extends string = string>
+  extends Omit<BaseItem<Id>, 'label'>, DisabledProps, StyledPropsWithChildren {}
 
-export interface SelectItem extends BaseItem {
+export interface SelectItem<Id extends string = string> extends BaseItem<Id> {
   icon: ReactNode
 }
 
-export const simpleItem = (label: string): SelectItem => ({
+export const simpleItem = <const Id extends string = string>(
+  label: Id,
+): SelectItem => ({
   id: label,
   label,
   icon: '',

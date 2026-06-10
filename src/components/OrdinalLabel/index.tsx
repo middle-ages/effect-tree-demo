@@ -17,8 +17,8 @@ export const OrdinalLabel = ({
 }: Props) => (
   <div
     className={twMerge(
-      'flex text-[12px] max-h-4 gap-1',
-      '*:last:truncate *:last:text-fg-control *:first:text-ordinal',
+      'flex max-h-4 gap-1 text-smallest',
+      '*:first:text-ordinal *:last:truncate *:last:text-fg-control',
       className,
     )}
     {...{style}}>

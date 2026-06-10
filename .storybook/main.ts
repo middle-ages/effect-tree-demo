@@ -6,6 +6,9 @@ const config: StorybookConfig = {
   features: {
     highlight: false,
     viewport: false,
+    developmentModeForBuild: true,
+    //    experimentalCodeExamples: true,
+    //    experimentalReactComponentMeta: true,
   },
   staticDirs: [
     {
@@ -34,10 +37,6 @@ const config: StorybookConfig = {
     options: {
       strictMode: true,
     },
-  },
-
-  typescript: {
-    reactDocgen: 'react-docgen-typescript',
   },
 
   addons: [

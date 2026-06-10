@@ -12,7 +12,14 @@ export const pointerButtonId: Record<PointerButton, number> = {
   auxiliary: 2,
 }
 
+/**
+ * Button `up` or `down` state.
+ */
 export type ButtonState = (typeof pointerButtonState)[number]
+
+/**
+ * Identifier of mouse button: 'primary', 'secondary', or 'auxiliary'.
+ */
 export type PointerButton = (typeof pointerButtons)[number]
 
 export interface ButtonNotification {

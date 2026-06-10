@@ -1,4 +1,5 @@
 import * as Pair from '../Pair'
+import {type EndoOf} from '../Function'
 
 export type Axis = 'horizontal' | 'vertical'
 export type Face = 'convex' | 'concave'
@@ -35,3 +36,9 @@ export const direction: {
   horizontal: ['left', 'right'],
   vertical: ['top', 'bottom'],
 }
+
+export const sortDirections = ['ascending', 'descending'] as const
+export type SortDirection = (typeof sortDirections)[number]
+
+export const flipSortDirection: EndoOf<SortDirection> = direction =>
+  direction === 'ascending' ? 'descending' : 'ascending'

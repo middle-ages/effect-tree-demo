@@ -1,5 +1,4 @@
 {
-  "typescript.preferences.includePackageJsonAutoImports": "on",
   "eslint.useFlatConfig": true,
   "eslint.format.enable": true,
   "eslint.options": {
@@ -18,7 +17,6 @@
   "editor.codeActions.triggerOnFocusChange": true,
   "editor.formatOnSave": true,
   "notebook.formatOnSave.enabled": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "afafaf",
     "Annotable",
@@ -173,6 +171,7 @@
     "srgb",
     "storysource",
     "strlen",
+    "Stylesheet",
     "subgrid",
     "Symbola",
     "tailwindcss",
@@ -183,6 +182,7 @@
     "tupled",
     "typedoc",
     "Uncapitalize",
+    "uncurried",
     "uncurry",
     "unfoldprop",
     "unionvariant",
@@ -216,9 +216,7 @@
   "markdownlint.config": {
     "MD033": false
   },
-  "typescript.suggest.autoImports": true,
-  "typescript.preferences.preferTypeOnlyAutoImports": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  
   "eslint.run": "onSave",
   "files.autoSave": "onFocusChange",
   "svg.preview.background": "white",
@@ -229,11 +227,18 @@
     "javascript": "javascript",
     "css": "css"
   },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "leftClassName",
+    "rightClassName",
+    "structClassName"
+  ],
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "tailwindCSS.experimental.configFile": "src/style.css"
+  "tailwindCSS.experimental.configFile": "src/style.css",
+  "prettier.singleQuote": true,
+  "css.format.enable": false,
+  "editor.formatOnPaste": true
 }

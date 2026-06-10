@@ -16,7 +16,6 @@
     "../src/**/stories/**/*.tsx",
     "../vitest.shims.d.ts",
     "../vitest.config.ts",
-    "../src/components/Input/index.storiees.tsx"
   ],
   "mdx": {
     "checkMdx": true

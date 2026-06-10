@@ -50,7 +50,7 @@ export const NumericView = ({
           paddingRight: px(padding),
         }}
         className={twMerge(
-          'numeric-view h-row-smaller leading-row-smaller px-1',
+          'numeric-view h-row-smaller px-1 leading-row-smaller',
           isOverflow && 'text-center',
         )}>
         {formatted}

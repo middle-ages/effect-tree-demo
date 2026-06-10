@@ -11,11 +11,13 @@ import * as rx from 'rxjs'
 import {buttonObservable} from './observable/button'
 
 export interface PointerState {
+  /** `up` or `down` state of a mouse button. */
   buttonState: ButtonState
   isRepeating: boolean
 }
 
 export const usePointerButton = (
+  /** Identify the button to track. */
   button: PointerButton,
   {
     project = identity,
@@ -67,7 +69,7 @@ export const useRepeatButton = (
   delayRepeat = true,
 ): [PointerState, RefCallback<HTMLElement>] =>
   usePointerButton('primary', {
-    project: rx.tap(({isClick}: ButtonNotification) => {
+    project: rx.tap<ButtonNotification>(({isClick}) => {
       if (isClick) {
         onClick?.()
       }

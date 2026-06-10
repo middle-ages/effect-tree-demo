@@ -5,19 +5,45 @@
   a,
   .focusable,
   .numeric-view {
-    @apply dom-play outline-solid ring-0 outline-0
-           ring-offset-0 -outline-offset-[1.5px]
-         outline-ring-inner ring-ring ring-offset-current;
+    @apply focus-base;
 
     &:focus-visible:not(:disabled) {
-      @apply outline-[1.5px] ring-[0.75px];
+      @apply focus-on;
+    }
+  }
+
+  .scroller-focus {
+    @apply focus-base;
+
+    &:focus-visible:not(:disabled) {
+      @apply ring-[1px] outline-[1.7px];
     }
   }
 
   a,
   select {
     &:focus:not(:disabled) {
-      @apply outline-[1.5px] ring-[0.75px];
+      @apply focus-on;
     }
   }
+
+  .project-link {
+    @apply outline-offset-[-0.5px];
+    @apply focus:ring-offset-[1.5px] focus-visible:ring-offset-[1.5px];
+    @apply focus:ring-offset-ring-inner;
+  }
+}
+
+@utility focus-base {
+  @apply focus-none ring-ring ring-offset-0 ring-offset-current;
+  @apply outline-offset-[-1.5px] outline-ring-inner outline-solid;
+  @apply dom-play;
+}
+
+@utility focus-none {
+  @apply ring-0 outline-0;
+}
+
+@utility focus-on {
+  @apply ring-[0.75px] outline-[1.5px];
 }

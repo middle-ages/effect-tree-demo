@@ -1,13 +1,13 @@
 @theme {
   --color-ink: #121014;
   --color-fg-control: #545258;
-  --color-fg-control-hover: #3d393a;
+  --color-fg-control-hover: #666666;
   --color-fg-control-disabled: #9c9a9d;
   --color-line-light: #d4d0d6;
   --color-line-dark: #cccccc;
   --color-line-darkest: #b5b0b8;
-  --color-ring-inner: #a5c8fa;
-  --color-ring: #405aca;
+  --color-ring-inner: #cfdaff;
+  --color-ring: #506acf;
   --color-border-top: #f2ebed;
   --color-border-right: #dad4d8;
   --color-border-bottom: #bcb9ba;
@@ -16,7 +16,6 @@
   --color-dark: #e1e1e6;
   --color-darker: #e2e0e4;
   --color-paper: #f4f3f2;
-  --color-input: #f5f1f4;
   --color-input-active: #fcfafd;
   --color-control: #eceaee;
   --color-control-hover: #f3edf5;
@@ -29,4 +28,18 @@
   --color-a-visited-hover: #8900c6;
   --color-scroll-top: #2035432a;
   --color-scroll-bottom: #4065732a;
+  --color-text-shadow-lightest: #ffffffcc;
+  --color-text-shadow-lighter: #ffffff99;
+  --color-text-shadow-light: #ffffff66;
+  --color-text-shadow-dark: #ffffff44;
+  --color-text-shadow-darker: #bbbbbb33;
+  --color-text-shadow-darkest: #99999944;
+  --button-gradient-highest-base: #e8e6ec;
+  --button-gradient-high-base: #dfdde2;
+  --button-gradient-low-base: #d6d4d9;
+  --button-gradient-lowest-base: #d2d0d4;
+  --button-gradient-highest-active: #cbc8cb;
+  --button-gradient-high-active: #d3d0d3;
+  --button-gradient-low-active: #dcdadc;
+  --button-gradient-lowest-active: #e4dce0;
 }

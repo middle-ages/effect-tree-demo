@@ -1,45 +1,42 @@
+import {pluck} from '#Record'
 import {useDrag} from '#useDrag'
-import {ch, px, type StyledProps} from '#util'
+import {flow, px, type StyledProps} from '#util'
 import {useRef, useState, type CSSProperties, type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
 
 interface Props extends StyledProps {
   left: ReactNode
   right: ReactNode
-  minLeftWidthPx: number
-  parentPaddingPx: number
+  minWidthsPx: [left: number, right: number]
   leftClassName?: string
   rightClassName?: string
   leftStyle?: CSSProperties
-  rightStyle?: CSSProperties
 }
 
-const structClass = `h-[calc((100%-12*var(--spacing))/2)] text-center
-                     border-r border-l border-l-line-dark border-r-light
-                     opacity-50 group-hover:opacity-100 dom-play`
+const strutClass =
+  'h-[calc((100%-2rem-var(--spacing))/2)] button-base rounded-none mx-1 last:-scale-y-100 cursor-ew-resize opacity-30 group-hover:opacity-50 w-1 dom-play group-active:opacity-100'
+
+const strut = <div className={strutClass} />
+
+const splitterWidthPx = 12
 
 export const SplitPanel = ({
   left,
   right,
-  minLeftWidthPx,
-  parentPaddingPx,
+  minWidthsPx: [minLeftWidthPx, minRightWidthPx],
   leftClassName,
   rightClassName,
   leftStyle,
-  rightStyle,
   style,
   className,
 }: Props) => {
   const [xPx, setXPx] = useState(minLeftWidthPx)
   const expandedPx = useRef(minLeftWidthPx)
 
-  const [{isDragging}, ref] = useDrag(({xPx}) => {
-    setXPx(xPx)
-  })
+  const [, ref] = useDrag(flow(pluck('xPx'), setXPx))
+  const leftWidth = leftWidthCalc(xPx, [minLeftWidthPx, minRightWidthPx])
 
-  const computedLeftWidth = `${px(xPx)} - ${px(parentPaddingPx / 2)} - ${ch(1 / 2)}`
-  const leftWidth = `min(100cqw - 2rch, max(${px(minLeftWidthPx)}, ${computedLeftWidth}))`
-  const resetMinLeftWidthPx = () => {
+  const resetToMinLeftWidth = () => {
     setXPx(old => {
       if (old === minLeftWidthPx) {
         return expandedPx.current
@@ -54,37 +51,40 @@ export const SplitPanel = ({
     <div
       {...{style}}
       className={twMerge(
-        'flex place-content-stretch *:not-last:no-flex *:last:flex-1 min-w-fit',
-        !isDragging && '*:dom-play',
+        'flex',
+        'overflow-hidden',
+        'place-content-stretch *:not-last:no-flex *:last:flex-1',
         className,
       )}>
       <div
-        style={{
-          ...leftStyle,
-          minWidth: px(minLeftWidthPx),
-          width: leftWidth,
-        }}
+        style={{...leftStyle, minWidth: px(minLeftWidthPx), width: leftWidth}}
         className={leftClassName}>
         {left}
       </div>
       <button
         {...{ref}}
-        onDoubleClick={resetMinLeftWidthPx}
+        style={{width: splitterWidthPx}}
+        onDoubleClick={resetToMinLeftWidth}
         tabIndex={-1}
-        className={`flex-col justify-items-center w-3 group select-none
-                    cursor-ew-resize outline-none ring-0 border-0`}>
-        <div className={structClass} />
+        className={`group cursor-ew-resize flex-col justify-items-center px-0.5 ring-0 outline-none select-none`}>
+        {strut}
         <div
-          className={`button px-0 w-fit text-center no-flex border cursor-ew-resize
-                    text-fg-control-disabled group-hover:button-hover text-lg
-                      group-active:group-hover:button-active h-6 pb-0.5`}>
+          className={`button group-hover:button-hover h-10 cursor-ew-resize pb-1 text-center text-xl text-fg-control-disabled group-active:group-hover:button-active`}>
           :
         </div>
-        <div className={structClass} />
+        {strut}
       </button>
-      <div className={rightClassName} style={rightStyle}>
-        {right}
-      </div>
+      <div className={rightClassName}>{right}</div>
     </div>
   )
+}
+
+const leftWidthCalc = (
+  xPx: number,
+  [left, right]: [minWidthLeftPx: number, minWidthRightPx: number],
+) => {
+  const desired = `${px(xPx)} - ${px(splitterWidthPx)}`
+  const clampMin = `max(${px(left)}, ${desired})`
+  const maxLimit = `100cqw - ${px(right)} - ${px(splitterWidthPx)}`
+  return `min(${maxLimit}, ${clampMin})`
 }

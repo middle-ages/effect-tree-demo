@@ -1,7 +1,3 @@
-@utility lighter-border {
-  @apply border border-line-light/50;
-}
-
 @utility light-border {
   @apply border border-line-light;
 }
@@ -28,4 +24,8 @@
 
 @utility squircle-full {
   @apply rounded-full squircle-shape;
+}
+
+@utility border-inset-2 {
+  @apply border-2 inset-xy;
 }

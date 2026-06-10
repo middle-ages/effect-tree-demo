@@ -1,4 +1,4 @@
-import {useMeasure} from '#useMeasure'
+import {type UseMeasure} from '#useMeasure'
 import {useMergeRefPair} from '#useMergeRefs'
 import {useZoomPan} from '#useZoomPan'
 import {PointPx, type StyledProps} from '#util'
@@ -6,17 +6,22 @@ import {Graphviz} from '@hpcc-js/wasm-graphviz'
 import {use, useMemo} from 'react'
 import {twMerge} from 'tailwind-merge'
 import {dotToSvg} from './dotToSvg'
+import {withMeasure} from '#compinators'
 
-interface Props extends StyledProps {
+interface Props extends UseMeasure, StyledProps {
   dot: string
 }
 
 const graphvizLoading: Promise<Graphviz> = Graphviz.load()
 
-export const GraphView = ({dot, className, style}: Props) => {
+const Measured = ({
+  ref: measureRef,
+  sizePx: availablePx,
+  dot,
+  className,
+  style,
+}: Props) => {
   const graphviz = use(graphvizLoading)
-
-  const {ref: measureRef, sizePx: availablePx} = useMeasure()
 
   const {svg} = useMemo(
     () => dotToSvg(graphviz)(dot, availablePx),
@@ -36,7 +41,7 @@ export const GraphView = ({dot, className, style}: Props) => {
     <div
       onDoubleClick={reset}
       className={twMerge(
-        'fill-container flex justify-center',
+        'flex fill-container justify-center',
         isDragging ? 'cursor-grabbing' : 'cursor-grab',
       )}
       {...{ref}}>
@@ -52,3 +57,5 @@ export const GraphView = ({dot, className, style}: Props) => {
     </div>
   )
 }
+
+export const GraphView = withMeasure(Measured)

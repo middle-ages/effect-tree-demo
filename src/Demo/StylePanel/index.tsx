@@ -1,0 +1,46 @@
+import {Select} from '#Select'
+import {Details} from '#Details'
+import {TreeStyle, formats, type NumericFormat} from '#model'
+import {flow} from 'effect'
+import {Draw} from 'effect-tree'
+import type {PropsWithChildren} from 'react'
+import {useAppDispatch, useAppSelector} from '#store'
+
+export const StylePanel = () => {
+  const [format, theme] = [
+    useAppSelector(TreeStyle.selectFormat),
+    useAppSelector(TreeStyle.selectTheme),
+  ]
+
+  const dispatch = useAppDispatch()
+
+  return (
+    <Details label='Appearance'>
+      <div className='grid grid-cols-[10ch_1fr] gap-x-2 gap-y-0.5 text-fg-control'>
+        <Row label='Label format'>
+          <Select<NumericFormat>
+            value={{...formats[format], id: format}}
+            items={TreeStyle.numericFormatSelectItems}
+            onChange={flow(TreeStyle.setFormat, dispatch)}
+            title='Select a format for tree labels'
+          />
+        </Row>
+        <Row label='Tree theme'>
+          <Select<Draw.ThemeName>
+            value={{...TreeStyle.themeSelectItem(theme), id: theme}}
+            items={TreeStyle.themeSelectItems}
+            onChange={flow(TreeStyle.setTheme, dispatch)}
+            title='Select a tree theme.'
+          />
+        </Row>
+      </div>
+    </Details>
+  )
+}
+
+const Row = ({label, children}: {label: string} & PropsWithChildren) => (
+  <label className='subgrid-2 h-fit pb-0.75 select-none *:last:-translate-x-px'>
+    <div>{label}</div>
+    <div className='h-row-smallest'>{children}</div>
+  </label>
+)

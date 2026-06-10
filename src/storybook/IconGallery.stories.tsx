@@ -7,7 +7,9 @@ type Story = StoryObj<typeof Component>
 
 const meta = {
   component: Component,
-  argTypes: {iconColor: {control: 'color'}},
+  argTypes: {
+    iconColor: {control: 'color'},
+  },
   args: {iconSizePx: 64},
   parameters: {...parameters.source(code), ...parameters.fullscreenLayout},
 } satisfies Meta<typeof Component>

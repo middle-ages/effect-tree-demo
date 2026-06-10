@@ -1,17 +1,18 @@
-import type {DisabledItem} from '#types'
+import type {DisabledItemProps} from '#types'
 import {useRepeatButton} from '#usePointerButton'
-import {type StyledPropsWithChildren} from '#util'
 import type {Types} from 'effect'
 import {type RefCallback} from 'react'
 import {twMerge} from 'tailwind-merge'
 
-interface _BaseProps
-  extends Omit<DisabledItem, 'label'>,
-    StyledPropsWithChildren {
-  /** Control button active state externally. */
-  isActive?: boolean | undefined
+interface _BaseProps extends DisabledItemProps {
   ref?: RefCallback<HTMLButtonElement>
   isFocusable?: boolean
+
+  /** Control button active pseudo state externally. */
+  isActive?: boolean | undefined
+
+  /** If true wraps children in a div. */
+  isWrapped?: boolean
 }
 
 interface _ButtonProps extends _BaseProps {
@@ -21,7 +22,7 @@ interface _ButtonProps extends _BaseProps {
 type BaseProps = Types.Simplify<_BaseProps>
 type ButtonProps = Types.Simplify<_ButtonProps>
 
-export const Button = ({
+const _Button = ({
   id,
   ref,
   title: propsTitle,
@@ -29,6 +30,7 @@ export const Button = ({
   disabledNote = '',
   isActive = false,
   isFocusable = true,
+  isWrapped = false,
   className,
   style,
   onClick,
@@ -40,29 +42,31 @@ export const Button = ({
     <button
       className={twMerge(
         'button',
-        isFocusable ? 'focusable' : 'outline-none ring-offset-transparent',
+        isFocusable ? 'focusable' : 'focus-none',
         className,
       )}
       disabled={isDisabled}
       {...(!isFocusable && {tabIndex: -1})}
       {...(isActive && {'data-state': 'active'})}
       {...{id, ref, title, style, onClick}}>
-      {children}
+      {isWrapped ? <div>{children}</div> : children}
     </button>
   )
 }
 
-const RepeatButton = ({onClick, ...props}: Omit<ButtonProps, 'ref'>) => {
+const Repeat = ({onClick, ...props}: Omit<ButtonProps, 'ref'>) => {
   const [, ref] = useRepeatButton(onClick)
-  return <Button {...{ref}} {...props} />
+  return <_Button {...{ref}} {...props} />
 }
 
-const EmitButton = (props: BaseProps) => <Button {...props} />
+const Emit = (props: BaseProps) => <_Button {...props} />
 
 const Focus = (props: Omit<ButtonProps, 'isFocusable'>) => (
-  <Button {...props} isFocusable />
+  <_Button {...props} isFocusable />
 )
 
-Button.Repeat = RepeatButton
-Button.Emit = EmitButton
-Button.Focus = Focus
+export const Button = Object.assign(_Button, {
+  Repeat,
+  Emit,
+  Focus,
+})

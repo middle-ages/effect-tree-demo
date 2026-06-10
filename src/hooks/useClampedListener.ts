@@ -10,6 +10,7 @@ export const useClampedListener = <N extends number | string>(
   minMax: Pair<N>,
   dispatcher: (n: N, index: number) => void,
 ): ((event: ChangeEvent<HTMLInputElement>) => void) => {
+  // false if we are clamping a bigint input.
   const isNumber = typeof minMax[0] === 'number'
   const [min, max] = minMax
 
@@ -22,7 +23,7 @@ export const useClampedListener = <N extends number | string>(
         ? numberClamp(...([min, max] as Pair<number>))(
             Number.parseInt(nonEmpty),
           )
-        : bigClamp(BigInt(min), BigInt(max))(BigInt(nonEmpty))
+        : bigClamp(BigInt(min), BigInt(max))(BigInt(nonEmpty)).toString()
 
       dispatcher(
         value as N,

@@ -116,3 +116,7 @@ type _ValueList<
       Tail<KeyList<Source>> & readonly PropertyKey[],
       readonly [...Carry, Source[Keys[0] & keyof Source]]
     >
+
+export type PartialOrUndefined<T> = {
+  [K in keyof T]?: T[K] | undefined
+}

@@ -17,6 +17,7 @@ const meta = {
     isDisabled: {control: 'boolean'},
     isActive: {control: 'boolean'},
     isFocusable: {control: 'boolean'},
+    isWrapped: {control: 'boolean'},
   },
   args: {
     id: 'firstCode',
@@ -25,6 +26,7 @@ const meta = {
     disabledNote: 'The disabled note.',
     isDisabled: false,
     isActive: false,
+    isWrapped: true,
     isFocusable: true,
     className: 'px-2',
     onClick: fn() as () => void,
@@ -49,7 +51,7 @@ export const MultipleChildren: Story = {
   args: {
     children: (
       <div>
-        <span className="pr-1">First</span>
+        <span className='pr-1'>First</span>
         <span>Second</span>
       </div>
     ),

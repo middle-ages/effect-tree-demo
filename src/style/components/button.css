@@ -1,35 +1,34 @@
-@utility button-hover {
-  @apply text-inset-deep control-hover outset-xy
-         contrast-116 brightness-98 saturate-160;
-}
-
 @utility button-active {
-  @apply text-outset control-active border inset-xy
-             contrast-100 brightness-95 saturate-100;
+  @apply border inset-xy control-active text-outset;
+  @apply brightness-95 contrast-100 saturate-100;
+  @apply *:translate-y-[0.5px];
 
-  --button-gradient-highest: #cbc8cb;
-  --button-gradient-high: #d3d0d3;
-  --button-gradient-low: #dcdadc;
-  --button-gradient-lowest: #e4dce0;
+  --button-gradient-highest: var(--button-gradient-highest-active);
+  --button-gradient-high: var(--button-gradient-high-active);
+  --button-gradient-low: var(--button-gradient-low-active);
+  --button-gradient-lowest: var(--button-gradient-lowest-active);
 
+  /** Button icon glow. */
   path,
   rect {
     @apply text-ink;
-    filter: drop-shadow(0 -2px 0.4px #fff6);
+    filter: drop-shadow(0 -2px 0.4px var(--color-text-shadow-light));
   }
 }
 
 @utility button-base {
-  --duration: 250ms;
+  @apply flex-center h-row-smaller truncate *:truncate;
+  @apply squircle border outset-xy-dim control;
+  @apply text-small select-none text-inset;
+  @apply cursor-pointer dom-play;
+}
 
-  @apply flex-center text-smaller h-row-smaller leading-[19px]
-         cursor-pointer truncate squircle dom-play select-none
-         text-inset control border outset-xy-dim *:truncate;
+@utility button-raised {
+  --button-gradient-highest: var(--button-gradient-highest-base);
+  --button-gradient-high: var(--button-gradient-high-base);
+  --button-gradient-low: var(--button-gradient-low-base);
+  --button-gradient-lowest: var(--button-gradient-lowest-base);
 
-  --button-gradient-highest: #e8e6ec;
-  --button-gradient-high: #dfdde2;
-  --button-gradient-low: #d6d4d9;
-  --button-gradient-lowest: #d2d0d4;
   background: linear-gradient(
     var(--button-gradient-highest),
     var(--button-gradient-high) 30%,
@@ -38,51 +37,67 @@
   );
 }
 
-@layer components {
-  .button {
-    @apply button-base;
+@utility button-states {
+  &:active:not(:disabled),
+  &[data-state='active']:not(:disabled) {
+    @apply button-active;
+  }
 
-    &,
-    * {
-      transition:
-        all var(--duration) ease-in-out,
-        --button-gradient-highest var(--duration) ease-in-out,
-        --button-gradient-high var(--duration) ease-in-out,
-        --button-gradient-low var(--duration) ease-in-out,
-        --button-gradient-lowest var(--duration) ease-in-out;
+  &:disabled {
+    @apply control-disabled;
+    @apply brightness-110 contrast-75 saturate-0;
+
+    path,
+    rect {
+      @apply text-fg-control-disabled;
+      fill: currentColor;
+      filter: drop-shadow(0px 0px 0px #fff0);
     }
+  }
+}
+
+@layer components {
+  .button-flat {
+    @apply button-base button-states bg-dark;
 
     &:hover:not(:disabled) {
-      @apply button-hover;
+      @apply control-hover saturate-50;
     }
 
     &:active:not(:disabled),
     &[data-state='active']:not(:disabled) {
       @apply button-active;
     }
+  }
 
-    &:disabled {
-      @apply control-disabled brightness-110 contrast-75 saturate-0;
+  .button {
+    @apply button-base button-states button-raised;
 
-      path,
-      rect {
-        @apply text-fg-control-disabled;
-        fill: currentColor;
-        filter: drop-shadow(0px 0px 0px #fff0);
-      }
+    &:hover:not(:disabled) {
+      @apply brightness-104 saturate-150;
+    }
+
+    &,
+    * {
+      transition:
+        all var(--transition-duration) ease-in-out,
+        --button-gradient-highest var(--transition-duration) ease-in-out,
+        --button-gradient-high var(--transition-duration) ease-in-out,
+        --button-gradient-low var(--transition-duration) ease-in-out,
+        --button-gradient-lowest var(--transition-duration) ease-in-out;
     }
 
     path,
     rect {
       @apply text-fg-control dom-play;
-      filter: drop-shadow(0px 1px 0.6px #fffa);
+      filter: drop-shadow(0px 1px 0.6px var(--color-text-shadow-lightest));
     }
   }
 }
 
 @utility pill-panel {
-  @apply dark-border border-[0.5px] box-content w-full
-         flex min-w-fit *:flex-1 squircle-full;
+  @apply box-content flex w-full min-w-fit;
+  @apply squircle-full dark-border border-[0.5px] *:flex-1;
 
   > * {
     &:focus-visible {
@@ -90,30 +105,35 @@
     }
   }
 
+  > *:first-child,
+  > *:last-child {
+    @apply w-full;
+  }
+
   > *:first-child {
-    @apply rounded-r-none! rounded-l-full border-r-line-light w-full;
+    @apply rounded-l-full rounded-r-none! border-r-line-light;
+  }
+
+  > *:last-child {
+    @apply rounded-l-none! rounded-r-full border-l-line-darkest;
   }
 
   > *:not(:first-child):not(:last-child) {
     @apply rounded-none border-l-line-darkest!;
 
     &.cross-pill {
-      @apply z-1 relative
-       border-l border-r rounded-[1rch/33.33%] -mx-[1rch]
-       border-l-line-darkest border-r-line-darkest
-       border-t-border-right-dim px-2.5;
+      @apply relative z-1 mx-[-1rch] px-2.5;
+      @apply rounded-[1rch/33.33%] border-r border-l;
+      @apply border-t-border-right-dim;
+      @apply border-r-line-darkest border-l-line-darkest;
 
-      transition-delay: 100ms;
-      transition-duration: 100ms;
+      transition-delay: calc(var(--transition-duration) / 2);
+      transition-duration: calc(var(--transition-duration) * 2 / 3);
 
       &:active {
-        @apply inset-y border-l-line-light border-r-line-light;
+        @apply inset-y border-r-line-light border-l-line-light;
       }
     }
-  }
-
-  > *:last-child {
-    @apply rounded-l-none! rounded-r-full border-l-line-darkest w-full;
   }
 }
 

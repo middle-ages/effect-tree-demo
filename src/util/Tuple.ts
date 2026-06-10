@@ -1,5 +1,3 @@
-import type {UnionToIntersection} from 'effect/Types'
-
 export * from 'effect/Tuple'
 
 /** A tuple of arity-3 of type `A`. */
@@ -32,29 +30,6 @@ export type Tail<A extends readonly unknown[]> = A['length'] extends 0
   ? never
   : A extends readonly [unknown, ...infer Tail extends readonly unknown[]]
     ? Readonly<Tail>
-    : never
-
-/**
- * For example:
- *
- * ```ts
- * UnionToTuple<true | 42 | 'hello'> ≡ [true, 42, 'hello']
- * ```
- */
-export type UnionToTuple<Union, Tuple extends readonly unknown[] = []> = [
-  Union,
-] extends [UnionToIntersection<Union>]
-  ? readonly [Union, ...Tuple]
-  : UnionToTuple<
-      Exclude<Union, PopUnion<Union>>,
-      readonly [PopUnion<Union>, ...Tuple]
-    >
-
-type PopUnion<U> =
-  UnionToIntersection<U extends unknown ? (f: U) => void : never> extends (
-    a: infer A,
-  ) => void
-    ? A
     : never
 
 export const mapTuple3 =

@@ -1,18 +1,28 @@
 @utility set-scroll-shadow-top {
   box-shadow:
-    var(--color-scroll-top) 0 0 3px 1px,
-    var(--color-scroll-bottom) 0 0 8px 4px;
+    var(--color-scroll-high) 0 0 1px 0.5px,
+    var(--color-scroll-medium) 0 0px 4px 2px,
+    var(--color-scroll-low) 0 0px 7px 5px;
 }
 
 @utility set-scroll-shadow-bottom {
   box-shadow:
-    var(--color-scroll-top) 0 0px 2px 1px,
-    var(--color-scroll-bottom) 0 0px 7px 5px;
+    var(--color-scroll-high) 0 1px 2px 1px,
+    var(--color-scroll-medium) 0 0 6px 2px,
+    var(--color-scroll-low) 0 0 9px 5px;
 }
 
 @utility set-scroll-shadow-h {
   box-shadow:
-    var(--color-scroll-high) 0 0 1px 0.75px,
-    var(--color-scroll-medium) 0 0 2px 3px,
-    var(--color-scroll-low) 0 0 4px 6px;
+    var(--color-scroll-high) 0 0 4px 1px,
+    var(--color-scroll-medium) 0 0 6px 3px,
+    var(--color-scroll-low) 0 0 9px 7px;
+}
+
+@utility set-scroll-shadow-h-high {
+  box-shadow:
+    var(--color-scroll-higher) 0 0 2px 0.5px,
+    var(--color-scroll-high) 0 0 4px 1px,
+    var(--color-scroll-medium) 0 0 6px 5px,
+    var(--color-scroll-low) 0 0 9px 7px;
 }

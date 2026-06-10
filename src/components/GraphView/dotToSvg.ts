@@ -41,7 +41,7 @@ export const dotToSvg =
     return {svg, requiredPx, isOverflowX}
   }
 
-const shape = (label: string, color: string) =>
+const node = (label: string, color: string): string =>
   unwords.comma.rest(
     'label=""',
     'shape=circle',
@@ -53,7 +53,7 @@ const shape = (label: string, color: string) =>
     `tooltip="${label}"`,
   )
 
-const edge = (color: string) =>
+const edge = (color: string): string =>
   unwords.comma.rest(
     `arrowsize=${arrowSizeInches.toFixed(2)}`,
     `color="${color}"`,
@@ -69,7 +69,7 @@ const styleDot = (dot: string): string => {
         ? line.replace('[label=""]', `[${edge('#333')}]`)
         : line.replace(
             /\[label="(.+)"\]/,
-            (_, label: string) => `[${shape(label, '#888')}]`,
+            (_, label: string) => `[${node(label, '#888')}]`,
           ),
     )
 

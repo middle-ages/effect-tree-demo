@@ -1,19 +1,19 @@
 import {noop} from '#Function'
-import type {DisabledItem} from '#types'
+import type {DisabledItemProps} from '#types'
 import {useImmediateRepeatButton, useRepeatButton} from '#usePointerButton'
-import {type StyledPropsWithChildren} from '#util'
 import {assumeProp} from 'react-compinators'
 import {Inner} from './Inner'
 import {Outer} from './Outer'
 
-interface Props extends Omit<DisabledItem, 'label'>, StyledPropsWithChildren {
+interface Props extends DisabledItemProps {
   isRounded?: boolean
   onClick?: () => void
 }
 
 export const Repeater = ({
   id,
-  state = {isDisabled: false},
+  isDisabled = false,
+  disabledNote,
   isRounded = true,
   onClick = noop,
   className,
@@ -26,11 +26,11 @@ export const Repeater = ({
     useImmediateRepeatButton(onClick)
 
   return (
-    <div {...{style}} className="relative min-w-fit w-full focus-within:z-1">
+    <div {...{style}} className='relative w-full min-w-fit focus-within:z-1'>
       <Outer
         ref={parentRef}
         isActive={isRepeating || innerState === 'down'}
-        {...state}
+        {...{isDisabled, disabledNote}}
         {...{
           id,
           title,
@@ -40,14 +40,11 @@ export const Repeater = ({
         }}>
         {children}
       </Outer>
-      <div
-        className={`absolute top-[calc((100%-15px)/2)] border-line-light
-                    right-0 mr-1 border-[0.5px] rounded-full`}>
+      <div className='absolute top-[calc((100%-1rem)/2)] right-1 rounded-full border border-line-light'>
         <Inner
           id={`${id}-repeat`}
           ref={childRef}
-          {...state}
-          {...{isRepeating, onClick}}
+          {...{isRepeating, onClick, isDisabled, disabledNote}}
         />
       </div>
     </div>

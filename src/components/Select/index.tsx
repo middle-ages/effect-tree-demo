@@ -1,7 +1,7 @@
-import {Array, pipe, type Identified} from '#util'
+import {Array, pipe, type Identified, type StyledProps} from '#util'
 import {type SelectItem} from '../types'
 
-interface Props<Value extends string> extends Identified {
+interface Props<Value extends string> extends Identified, StyledProps {
   value: SelectItem
   items: SelectItem[]
   onChange: (value: Value) => void
@@ -13,26 +13,28 @@ export const Select = <Value extends string>({
   items,
   onChange,
   ...props
-}: Props<Value>) => (
-  <select
-    {...props}
-    {...{value}}
-    onChange={e => {
-      onChange(e.target.value as Value)
-    }}>
-    {pipe(
-      items,
-      Array.map(({id, label, title, icon}) => (
-        <option key={id} value={id} {...{title}}>
-          {icon !== '' && (
-            <>
-              {icon}
-              &nbsp;&nbsp;&nbsp;
-            </>
-          )}
-          {label}
-        </option>
-      )),
-    )}
-  </select>
-)
+}: Props<Value>) => {
+  return (
+    <select
+      {...props}
+      {...{value}}
+      onChange={e => {
+        onChange(e.target.value as Value)
+      }}>
+      {pipe(
+        items,
+        Array.map(({id, label, title, icon}) => (
+          <option key={id} value={id} {...{title}}>
+            {icon !== '' && (
+              <>
+                {icon}
+                &nbsp;&nbsp;&nbsp;
+              </>
+            )}
+            {label}
+          </option>
+        )),
+      )}
+    </select>
+  )
+}

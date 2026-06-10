@@ -4,15 +4,14 @@ import {twMerge} from 'tailwind-merge'
 import {computeWidth} from './measure'
 
 export interface Props<N extends number | string>
-  extends StyledProps,
-    Identified {
+  extends StyledProps, Identified {
   min: N
   max: N
   value: N
   title: string
   onChange: (n: N, index: number) => void
-  spacingLeft?: number
-  spacingRight?: number
+  spacingLeftPx?: number
+  spacingRightPx?: number
   maximized?: boolean
   showSpinner?: boolean
 }
@@ -23,8 +22,8 @@ export const Base = <N extends number | string>({
   max,
   onChange: propsOnChange,
   style,
-  spacingLeft = 0,
-  spacingRight = 0,
+  spacingLeftPx = 0,
+  spacingRightPx = 0,
   maximized = false,
   showSpinner = false,
   className,
@@ -35,7 +34,7 @@ export const Base = <N extends number | string>({
   const value = rawValue.toString()
   const width = computeWidth({
     isFlat: false,
-    padPx: 4 * (spacingLeft + spacingRight),
+    padPx: 4 * (spacingLeftPx + spacingRightPx),
     showSpinner,
   })(value)
 
@@ -49,8 +48,8 @@ export const Base = <N extends number | string>({
       style={{
         textOverflow: 'ellipsis',
         width: maximized ? `min(${width}, 100%)` : width,
-        paddingLeft: px(4 * spacingLeft),
-        paddingRight: px(4 * spacingRight),
+        paddingLeft: px(4 * spacingLeftPx),
+        paddingRight: px(4 * spacingRightPx),
         ...style,
       }}
     />

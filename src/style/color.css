@@ -1,66 +1,66 @@
 @import './theme/light.css';
-
 @theme {
   --color-border-left: var(--color-line-light);
-
   --color-border-top-dim: --alpha(var(--color-border-top) / 75%);
   --color-border-right-dim: --alpha(var(--color-border-right) / 75%);
   --color-border-bottom-dim: --alpha(var(--color-border-bottom) / 75%);
   --color-border-left-dim: --alpha(var(--color-border-left) / 75%);
-
   --color-input-hover: var(--color-light);
-
-  --color-scroll-high: --alpha(var(--color-ink) / 25%);
-  --color-scroll-medium: --alpha(var(--color-ink) / 15%);
-  --color-scroll-low: --alpha(var(--color-ink) / 10%);
+  --color-scroll-highest: --alpha(var(--color-ink) / 75%);
+  --color-scroll-higher: --alpha(var(--color-ink) / 50%);
+  --color-scroll-high: --alpha(var(--color-ink) / 20%);
+  --color-scroll-medium: --alpha(var(--color-ink) / 10%);
+  --color-scroll-low: --alpha(var(--color-ink) / 7%);
 }
 
 @utility text-inset {
   text-shadow:
-    0px 1px 1px #fff6,
-    0.5px 1.5px 2px #fff4;
+    0px 1px 1px var(--color-text-shadow-lightest),
+    0.5px 1.5px 2px var(--color-text-shadow-dark);
 }
 
 @utility text-inset-shallow {
   text-shadow:
-    0px 1px 1px #fff6,
-    0.5px 1.5px 2px #fff3;
+    0px 1px 1px var(--color-text-shadow-light),
+    0.5px 1.5px 2px var(--color-text-shadow-darker);
 }
 
 @utility text-inset-deep {
-  text-shadow: 0px 1px 1px #fff9 0.5px 1.5px 2px #fff4;
+  text-shadow:
+    0px 1px 1px var(--color-text-shadow-lighter),
+    0.5px 1.5px 2px var(--color-text-shadow-dark);
 }
 
 @utility text-outset {
   text-shadow:
-    0px -1px 1px #fff6,
-    -0.5px -1.5px 2px #fff4;
+    0px -1px 1px var(--color-text-shadow-light),
+    -0.5px -1.5px 2px var(--color-text-shadow-dark);
 }
 
 @utility inner-shadow {
   box-shadow:
-    inset 2px 3px 4px 1px #bbb3,
-    inset 0.5px 1px 2px 0.5px #9994;
+    inset 2px 3px 4px 1px var(--color-text-shadow-darker),
+    inset 0.5px 1px 2px 0.5px var(--color-text-shadow-darkest);
 }
 
 @utility control {
-  @apply text-fg-control bg-control;
+  @apply bg-control text-fg-control;
 }
 
 @utility control-hover {
-  @apply text-fg-control-hover bg-control-hover;
+  @apply bg-control-hover text-fg-control-hover;
 }
 
 @utility control-active {
-  @apply text-ink bg-control-active;
+  @apply bg-control-active text-ink;
 }
 
 @utility control-disabled {
-  @apply text-fg-control-disabled bg-control-disabled;
+  @apply bg-control-disabled text-fg-control-disabled;
 }
 
 @utility input-control {
-  @apply bg-input text-fg-control;
+  @apply bg-paper text-fg-control;
 }
 
 @utility input-control-hover {
@@ -82,7 +82,7 @@
 }
 
 @utility outset-xy {
-  @apply outset-x outset-y;
+  @apply outset-y outset-x;
 }
 
 @utility inset-x {
@@ -96,7 +96,7 @@
 }
 
 @utility inset-xy {
-  @apply inset-x inset-y;
+  @apply inset-y inset-x;
 }
 
 @utility outset-x-dim {
@@ -110,7 +110,7 @@
 }
 
 @utility outset-xy-dim {
-  @apply outset-x-dim outset-y-dim;
+  @apply outset-y-dim outset-x-dim;
 }
 
 @utility inset-x-dim {
@@ -124,5 +124,5 @@
 }
 
 @utility inset-xy-dim {
-  @apply inset-x-dim inset-y-dim;
+  @apply inset-y-dim inset-x-dim;
 }

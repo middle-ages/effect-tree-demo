@@ -22,17 +22,15 @@ export const Outer = ({
 }: Props) => (
   <Button
     {...props}
-    {...{}}
     isFocusable
     title={`${title} Hold for ½ a second to repeat.`}
     className={twMerge(
-      'h-row-smaller flex w-full button border leading-4',
-      'text-center *:relative',
-      isRounded ? 'rounded-shape rounded-full pl-2' : 'rounded-none',
+      'button flex h-row-smaller w-full border leading-4',
+      'pr-5 pl-1 text-center *:relative',
+      isRounded ? 'rounded-full rounded-shape' : 'rounded-none',
       !isRounded && 'border-l-line-darkest',
       className,
     )}>
-    <div className="place-self-center-safe w-[100%-15px]">{children}</div>
-    <div className="relative ml-px w-[15px] h-full" />
+    {children}
   </Button>
 )

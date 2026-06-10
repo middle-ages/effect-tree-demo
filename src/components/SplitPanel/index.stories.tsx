@@ -7,12 +7,11 @@ const meta = {
   component: Component,
   parameters: {...parameters.fullscreenLayout, ...parameters.source(code)},
   args: {
-    left: <div className="w-[300px] bg-orange-500">left</div>,
+    left: <div className='w-75 bg-orange-500'>left</div>,
     right: 'right',
     leftClassName: 'bg-blue-500 size-full',
     rightClassName: 'bg-green-500 size-full',
-    parentPaddingPx: 16 * 2,
-    minLeftWidthPx: 300,
+    minWidthsPx: [300, 200],
     className: 'fill-container px-4',
   },
 } satisfies Meta<typeof Component>

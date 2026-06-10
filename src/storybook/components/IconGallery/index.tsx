@@ -1,8 +1,8 @@
 import * as icons from '#icons'
 import {Record} from '#util'
 import {twMerge} from 'tailwind-merge'
+import {HeaderScrollPanel} from '../HeaderScrollPanel'
 import {IconBox} from './IconBox'
-import {ScrollPanel} from '../ScrollPanel'
 
 const allIcons = Record.toEntries(icons)
 
@@ -11,16 +11,18 @@ interface Props {
   iconSizePx: number
 }
 
-const gridClass = 'grid-cols-[repeat(auto-fill,minmax(min-content,160px))]'
-
-export const IconGallery = ({iconColor, iconSizePx}: Props) => {
+export const IconGallery = (props: Props) => {
   return (
-    <ScrollPanel header="Icon Gallery">
-      <div className={twMerge('grid gap-3 p-2', gridClass)}>
+    <HeaderScrollPanel header='Icon Gallery'>
+      <div
+        className={twMerge(
+          'grid auto-rows-min *:dom-play',
+          'grid-cols-[repeat(4,1fr)] gap-2 pr-2',
+        )}>
         {allIcons.map(([name, icon], index) => (
-          <IconBox key={name} {...{index, name, icon, iconColor, iconSizePx}} />
+          <IconBox key={name} {...{...props, index, name, icon}} />
         ))}
       </div>
-    </ScrollPanel>
+    </HeaderScrollPanel>
   )
 }

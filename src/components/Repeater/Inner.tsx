@@ -1,5 +1,6 @@
 import {Button} from '#Button'
 import type {RefCallback} from 'react'
+import {twMerge} from 'tailwind-merge'
 
 interface Props {
   id: string
@@ -19,12 +20,15 @@ export const Inner = ({
   <Button
     {...{id, ref, isActive, isDisabled, onClick}}
     isFocusable={false}
-    className={`size-3.5 p-[0.5px] border rounded-shape rounded-full
-                *:bg-fg-control-disabled
-                hover:not(:disabled):*:bg-fg-control
-                active:not(:disabled)::*:bg-ink
-                duration-300 *:duration-300 outline-none`}
-    title="Click or hold outside to repeat.">
-    <div className="arrow-circle size-full" />
+    className={twMerge(
+      'size-3.5 border-[1.5px] p-[0.6px]',
+      'rounded-full rounded-shape',
+      'enabled:hover:*:bg-[#444]',
+      'disabled:*:bg-[#888]',
+      'enabled:*:bg-[#666]',
+      'duration-200 outline-none *:duration-200',
+    )}
+    title='Click or hold outside to repeat.'>
+    <div className={'size-full scale-110 arrow-circle'} />
   </Button>
 )
