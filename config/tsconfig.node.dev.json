@@ -1,0 +1,15 @@
+{
+  "display": "node.dev",
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "./vite.config.ts",
+    "./eslint.config.ts",
+    "./vitest.config.ts",
+    "../.storybook/main.ts",
+    "../.storybook/manager.ts",
+    "../.storybook/theme.ts"
+  ]
+}

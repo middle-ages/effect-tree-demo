@@ -1,0 +1,142 @@
+@utility button-hover {
+  @apply text-inset-deep control-hover outset-xy
+         contrast-116 brightness-98 saturate-160;
+}
+
+@utility button-active {
+  @apply text-outset control-active border inset-xy
+             contrast-100 brightness-95 saturate-100;
+
+  --button-gradient-highest: #cbc8cb;
+  --button-gradient-high: #d3d0d3;
+  --button-gradient-low: #dcdadc;
+  --button-gradient-lowest: #e4dce0;
+
+  path,
+  rect {
+    @apply text-ink;
+    filter: drop-shadow(0 -2px 0.4px #fff6);
+  }
+}
+
+@utility button-base {
+  --duration: 250ms;
+
+  @apply flex-center text-smaller h-row-smaller leading-[19px]
+         cursor-pointer truncate squircle dom-play select-none
+         text-inset control border outset-xy-dim *:truncate;
+
+  --button-gradient-highest: #e8e6ec;
+  --button-gradient-high: #dfdde2;
+  --button-gradient-low: #d6d4d9;
+  --button-gradient-lowest: #d2d0d4;
+  background: linear-gradient(
+    var(--button-gradient-highest),
+    var(--button-gradient-high) 30%,
+    var(--button-gradient-low) 75%,
+    var(--button-gradient-lowest) 100%
+  );
+}
+
+@layer components {
+  .button {
+    @apply button-base;
+
+    &,
+    * {
+      transition:
+        all var(--duration) ease-in-out,
+        --button-gradient-highest var(--duration) ease-in-out,
+        --button-gradient-high var(--duration) ease-in-out,
+        --button-gradient-low var(--duration) ease-in-out,
+        --button-gradient-lowest var(--duration) ease-in-out;
+    }
+
+    &:hover:not(:disabled) {
+      @apply button-hover;
+    }
+
+    &:active:not(:disabled),
+    &[data-state='active']:not(:disabled) {
+      @apply button-active;
+    }
+
+    &:disabled {
+      @apply control-disabled brightness-110 contrast-75 saturate-0;
+
+      path,
+      rect {
+        @apply text-fg-control-disabled;
+        fill: currentColor;
+        filter: drop-shadow(0px 0px 0px #fff0);
+      }
+    }
+
+    path,
+    rect {
+      @apply text-fg-control dom-play;
+      filter: drop-shadow(0px 1px 0.6px #fffa);
+    }
+  }
+}
+
+@utility pill-panel {
+  @apply dark-border border-[0.5px] box-content w-full
+         flex min-w-fit *:flex-1 squircle-full;
+
+  > * {
+    &:focus-visible {
+      @apply relative z-2;
+    }
+  }
+
+  > *:first-child {
+    @apply rounded-r-none! rounded-l-full border-r-line-light w-full;
+  }
+
+  > *:not(:first-child):not(:last-child) {
+    @apply rounded-none border-l-line-darkest!;
+
+    &.cross-pill {
+      @apply z-1 relative
+       border-l border-r rounded-[1rch/33.33%] -mx-[1rch]
+       border-l-line-darkest border-r-line-darkest
+       border-t-border-right-dim px-2.5;
+
+      transition-delay: 100ms;
+      transition-duration: 100ms;
+
+      &:active {
+        @apply inset-y border-l-line-light border-r-line-light;
+      }
+    }
+  }
+
+  > *:last-child {
+    @apply rounded-l-none! rounded-r-full border-l-line-darkest w-full;
+  }
+}
+
+@property --button-gradient-highest {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: false;
+}
+
+@property --button-gradient-high {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: false;
+}
+
+@property --button-gradient-low {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: false;
+}
+
+@property --button-gradient-lowest {
+  syntax: '<color>';
+  initial-value: #000;
+  inherits: false;
+}

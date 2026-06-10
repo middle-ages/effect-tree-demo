@@ -1,0 +1,17 @@
+@import './base/outline.css';
+@import './base/a.css';
+@import './base/select.css';
+@import './base/numeric.css';
+@import './base/input.css';
+@import './base/size.css';
+
+@layer base {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  path,
+  rect {
+    fill: currentColor;
+  }
+}

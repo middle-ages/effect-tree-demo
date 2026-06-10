@@ -1,0 +1,59 @@
+:root {
+  --font-sans: Inter;
+  --font-mono: 'VictorMono Regular';
+  --font-serif: 'CMU Serif';
+}
+
+@theme {
+  --text-smaller: 0.8125rem; /** 13px */
+  --text-smaller--line-height: 1rem; /* 16px */
+
+  --text-smallest: 0.75rem; /** 12px */
+  --text-smallest--line-height: 0.938rem; /* 15px */
+
+  --text-tiny: 0.6875rem; /** 11px */
+  --text-tiny--line-height: 0.875rem; /* 14px */
+}
+
+body {
+  font-family: Inter;
+}
+
+@utility text-ordinal {
+  @apply text-tiny text-fg-control-disabled;
+  font-family: 'LM Roman 12';
+  font-feature-settings: 'onum' 1;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/cmunrm.woff2') format('woff2');
+  size-adjust: 129%;
+}
+
+@font-face {
+  font-family: 'VictorMono Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/VictorMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'LM Roman 12';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/lmroman12-regular.woff2') format('woff2');
+}

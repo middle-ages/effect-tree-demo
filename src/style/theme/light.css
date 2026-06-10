@@ -1,0 +1,32 @@
+@theme {
+  --color-ink: #121014;
+  --color-fg-control: #545258;
+  --color-fg-control-hover: #3d393a;
+  --color-fg-control-disabled: #9c9a9d;
+  --color-line-light: #d4d0d6;
+  --color-line-dark: #cccccc;
+  --color-line-darkest: #b5b0b8;
+  --color-ring-inner: #a5c8fa;
+  --color-ring: #405aca;
+  --color-border-top: #f2ebed;
+  --color-border-right: #dad4d8;
+  --color-border-bottom: #bcb9ba;
+  --color-app: #ebebf3;
+  --color-light: #f0f0f5;
+  --color-dark: #e1e1e6;
+  --color-darker: #e2e0e4;
+  --color-paper: #f4f3f2;
+  --color-input: #f5f1f4;
+  --color-input-active: #fcfafd;
+  --color-control: #eceaee;
+  --color-control-hover: #f3edf5;
+  --color-control-disabled: #e3e0e9;
+  --color-control-active: #dedcdf;
+  --color-a: #000574;
+  --color-a-hover: #000dbd;
+  --color-a-active: #b10000;
+  --color-a-visited: #390062;
+  --color-a-visited-hover: #8900c6;
+  --color-scroll-top: #2035432a;
+  --color-scroll-bottom: #4065732a;
+}

@@ -1,0 +1,17 @@
+@utility numeric-base {
+  @apply font-serif text-smaller
+         input-control dom-play squircle;
+}
+
+@layer base {
+  input,
+  .numeric-view,
+  .numeric {
+    @apply numeric-base;
+    transition-duration: 150ms;
+  }
+
+  .numeric-view {
+    @apply lighter-border border;
+  }
+}

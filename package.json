@@ -1,0 +1,396 @@
+{
+  "name": "effect-tree-demo",
+  "description": "A demo site for the effect-tree library.",
+  "version": "1.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "author": "Ran Eilam <ran@haag59.com> (https://middle-ages.github.io/)",
+  "license": "ISC",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build:theme": "dev/build-theme",
+    "dev": "vite -c config/vite.config.ts dev",
+    "tailwind:watch": "dev/tailwind-watch",
+    "clean": "dev/clean",
+    "check": "dev/check",
+    "lint": "dev/lint --cache",
+    "lint:fix": "dev/lint-fix --cache",
+    "lint:clean": "dev/lint",
+    "lint:clean:fix": "dev/lint-fix",
+    "test": "dev/test-run",
+    "test:watch": "dev/test-watch",
+    "test:storybook": "vitest -c vitest.config.ts --project=storybook",
+    "coverage": "dev/coverage",
+    "typecheck": "dev/typecheck",
+    "circular": "dev/circular",
+    "build-storybook": "storybook build --output-dir docs/storybook",
+    "build": "vite -c config/vite.config.ts build",
+    "build:all": "dev/build-all",
+    "preview": "vite -c config/vite.config.ts preview",
+    "chromatic": "dev/chromatic"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.2",
+    "@effect/vitest": "^0.26.0",
+    "@eslint-react/eslint-plugin": "^2.2.4",
+    "@eslint/js": "^9.39.0",
+    "@fast-check/vitest": "^0.2.2",
+    "@storybook/addon-docs": "^10.0.2",
+    "@storybook/addon-vitest": "^10.0.2",
+    "@storybook/react-vite": "^10.0.2",
+    "@tailwindcss/cli": "^4.1.16",
+    "@tailwindcss/vite": "^4.1.16",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@thi.ng/color": "^5.8.1",
+    "@tsconfig/node24": "^24.0.1",
+    "@tsconfig/strictest": "^2.0.7",
+    "@tsconfig/vite-react": "^7.0.1",
+    "@types/node": "^24.9.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "@vitest/browser": "^4.0.6",
+    "@vitest/browser-playwright": "^4.0.6",
+    "@vitest/coverage-v8": "^4.0.6",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "chromatic": "^13.3.3",
+    "dependency-cruiser": "^17.2.0",
+    "effect-ts-laws": "^1.3.19",
+    "eslint": "^9.39.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "eslint-plugin-sonarjs": "^3.0.5",
+    "eslint-plugin-unicorn": "^62.0.0",
+    "fast-check": "^4.3.0",
+    "globals": "^16.4.0",
+    "happy-dom": "^20.0.10",
+    "jiti": "^2.6.1",
+    "markdown-to-jsx": "^8.0.0",
+    "playwright": "^1.56.1",
+    "prettier": "^3.6.2",
+    "storybook": "^10.0.2",
+    "storybook-addon-pseudo-states": "^10.0.2",
+    "tailwindcss": "^4.1.16",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.6"
+  },
+  "dependencies": {
+    "@effect/typeclass": "^0.37.0",
+    "@hpcc-js/wasm-graphviz": "^1.15.0",
+    "@reduxjs/toolkit": "^2.12.0",
+    "effect": "^3.18.4",
+    "effect-tree": "^1.0.36",
+    "react": "^19.2.0",
+    "react-compinators": "^1.0.55",
+    "react-dom": "^19.2.0",
+    "react-redux": "^9.3.0",
+    "rxjs": "^7.8.2",
+    "tailwind-merge": "^3.3.1",
+    "tty-strings": "^1.5.2"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.ts",
+        "import": "./index.js"
+      }
+    }
+  },
+  "imports": {
+    "#pointer": {
+      "import": {
+        "types": "./src/util/react/pointer.d.ts",
+        "import": "./src/util/react/pointer.js"
+      }
+    },
+    "#icons": {
+      "import": {
+        "types": "./src/components/icons.d.ts",
+        "import": "./src/components/icons.js"
+      }
+    },
+    "#FixedNumeric": {
+      "import": {
+        "types": "./src/components/Numeric/Fixed.d.ts",
+        "import": "./src/components/Numeric/Fixed.js"
+      }
+    },
+    "#NumericView": {
+      "import": {
+        "types": "./src/components/Numeric/View.d.ts",
+        "import": "./src/components/Numeric/View.js"
+      }
+    },
+    "#BigIntInput": {
+      "import": {
+        "types": "./src/components/Numeric/BigInt.d.ts",
+        "import": "./src/components/Numeric/BigInt.js"
+      }
+    },
+    "#NumericInput": {
+      "import": {
+        "types": "./src/components/Numeric/Input.d.ts",
+        "import": "./src/components/Numeric/Input.js"
+      }
+    },
+    "#OrdinalLabel": {
+      "import": {
+        "types": "./src/components/OrdinalLabel/index.d.ts",
+        "import": "./src/components/OrdinalLabel/index.js"
+      }
+    },
+    "#Select": {
+      "import": {
+        "types": "./src/components/Select/index.d.ts",
+        "import": "./src/components/Select/index.js"
+      }
+    },
+    "#SplitPanel": {
+      "import": {
+        "types": "./src/components/SplitPanel/index.d.ts",
+        "import": "./src/components/SplitPanel/index.js"
+      }
+    },
+    "#Button": {
+      "import": {
+        "types": "./src/components/Button/index.d.ts",
+        "import": "./src/components/Button/index.js"
+      }
+    },
+    "#Repeater": {
+      "import": {
+        "types": "./src/components/Repeater/index.d.ts",
+        "import": "./src/components/Repeater/index.js"
+      }
+    },
+    "#Pill": {
+      "import": {
+        "types": "./src/components/Pill/index.d.ts",
+        "import": "./src/components/Pill/index.js"
+      }
+    },
+    "#Separator": {
+      "import": {
+        "types": "./src/components/Separator.d.ts",
+        "import": "./src/components/Separator.js"
+      }
+    },
+    "#Link": {
+      "import": {
+        "types": "./src/components/Link.d.ts",
+        "import": "./src/components/Link.js"
+      }
+    },
+    "#Stack": {
+      "import": {
+        "types": "./src/components/Stack/index.d.ts",
+        "import": "./src/components/Stack/index.js"
+      }
+    },
+    "#GraphView": {
+      "import": {
+        "types": "./src/components/GraphView/index.d.ts",
+        "import": "./src/components/GraphView/index.js"
+      }
+    },
+    "#TreeGraphView": {
+      "import": {
+        "types": "./src/components/TreeGraphView/index.d.ts",
+        "import": "./src/components/TreeGraphView/index.js"
+      }
+    },
+    "#useZoomPan": {
+      "import": {
+        "types": "./src/hooks/useZoomPan.d.ts",
+        "import": "./src/hooks/useZoomPan.js"
+      }
+    },
+    "#useMergeRefs": {
+      "import": {
+        "types": "./src/hooks/useMergeRefs.d.ts",
+        "import": "./src/hooks/useMergeRefs.js"
+      }
+    },
+    "#useBoolean": {
+      "import": {
+        "types": "./src/hooks/useBoolean.d.ts",
+        "import": "./src/hooks/useBoolean.js"
+      }
+    },
+    "#useHorizontalScroll": {
+      "import": {
+        "types": "./src/hooks/useHorizontalScroll.d.ts",
+        "import": "./src/hooks/useHorizontalScroll.js"
+      }
+    },
+    "#useScrollbarSize": {
+      "import": {
+        "types": "./src/hooks/useScrollbarSize.d.ts",
+        "import": "./src/hooks/useScrollbarSize.js"
+      }
+    },
+    "#usePan": {
+      "import": {
+        "types": "./src/hooks/usePan.d.ts",
+        "import": "./src/hooks/usePan.js"
+      }
+    },
+    "#useZoom": {
+      "import": {
+        "types": "./src/hooks/useZoom.d.ts",
+        "import": "./src/hooks/useZoom.js"
+      }
+    },
+    "#useDrag": {
+      "import": {
+        "types": "./src/hooks/useDrag.d.ts",
+        "import": "./src/hooks/useDrag.js"
+      }
+    },
+    "#useMeasure": {
+      "import": {
+        "types": "./src/hooks/useMeasure.d.ts",
+        "import": "./src/hooks/useMeasure.js"
+      }
+    },
+    "#usePointerButton": {
+      "import": {
+        "types": "./src/hooks/usePointerButton.d.ts",
+        "import": "./src/hooks/usePointerButton.js"
+      }
+    },
+    "#useClampedListener": {
+      "import": {
+        "types": "./src/hooks/useClampedListener.d.ts",
+        "import": "./src/hooks/useClampedListener.js"
+      }
+    },
+    "#tree": {
+      "import": {
+        "types": "./src/tree.d.ts",
+        "import": "./src/tree.js"
+      }
+    },
+    "#compinators": {
+      "import": {
+        "types": "./src/compinators.d.ts",
+        "import": "./src/compinators.js"
+      }
+    },
+    "#storybook": {
+      "import": {
+        "types": "./src/storybook.d.ts",
+        "import": "./src/storybook.js"
+      }
+    },
+    "#demos": {
+      "import": {
+        "types": "./src/demos.d.ts",
+        "import": "./src/demos.js"
+      }
+    },
+    "#Number": {
+      "import": {
+        "types": "./src/util/Number.d.ts",
+        "import": "./src/util/Number.js"
+      }
+    },
+    "#Function": {
+      "import": {
+        "types": "./src/util/Function.d.ts",
+        "import": "./src/util/Function.js"
+      }
+    },
+    "#Array": {
+      "import": {
+        "types": "./src/util/Array.d.ts",
+        "import": "./src/util/Array.js"
+      }
+    },
+    "#String": {
+      "import": {
+        "types": "./src/util/String.d.ts",
+        "import": "./src/util/String.js"
+      }
+    },
+    "#Tuple": {
+      "import": {
+        "types": "./src/util/Tuple.d.ts",
+        "import": "./src/util/Tuple.js"
+      }
+    },
+    "#Pair": {
+      "import": {
+        "types": "./src/util/Pair.d.ts",
+        "import": "./src/util/Pair.js"
+      }
+    },
+    "#Record": {
+      "import": {
+        "types": "./src/util/Record.d.ts",
+        "import": "./src/util/Record.js"
+      }
+    },
+    "#react": {
+      "import": {
+        "types": "./src/util/react.d.ts",
+        "import": "./src/util/react.js"
+      }
+    },
+    "#util": {
+      "import": {
+        "types": "./src/util.d.ts",
+        "import": "./src/util.js"
+      }
+    },
+    "#types": {
+      "import": {
+        "types": "./src/components/types.d.ts",
+        "import": "./src/components/types.js"
+      }
+    },
+    "#tokens": {
+      "import": {
+        "types": "./src/style/theme/tokens.d.ts",
+        "import": "./src/style/theme/tokens.js"
+      }
+    }
+  },
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "private": false,
+  "homepage": "https://github.com/middle-ages/effect-tree-demo",
+  "bugs": "https://github.com/middle-ages/effect-tree-demo/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/middle-ages/effect-tree-demo"
+  },
+  "keywords": [
+    "tree",
+    "typescript",
+    "react"
+  ],
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "bracketSpacing": false,
+    "bracketSameLine": true,
+    "printWidth": 80,
+    "endOfLine": "lf"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  }
+}

@@ -1,0 +1,25 @@
+@layer base {
+  input {
+    @apply border-[1.5px] inset-xy-dim h-row-smaller leading-row-small pt-0.5;
+
+    &:hover {
+      @apply input-control-hover inset-xy;
+
+      &::-webkit-inner-spin-button {
+        @apply brightness-120 contrast-90;
+      }
+    }
+
+    &::-webkit-inner-spin-button {
+      @apply contrast-80 brightness-160 dom-play cursor-pointer
+             leading-row;
+      transform: scaleY(82%);
+      margin-left: calc(1 * var(--spacing));
+      opacity: 1 !important;
+    }
+
+    &:focus {
+      @apply input-control-focus inset-xy;
+    }
+  }
+}

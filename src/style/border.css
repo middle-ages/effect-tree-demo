@@ -1,0 +1,31 @@
+@utility lighter-border {
+  @apply border border-line-light/50;
+}
+
+@utility light-border {
+  @apply border border-line-light;
+}
+
+@utility dark-border {
+  @apply border border-line-dark;
+}
+
+@utility darkest-border {
+  @apply border border-line-darkest;
+}
+
+@utility squircle-shape {
+  corner-shape: squircle;
+}
+
+@utility rounded-shape {
+  corner-shape: round;
+}
+
+@utility squircle {
+  @apply rounded-lg squircle-shape;
+}
+
+@utility squircle-full {
+  @apply rounded-full squircle-shape;
+}

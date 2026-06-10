@@ -1,0 +1,120 @@
+.scrollable-x {
+  container-type: size scroll-state;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  &::before {
+    position: sticky;
+    z-index: 1;
+    display: block;
+    transition-property: box-shadow;
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    transition: all 200ms ease-in-out;
+    transition-behavior: allow-discrete;
+    --tw-duration: 250ms;
+    transition-duration: 250ms;
+    top: calc(var(--spacing) * 0);
+    height: var(--spacing-cqh);
+    width: calc(var(--spacing) * 0);
+    content: '';
+    left: calc(var(--spacing) * 0);
+    @supports (container-type: scroll-state) {
+      @container scroll-state(scrollable: left) {
+        box-shadow:
+          var(--color-scroll-high) 0 0 1px 0.75px,
+          var(--color-scroll-medium) 0 0 2px 3px,
+          var(--color-scroll-low) 0 0 4px 6px;
+      }
+    }
+  }
+  &::after {
+    position: sticky;
+    z-index: 1;
+    display: block;
+    transition-property: box-shadow;
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    transition: all 200ms ease-in-out;
+    transition-behavior: allow-discrete;
+    --tw-duration: 250ms;
+    transition-duration: 250ms;
+    top: calc(var(--spacing) * 0);
+    height: var(--spacing-cqh);
+    width: calc(var(--spacing) * 0);
+    content: '';
+    right: calc(var(--spacing) * 0);
+    @supports (container-type: scroll-state) {
+      @container scroll-state(scrollable: right) {
+        box-shadow:
+          var(--color-scroll-high) 0 0 1px 0.75px,
+          var(--color-scroll-medium) 0 0 2px 3px,
+          var(--color-scroll-low) 0 0 4px 6px;
+      }
+    }
+  }
+}
+.scrollable-y {
+  container-type: size scroll-state;
+  position: relative;
+  overflow-x: clip;
+  overflow-y: auto;
+  &::before {
+    position: sticky;
+    z-index: 1;
+    display: block;
+    transition-property: box-shadow;
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    transition: all 200ms ease-in-out;
+    transition-behavior: allow-discrete;
+    --tw-duration: 250ms;
+    transition-duration: 250ms;
+    left: calc(var(--spacing) * 0);
+    height: calc(var(--spacing) * 0);
+    width: var(--spacing-cqw);
+    content: '';
+    top: calc(var(--spacing) * 0);
+    @supports (container-type: scroll-state) {
+      @container scroll-state(scrollable: top) {
+        box-shadow:
+          var(--color-scroll-top) 0 0 3px 1px,
+          var(--color-scroll-bottom) 0 0 8px 4px;
+      }
+    }
+  }
+  &::after {
+    position: sticky;
+    z-index: 1;
+    display: block;
+    transition-property: box-shadow;
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    transition: all 200ms ease-in-out;
+    transition-behavior: allow-discrete;
+    --tw-duration: 250ms;
+    transition-duration: 250ms;
+    left: calc(var(--spacing) * 0);
+    height: calc(var(--spacing) * 0);
+    width: var(--spacing-cqw);
+    content: '';
+    @supports (container-type: scroll-state) {
+      @container scroll-state(scrollable: bottom) {
+        box-shadow:
+          var(--color-scroll-top) 0 0px 2px 1px,
+          var(--color-scroll-bottom) 0 0px 7px 5px;
+      }
+    }
+  }
+}

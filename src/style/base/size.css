@@ -1,0 +1,50 @@
+@theme {
+  --spacing-cqw: 100cqw;
+  --spacing-cqh: 100cqh;
+
+  --spacing-row-big: 2.5rem; /** 8 * 4px */
+  --spacing-row: 2rem; /** 8 * 4px */
+  --spacing-row-small: 1.75rem; /** 7 * 4px */
+  --spacing-row-smaller: 1.5rem; /** 6 * 4px */
+  --spacing-row-smallest: 1.25rem; /** 5 * 4px */
+}
+
+@utility absolute-0 {
+  @apply absolute top-0 left-0;
+}
+
+@utility absolute-full {
+  @apply absolute-0 size-full;
+}
+
+@utility size-container {
+  container-type: size;
+}
+
+@utility fill-container {
+  @apply w-cqw h-cqh;
+}
+
+@utility cqw-4 {
+  width: calc(100cqw - 4 * var(--spacing));
+}
+
+@utility cqh-px {
+  height: calc(100cqh - 1px);
+}
+
+@utility cqh-1 {
+  height: calc(100cqh - 1 * var(--spacing));
+}
+
+@utility cqh-2 {
+  height: calc(100cqh - 2 * var(--spacing));
+}
+
+@utility cqh-4 {
+  height: calc(100cqh - 4 * var(--spacing));
+}
+
+@utility cq-4 {
+  @apply cqw-4 cqh-4;
+}

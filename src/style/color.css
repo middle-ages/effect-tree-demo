@@ -1,0 +1,128 @@
+@import './theme/light.css';
+
+@theme {
+  --color-border-left: var(--color-line-light);
+
+  --color-border-top-dim: --alpha(var(--color-border-top) / 75%);
+  --color-border-right-dim: --alpha(var(--color-border-right) / 75%);
+  --color-border-bottom-dim: --alpha(var(--color-border-bottom) / 75%);
+  --color-border-left-dim: --alpha(var(--color-border-left) / 75%);
+
+  --color-input-hover: var(--color-light);
+
+  --color-scroll-high: --alpha(var(--color-ink) / 25%);
+  --color-scroll-medium: --alpha(var(--color-ink) / 15%);
+  --color-scroll-low: --alpha(var(--color-ink) / 10%);
+}
+
+@utility text-inset {
+  text-shadow:
+    0px 1px 1px #fff6,
+    0.5px 1.5px 2px #fff4;
+}
+
+@utility text-inset-shallow {
+  text-shadow:
+    0px 1px 1px #fff6,
+    0.5px 1.5px 2px #fff3;
+}
+
+@utility text-inset-deep {
+  text-shadow: 0px 1px 1px #fff9 0.5px 1.5px 2px #fff4;
+}
+
+@utility text-outset {
+  text-shadow:
+    0px -1px 1px #fff6,
+    -0.5px -1.5px 2px #fff4;
+}
+
+@utility inner-shadow {
+  box-shadow:
+    inset 2px 3px 4px 1px #bbb3,
+    inset 0.5px 1px 2px 0.5px #9994;
+}
+
+@utility control {
+  @apply text-fg-control bg-control;
+}
+
+@utility control-hover {
+  @apply text-fg-control-hover bg-control-hover;
+}
+
+@utility control-active {
+  @apply text-ink bg-control-active;
+}
+
+@utility control-disabled {
+  @apply text-fg-control-disabled bg-control-disabled;
+}
+
+@utility input-control {
+  @apply bg-input text-fg-control;
+}
+
+@utility input-control-hover {
+  @apply bg-input-hover text-fg-control-hover;
+}
+
+@utility input-control-focus {
+  @apply bg-input-active text-ink;
+}
+
+@utility outset-x {
+  border-right-color: var(--color-border-right);
+  border-left-color: var(--color-border-left);
+}
+
+@utility outset-y {
+  border-top-color: var(--color-border-top);
+  border-bottom-color: var(--color-border-bottom);
+}
+
+@utility outset-xy {
+  @apply outset-x outset-y;
+}
+
+@utility inset-x {
+  border-right-color: var(--color-border-left);
+  border-left-color: var(--color-border-right);
+}
+
+@utility inset-y {
+  border-top-color: var(--color-border-bottom);
+  border-bottom-color: var(--color-border-top);
+}
+
+@utility inset-xy {
+  @apply inset-x inset-y;
+}
+
+@utility outset-x-dim {
+  border-right-color: var(--color-border-right-dim);
+  border-left-color: var(--color-border-left-dim);
+}
+
+@utility outset-y-dim {
+  border-top-color: var(--color-border-top-dim);
+  border-bottom-color: var(--color-border-bottom-dim);
+}
+
+@utility outset-xy-dim {
+  @apply outset-x-dim outset-y-dim;
+}
+
+@utility inset-x-dim {
+  border-right-color: var(--color-border-left-dim);
+  border-left-color: var(--color-border-right-dim);
+}
+
+@utility inset-y-dim {
+  border-top-color: var(--color-border-bottom-dim);
+  border-bottom-color: var(--color-border-top-dim);
+}
+
+@utility inset-xy-dim {
+  @apply inset-x-dim inset-y-dim;
+}

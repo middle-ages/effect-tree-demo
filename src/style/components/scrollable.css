@@ -1,0 +1,81 @@
+@custom-variant @can-scroll-up {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: bottom) {
+      @slot;
+    }
+  }
+}
+
+@custom-variant @can-scroll-right {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: right) {
+      @slot;
+    }
+  }
+}
+
+@custom-variant @can-scroll-down {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: top) {
+      @slot;
+    }
+  }
+}
+
+@custom-variant @can-scroll-left {
+  @supports (container-type: scroll-state) {
+    @container scroll-state(scrollable: left) {
+      @slot;
+    }
+  }
+}
+
+@utility scroll-area {
+  @apply scroll-container dom-play *:dom-play;
+  scrollbar-color: var(--color-line-darkest) transparent;
+}
+
+@layer components {
+  .scrollable-x {
+    @apply scroll-area overflow-x-scroll overflow-y-hidden;
+
+    &::before {
+      @apply base-scrollable-x left-0 @can-scroll-left:set-scroll-shadow-h;
+    }
+
+    &::after {
+      @apply base-scrollable-x right-0 @can-scroll-right:set-scroll-shadow-h;
+    }
+  }
+
+  .scrollable-y {
+    @apply scroll-area relative overflow-y-auto overflow-x-hidden;
+
+    &::before {
+      @apply base-scrollable-y top-0 @can-scroll-down:set-scroll-shadow-top;
+    }
+
+    &::after {
+      @apply base-scrollable-y @can-scroll-up:set-scroll-shadow-bottom;
+    }
+  }
+}
+
+@utility base-scrollable-x {
+  @apply base-scrollable h-cqh w-0 top-0;
+  content: '';
+}
+
+@utility base-scrollable-y {
+  @apply base-scrollable w-cqw h-0 left-0;
+  content: '';
+}
+
+@utility base-scrollable {
+  @apply block sticky z-1 dom-play duration-250 transition-shadow;
+  content: '';
+}
+
+@utility scroll-container {
+  container-type: size scroll-state;
+}

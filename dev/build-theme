@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+COLOR="${COLOR:-true}"
+
+. "$(dirname "${0}")/lib/_"
+
+light="${THEME_DIR}/light.css"
+
+dumpTheme="
+  const T=await import('#tokens');
+  for (const color of T.cssVars(T.tokens.light)) {
+    console.log(color)
+  }"
+
+echo "@theme {" > "${light}"
+
+tsx --input-type=module -e "${dumpTheme}" >> "${light}"
+
+echo "}" >> "${light}"
+
+show_done 'build-theme'

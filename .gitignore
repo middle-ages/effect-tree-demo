@@ -1,0 +1,12 @@
+*.log
+dev/chromatic
+node_modules
+dist
+tmp
+.npmrc
+.tsconfig.tsbuildinfo
+storybook-static
+*storybook.log
+.eslintcache
+api-docs
+public/style.css

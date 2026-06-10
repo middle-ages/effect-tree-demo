@@ -1,0 +1,24 @@
+{
+  "extends": ["./tsconfig.browser.json"],
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["vite/client"]
+  },
+  "include": [
+    "../.storybook/preview.tsx",
+    "../.storybook/vitest.setup.ts",
+    "../src/storybook.ts",
+    "../**/*.stories.ts",
+    "../**/*.stories.tsx",
+    "../src/storybook/**/*.ts",
+    "../src/storybook/**/*.tsx",
+    "../src/**/stories/**/*.ts",
+    "../src/**/stories/**/*.tsx",
+    "../vitest.shims.d.ts",
+    "../vitest.config.ts",
+    "../src/components/Input/index.storiees.tsx"
+  ],
+  "mdx": {
+    "checkMdx": true
+  }
+}
