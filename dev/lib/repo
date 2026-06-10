@@ -6,7 +6,8 @@ if [[ -z "${PNPM_SCRIPT_SRC_DIR:-}" ]]; then
 fi
 
 export DIR="${PNPM_SCRIPT_SRC_DIR}"
-export NAME="$(basename "${PNPM_SCRIPT_SRC_DIR}")"
+export NAME
+NAME="$(basename "${PNPM_SCRIPT_SRC_DIR}")"
 
 function prepare() {
   local dir

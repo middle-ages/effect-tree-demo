@@ -4,6 +4,7 @@ set -Eeuo pipefail
 
 COLOR="${COLOR:-true}"
 
+# shellcheck source=dev/lib/_
 . "$(dirname "${0}")/lib/_"
 
 pnpm check
@@ -31,5 +32,3 @@ git add .
 git commit -m build
 
 show_done 'build:all'
-
-git rebase -i HEAD~2

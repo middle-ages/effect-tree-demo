@@ -13,7 +13,6 @@ const meta = {
     ref: fn() as RefCallback<HTMLElement>,
     title: 'Some title.',
     isActive: false,
-    isRounded: false,
     isDisabled: false,
     disabledNote: 'Some disabled note.',
     onClick: fn(),
@@ -27,8 +26,6 @@ type Story = StoryObj<typeof meta>
 export const Basic: Story = {}
 
 export const Active: Story = {args: {isActive: true}}
-
-export const Rounded: Story = {args: {isRounded: true}}
 
 export const Disabled: Story = {args: {isDisabled: true}}
 

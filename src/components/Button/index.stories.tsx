@@ -49,7 +49,7 @@ export const MultipleChildren: Story = {
   args: {
     children: (
       <div>
-        <span className="pr-1">First</span>
+        <span className='pr-1'>First</span>
         <span>Second</span>
       </div>
     ),

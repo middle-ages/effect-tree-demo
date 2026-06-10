@@ -6,6 +6,9 @@ const config: StorybookConfig = {
   features: {
     highlight: false,
     viewport: false,
+    developmentModeForBuild: true,
+    //    experimentalCodeExamples: true,
+    //    experimentalReactComponentMeta: true,
   },
   staticDirs: [
     {
@@ -21,23 +24,17 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
     disableWhatsNewNotifications: true,
-    builder: {
-      name: '@storybook/builder-vite',
-      options: {
-        viteConfigPath: 'vitest.config.ts',
-      },
-    },
+    //    builder: {
+    //      name: '@storybook/builder-vite',
+    //      options: {
+    //        viteConfigPath: './storybook/vitest.config.ts',
+    //      },
+    //    },
   },
 
   framework: {
     name: '@storybook/react-vite',
-    options: {
-      strictMode: true,
-    },
-  },
-
-  typescript: {
-    reactDocgen: 'react-docgen-typescript',
+    options: {strictMode: true},
   },
 
   addons: [

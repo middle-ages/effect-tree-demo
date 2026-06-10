@@ -9,15 +9,13 @@
     "target": "esnext",
     "lib": ["ESNext"],
     "incremental": true,
-    "noErrorTruncation": false,
+    "noErrorTruncation": true,
+    "stableTypeOrdering": true,
 
     "allowJs": false,
     "checkJs": false,
 
-    "moduleDetection": "force",
-    "allowSyntheticDefaultImports": true,
     "noUncheckedSideEffectImports": true,
-    "verbatimModuleSyntax": true,
-    "esModuleInterop": true
+    "verbatimModuleSyntax": true
   }
 }

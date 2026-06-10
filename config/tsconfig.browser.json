@@ -1,8 +1,8 @@
 {
   "extends": ["./tsconfig.base.json", "@tsconfig/vite-react/tsconfig.json"],
   "compilerOptions": {
+    "lib": ["ESNext", "DOM", "WebWorker"],
     "allowArbitraryExtensions": true,
     "allowImportingTsExtensions": false
   },
-  "types": ["@vitest/browser/providers/playwright"]
 }

@@ -1,23 +1,62 @@
 @layer base {
   select,
   option,
-  input,
-  a,
+  input[type='text'],
+  input[type='number'],
   .focusable,
   .numeric-view {
-    @apply dom-play outline-solid ring-0 outline-0
-           ring-offset-0 -outline-offset-[1.5px]
-         outline-ring-inner ring-ring ring-offset-current;
+    @apply focus-base;
 
-    &:focus-visible:not(:disabled) {
-      @apply outline-[1.5px] ring-[0.75px];
+    &:focus-visible:enabled {
+      @apply focus-on;
     }
   }
 
-  a,
   select {
-    &:focus:not(:disabled) {
-      @apply outline-[1.5px] ring-[0.75px];
+    &:focus:enabled {
+      @apply focus-on;
     }
   }
+
+  a.project-link {
+    @apply relative focus-none ring-blue-600 outline-blue-300;
+    &:focus {
+      @apply focus-on ring-[3px] ring-offset-0 outline-2 outline-offset-0;
+    }
+  }
+
+  a {
+    @apply focus-base;
+    &:focus {
+      @apply focus-on ring-[3px] ring-offset-0 outline-2 outline-offset-0;
+    }
+  }
+
+  .scroller-focus {
+    @apply focus-base ring-offset-0 outline-0 -outline-offset-1;
+
+    &:focus-visible {
+      @apply ring-[3px] ring-offset-0 outline-2 outline-offset-0;
+    }
+  }
+
+  pre,
+  .scrollable-xy:not(.scroller-focus) {
+    @apply focus-none;
+    &:focus {
+      @apply ring-0 inset-ring-0 outline-0;
+    }
+  }
+}
+
+@utility focus-base {
+  @apply relative focus-none ring-blue-600 outline-blue-300;
+}
+
+@utility focus-none {
+  @apply ring-0 outline-0;
+}
+
+@utility focus-on {
+  @apply z-1 ring-2 ring-offset-0 outline-2 -outline-offset-1;
 }

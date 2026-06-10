@@ -12,7 +12,10 @@ export const px = (x: number): string => `${x.toFixed(2)}px`,
   deg = (x: number): string => `${x.toFixed(0)}deg`,
   turn = (x: number): string => `${x.toFixed(2)}turn`,
   ms = (x: number): string => `${x.toFixed(0)}ms`,
-  cqw = (x: number): string => `${x.toFixed(3)}cqw`
+  cqw = (x: number): string => `${x.toFixed(3)}cqw`,
+  cqh = (x: number): string => `${x.toFixed(3)}cqh`,
+  vw = (x: number): string => `${x.toFixed(3)}vw`,
+  vh = (x: number): string => `${x.toFixed(3)}vh`
 
 export const setVar = (name: string, value: string) =>
   singleton(`--${name}`, value) as CSSProperties
@@ -29,3 +32,13 @@ export const setVars = (vars: Record<string, string | number>): CSSProperties =>
       }),
     ),
   )
+
+export const anchorName = (name: string) =>
+  ({
+    anchorName: `--${name}`,
+  }) as CSSProperties
+
+export const anchorPosition = (name: string) =>
+  ({
+    positionAnchor: `--${name}`,
+  }) as CSSProperties

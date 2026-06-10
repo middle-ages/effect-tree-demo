@@ -1,4 +1,5 @@
-import {Number, flow, pipe} from 'effect'
+import {flow, pipe} from 'effect/Function'
+import * as Number from 'effect/Number'
 import {
   append,
   isNonEmptyArray,

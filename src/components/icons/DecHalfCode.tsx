@@ -1,9 +1,9 @@
 export const DecHalfCode = (
   <svg
-    className="pl-1 w-[22px] pr-1.5"
-    viewBox="0 0 24 16"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg">
-    <path fill="currentColor" d="m0 8 13 8V9L24 16V0l-11 7V0l-13 8" />
+    className='max-w-4.25 pr-1'
+    viewBox='0 0 30 21'
+    version='1.1'
+    xmlns='http://www.w3.org/2000/svg'>
+    <path fill='currentColor' d='M3 10l13 8V11l11 7V2L16 9V2L3 10' />
   </svg>
 )

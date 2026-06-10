@@ -1,7 +1,8 @@
 import {numberClamp} from '#Number'
 import {fromDoubleClick} from '#pointer'
-import {mergeWith} from '#Record'
-import {pipe, ScaledPointPx} from '#util'
+import {merge} from '#Record'
+import {pipe} from '#Function'
+import {ScaledPointPx} from '#react/point'
 import * as rx from 'rxjs'
 import {wheelObservable, type WheelNotification} from './wheel'
 
@@ -22,7 +23,7 @@ export const zoomWheelObservable = (
     element,
     wheelObservable({friction: 6}),
     rx.startWith(wheelObservable.zero),
-    rx.map(mergeWith({scale: 1})),
+    rx.map(merge({scale: 1})),
     rx.scan((old, {direction, xPx, yPx, factor, ...current}) => {
       const {scale: oldScale = 1} = old
       const unclampedScale = (1 + direction * factor) * oldScale

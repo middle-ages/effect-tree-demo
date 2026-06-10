@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@plugin "@toolwind/corner-shape";
+
 @import './style/text.css';
 @import './style/color.css';
 @import './style/base.css';
@@ -7,21 +9,7 @@
 @import './style/shadow.css';
 @import './style/util.css';
 
-@source "../src/*.tsx";
-@source "../src/*.ts";
+@source '../src/*.tsx';
+@source '../src/*.ts';
 
-@layer components {
-  .demo {
-    @apply bg-app text-fg-control;
-  }
-}
-
-@utility typo {
-  @apply z-50 translate-y-[5.75px];
-  background: repeating-linear-gradient(
-    #0000 0,
-    #0000 26.5px,
-    #00fa 26.5px,
-    #f00a 28px
-  );
-}
+@variant hover (&:hover);

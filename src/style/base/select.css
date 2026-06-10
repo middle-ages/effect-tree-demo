@@ -1,9 +1,10 @@
 @layer base {
   select {
-    @apply relative px-2 text-sm squircle
-           h-row-smaller leading-row-smallest
-           border-2 inset-xy-dim input-control dom-play w-full;
     appearance: base-select;
+    @apply relative w-[calc(100%-var(--spacing))] px-2;
+    @apply dom-play;
+    @apply squircle-input border-[1.5px] inset-xy-dim input-control;
+    @apply max-h-5.5 min-h-0! text-small leading-5.5;
 
     &:hover {
       @apply inset-xy input-control-hover;
@@ -15,18 +16,14 @@
 
     &::picker(select) {
       @apply: dom-play opacity-0;
+      @apply bg-app shadow-md shadow-neutral-400;
+      @apply squircle border border-transparent;
       appearance: base-select;
     }
 
     &::picker-icon {
       @apply chevron-down;
       content: '❯';
-    }
-
-    &::picker(select) {
-      @apply border border-transparent p-1.5 squircle
-             bg-light shadow-md shadow-neutral-400;
-      transition-duration: 2s;
     }
 
     &:open {
@@ -38,21 +35,16 @@
     }
 
     option {
-      @apply dom-play;
-
-      &:checked {
-        background: #0043962a;
-      }
-
-      &:hover {
-        background: #0043d67a;
-      }
+      @apply dom-play checked:bg-a/10 hover:bg-a/40;
     }
   }
 }
 
-@property --tick {
-  syntax: '<number>';
-  initial-value: 1;
-  inherits: true;
+@utility chevron-down {
+  @apply bg-transparent text-sm text-fg-control/95 dom-play;
+  transform: rotate(90deg);
+}
+
+@utility chevron-up {
+  transform: rotate(270deg);
 }

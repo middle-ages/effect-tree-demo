@@ -1,6 +1,6 @@
 import {Array, per, pipe, rch, Record} from '#util'
 import {composeStories} from '@storybook/react-vite'
-import {ScrollPanel} from '../ScrollPanel'
+import {HeaderScrollPanel} from '../HeaderScrollPanel'
 import {GalleryFrame} from './GalleryFrame'
 import type {Imported} from './types'
 
@@ -26,9 +26,9 @@ export const GroupGallery = <Groups extends Record<string, Imported<any>>>({
 
   let i = 0
   return (
-    <ScrollPanel header={name}>
+    <HeaderScrollPanel header={name}>
       <div
-        className="grid gap-3 p-2"
+        className='grid gap-3 p-2'
         style={{gridTemplateColumns: `repeat(auto-fill,${minmax})`}}>
         {pipe(
           entries,
@@ -43,7 +43,7 @@ export const GroupGallery = <Groups extends Record<string, Imported<any>>>({
           )),
         )}
       </div>
-    </ScrollPanel>
+    </HeaderScrollPanel>
   )
 }
 

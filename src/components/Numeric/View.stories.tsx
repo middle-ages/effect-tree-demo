@@ -10,10 +10,9 @@ const Wrapper = ({
 }: ComponentProps<typeof Component> & {parentWidth: string}) => (
   <div
     style={{width}}
-    className={`flex-gap whitespace-nowrap overflow-hidden items-baseline
-                h-row-small *:leading-row-small`}>
+    className={`flex-gap h-row-small items-baseline overflow-hidden whitespace-nowrap *:leading-row-small`}>
     <div>Lorem Ipsum</div>
-    <div className="h-row-small flex-1 overflow-hidden">
+    <div className='h-row-small flex-1 overflow-hidden'>
       <Component {...props} />
     </div>
   </div>

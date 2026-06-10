@@ -30,69 +30,81 @@
     "chromatic": "dev/chromatic"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^4.1.2",
-    "@effect/vitest": "^0.26.0",
-    "@eslint-react/eslint-plugin": "^2.2.4",
-    "@eslint/js": "^9.39.0",
-    "@fast-check/vitest": "^0.2.2",
-    "@storybook/addon-docs": "^10.0.2",
-    "@storybook/addon-vitest": "^10.0.2",
-    "@storybook/react-vite": "^10.0.2",
-    "@tailwindcss/cli": "^4.1.16",
-    "@tailwindcss/vite": "^4.1.16",
+    "@chromatic-com/storybook": "^5.2.1",
+    "@effect/vitest": "^0.29.0",
+    "@eslint-react/eslint-plugin": "^5.11.2",
+    "@eslint/js": "^10.0.1",
+    "@fast-check/vitest": "^0.4.1",
+    "@rolldown/plugin-babel": "^0.2.3",
+    "@storybook/addon-docs": "^10.4.6",
+    "@storybook/addon-vitest": "^10.4.6",
+    "@storybook/react-vite": "^10.4.6",
+    "@tailwindcss/cli": "^4.3.2",
+    "@tailwindcss/vite": "^4.3.2",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@thi.ng/color": "^5.8.1",
-    "@tsconfig/node24": "^24.0.1",
-    "@tsconfig/strictest": "^2.0.7",
-    "@tsconfig/vite-react": "^7.0.1",
-    "@types/node": "^24.9.2",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "@vitejs/plugin-react": "^5.1.0",
-    "@vitest/browser": "^4.0.6",
-    "@vitest/browser-playwright": "^4.0.6",
-    "@vitest/coverage-v8": "^4.0.6",
+    "@testing-library/react": "^16.3.2",
+    "@thi.ng/color": "^5.8.30",
+    "@tsconfig/node-lts": "^24.0.0",
+    "@tsconfig/strictest": "^2.0.8",
+    "@tsconfig/vite-react": "^8.0.6",
+    "@types/babel__core": "^7.20.5",
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "@vitest/browser": "^4.1.9",
+    "@vitest/browser-playwright": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.9",
     "babel-plugin-react-compiler": "^1.0.0",
-    "chromatic": "^13.3.3",
-    "dependency-cruiser": "^17.2.0",
+    "baseline-browser-mapping": "^2.10.42",
+    "chromatic": "^18.0.1",
+    "csstype": "^3.2.3",
+    "dependency-cruiser": "^18.0.0",
     "effect-ts-laws": "^1.3.19",
-    "eslint": "^9.39.0",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "eslint-plugin-sonarjs": "^3.0.5",
-    "eslint-plugin-unicorn": "^62.0.0",
-    "fast-check": "^4.3.0",
-    "globals": "^16.4.0",
-    "happy-dom": "^20.0.10",
-    "jiti": "^2.6.1",
-    "markdown-to-jsx": "^8.0.0",
-    "playwright": "^1.56.1",
-    "prettier": "^3.6.2",
-    "storybook": "^10.0.2",
-    "storybook-addon-pseudo-states": "^10.0.2",
-    "tailwindcss": "^4.1.16",
-    "tsx": "^4.20.6",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.2",
-    "vite": "^7.1.12",
-    "vitest": "^4.0.6"
+    "eslint-plugin-react-compiler": "19.1.0-rc.2",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "eslint-plugin-sonarjs": "^4.1.0",
+    "eslint-plugin-unicorn": "^71.0.0",
+    "fast-check": "^4.8.0",
+    "globals": "^17.7.0",
+    "happy-dom": "^20.10.6",
+    "jiti": "^2.7.0",
+    "markdown-to-jsx": "^9.8.2",
+    "playwright": "^1.61.1",
+    "prettier": "^3.9.4",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "storybook": "^10.4.6",
+    "storybook-addon-pseudo-states": "^10.4.6",
+    "tailwindcss": "^4.3.2",
+    "tsx": "^4.23.0",
+    "type-fest": "^5.8.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.1",
+    "vite": "^8.1.3",
+    "vitest": "^4.1.9"
   },
   "dependencies": {
-    "@effect/typeclass": "^0.37.0",
-    "@hpcc-js/wasm-graphviz": "^1.15.0",
+    "@babel/core": "^8.0.1",
+    "@effect/typeclass": "^0.40.0",
+    "@floating-ui/react": "^0.27.19",
+    "@hpcc-js/wasm-graphviz": "^1.24.1",
     "@reduxjs/toolkit": "^2.12.0",
-    "effect": "^3.18.4",
+    "@toolwind/corner-shape": "0.0.8-3",
+    "effect": "^3.21.4",
     "effect-tree": "^1.0.36",
-    "react": "^19.2.0",
+    "react": "^19.2.7",
     "react-compinators": "^1.0.55",
-    "react-dom": "^19.2.0",
+    "react-dom": "^19.2.7",
     "react-redux": "^9.3.0",
+    "redux-persist": "^6.0.0",
     "rxjs": "^7.8.2",
-    "tailwind-merge": "^3.3.1",
+    "tailwind-merge": "^3.6.0",
     "tty-strings": "^1.5.2"
   },
   "exports": {
@@ -116,22 +128,58 @@
         "import": "./src/components/icons.js"
       }
     },
-    "#FixedNumeric": {
+    "#icons/*": {
       "import": {
-        "types": "./src/components/Numeric/Fixed.d.ts",
-        "import": "./src/components/Numeric/Fixed.js"
-      }
-    },
-    "#NumericView": {
-      "import": {
-        "types": "./src/components/Numeric/View.d.ts",
-        "import": "./src/components/Numeric/View.js"
+        "types": "./src/components/icons/*.d.ts",
+        "import": "./src/components/icons/*.js"
       }
     },
     "#BigIntInput": {
       "import": {
         "types": "./src/components/Numeric/BigInt.d.ts",
         "import": "./src/components/Numeric/BigInt.js"
+      }
+    },
+    "#Button": {
+      "import": {
+        "types": "./src/components/Button/index.d.ts",
+        "import": "./src/components/Button/index.js"
+      }
+    },
+    "#Details": {
+      "import": {
+        "types": "./src/components/Details/index.d.ts",
+        "import": "./src/components/Details/index.js"
+      }
+    },
+    "#FixedNumeric": {
+      "import": {
+        "types": "./src/components/Numeric/Fixed.d.ts",
+        "import": "./src/components/Numeric/Fixed.js"
+      }
+    },
+    "#GraphView": {
+      "import": {
+        "types": "./src/components/GraphView/index.d.ts",
+        "import": "./src/components/GraphView/index.js"
+      }
+    },
+    "#HRule": {
+      "import": {
+        "types": "./src/components/HRule.d.ts",
+        "import": "./src/components/HRule.js"
+      }
+    },
+    "#Link": {
+      "import": {
+        "types": "./src/components/Link.d.ts",
+        "import": "./src/components/Link.js"
+      }
+    },
+    "#NumericView": {
+      "import": {
+        "types": "./src/components/Numeric/View.d.ts",
+        "import": "./src/components/Numeric/View.js"
       }
     },
     "#NumericInput": {
@@ -146,22 +194,28 @@
         "import": "./src/components/OrdinalLabel/index.js"
       }
     },
-    "#Select": {
+    "#Pill": {
       "import": {
-        "types": "./src/components/Select/index.d.ts",
-        "import": "./src/components/Select/index.js"
+        "types": "./src/components/Pill/index.d.ts",
+        "import": "./src/components/Pill/index.js"
       }
     },
-    "#SplitPanel": {
+    "#ProjectLink": {
       "import": {
-        "types": "./src/components/SplitPanel/index.d.ts",
-        "import": "./src/components/SplitPanel/index.js"
+        "types": "./src/components/ProjectLink/index.d.ts",
+        "import": "./src/components/ProjectLink/index.js"
       }
     },
-    "#Button": {
+    "#RadioGroup": {
       "import": {
-        "types": "./src/components/Button/index.d.ts",
-        "import": "./src/components/Button/index.js"
+        "types": "./src/components/RadioGroup/index.d.ts",
+        "import": "./src/components/RadioGroup/index.js"
+      }
+    },
+    "#ScrollPanel": {
+      "import": {
+        "types": "./src/components/ScrollPanel/index.d.ts",
+        "import": "./src/components/ScrollPanel/index.js"
       }
     },
     "#Repeater": {
@@ -170,10 +224,22 @@
         "import": "./src/components/Repeater/index.js"
       }
     },
-    "#Pill": {
+    "#Select": {
       "import": {
-        "types": "./src/components/Pill/index.d.ts",
-        "import": "./src/components/Pill/index.js"
+        "types": "./src/components/Select/index.d.ts",
+        "import": "./src/components/Select/index.js"
+      }
+    },
+    "#Spinner": {
+      "import": {
+        "types": "./src/components/Spinner.d.ts",
+        "import": "./src/components/Spinner.js"
+      }
+    },
+    "#SplitPanel": {
+      "import": {
+        "types": "./src/components/SplitPanel/index.d.ts",
+        "import": "./src/components/SplitPanel/index.js"
       }
     },
     "#Separator": {
@@ -182,40 +248,16 @@
         "import": "./src/components/Separator.js"
       }
     },
-    "#Link": {
-      "import": {
-        "types": "./src/components/Link.d.ts",
-        "import": "./src/components/Link.js"
-      }
-    },
     "#Stack": {
       "import": {
         "types": "./src/components/Stack/index.d.ts",
         "import": "./src/components/Stack/index.js"
       }
     },
-    "#GraphView": {
+    "#Tooltip": {
       "import": {
-        "types": "./src/components/GraphView/index.d.ts",
-        "import": "./src/components/GraphView/index.js"
-      }
-    },
-    "#TreeGraphView": {
-      "import": {
-        "types": "./src/components/TreeGraphView/index.d.ts",
-        "import": "./src/components/TreeGraphView/index.js"
-      }
-    },
-    "#useZoomPan": {
-      "import": {
-        "types": "./src/hooks/useZoomPan.d.ts",
-        "import": "./src/hooks/useZoomPan.js"
-      }
-    },
-    "#useMergeRefs": {
-      "import": {
-        "types": "./src/hooks/useMergeRefs.d.ts",
-        "import": "./src/hooks/useMergeRefs.js"
+        "types": "./src/components/Tooltip/index.d.ts",
+        "import": "./src/components/Tooltip/index.js"
       }
     },
     "#useBoolean": {
@@ -224,46 +266,10 @@
         "import": "./src/hooks/useBoolean.js"
       }
     },
-    "#useHorizontalScroll": {
+    "#useCounter": {
       "import": {
-        "types": "./src/hooks/useHorizontalScroll.d.ts",
-        "import": "./src/hooks/useHorizontalScroll.js"
-      }
-    },
-    "#useScrollbarSize": {
-      "import": {
-        "types": "./src/hooks/useScrollbarSize.d.ts",
-        "import": "./src/hooks/useScrollbarSize.js"
-      }
-    },
-    "#usePan": {
-      "import": {
-        "types": "./src/hooks/usePan.d.ts",
-        "import": "./src/hooks/usePan.js"
-      }
-    },
-    "#useZoom": {
-      "import": {
-        "types": "./src/hooks/useZoom.d.ts",
-        "import": "./src/hooks/useZoom.js"
-      }
-    },
-    "#useDrag": {
-      "import": {
-        "types": "./src/hooks/useDrag.d.ts",
-        "import": "./src/hooks/useDrag.js"
-      }
-    },
-    "#useMeasure": {
-      "import": {
-        "types": "./src/hooks/useMeasure.d.ts",
-        "import": "./src/hooks/useMeasure.js"
-      }
-    },
-    "#usePointerButton": {
-      "import": {
-        "types": "./src/hooks/usePointerButton.d.ts",
-        "import": "./src/hooks/usePointerButton.js"
+        "types": "./src/hooks/useCounter.d.ts",
+        "import": "./src/hooks/useCounter.js"
       }
     },
     "#useClampedListener": {
@@ -272,10 +278,88 @@
         "import": "./src/hooks/useClampedListener.js"
       }
     },
-    "#tree": {
+    "#useDrag": {
       "import": {
-        "types": "./src/tree.d.ts",
-        "import": "./src/tree.js"
+        "types": "./src/hooks/useDrag.d.ts",
+        "import": "./src/hooks/useDrag.js"
+      }
+    },
+    "#useHorizontalDrag": {
+      "import": {
+        "types": "./src/hooks/useHorizontalDrag.d.ts",
+        "import": "./src/hooks/useHorizontalDrag.js"
+      }
+    },
+    "#useHorizontalScroll": {
+      "import": {
+        "types": "./src/hooks/useHorizontalScroll.d.ts",
+        "import": "./src/hooks/useHorizontalScroll.js"
+      }
+    },
+    "#useHover": {
+      "import": {
+        "types": "./src/hooks/useHover.d.ts",
+        "import": "./src/hooks/useHover.js"
+      }
+    },
+    "#useMeasure": {
+      "import": {
+        "types": "./src/hooks/useMeasure.d.ts",
+        "import": "./src/hooks/useMeasure.js"
+      }
+    },
+    "#useMergeRefs": {
+      "import": {
+        "types": "./src/hooks/useMergeRefs.d.ts",
+        "import": "./src/hooks/useMergeRefs.js"
+      }
+    },
+    "#usePan": {
+      "import": {
+        "types": "./src/hooks/usePan.d.ts",
+        "import": "./src/hooks/usePan.js"
+      }
+    },
+    "#usePointerButton": {
+      "import": {
+        "types": "./src/hooks/usePointerButton.d.ts",
+        "import": "./src/hooks/usePointerButton.js"
+      }
+    },
+    "#useRotate": {
+      "import": {
+        "types": "./src/hooks/useRotate.d.ts",
+        "import": "./src/hooks/useRotate.js"
+      }
+    },
+    "#useZoom": {
+      "import": {
+        "types": "./src/hooks/useZoom.d.ts",
+        "import": "./src/hooks/useZoom.js"
+      }
+    },
+    "#useZoomPan": {
+      "import": {
+        "types": "./src/hooks/useZoomPan.d.ts",
+        "import": "./src/hooks/useZoomPan.js"
+      }
+    },
+    "#store": {
+      "import": {
+        "types": "./src/store.d.ts",
+        "import": "./src/store.js"
+      }
+    },
+    "#model": {
+      "import": {
+        "types": "./src/model.d.ts",
+        "import": "./src/model.js"
+      }
+    },
+    "#model/*": {
+      "import": {
+        "types": "./src/model/*.d.ts",
+        "import": "./src/model/*.js"
       }
     },
     "#compinators": {
@@ -290,16 +374,16 @@
         "import": "./src/storybook.js"
       }
     },
-    "#demos": {
+    "#Array": {
       "import": {
-        "types": "./src/demos.d.ts",
-        "import": "./src/demos.js"
+        "types": "./src/util/Array.d.ts",
+        "import": "./src/util/Array.js"
       }
     },
-    "#Number": {
+    "#Css": {
       "import": {
-        "types": "./src/util/Number.d.ts",
-        "import": "./src/util/Number.js"
+        "types": "./src/util/css.d.ts",
+        "import": "./src/util/css.js"
       }
     },
     "#Function": {
@@ -308,22 +392,10 @@
         "import": "./src/util/Function.js"
       }
     },
-    "#Array": {
+    "#Number": {
       "import": {
-        "types": "./src/util/Array.d.ts",
-        "import": "./src/util/Array.js"
-      }
-    },
-    "#String": {
-      "import": {
-        "types": "./src/util/String.d.ts",
-        "import": "./src/util/String.js"
-      }
-    },
-    "#Tuple": {
-      "import": {
-        "types": "./src/util/Tuple.d.ts",
-        "import": "./src/util/Tuple.js"
+        "types": "./src/util/Number.d.ts",
+        "import": "./src/util/Number.js"
       }
     },
     "#Pair": {
@@ -338,16 +410,40 @@
         "import": "./src/util/Record.js"
       }
     },
+    "#String": {
+      "import": {
+        "types": "./src/util/String.d.ts",
+        "import": "./src/util/String.js"
+      }
+    },
+    "#Tuple": {
+      "import": {
+        "types": "./src/util/Tuple.d.ts",
+        "import": "./src/util/Tuple.js"
+      }
+    },
+    "#measure": {
+      "import": {
+        "types": "./src/util/measure.d.ts",
+        "import": "./src/util/measure.js"
+      }
+    },
     "#react": {
       "import": {
         "types": "./src/util/react.d.ts",
         "import": "./src/util/react.js"
       }
     },
-    "#util": {
+    "#react/*": {
       "import": {
-        "types": "./src/util.d.ts",
-        "import": "./src/util.js"
+        "types": "./src/util/react/*.d.ts",
+        "import": "./src/util/react/*.js"
+      }
+    },
+    "#tokens": {
+      "import": {
+        "types": "./src/style/theme/tokens.d.ts",
+        "import": "./src/style/theme/tokens.js"
       }
     },
     "#types": {
@@ -356,10 +452,22 @@
         "import": "./src/components/types.js"
       }
     },
-    "#tokens": {
+    "#util": {
       "import": {
-        "types": "./src/style/theme/tokens.d.ts",
-        "import": "./src/style/theme/tokens.js"
+        "types": "./src/util.d.ts",
+        "import": "./src/util.js"
+      }
+    },
+    "#worker": {
+      "import": {
+        "types": "./src/worker.d.ts",
+        "import": "./src/worker.js"
+      }
+    },
+    "#worker/*": {
+      "import": {
+        "types": "./src/worker/*.d.ts",
+        "import": "./src/worker/*.js"
       }
     }
   },
@@ -378,17 +486,6 @@
     "typescript",
     "react"
   ],
-  "prettier": {
-    "trailingComma": "all",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "arrowParens": "avoid",
-    "bracketSpacing": false,
-    "bracketSameLine": true,
-    "printWidth": 80,
-    "endOfLine": "lf"
-  },
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=10.0.0"

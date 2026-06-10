@@ -1,6 +1,8 @@
-import {flow, pipe, Predicate} from 'effect'
-import {reverse, chunksOf, join, map} from 'effect/Array'
+import {chunksOf, join, map, reverse} from 'effect/Array'
+import {type Predicate} from 'effect/Predicate'
 import type {EndoOf} from './Function'
+import {flow, pipe} from './Function'
+import type {InputEventHandler} from 'react'
 
 export * from 'effect/Number'
 
@@ -15,12 +17,11 @@ export const floorMod = (
 export const floorMod2 = (
     dividend: number,
   ): [quotient: number, remainder: number] => floorMod(dividend, 2),
-  isPositive: Predicate.Predicate<number> = n => n > 0,
-  isNonZero: Predicate.Predicate<number> = n => n !== 0,
-  isEven: Predicate.Predicate<number> = n => n % 2 === 0,
-  isOdd: Predicate.Predicate<number> = n => n % 2 !== 0,
-  isEqualTo: (that: number) => Predicate.Predicate<number> = that => n =>
-    n === that
+  isPositive: Predicate<number> = n => n > 0,
+  isNonZero: Predicate<number> = n => n !== 0,
+  isEven: Predicate<number> = n => n % 2 === 0,
+  isOdd: Predicate<number> = n => n % 2 !== 0,
+  isEqualTo: (that: number) => Predicate<number> = that => n => n === that
 
 export const bigToExponential = (value: bigint): [string, string] => {
   const s = value.toString()
@@ -46,12 +47,12 @@ export const bigDiv =
 export const bigHalf: EndoOf<bigint> = bigDiv(2n)
 
 export const bigGreaterThan =
-  (that: bigint): Predicate.Predicate<bigint> =>
+  (that: bigint): Predicate<bigint> =>
   self =>
     self > that
 
 export const bigLessThan =
-  (that: bigint): Predicate.Predicate<bigint> =>
+  (that: bigint): Predicate<bigint> =>
   self =>
     self < that
 
@@ -82,3 +83,42 @@ export const bigCommaFormat = (n: bigint): string =>
     reverse,
     join(','),
   )
+
+export const clampNumericInput =
+  ({
+    min,
+    max,
+  }: {
+    min: number | string
+    max: number | string
+  }): InputEventHandler<HTMLInputElement> =>
+  ({currentTarget}) => {
+    const rawValue = currentTarget.value.replaceAll(/\D/g, '')
+    const nonEmpty = rawValue === '' ? '0' : rawValue
+
+    const value = numberClamp(...([min, max] as [number, number]))(
+      Number.parseInt(nonEmpty),
+    )
+
+    currentTarget.value = value.toString()
+  }
+
+export const clampBigInput =
+  ({
+    min,
+    max,
+  }: {
+    min: string | number
+    max: string | number
+  }): InputEventHandler<HTMLInputElement> =>
+  ({currentTarget}) => {
+    const rawValue = currentTarget.value.replaceAll(/\D/g, '')
+    const nonEmpty = rawValue === '' ? '0' : rawValue
+
+    const value = bigClamp(
+      BigInt(min),
+      BigInt(max),
+    )(BigInt(nonEmpty)).toString()
+
+    currentTarget.value = value
+  }

@@ -1,12 +1,12 @@
-import {toKebabCase} from '#String'
 import {toEntries} from '#Record'
+import {toKebabCase} from '#String'
 import {Array, pipe} from 'effect'
 
 export const tokens = {
-  light: {
+  color: {
     ink: '#121014',
     fgControl: '#545258',
-    fgControlHover: '#3d393a',
+    fgControlHover: '#666666',
     fgControlDisabled: '#9c9a9d',
 
     lineLight: '#d4d0d6',
@@ -16,21 +16,18 @@ export const tokens = {
     ringInner: '#cfdaff',
     ring: '#506acf',
 
-    borderTop: '#f2ebed',
-    borderRight: '#dad4d8',
-    borderBottom: '#bcb9ba',
+    borderTop: '#e7e8ea',
+    borderLeft: '#dadcdf',
+    borderRight: '#c0c2c4',
+    borderBottom: '#a5a7a9',
 
-    app: '#ebebf3',
-    light: '#f0f0f5',
-    dark: '#e1e1e6',
-    darker: '#e2e0e4',
-    paper: '#f4f3f2',
-
-    input: '#f5f1f4',
+    app: '#ecedf3',
+    dark: '#dedddc',
+    darker: '#a2a0a4',
+    paper: '#f2eeed',
     inputActive: '#fcfafd',
 
-    control: '#eceaee',
-    controlHover: '#f3edf5',
+    controlHover: '#edeaeb',
     controlDisabled: '#e3e0e9',
     controlActive: '#dedcdf',
 
@@ -42,12 +39,45 @@ export const tokens = {
 
     scrollTop: '#2035432a',
     scrollBottom: '#4065732a',
-  },
-}
 
-export const cssVars = (tokens: Record<string, string>): string[] =>
-  pipe(
+    textShadowLightest: '#ffffffcc',
+    textShadowLighter: '#ffffff99 ',
+    textShadowLight: '#ffffff66',
+    textShadowDark: '#ffffff44',
+    textShadowDarker: '#bbbbbb33',
+    textShadowDarkest: '#99999944',
+  },
+  button: {
+    gradientHighestBase: '#e2e3e8',
+    gradientHighBase: '#dcddde',
+    gradientLowBase: '#d1d1d3',
+    gradientLowestBase: '#cdcdce',
+    gradientHighestActive: '#bfbfbf',
+    gradientHighActive: '#cccdcf',
+    gradientLowActive: '#d2d2d2',
+    gradientLowestActive: '#dbdbdb',
+  },
+} as const satisfies Record<string, Record<string, string>>
+
+export const cssVars = mapColors(
+  (prefix, name, color) => `  --${prefix}-${toKebabCase(name)}: ${color};`,
+)
+
+export const theme: [prefix: string, name: string, color: string][] = mapColors(
+  (prefix, name, color) => [prefix, name, color],
+)
+
+function mapColors<R>(
+  f: (prefix: string, name: string, color: string) => R,
+): R[] {
+  return pipe(
     tokens,
     toEntries,
-    Array.map(([key, color]) => `  --color-${toKebabCase(key)}: ${color};`),
+    Array.flatMap(([prefix, colors]) =>
+      pipe(
+        Object.entries(colors),
+        Array.map(([name, color]) => f(prefix, name, color)),
+      ),
+    ),
   )
+}

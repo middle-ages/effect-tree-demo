@@ -4,9 +4,10 @@ set -Eeuo pipefail
 
 COLOR="${COLOR:-true}"
 
+# shellcheck source=dev/lib/_
 . "$(dirname "${0}")/lib/_"
 
-clean_dirs=("$DIST_DIR" "$API_DOCS_DIR" "$DOCS_DIR")
+clean_dirs=("$DIST_DIR")
 
 for dir in "${clean_dirs[@]}"; do
   if [[ -d "${dir}" ]]; then

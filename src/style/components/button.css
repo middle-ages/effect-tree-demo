@@ -1,142 +1,256 @@
-@utility button-hover {
-  @apply text-inset-deep control-hover outset-xy
-         contrast-116 brightness-98 saturate-160;
-}
-
-@utility button-active {
-  @apply text-outset control-active border inset-xy
-             contrast-100 brightness-95 saturate-100;
-
-  --button-gradient-highest: #cbc8cb;
-  --button-gradient-high: #d3d0d3;
-  --button-gradient-low: #dcdadc;
-  --button-gradient-lowest: #e4dce0;
-
-  path,
-  rect {
-    @apply text-ink;
-    filter: drop-shadow(0 -2px 0.4px #fff6);
-  }
-}
-
-@utility button-base {
-  --duration: 250ms;
-
-  @apply flex-center text-smaller h-row-smaller leading-[19px]
-         cursor-pointer truncate squircle dom-play select-none
-         text-inset control border outset-xy-dim *:truncate;
-
-  --button-gradient-highest: #e8e6ec;
-  --button-gradient-high: #dfdde2;
-  --button-gradient-low: #d6d4d9;
-  --button-gradient-lowest: #d2d0d4;
-  background: linear-gradient(
-    var(--button-gradient-highest),
-    var(--button-gradient-high) 30%,
-    var(--button-gradient-low) 75%,
-    var(--button-gradient-lowest) 100%
-  );
-}
-
 @layer components {
   .button {
-    @apply button-base;
+    @apply three-d button-base;
+    @apply h-5 button-text-small leading-5;
 
-    &,
-    * {
-      transition:
-        all var(--duration) ease-in-out,
-        --button-gradient-highest var(--duration) ease-in-out,
-        --button-gradient-high var(--duration) ease-in-out,
-        --button-gradient-low var(--duration) ease-in-out,
-        --button-gradient-lowest var(--duration) ease-in-out;
+    &::before {
+      @apply border-transparent;
     }
 
-    &:hover:not(:disabled) {
+    &:hover:enabled:not(:active) {
       @apply button-hover;
     }
 
-    &:active:not(:disabled),
-    &[data-state='active']:not(:disabled) {
+    &:active:enabled,
+    &[data-state='active']:enabled {
       @apply button-active;
     }
 
     &:disabled {
-      @apply control-disabled brightness-110 contrast-75 saturate-0;
+      @apply button-disabled;
+    }
 
-      path,
-      rect {
-        @apply text-fg-control-disabled;
-        fill: currentColor;
-        filter: drop-shadow(0px 0px 0px #fff0);
+    &[data-tooltip-state='open']:not(:active) {
+      @apply button-hover;
+      @apply saturate-200!;
+      --transition-duration: 100ms;
+      box-shadow:
+        inset -0.5px -1px 2px 1px #220b,
+        inset 1px 1.5px 2px 2px #ffef;
+      &::before {
+        @apply border-12 border-yellow-50/70;
       }
     }
 
-    path,
-    rect {
-      @apply text-fg-control dom-play;
-      filter: drop-shadow(0px 1px 0.6px #fffa);
-    }
-  }
-}
-
-@utility pill-panel {
-  @apply dark-border border-[0.5px] box-content w-full
-         flex min-w-fit *:flex-1 squircle-full;
-
-  > * {
-    &:focus-visible {
-      @apply relative z-2;
+    &[data-tooltip-state='open']:enabled:focus-visible {
+      @apply outline-2 outline-offset-0;
+      box-shadow:
+        inset -0.5px -1px 2px 1px #220b,
+        inset 1px 1.5px 2px 2px #ffef,
+        0 0 0 3px var(--color-blue-600) !important;
     }
   }
 
-  > *:first-child {
-    @apply rounded-r-none! rounded-l-full border-r-line-light w-full;
+  .focusable-button {
+    @apply relative;
+    @apply outline-0 outline-offset-0 outline-blue-300;
+    &:focus-visible:enabled {
+      @apply z-1 outline-2 outline-offset-0;
+      box-shadow: 0 0 0 3px var(--color-blue-600) !important;
+    }
   }
 
-  > *:not(:first-child):not(:last-child) {
-    @apply rounded-none border-l-line-darkest!;
+  .button-vertical {
+    @apply mx-auto size-fit px-[0.5px] py-px;
+    @apply rounded-full border-[0.75px] outset-xy;
+    @apply bg-[#778]/20 dom-play *:dom-play;
 
-    &.cross-pill {
-      @apply z-1 relative
-       border-l border-r rounded-[1rch/33.33%] -mx-[1rch]
-       border-l-line-darkest border-r-line-darkest
-       border-t-border-right-dim px-2.5;
+    > * {
+      @apply three-d button-base;
+      @apply h-12 w-2 border outset-xy-dimmer pb-1;
+      @apply opacity-80 brightness-105;
+      @apply text-lg font-bold text-fg-control-hover/70;
+      @apply cursor-ew-resize rounded-full;
+      @apply group-active:button-active;
+      @apply group-active:contrast-106!;
+      @apply group-active:brightness-108!;
+      @apply group-active:opacity-100;
+      @apply not-group-active:group-hover:button-hover;
+      @apply not-group-active:group-hover:brightness-106;
+      @apply not-group-active:group-hover:contrast-112;
+      @apply not-group-active:group-hover:opacity-95;
+      @apply before:opacity-100 after:opacity-0;
+      @apply group-active:before:opacity-0 group-active:after:opacity-100;
+      @apply not-group-active:group-hover:before:scale-220;
+    }
+  }
 
-      transition-delay: 100ms;
-      transition-duration: 100ms;
+  .button-vertical-top {
+    @apply flex h-full cursor-ew-resize flex-col justify-center;
+    @apply focus-none dom-play contain-strict;
+  }
 
-      &:active {
-        @apply inset-y border-l-line-light border-r-line-light;
+  .button-flat {
+    @apply three-d button-base;
+    @apply mx-auto flex h-5 w-[calc(100%-var(--spacing)/2)];
+    @apply text-fg-control/70;
+    @apply rounded-sm border border-transparent;
+    @apply focus-none;
+
+    &::before {
+      @apply opacity-0;
+    }
+
+    > *:nth-child(2) {
+      @apply box-content border-[1.5px] inset-xy-dark;
+      background: radial-gradient(
+        farthest-corner at 25% 25%,
+        #f3f1f2 0,
+        var(--color-dark) 20%,
+        #bdb9bb 80%,
+        #b9b7b8 100%
+      );
+      opacity: 0.6;
+    }
+
+    &:hover:not(:active) {
+      @apply button-hover;
+      @apply border-transparent;
+      &::before {
+        @apply concave;
+        @apply opacity-30;
       }
+      opacity: 1;
+    }
+
+    &:active,
+    &[data-state='active'] {
+      @apply button-active;
+      @apply brightness-110 contrast-85;
+      @apply translate-y-[0.5px] *:translate-y-0;
+
+      > *:nth-child(2) {
+        @apply brightness-80 contrast-150 text-outset;
+      }
+      opacity: 1;
     }
   }
 
-  > *:last-child {
-    @apply rounded-l-none! rounded-r-full border-l-line-darkest w-full;
+  .button-inner {
+    @apply three-d button-base size-4 focus-none;
+    @apply absolute top-0.5 right-0.75 z-5;
+    @apply rounded-full rounded-shape;
+
+    &::before {
+      @apply rounded-full;
+    }
+
+    > * {
+      @apply size-3.5 pl-[1.5px] text-smallest leading-[13.5px];
+    }
+
+    &:hover:enabled:not(:active) {
+      @apply button-hover;
+    }
+
+    &:active:enabled,
+    &[data-state='active']:enabled {
+      @apply button-active translate-y-[0.25px] *:translate-y-0;
+    }
+
+    &:disabled {
+      @apply button-disabled;
+    }
   }
 }
 
-@property --button-gradient-highest {
-  syntax: '<color>';
-  initial-value: #000;
-  inherits: false;
+@utility three-d {
+  &::before {
+    content: '';
+    @apply bottom-layer opacity-100;
+    @apply concave;
+  }
+
+  &::after {
+    content: '';
+    @apply bottom-layer opacity-0;
+    @apply convex;
+  }
+
+  &:active:enabled,
+  &[data-state='active']:enabled {
+    &::before {
+      @apply opacity-0;
+    }
+    &::after {
+      @apply opacity-100;
+    }
+  }
 }
 
-@property --button-gradient-high {
-  syntax: '<color>';
-  initial-value: #000;
-  inherits: false;
+@utility button-base {
+  @apply border outset-xy-dim contain-strict;
+  @apply text-fg-control text-inset-shallow;
+  @apply relative flex-center truncate;
+  @apply *:relative *:dom-play;
+  @apply cursor-pointer dom-play will-change-transform select-none;
+  @apply duration-150 *:duration-250;
+
+  /** Button icon glow. */
+  path,
+  rect {
+    @apply text-fg-control dom-play;
+    fill: currentColor;
+    filter: drop-shadow(0.5px 1.5px 0.5px #fffe);
+  }
 }
 
-@property --button-gradient-low {
-  syntax: '<color>';
-  initial-value: #000;
-  inherits: false;
+@utility button-hover {
+  @apply outset-xy text-fg-control-hover/80;
+  @apply brightness-103 contrast-103 saturate-150;
+  &::before {
+    box-shadow:
+      inset -0.5px -0.5px 1.5px 0.5px #2d2b2c5f,
+      inset 0.5px 0.5px 1px 0.75px #fcfdfeda,
+      inset -1px -1.5px 3.5px 1.5px #56505418,
+      inset 1px 1px 2px 1.25px #fcfdfeaa;
+  }
 }
 
-@property --button-gradient-lowest {
-  syntax: '<color>';
-  initial-value: #000;
-  inherits: false;
+@utility button-active {
+  @apply inset-xy;
+  @apply text-ink text-outset;
+  @apply brightness-90 contrast-120;
+  @apply *:translate-y-[0.5px];
+  @apply duration-150 *:duration-150;
+
+  path,
+  rect {
+    @apply text-ink;
+    filter: drop-shadow(0 -1px 0.75px #fff);
+  }
+}
+
+@utility button-disabled {
+  @apply text-fg-control-disabled;
+  @apply brightness-110 contrast-75 saturate-0;
+
+  path,
+  rect {
+    @apply text-fg-control-disabled;
+    fill: currentColor;
+    filter: drop-shadow(0px 0px 0px #fff0);
+  }
+}
+
+@utility concave {
+  background: linear-gradient(
+    var(--button-gradient-highest-base),
+    var(--button-gradient-high-base) 25%,
+    var(--button-gradient-low-base) 70%,
+    var(--button-gradient-lowest-base) 100%
+  );
+}
+
+@utility convex {
+  background: linear-gradient(
+    var(--button-gradient-highest-active),
+    var(--button-gradient-high-active) 20%,
+    var(--button-gradient-low-active) 80%,
+    var(--button-gradient-lowest-active) 100%
+  );
+}
+
+@utility bottom-layer {
+  @apply absolute-full -z-1 dom-play duration-300;
 }

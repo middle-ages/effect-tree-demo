@@ -1,25 +1,21 @@
 @layer base {
   input {
-    @apply border-[1.5px] inset-xy-dim h-row-smaller leading-row-small pt-0.5;
+    @apply border-[1.5px] inset-xy-dim;
+    @apply text-ink/85;
 
     &:hover {
-      @apply input-control-hover inset-xy;
-
-      &::-webkit-inner-spin-button {
-        @apply brightness-120 contrast-90;
-      }
+      @apply inset-xy input-control-hover;
     }
 
     &::-webkit-inner-spin-button {
-      @apply contrast-80 brightness-160 dom-play cursor-pointer
-             leading-row;
-      transform: scaleY(82%);
-      margin-left: calc(1 * var(--spacing));
+      @apply -mr-0.5 ml-1 translate-y-[-0.5px] scale-[75%];
+      @apply contrast-80;
+      @apply cursor-pointer dom-play;
       opacity: 1 !important;
     }
 
     &:focus {
-      @apply input-control-focus inset-xy;
+      @apply inset-xy input-control-focus;
     }
   }
 }

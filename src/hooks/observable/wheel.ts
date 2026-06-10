@@ -1,5 +1,6 @@
 import {monoRecord} from '#Record'
-import {pipe, PointPx} from '#util'
+import {PointPx} from '#react/point'
+import {pipe} from '#Function'
 import {type WheelEvent} from 'react'
 import * as rx from 'rxjs'
 

@@ -1,0 +1,41 @@
+@theme {
+  --animate-press-button: press-button 2s ease-in-out infinite;
+  @keyframes press-button {
+    0%,
+    100% {
+      filter: brightness(100%) contrast(100%) saturate(100%);
+    }
+    30% {
+      filter: brightness(80%) contrast(120%) saturate(300%);
+      transform: translateY(1px);
+    }
+  }
+
+  --animate-press-hand: press-hand 2s ease-in-out infinite;
+  @keyframes press-hand {
+    0%,
+    100% {
+      transform: translateY(0px);
+      filter: drop-shadow(0 1px 3px #00000060);
+    }
+    30% {
+      transform: translateY(1.5px);
+      filter: drop-shadow(0 0.5px 1px #000000e0);
+    }
+  }
+
+  --animate-shake-dice: shake-dice 1s ease-in-out 3;
+  @keyframes shake-dice {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
+  }
+}
+
+@utility bounce {
+  transition-timing-function: cubic-bezier(0.44, 1.56, 0.64, 1);
+}

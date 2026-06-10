@@ -1,0 +1,162 @@
+@layer components {
+  .radio {
+    @apply cursor-pointer dom-play;
+    @apply flex gap-1.75;
+
+    /** Radio label. */
+    > *:first-child {
+      @apply w-11 no-flex text-right dom-play;
+      @apply text-fg-control-hover/65;
+      @apply text-[14px] leading-6.25 text-inset-shallow;
+      letter-spacing: 1.75px !important;
+    }
+
+    &:has(input:checked) {
+      > *:first-child {
+        @apply font-medium;
+        letter-spacing: 0px;
+        @apply text-fg-control-hover/70;
+      }
+    }
+
+    &:active:has(input:checked) {
+      > *:first-child {
+        @apply text-ink;
+      }
+    }
+
+    &:hover:not(:active):has(input:checked) {
+      > *:first-child {
+        @apply text-ink/85;
+      }
+    }
+
+    &:active {
+      > *:first-child {
+        @apply text-ink;
+      }
+
+      .radio-input {
+        > input {
+          @apply inset-xy bg-dark/50;
+          @apply brightness-85 saturate-200;
+        }
+
+        > input:checked + .radio-dot {
+          > *:first-child {
+            @apply brightness-80 contrast-200;
+            box-shadow:
+              inset -1px -1px 1px 0.5px #ccfa,
+              inset -1.5px -1.5px 2px 1.5px #bbfe,
+              inset 0.5px 0.5px 1px 0.5px #0028,
+              inset 1.5px 1.5px 2px 1.5px #1133;
+            &::before {
+              opacity: 0;
+            }
+            &::after {
+              opacity: 0;
+            }
+          }
+        }
+      }
+
+      .radio-dot {
+        > *:first-child {
+          @apply inset-xy saturate-150;
+          &::before {
+            @apply opacity-0;
+          }
+          &::after {
+            @apply opacity-100;
+          }
+        }
+      }
+    }
+
+    &:hover:not(:active) {
+      > *:first-child {
+        @apply text-ink/80;
+      }
+
+      .radio-input {
+        > input {
+          @apply inset-xy bg-app;
+          @apply saturate-180;
+        }
+      }
+
+      .radio-dot {
+        > *:first-child {
+          @apply outset-xy;
+          @apply brightness-70 contrast-250 saturate-120;
+        }
+      }
+    }
+  }
+
+  /** Radio input parent. */
+  .radio-input {
+    @apply relative flex-center size-full flex-1 dom-play;
+
+    /** Radio input. */
+    > input {
+      @apply appearance-none dom-play;
+      @apply border-[1.5px] inset-xy-dimmer;
+      @apply size-6;
+      @apply bg-paper/60;
+      @apply checked:bg-paper;
+      @apply outline-0 outline-offset-[-1.5px] outline-blue-600;
+      @apply inset-ring-0 inset-ring-blue-300;
+      @apply focus:outline-[1.5px];
+      @apply focus:inset-ring-2;
+    }
+
+    > input:checked + .radio-dot {
+      > *:first-child {
+        @apply bg-blue-200;
+        box-shadow:
+          inset -1px -1px 1.5px 1px #0033,
+          inset 1px 1px 1px 0.75px #eef7;
+        &::before {
+          opacity: 0;
+        }
+        &::after {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .radio-dot {
+    @apply absolute-full grid-center dom-play;
+
+    > *:first-child {
+      @apply relative box-content size-2.5 bg-transparent dom-play;
+      @apply squircle-input border-[1.5px] outset-xy-dim;
+      @apply brightness-80 contrast-170 saturate-80;
+      &::before {
+        content: '';
+        @apply absolute-full squircle-input dom-play;
+        @apply opacity-100;
+
+        background: radial-gradient(
+          farthest-corner at 35% 40%,
+          #e1e3e5 0,
+          #cdc9cb 70%,
+          #a9a7a8 100%
+        );
+      }
+      &::after {
+        content: '';
+        @apply absolute-full squircle-input dom-play;
+        @apply opacity-0;
+        background: radial-gradient(
+          farthest-corner at 75% 80%,
+          #d5d3d4 0,
+          #bdb9bb 60%,
+          #797778 100%
+        );
+      }
+    }
+  }
+}

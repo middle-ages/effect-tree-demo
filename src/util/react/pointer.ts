@@ -1,4 +1,4 @@
-import {type Predicate} from 'effect'
+import {type Predicate} from 'effect/Predicate'
 import {type MouseEvent, type PointerEvent} from 'react'
 import * as rx from 'rxjs'
 
@@ -12,7 +12,14 @@ export const pointerButtonId: Record<PointerButton, number> = {
   auxiliary: 2,
 }
 
+/**
+ * Button `up` or `down` state.
+ */
 export type ButtonState = (typeof pointerButtonState)[number]
+
+/**
+ * Identifier of mouse button: 'primary', 'secondary', or 'auxiliary'.
+ */
 export type PointerButton = (typeof pointerButtons)[number]
 
 export interface ButtonNotification {
@@ -46,18 +53,27 @@ export interface ButtonNotification {
  * True if the given pointer event comes from inside the
  * element where the listener was attached.
  */
-export const isEventOverElement: Predicate.Predicate<ButtonEvent> = ({
-  target,
-  clientX,
-  clientY,
-}) => {
-  if (clientX === 0 && clientY === 0) {
+export const isEventOverElement: Predicate<{
+  target: EventTarget | null
+  clientX: number
+  clientY: number
+}> = ({target, clientX, clientY}) => {
+  if (target === null) {
+    return false
+  } else if (clientX === 0 && clientY === 0) {
     return true
   }
+
   const hit = document.elementFromPoint(clientX, clientY) as HTMLElement
   const element = target as HTMLElement
   return hit === element || element.contains(hit)
 }
+
+/**
+ * True if the given event has no buttons pressed.
+ */
+export const noButtonsPressed: Predicate<MouseEvent> = event =>
+  event.buttons === 0
 
 /**
  * True if the given event has the specified pointer button in down state.
@@ -91,3 +107,18 @@ export const fromDoubleClick = (
   element: HTMLElement,
 ): rx.Observable<MouseEvent<HTMLElement>> =>
   rx.fromEvent<MouseEvent<HTMLElement>>(element, 'dblclick')
+
+export const fromMouseEnter = (
+  element: HTMLElement,
+): rx.Observable<MouseEvent<HTMLElement>> =>
+  rx.fromEvent<MouseEvent<HTMLElement>>(element, 'mouseenter')
+
+export const fromMouseLeave = (
+  element: HTMLElement,
+): rx.Observable<MouseEvent<HTMLElement>> =>
+  rx.fromEvent<MouseEvent<HTMLElement>>(element, 'mouseleave')
+
+export const fromMouseMove = (
+  element: HTMLElement,
+): rx.Observable<MouseEvent<HTMLElement>> =>
+  rx.fromEvent<MouseEvent<HTMLElement>>(element, 'mousemove')

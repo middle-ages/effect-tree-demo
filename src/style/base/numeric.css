@@ -1,17 +1,42 @@
 @utility numeric-base {
-  @apply font-serif text-smaller
-         input-control dom-play squircle;
+  @apply relative text-left font-serif dom-play;
+  @apply h-5.5 w-full pt-0.5 text-smaller leading-row-small;
 }
 
 @layer base {
   input,
-  .numeric-view,
   .numeric {
-    @apply numeric-base;
-    transition-duration: 150ms;
+    @apply numeric-base squircle-input input-control dom-play;
+  }
+}
+
+@layer components {
+  .numeric-view {
+    @apply numeric-base relative px-1 leading-row-smaller;
+    @apply squircle-input bg-transparent;
+    &::after {
+      content: '';
+      @apply absolute top-[2.5px] right-0.5 left-0 -z-1 py-[0.5px];
+      @apply bg-fg-control/20 opacity-90;
+      @apply rounded-[1.5px] border inset-xy-dim;
+      @apply translate-y-4;
+    }
   }
 
-  .numeric-view {
-    @apply lighter-border border;
+  .bigint-input {
+    direction: rtl;
+    &:focus {
+      direction: ltr;
+    }
+  }
+
+  .numeric-input {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    -moz-appearance: textfield;
+    appearance: textfield;
   }
 }

@@ -1,4 +1,4 @@
-import type {StyledPropsWithChildren} from '#util'
+import type {StyledPropsWithChildren} from '#react/props'
 import {twMerge} from 'tailwind-merge'
 
 const paper =
@@ -13,12 +13,13 @@ export const Link = ({children, className, href, ...rest}: Props) => (
   <a
     {...rest}
     href={href.toString()}
+    rel='noreferrer'
     className={twMerge(
-      'inline-block w-fit squircle h-5 my-1',
-      'text-smaller leading-5 whitespace-nowrap',
+      'my-1 ml-1 block h-4 w-20 squircle px-1',
+      'text-smaller whitespace-nowrap contain-strict',
       className,
     )}
-    target="_blank">
+    target='_blank'>
     {children}
   </a>
 )
@@ -27,7 +28,6 @@ Link.PruferPaper = () => {
   return (
     <Link
       href={new URL(paper)}
-      className="px-1"
       title="“Prüfer Encoding and a Proof of Cayley's Tree Formula”">
       Prüfer Code
     </Link>

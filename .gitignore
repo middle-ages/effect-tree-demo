@@ -6,7 +6,5 @@ tmp
 .npmrc
 .tsconfig.tsbuildinfo
 storybook-static
-*storybook.log
 .eslintcache
-api-docs
 public/style.css

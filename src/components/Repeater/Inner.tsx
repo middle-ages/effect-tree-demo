@@ -1,30 +1,36 @@
+import {noop} from '#Function'
 import {Button} from '#Button'
+import type {StyledProps} from '#react/props'
 import type {RefCallback} from 'react'
+import {twMerge} from 'tailwind-merge'
 
-interface Props {
+export interface InnerProps extends StyledProps {
   id: string
-  ref: RefCallback<HTMLElement>
+  ref?: RefCallback<HTMLElement>
   isRepeating: boolean
   isDisabled?: boolean
   onClick: () => void
 }
 
-export const Inner = ({
-  id,
-  ref,
-  isRepeating: isActive,
-  onClick,
-  isDisabled = false,
-}: Props) => (
+const _Inner = ({id, isRepeating: isActive, ...props}: InnerProps) => (
   <Button
-    {...{id, ref, isActive, isDisabled, onClick}}
+    {...{...props, isActive}}
+    id={`${id}-inner`}
     isFocusable={false}
-    className={`size-3.5 p-[0.5px] border rounded-shape rounded-full
-                *:bg-fg-control-disabled
-                hover:not(:disabled):*:bg-fg-control
-                active:not(:disabled)::*:bg-ink
-                duration-300 *:duration-300 outline-none`}
-    title="Click or hold outside to repeat.">
-    <div className="arrow-circle size-full" />
+    isAnchor={false}
+    baseClassName='button-inner'>
+    <div>⟳</div>
   </Button>
 )
+
+export const Inner = Object.assign(_Inner, {
+  Thumbnail: ({className, style}: StyledProps) => (
+    <span
+      className={twMerge(
+        'relative -mr-0.5 inline-block h-3.75 w-5',
+        className,
+      )}>
+      <_Inner id='none' isRepeating={false} {...{style}} onClick={noop} />
+    </span>
+  ),
+})

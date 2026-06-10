@@ -1,17 +1,15 @@
-import {subscribe} from './observable/helpers'
-import {noop} from '#Function'
-import {pipe, PointPx} from '#util'
+import {pipe, noop} from '#Function'
 import {useBoolean} from '#useBoolean'
+import {PointPx} from '#react/point'
 import {useCallback, useState, type RefCallback} from 'react'
 import * as rx from 'rxjs'
 import {
   dragObservable,
   matchDrag,
-  type DragMove as _DragMove,
+  type DragMove,
   type DragNotification,
 } from './observable/drag'
-
-export type DragMove = _DragMove
+import {subscribe} from './observable/helpers'
 
 export interface UseDrag extends DragMove {
   isDragging: boolean
@@ -30,9 +28,7 @@ export const useDrag = (
 
   const ref = useCallback(
     (element: HTMLElement | null): (() => void) => {
-      if (element === null) {
-        return noop
-      }
+      if (element === null) return noop
 
       const observable: rx.Observable<DragNotification> = pipe(
         element,

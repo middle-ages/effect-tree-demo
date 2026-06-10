@@ -22,3 +22,5 @@ export const K =
   <T>(value: T): LazyArg<T> =>
   () =>
     value
+
+export type {PartialOrUndefined} from './util/Object'

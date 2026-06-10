@@ -9,11 +9,11 @@ import {
   type ButtonNotification,
   type PointerButton,
 } from '#pointer'
-import {identity, pipe} from '#util'
+import {identity, pipe} from '#Function'
 import * as rx from 'rxjs'
 
 const repeatDelayMs = 600
-const repeatTickMs = 16
+const repeatTickMs = 100
 
 export const buttonObservable =
   (button: PointerButton) =>
@@ -60,10 +60,9 @@ const repeatButtonObservable = (
   return rx.merge(
     down,
     pipe(
-      rx.interval(repeatTickMs),
-      rx.skipUntil(
-        pipe(down, delayRepeat ? rx.delay(repeatDelayMs) : identity),
-      ),
+      down,
+      delayRepeat ? rx.delay(repeatDelayMs) : identity,
+      rx.switchMap(() => rx.interval(repeatTickMs)),
       rx.takeUntil(until),
       rx.mergeMap(index => {
         const element = weakElement.deref()

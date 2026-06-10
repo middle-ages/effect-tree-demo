@@ -1,8 +1,8 @@
-import {subscribe} from './observable/helpers'
-import {noop} from '#Function'
-import {pipe, SizePx} from '#util'
+import {noop, pipe} from '#Function'
+import {SizePx} from '#react/size'
 import {useCallback, useState, type RefCallback} from 'react'
 import * as rx from 'rxjs'
+import {subscribe} from './observable/helpers'
 import {resizeObservable} from './observable/resize'
 
 export interface UseMeasure {
@@ -10,8 +10,8 @@ export interface UseMeasure {
   sizePx: SizePx
 }
 
-export const useMeasure = (addSizePx = SizePx.zero): UseMeasure => {
-  const [sizePx, setSizePx] = useState(addSizePx)
+export const useMeasure = (onChange?: (sizePx: SizePx) => void): UseMeasure => {
+  const [sizePx, setSizePx] = useState(SizePx.zero)
 
   const ref = useCallback(
     (element: HTMLElement | null): (() => void) => {
@@ -21,15 +21,15 @@ export const useMeasure = (addSizePx = SizePx.zero): UseMeasure => {
       const observable: rx.Observable<SizePx> = pipe(
         element,
         resizeObservable,
-        rx.map(SizePx.add(addSizePx)),
         rx.tap(size => {
           setSizePx(old => (SizePx.equals(old, size) ? old : size))
+          onChange?.(size)
         }),
       )
 
       return subscribe(observable)
     },
-    [addSizePx],
+    [onChange],
   )
 
   return {sizePx, ref}

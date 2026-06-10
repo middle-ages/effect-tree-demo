@@ -1,5 +1,7 @@
-import {flow, pipe, Predicate, String} from 'effect'
+import {flow, pipe} from 'effect/Function'
 import * as tty from 'tty-strings'
+import * as Predicate from 'effect/Predicate'
+import * as String from 'effect/String'
 import * as Array from './Array'
 import {type EndoOf} from './Function'
 import * as Number from './Number'

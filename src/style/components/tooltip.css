@@ -1,0 +1,83 @@
+@custom-variant @tooltip-overflow {
+  @supports (container-type: anchored) {
+    @container anchored(fallback: flip-block) {
+      @slot;
+    }
+  }
+}
+
+@utility tooltip-bottom {
+  position-area: block-end;
+  position-visibility: anchors-visible;
+  position-try: flip-block;
+  container-type: anchored;
+
+  > *:first-child {
+    @apply tooltip-shape-bottom;
+    @apply @tooltip-overflow:tooltip-shape-top;
+    @apply @tooltip-overflow:pt-2 @tooltip-overflow:pb-5.5;
+  }
+}
+
+@layer components {
+  .tooltip-popover {
+    @apply pointer-events-none dom-play bounce;
+    --transition-duration: 200ms;
+
+    > .tooltip {
+      @apply dom-play bounce;
+      @apply fixed origin-bottom;
+      @apply size-fit overflow-hidden;
+      @apply tooltip-bottom;
+      @apply drop-shadow-md drop-shadow-ink/30;
+
+      > * {
+        @apply dom-play bounce;
+        @apply max-h-fit w-full;
+        @apply bg-yellow-50 px-2.5;
+        @apply pt-5.5 pb-2;
+        @apply text-small leading-4.75;
+        @apply starting:-translate-y-full starting:opacity-0;
+      }
+    }
+
+    &:not(:popover-open) {
+      > .tooltip {
+        > * {
+          @apply -translate-y-full opacity-0;
+        }
+      }
+    }
+  }
+}
+
+/*
+
+        @apply @tooltip-overflow:pt-1.5 @tooltip-overflow:pb-5.5;
+
+
+
+
+
+    &:not(:popover-open) {
+      *:last-child {
+        @apply scale-0;
+      }
+    }
+    &:popover-open {
+      @apply bounce! *:*:bounce! *:bounce!;
+    }
+
+    
+    &:not(:popover-open) {
+      @apply ease-out! *:*:ease-out! *:ease-out!;
+      > .infotip,
+      > .tooltip-frame {
+        @apply scale-0;
+      }
+      .tooltip > *:first-child {
+        @apply -translate-y-full bounce;
+        --transition-duration: 5000ms;
+      }
+    }
+    */

@@ -1,4 +1,6 @@
-import {Either, identity, pipe, Tuple} from 'effect'
+import * as Either from 'effect/Either'
+import {identity, pipe} from 'effect/Function'
+import * as Tuple from 'effect/Tuple'
 
 export type Pair<A> = readonly [A, A]
 

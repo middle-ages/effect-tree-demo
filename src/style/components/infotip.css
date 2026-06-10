@@ -1,0 +1,38 @@
+@layer components {
+  .infotip-popover {
+    @apply dom-play bounce *:dom-play *:bounce;
+    --transition-duration: 1000ms;
+
+    > * {
+      @apply fixed starting:scale-0;
+    }
+
+    &:not(:popover-open) > * {
+      @apply scale-0;
+    }
+
+    > *:first-child {
+      @apply origin-bottom overflow-hidden bg-transparent;
+      @apply drop-shadow-md drop-shadow-ink/30;
+      @apply *:dom-play *:bounce;
+      > * {
+        @apply tooltip-shape-top;
+        transform: translateY(-2.5px);
+        @apply max-w-60;
+        @apply pt-px pb-5;
+        @apply leading-row-smaller tracking-[1%];
+        @apply bg-yellow-50 px-2.5;
+      }
+
+      position-area: block-start;
+    }
+
+    > *:last-child {
+      @apply pointer-events-none;
+      @apply z-10 size-full;
+      @apply rounded-xs outline-2 outline-offset-[0.5px] outline-yellow-50;
+      @apply drop-shadow drop-shadow-ink/40;
+      position-area: center;
+    }
+  }
+}

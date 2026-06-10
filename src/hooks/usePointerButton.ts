@@ -1,6 +1,4 @@
-import {identity, noop, type EndoOf} from '#Function'
-import {pipe} from '#util'
-import {subscribe} from './observable/helpers'
+import {pipe, identity, noop, type EndoOf} from '#Function'
 import {
   type ButtonNotification,
   type ButtonState,
@@ -9,13 +7,16 @@ import {
 import {useCallback, useState, type RefCallback} from 'react'
 import * as rx from 'rxjs'
 import {buttonObservable} from './observable/button'
+import {subscribe} from './observable/helpers'
 
 export interface PointerState {
+  /** `up` or `down` state of a mouse button. */
   buttonState: ButtonState
   isRepeating: boolean
 }
 
 export const usePointerButton = (
+  /** Identify the button to track. */
   button: PointerButton,
   {
     project = identity,
@@ -63,13 +64,14 @@ export const usePrimaryButton = (
   usePointerButton('primary', {project})
 
 export const useRepeatButton = (
-  onClick?: () => void,
+  onClick?: (state: PointerState) => void,
   delayRepeat = true,
 ): [PointerState, RefCallback<HTMLElement>] =>
   usePointerButton('primary', {
-    project: rx.tap(({isClick}: ButtonNotification) => {
+    project: rx.tap<ButtonNotification>(event => {
+      const {isClick} = event
       if (isClick) {
-        onClick?.()
+        onClick?.({buttonState: event.state, isRepeating: event.isRepeating})
       }
     }),
     isRepeat: true,
@@ -77,5 +79,5 @@ export const useRepeatButton = (
   })
 
 export const useImmediateRepeatButton = (
-  onClick?: () => void,
+  onClick?: (notification: PointerState) => void,
 ): [PointerState, RefCallback<HTMLElement>] => useRepeatButton(onClick, false)

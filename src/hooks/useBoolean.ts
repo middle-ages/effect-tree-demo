@@ -1,5 +1,5 @@
-import type {Dispatcher} from '#util'
-import {Boolean} from 'effect'
+import type {Dispatcher} from '#react/props'
+import {not} from 'effect/Boolean'
 import {useCallback, useState} from 'react'
 
 export interface UseBoolean {
@@ -25,7 +25,7 @@ export const useBoolean = (init = false): UseBoolean => {
     }, []),
 
     flip: useCallback((): void => {
-      setFlag(Boolean.not)
+      setFlag(not)
     }, []),
   }
 }

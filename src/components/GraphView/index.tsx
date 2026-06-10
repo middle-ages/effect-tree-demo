@@ -1,50 +1,35 @@
-import {useMeasure} from '#useMeasure'
-import {useMergeRefPair} from '#useMergeRefs'
 import {useZoomPan} from '#useZoomPan'
-import {PointPx, type StyledProps} from '#util'
-import {Graphviz} from '@hpcc-js/wasm-graphviz'
-import {use, useMemo} from 'react'
+import {type StyledProps} from '#react/props'
+import {PointPx} from '#react/point'
 import {twMerge} from 'tailwind-merge'
-import {dotToSvg} from './dotToSvg'
 
 interface Props extends StyledProps {
-  dot: string
+  svg: string
 }
 
-const graphvizLoading: Promise<Graphviz> = Graphviz.load()
-
-export const GraphView = ({dot, className, style}: Props) => {
-  const graphviz = use(graphvizLoading)
-
-  const {ref: measureRef, sizePx: availablePx} = useMeasure()
-
-  const {svg} = useMemo(
-    () => dotToSvg(graphviz)(dot, availablePx),
-    [availablePx, dot, graphviz],
-  )
-
-  const {ref: zoomPanRef, isDragging, scale, translatePx, reset} = useZoomPan()
+export const GraphView = ({svg, className, style}: Props) => {
+  const {ref, isDragging, scale, translatePx, reset} = useZoomPan()
 
   const transform = [
     PointPx.translate(translatePx),
     `scale(${scale.toFixed(2)})`,
   ].join(' ')
 
-  const ref = useMergeRefPair(measureRef, zoomPanRef)
-
   return (
     <div
+      // Double click resets zoom.
       onDoubleClick={reset}
       className={twMerge(
-        'fill-container flex justify-center',
-        isDragging ? 'cursor-grabbing' : 'cursor-grab',
+        'rounded-md border-[1.5px] inset-xy-dim hover:inset-xy',
+        'bg-paper contain-strict',
+        className,
       )}
       {...{ref}}>
       <div
         className={twMerge(
-          'origin-top-left',
-          !isDragging && 'dom-play ease-linear',
-          className,
+          'flex fill-container origin-top-left justify-center contain-strict',
+          'duration-150 ease-linear',
+          isDragging ? 'cursor-grabbing' : 'cursor-grab dom-play',
         )}
         dangerouslySetInnerHTML={{__html: svg}}
         style={{transform, ...style}}

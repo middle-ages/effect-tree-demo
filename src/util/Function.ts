@@ -1,4 +1,4 @@
-import type {LazyArg, FunctionN} from 'effect/Function'
+import {constVoid, type LazyArg, type FunctionN} from 'effect/Function'
 
 export * from 'effect/Function'
 
@@ -54,7 +54,7 @@ export const flipCurried =
     f(a)(b)
 
 /** Do nothing, short for `no operator`. */
-export const noop = (..._: unknown[]): void => {}
+export const noop = constVoid
 
 /**
  * Alias for `constant`.

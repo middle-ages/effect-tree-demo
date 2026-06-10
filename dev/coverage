@@ -4,6 +4,7 @@ set -Eeuo pipefail
 
 COLOR="${COLOR:-true}"
 
+# shellcheck source=dev/lib/_
 . "$(dirname "${0}")/lib/_"
 
 vitest run --config "$CONFIG_DIR"/vitest.config.ts --coverage "$@"

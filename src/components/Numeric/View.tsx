@@ -1,60 +1,62 @@
-import {bigCommaFormat} from '#Number'
-import {useMeasure} from '#useMeasure'
-import {px, type Identified} from '#util'
-import {twMerge} from 'tailwind-merge'
+import {anchorName} from '#Css'
 import {
   formatExponential,
-  measureCommaFormattedWidth,
+  isCommaFormattedOverflow,
   type MeasureOptions,
-} from './measure'
+} from '#measure'
+import {bigCommaFormat} from '#Number'
+import {selectLeftWidthPx, useAppSelector} from '#store'
+import {useTooltip} from '#Tooltip'
+import type {ReactNode} from 'react'
+import {twMerge} from 'tailwind-merge'
 
-export interface NumericViewProps extends Identified {
-  title: string
+export interface NumericViewProps {
+  id: string
+  title?: ReactNode
   value: string
 }
 
-const padding = 1 * 4
+const prefixTextWidth = 16.5 * 4
+const [edgeWidthPx, minWidthPx] = [prefixTextWidth + 2 * 9.5 + 3.5, 264]
 
 const options: Partial<MeasureOptions> = {
   isFlat: true,
-  padPx: 2 * padding,
+  padPx: 0,
   showSpinner: false,
 }
 
 export const NumericView = ({
-  title: propsTitle,
+  id,
+  title,
   value: stringValue,
   ...props
 }: NumericViewProps) => {
-  const {
-    ref,
-    sizePx: {widthPx: availablePx},
-  } = useMeasure()
+  const storedWidthPx = useAppSelector(selectLeftWidthPx)
+  const availableWidthPx = Math.max(storedWidthPx - edgeWidthPx, minWidthPx)
   const value = BigInt(stringValue)
-  const measuredPx = measureCommaFormattedWidth(options)(value)
-  const isOverflow = measuredPx >= availablePx
+  const isOverflow = isCommaFormattedOverflow(options)(value, availableWidthPx)
   const commaFormatted = bigCommaFormat(value)
 
   const formatted = isOverflow
-    ? formatExponential(options)(availablePx, value)
+    ? formatExponential(options)(availableWidthPx, value)
     : commaFormatted
 
+  const {ref, tooltip, isOpen: isHover} = useTooltip({id, title})
+  const isOpen = title !== undefined && isHover
+
   return (
-    <div {...{ref}}>
+    <div className='contents'>
       <div
-        {...props}
-        title={propsTitle + commaFormatted}
-        style={{
-          width: Math.min(availablePx, measuredPx),
-          paddingLeft: px(padding),
-          paddingRight: px(padding),
-        }}
+        {...{...props, id, ref}}
         className={twMerge(
-          'numeric-view h-row-smaller leading-row-smaller px-1',
-          isOverflow && 'text-center',
-        )}>
+          'numeric-view inset-shadow-[0px_6px_16px] inset-shadow-transparent',
+          isOverflow && 'text-left',
+          isOpen && 'text-ink inset-shadow-yellow-50',
+        )}
+        style={anchorName(id)}>
         {formatted}
       </div>
+      {tooltip}
     </div>
   )
 }

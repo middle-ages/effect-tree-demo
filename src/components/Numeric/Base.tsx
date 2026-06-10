@@ -1,58 +1,77 @@
-import {useClampedListener} from '#useClampedListener'
-import {px, type Identified, type StyledProps} from '#util'
+import {anchorName, px} from '#Css'
+import {clampBigInput, clampNumericInput} from '#Number'
+import {type StyledProps} from '#react/props'
+import {useTooltip} from '#Tooltip'
+import {useMergeWithRefObject} from '#useMergeRefs'
+import {useMemo, type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
-import {computeWidth} from './measure'
+import {useOnChange} from './useOnChange'
 
-export interface Props<N extends number | string>
-  extends StyledProps,
-    Identified {
+export interface Props<N extends number | string> extends StyledProps {
+  id: string
   min: N
   max: N
   value: N
-  title: string
+  title?: ReactNode
   onChange: (n: N, index: number) => void
-  spacingLeft?: number
-  spacingRight?: number
-  maximized?: boolean
-  showSpinner?: boolean
+  spacingLeftPx?: number
+  spacingRightPx?: number
 }
 
 export const Base = <N extends number | string>({
-  value: rawValue,
+  id,
+  value,
   min,
   max,
   onChange: propsOnChange,
   style,
-  spacingLeft = 0,
-  spacingRight = 0,
-  maximized = false,
-  showSpinner = false,
+  spacingLeftPx = 0,
+  spacingRightPx = 0,
+  title,
   className,
   ...props
 }: Props<N>) => {
-  const onChange = useClampedListener([min, max], propsOnChange)
+  const isNumeric =
+    typeof min === 'number' &&
+    typeof max === 'number' &&
+    typeof value === 'number'
 
-  const value = rawValue.toString()
-  const width = computeWidth({
-    isFlat: false,
-    padPx: 4 * (spacingLeft + spacingRight),
-    showSpinner,
-  })(value)
+  const clamp = useMemo(
+    () => (isNumeric ? clampNumericInput : clampBigInput)({min, max}),
+    [isNumeric, max, min],
+  )
+
+  const {ref: hoverRef, tooltip, isOpen: isHover} = useTooltip({id, title})
+  const isOpen = title !== undefined && isHover
+  const {
+    ref: changeRef,
+    defaultValue,
+    onChange,
+  } = useOnChange({value, min, max, onChange: propsOnChange})
+  const ref = useMergeWithRefObject(hoverRef, changeRef)
 
   return (
-    <input
-      type={showSpinner ? 'number' : 'text'}
-      className={twMerge(showSpinner ? 'text-right' : 'text-center', className)}
-      {...(showSpinner && {inputMode: 'numeric'})}
-      {...props}
-      {...{value, onChange}}
-      style={{
-        textOverflow: 'ellipsis',
-        width: maximized ? `min(${width}, 100%)` : width,
-        paddingLeft: px(4 * spacingLeft),
-        paddingRight: px(4 * spacingRight),
-        ...style,
-      }}
-    />
+    <div className='contents'>
+      <input
+        {...{...props, ref, defaultValue, onChange}}
+        name={id}
+        onInput={clamp}
+        className={twMerge(
+          isNumeric && 'numeric-input',
+          isOpen && 'bg-yellow-50 text-ink',
+          className,
+        )}
+        inputMode='numeric'
+        type={isNumeric ? 'number' : 'text'}
+        style={{
+          ...anchorName(id),
+          textOverflow: 'ellipsis',
+          paddingLeft: px(4 * spacingLeftPx),
+          paddingRight: px(4 * spacingRightPx),
+          ...style,
+        }}
+      />
+      {title !== undefined && tooltip}
+    </div>
   )
 }

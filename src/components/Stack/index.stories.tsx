@@ -16,7 +16,7 @@ const meta = {
   },
   args: {
     top: 'c',
-    children: {
+    subNodes: {
       a: 'a',
       b: 'b',
       c: 'c',

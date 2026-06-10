@@ -1,0 +1,73 @@
+@layer components {
+  .pill-panel {
+    @apply mx-[1.5px] flex h-6 w-[calc(100%-4px)] p-px;
+    @apply inset-xy-dimmer;
+    @apply bg-fg-control-disabled/15;
+    @apply relative z-20 squircle-full border;
+    @apply contain-layout;
+
+    > .head-button,
+    > .middle-button,
+    > .last-button {
+      @apply w-full flex-1;
+    }
+
+    > .head-button {
+      @apply z-1 squircle-left;
+      &::before,
+      &::after {
+        @apply squircle-left;
+      }
+      &:focus-visible {
+        @apply z-5;
+      }
+    }
+
+    > .last-button {
+      @apply squircle-right;
+      &::before,
+      &::after {
+        @apply squircle-right;
+      }
+    }
+
+    > .middle-button {
+      @apply z-0 min-w-9.5;
+      @apply squircle *:first:squircle;
+      &::before,
+      &::after,
+      > *:first-child::before,
+      > *:first-child::after {
+        @apply squircle;
+      }
+      &:focus-visible {
+        @apply z-5;
+      }
+    }
+
+    > .head-button,
+    > .last-button {
+      @apply min-w-8.5;
+    }
+
+    .cross-pill {
+      @apply relative z-20 mx-[-1rch] px-2.5;
+      @apply rounded-[1rch/30%]!;
+      @apply border-l-line-darkest;
+
+      &:active {
+        @apply border-r-line-light border-l-line-light;
+      }
+
+      &:focus-visible {
+        @apply z-5 ring-[1px] ring-blue-600/80;
+        @apply outline-blue-300/90;
+      }
+
+      &::before,
+      &::after {
+        @apply rounded-[1rch/30%]!;
+      }
+    }
+  }
+}

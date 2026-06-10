@@ -10,6 +10,9 @@ export interface StoryFrameProps {
   storyFrameClass?: string
 }
 
+/**
+ * Gallery view for a single story.
+ */
 export const GalleryFrame = ({
   index,
   name,
@@ -17,16 +20,16 @@ export const GalleryFrame = ({
   topIndex,
   storyFrameClass,
 }: StoryFrameProps) => (
-  <div className="flex flex-col gap-px h-min overflow-hidden">
+  <div className='flex h-min flex-col gap-px overflow-hidden'>
     <OrdinalLabel
       ordinal={index}
-      label={<div className="text-fg-control tracking-wide">{name}</div>}
+      label={<div className='tracking-wide text-fg-control'>{name}</div>}
       topOrdinal={topIndex}
-      className="ml-1"
+      className='ml-1'
     />
     <div
       className={twMerge(
-        'w-fit p-2 border border-line-light',
+        'w-fit border border-line-light p-2',
         storyFrameClass,
       )}>
       <Story />

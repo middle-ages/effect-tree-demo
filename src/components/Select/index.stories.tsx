@@ -50,9 +50,8 @@ const meta = {
     }
     return (
       <label
-        className={`h-row flex-center-gap text-fg-control
-                         *:last:leading-row-smallest`}>
-        <div className="truncate w-fit leading-row">{label}</div>
+        className={`flex-center-gap h-row text-fg-control *:min-w-fit *:last:max-w-1/2 *:last:leading-row-smallest`}>
+        <div className='truncate leading-row'>{label}</div>
         <Component {...props} {...{value, onChange, label}} />
       </label>
     )

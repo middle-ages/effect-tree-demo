@@ -1,6 +1,6 @@
 @custom-variant @can-scroll-up {
   @supports (container-type: scroll-state) {
-    @container scroll-state(scrollable: bottom) {
+    @container scroll-state(scrollable: top) {
       @slot;
     }
   }
@@ -16,7 +16,7 @@
 
 @custom-variant @can-scroll-down {
   @supports (container-type: scroll-state) {
-    @container scroll-state(scrollable: top) {
+    @container scroll-state(scrollable: bottom) {
       @slot;
     }
   }
@@ -31,51 +31,81 @@
 }
 
 @utility scroll-area {
-  @apply scroll-container dom-play *:dom-play;
-  scrollbar-color: var(--color-line-darkest) transparent;
+  container-type: size scroll-state;
+  scrollbar-color: #cacacc #f0f0f280;
+  scrollbar-gutter: stable;
+  @apply dom-play;
+  &:hover,
+  &:focus {
+    scrollbar-color: #888 #f9fafc80;
+  }
 }
 
 @layer components {
   .scrollable-x {
     @apply scroll-area overflow-x-scroll overflow-y-hidden;
-
     &::before {
-      @apply base-scrollable-x left-0 @can-scroll-left:set-scroll-shadow-h;
+      @apply base-shadow-x left-0 dom-play;
+      @apply @can-scroll-left:set-scroll-shadow-h-high;
     }
 
     &::after {
-      @apply base-scrollable-x right-0 @can-scroll-right:set-scroll-shadow-h;
+      @apply base-shadow-x right-0 left-full dom-play;
+      @apply @can-scroll-right:set-scroll-shadow-h-high;
     }
   }
 
   .scrollable-y {
-    @apply scroll-area relative overflow-y-auto overflow-x-hidden;
-
+    @apply scroll-area h-full overflow-y-auto;
     &::before {
-      @apply base-scrollable-y top-0 @can-scroll-down:set-scroll-shadow-top;
+      @apply shadow-top dom-play;
     }
-
     &::after {
-      @apply base-scrollable-y @can-scroll-up:set-scroll-shadow-bottom;
+      @apply shadow-bottom dom-play;
+    }
+  }
+
+  .scrollable-xy {
+    @apply scroll-area h-full overflow-x-scroll overflow-y-auto;
+    &::before {
+      @apply shadow-top dom-play;
+    }
+    &::after {
+      @apply shadow-bottom dom-play;
     }
   }
 }
 
-@utility base-scrollable-x {
-  @apply base-scrollable h-cqh w-0 top-0;
+@utility base-shadow {
+  @apply sticky z-1 block overflow-hidden transition-shadow;
+  transition-duration: calc(1.5 * var(--transition-duration));
   content: '';
 }
 
-@utility base-scrollable-y {
-  @apply base-scrollable w-cqw h-0 left-0;
-  content: '';
+@utility base-shadow-x {
+  @apply base-shadow top-0 bottom-0 h-cqh w-0;
 }
 
-@utility base-scrollable {
-  @apply block sticky z-1 dom-play duration-250 transition-shadow;
-  content: '';
+@utility base-shadow-y {
+  @apply base-shadow left-0 h-0;
 }
 
-@utility scroll-container {
-  container-type: size scroll-state;
+@utility shadow-top {
+  @apply base-shadow-y top-0;
+  @apply @can-scroll-up:set-scroll-shadow-top;
+}
+
+@utility shadow-bottom {
+  @apply base-shadow-y top-full bottom-0;
+  @apply @can-scroll-down:set-scroll-shadow-bottom;
+}
+
+@utility shadow-left {
+  @apply base-shadow-x left-0;
+  @apply @can-scroll-left:set-scroll-shadow-h;
+}
+
+@utility shadow-right {
+  @apply base-shadow-x right-0 left-full;
+  @apply @can-scroll-right:set-scroll-shadow-h;
 }

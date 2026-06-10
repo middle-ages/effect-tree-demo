@@ -1,41 +1,59 @@
-import {useClampedListener} from '#useClampedListener'
-import {px, type Identified, type StyledProps} from '#util'
+import {anchorName} from '#Css'
+import {clampNumericInput} from '#Number'
+import {type StyledProps} from '#react/props'
+import {useTooltip} from '#Tooltip'
+import {useMergeWithRefObject} from '#useMergeRefs'
+import {useMemo, type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
-import {measureDigits} from './measure'
+import {useOnChange} from './useOnChange'
 
-export interface Props extends StyledProps, Identified {
+export interface Props extends StyledProps {
+  id: string
   min: number
   max: number
   value: number
-  title: string
+  title?: ReactNode
   onChange: (n: number, index: number) => void
-  digits: number
+  name?: string
 }
 
-const paddingLeftPx = 3
-
 export const FixedNumeric = ({
-  value: rawValue,
+  id,
+  title,
+  value,
   min,
   max,
   onChange: propsOnChange,
-  digits,
   style,
   className,
   ...props
 }: Props) => {
-  const onChange = useClampedListener([min, max], propsOnChange)
-  const value = rawValue.toString()
-  const width = measureDigits({showSpinner: true, padPx: paddingLeftPx})(digits)
+  const clamp = useMemo(() => clampNumericInput({min, max}), [max, min])
+
+  const {ref: hoverRef, tooltip, isOpen: isHover} = useTooltip({id, title})
+  const isOpen = title !== undefined && isHover
+  const {
+    ref: changeRef,
+    defaultValue,
+    onChange,
+  } = useOnChange({value, min, max, onChange: propsOnChange})
+  const ref = useMergeWithRefObject(hoverRef, changeRef)
 
   return (
-    <input
-      type="number"
-      inputMode="numeric"
-      {...props}
-      {...{value, onChange}}
-      className={twMerge('text-right', className)}
-      style={{width, paddingLeft: px(paddingLeftPx), ...style}}
-    />
+    <div className='contents'>
+      <input
+        {...{...props, id, ref, defaultValue, onChange, style}}
+        type='number'
+        inputMode='numeric'
+        onInput={clamp}
+        className={twMerge(
+          'w-[calc(5rch-1px)] text-right',
+          isOpen && 'bg-yellow-50 text-ink',
+          className,
+        )}
+        style={anchorName(id)}
+      />
+      {title !== undefined && tooltip}
+    </div>
   )
 }

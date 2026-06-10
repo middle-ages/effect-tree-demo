@@ -17,7 +17,9 @@ import {
   zipWith,
   type NonEmptyReadonlyArray,
 } from 'effect/Array'
-import {Number, pipe, String} from 'effect'
+import {pipe} from 'effect/Function'
+import * as Number from 'effect/Number'
+import * as String from 'effect/String'
 import type {EndoOf} from './Function'
 
 export * from 'effect/Array'

@@ -1,50 +1,24 @@
-import type {
-  KeyboardEventHandler,
-  MouseEventHandler,
-  PointerEventHandler,
-  ReactNode,
-} from 'react'
+import type {StyledPropsWithChildren} from '#react/props'
+import type {ReactNode} from 'react'
 
-export interface BaseItem<Id extends string = string> {
+export interface BaseItem<Id extends string = string, LabelType = ReactNode> {
   id: Id
-  label: ReactNode
-  title: string
+  label: LabelType
+  title?: ReactNode
 }
 
 export interface DisabledProps {
-  isDisabled: boolean
-  disabledNote?: string
+  isDisabled?: boolean
+  disabledNote?: ReactNode
 }
 
-export const disabledProps = (disabledNote: string): DisabledProps => ({
-  isDisabled: true,
-  disabledNote,
-})
+export interface DisabledItemProps<Id extends string = string>
+  extends Omit<BaseItem<Id>, 'label'>, DisabledProps, StyledPropsWithChildren {}
 
-export const enabledProps: DisabledProps = {isDisabled: false}
-
-export interface DisabledItem<Id extends string = string>
-  extends BaseItem<Id>,
-    DisabledProps {}
-
-export interface SelectItem extends BaseItem {
+export interface SelectItem<Id extends string = string> extends Omit<
+  BaseItem<Id>,
+  'title'
+> {
   icon: ReactNode
-}
-
-export const simpleItem = (label: string): SelectItem => ({
-  id: label,
-  label,
-  icon: '',
-  title: '',
-})
-
-export interface ButtonEventListener {
-  onPointerDown: PointerEventHandler<HTMLButtonElement>
-  onPointerUp: PointerEventHandler<HTMLButtonElement>
-  onClick: MouseEventHandler<HTMLButtonElement>
-}
-
-export interface KeyboardEventListener<E extends HTMLElement = HTMLElement> {
-  onKeyUp: KeyboardEventHandler<E>
-  onKeyDown: KeyboardEventHandler<E>
+  title: string
 }

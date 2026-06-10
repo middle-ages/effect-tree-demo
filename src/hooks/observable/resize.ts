@@ -1,4 +1,5 @@
-import {pipe, SizePx} from '#util'
+import {pipe} from '#Function'
+import {SizePx} from '#react/size'
 import * as rx from 'rxjs'
 
 export const resizeObservable = (
@@ -8,18 +9,18 @@ export const resizeObservable = (
     element,
     connect,
     rx.map(
-      ({contentRect: {width, height}}: ResizeObserverEntry): SizePx => ({
-        widthPx: Math.round(width),
-        heightPx: Math.round(height),
+      ({
+        contentRect: {width: widthPx, height: heightPx},
+      }: ResizeObserverEntry): SizePx => ({
+        widthPx,
+        heightPx,
       }),
     ),
   )
 
-  const throttled = pipe(resize, rx.throttleTime(32))
-  const debounced = pipe(resize, rx.debounceTime(16))
-
   return pipe(
-    rx.merge(throttled, debounced),
+    resize,
+    rx.throttleTime(40, undefined, {leading: true, trailing: true}),
     rx.distinctUntilChanged(SizePx.equals),
   )
 }
@@ -30,21 +31,19 @@ const connect = (element: HTMLElement): rx.Observable<ResizeObserverEntry> => {
   return rx.fromEventPattern(
     handler => {
       const element = weakElement.deref()
-      if (element === undefined) {
-        return
-      }
+      if (element === undefined) return
 
-      const resizeObserver = new ResizeObserver(args => {
-        const [entry] = args as [ResizeObserverEntry]
-        ;(handler as (entry: ResizeObserverEntry) => void)(entry)
+      const resizeObserver = new ResizeObserver(([entry]) => {
+        if (entry !== undefined) {
+          handler(entry)
+        }
       })
 
       resizeObserver.observe(element)
-
       return resizeObserver
     },
-    (_, resizeObserver) => {
-      ;(resizeObserver as ResizeObserver).disconnect()
+    (_, resizeObserver: ResizeObserver) => {
+      resizeObserver.disconnect()
     },
   )
 }

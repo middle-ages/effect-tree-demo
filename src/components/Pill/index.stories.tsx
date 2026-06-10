@@ -13,17 +13,17 @@ const Wrapper = ({onClick}: {onClick: () => void}) => {
   return (
     <Component>
       <Button.Focus
-        id="a"
-        title="title a"
-        disabledNote="disabled a"
+        id='a'
+        title='title a'
+        disabledNote='disabled a'
         isDisabled={isDisabledA}
         {...{onClick}}>
         a
       </Button.Focus>
       <Button.Focus
-        id="b"
-        title="title b"
-        disabledNote="disabled b"
+        id='b'
+        title='title b'
+        disabledNote='disabled b'
         isDisabled={isDisabledB}
         onClick={() => {
           setIsDisabledA(old => !old)
@@ -31,10 +31,10 @@ const Wrapper = ({onClick}: {onClick: () => void}) => {
         b
       </Button.Focus>
       <Button.Focus
-        id="c"
-        title="title c"
+        id='c'
+        title='title c'
         isDisabled={false}
-        disabledNote="disabled c"
+        disabledNote='disabled c'
         onClick={() => {
           setIsDisabledB(old => !old)
         }}>

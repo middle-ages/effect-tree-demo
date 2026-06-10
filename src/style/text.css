@@ -5,13 +5,19 @@
 }
 
 @theme {
-  --text-smaller: 0.8125rem; /** 13px */
+  --text-default: 16px;
+  --text-default--line-height: 24px;
+
+  --text-small: 15px;
+  --text-small--line-height: 1.1875rem; /* 19px */
+
+  --text-smaller: 13px;
   --text-smaller--line-height: 1rem; /* 16px */
 
-  --text-smallest: 0.75rem; /** 12px */
+  --text-smallest: 12px;
   --text-smallest--line-height: 0.938rem; /* 15px */
 
-  --text-tiny: 0.6875rem; /** 11px */
+  --text-tiny: 11px;
   --text-tiny--line-height: 0.875rem; /* 14px */
 }
 
@@ -20,9 +26,11 @@ body {
 }
 
 @utility text-ordinal {
-  @apply text-tiny text-fg-control-disabled;
-  font-family: 'LM Roman 12';
-  font-feature-settings: 'onum' 1;
+  @apply font-serif text-tiny text-fg-control-disabled;
+}
+
+@utility emphasis {
+  @apply font-semibold text-ink/70;
 }
 
 @font-face {
@@ -51,9 +59,21 @@ body {
 }
 
 @font-face {
-  font-family: 'LM Roman 12';
+  font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/lmroman12-regular.woff2') format('woff2');
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
+}
+
+@utility button-text {
+  @apply text-[14px] font-medium tracking-wide;
+}
+
+@utility button-text-small {
+  @apply text-[11.5px] font-medium tracking-wide;
+}
+
+@utility text-trim {
+  text-box: trim-both ex;
 }

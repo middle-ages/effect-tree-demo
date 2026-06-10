@@ -1,4 +1,5 @@
-import {type DragMove, useDrag} from '#useDrag'
+import {useDrag} from '#useDrag'
+import {type DragMove} from './observable/drag'
 import {useMergeRefPair} from '#useMergeRefs'
 import {useZoom} from '#useZoom'
 import {pipe, PointPx} from '#util'
