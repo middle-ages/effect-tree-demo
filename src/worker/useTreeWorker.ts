@@ -1,18 +1,18 @@
 import {useEffect, useState} from 'react'
 import {decode} from './client'
-import type {DecodeRequest, DecodeResponse} from './message'
+import {DecodeRequest, type DecodeResponse} from './message'
+import type {RootState} from '#model'
 
 export const useTreeWorker = ({
-  code,
-  format,
-  theme,
-}: DecodeRequest): DecodeResponse | undefined => {
+  code: {code},
+  style: {format, theme},
+}: RootState): DecodeResponse | undefined => {
   const [response, setResponse] = useState<DecodeResponse>()
 
   useEffect(() => {
-    const {terminate, result} = decode({code, format, theme})
+    const [promise, terminate] = decode(DecodeRequest(code, format, theme))
 
-    result
+    promise
       .then(setResponse)
       .catch((error: unknown) => {
         throw error

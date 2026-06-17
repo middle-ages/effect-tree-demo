@@ -6,7 +6,7 @@ import {MAX_NODE_COUNT, TreeCode} from '#model'
 import {flow, type StyledPropsWithChildren} from '#util'
 import {type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
-import {useAppDispatch, useAppSelector} from '#store'
+import {selectStats, useAppDispatch, useAppSelector} from '#store'
 import {unlines} from '#String'
 
 export const StatsView = () => {
@@ -14,7 +14,7 @@ export const StatsView = () => {
     treeCount: {value: treeCount},
     treeIndex: {value: treeIndex},
     nodeCount: {value: nodeCount},
-  } = useAppSelector(TreeCode.selectStats)
+  } = useAppSelector(selectStats)
   const isFirst = treeCount === '1'
   const dispatch = useAppDispatch()
 

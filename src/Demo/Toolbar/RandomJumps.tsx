@@ -2,20 +2,26 @@ import {Button} from '#Button'
 import {type EndoOf} from '#Function'
 import {Pill} from '#Pill'
 import {type ButtonNotification} from '#pointer'
-import {TreeCode} from '#model'
 import {usePrimaryButton} from '#usePointerButton'
 import {pipe, type StyledProps} from '#util'
 import {type CSSProperties} from 'react'
 import * as rx from 'rxjs'
 import {twMerge} from 'tailwind-merge'
-import {useAppDispatch, useAppSelector, type AppDispatch} from '../../store'
+import {
+  randomCodeActions,
+  selectCode,
+  useAppDispatch,
+  useAppSelector,
+  type AppDispatch,
+} from '#store'
+import * as store from '#store'
 
 interface Props extends StyledProps {}
 
-const [randomCode, randomBoth, randomNodes] = TreeCode.randomCodeActions
+const [randomCode, randomBoth, randomNodes] = randomCodeActions
 
 export const RandomJumps = ({className, style}: Props) => {
-  const code = useAppSelector(TreeCode.selectCode)
+  const code = useAppSelector(selectCode)
   const dispatch = useAppDispatch()
 
   const [{buttonState}, ref] = usePrimaryButton(tapSetCode(dispatch))
@@ -28,7 +34,9 @@ export const RandomJumps = ({className, style}: Props) => {
         {...{isActive}}
         {...randomCode.buildState(code)}
         isWrapped
-        onClick={() => dispatch(TreeCode.randomCode())}>
+        onClick={() => {
+          dispatch(store.randomCode())
+        }}>
         {randomCode.label}
       </Button.Focus>
       <Button.Emit
@@ -46,7 +54,9 @@ export const RandomJumps = ({className, style}: Props) => {
         {...{isActive}}
         isWrapped
         isDisabled={false}
-        onClick={() => dispatch(TreeCode.randomNodes())}>
+        onClick={() => {
+          dispatch(store.randomNodes())
+        }}>
         {randomNodes.label}
       </Button.Focus>
     </Pill>
@@ -60,7 +70,7 @@ const tapSetCode: (
     source,
     rx.tap(({isClick}: ButtonNotification) => {
       if (isClick) {
-        dispatch(TreeCode.randomBoth())
+        dispatch(store.randomBoth())
       }
     }),
   )

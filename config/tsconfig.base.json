@@ -9,7 +9,7 @@
     "target": "esnext",
     "lib": ["ESNext"],
     "incremental": true,
-    "noErrorTruncation": false,
+    "noErrorTruncation": true,
 
     "allowJs": false,
     "checkJs": false,

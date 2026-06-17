@@ -1,14 +1,22 @@
 import {Button} from '#Button'
-import {TreeCode} from '#model'
 import {Pill} from '#Pill'
 import {Repeater} from '#Repeater'
-import {useAppDispatch, useAppSelector} from '#store'
+import {
+  type JumpKey,
+  useAppDispatch,
+  useAppSelector,
+  type ModifyAction,
+  type DecIncJumpKey,
+  type DirectionKey,
+  getDecIncActions,
+  selectCode,
+} from '#store'
 import {mapTuple3} from '#Tuple'
 import {type StyledProps, pipe} from '#util'
 import {useCallback} from 'react'
 
 interface Props extends StyledProps {
-  jump: TreeCode.JumpKey
+  jump: JumpKey
 }
 
 export const DecIncJumps = (props: Props) => (
@@ -19,14 +27,14 @@ export const DecIncJumps = (props: Props) => (
 )
 
 interface DirectionProps extends Props {
-  direction: TreeCode.DirectionKey
+  direction: DirectionKey
 }
 
 export const DirectionJumps = ({jump, direction, ...props}: DirectionProps) => (
   <Pill {...props}>
     {pipe(
       direction,
-      TreeCode.getDecIncActions(jump),
+      getDecIncActions(jump),
       mapTuple3(action => <JumpButton key={action.id} {...{action}} />),
     )}
   </Pill>
@@ -35,11 +43,11 @@ export const DirectionJumps = ({jump, direction, ...props}: DirectionProps) => (
 const JumpButton = ({
   action: {id, title, label, canRepeat, buildState},
 }: {
-  action: TreeCode.ModifyAction<TreeCode.DecIncJumpKey>
+  action: ModifyAction<DecIncJumpKey>
 }) => {
-  const code = useAppSelector(TreeCode.selectCode)
+  const code = useAppSelector(selectCode)
   const dispatch = useAppDispatch()
-  const onClick = useCallback(() => dispatch(TreeCode[id]()), [dispatch, id])
+  const onClick = useCallback(() => dispatch([id]()), [dispatch, id])
   const props = {...buildState(code), id, title, onClick}
 
   return canRepeat ? (

@@ -1,4 +1,4 @@
-import type {EndoOf} from '#Function'
+import {dual, type EndoOf} from '#Function'
 import {mapEntries} from '#Record'
 import {suffix, segmentString, trimEnd, unwords} from '#String'
 import type {SelectItem} from '#types'
@@ -171,18 +171,27 @@ const themePrefix: Record<Draw.ThemeName, string> = {
   vThickDotted: '╴',
 }
 
-export const drawRomanTree = (
-  self: Tree<number>,
-  format: NumericFormat,
-  theme: Draw.ThemeName,
-): string[] =>
-  pipe(
-    self,
-    map(
-      n =>
-        themePrefix[theme] +
-        (n > MAX_ROMAN ? n.toLocaleString() : formatRoman(format)(n)),
+export const drawRomanTree: {
+  (self: Tree<number>, format: NumericFormat, theme: Draw.ThemeName): string[]
+  (
+    format: NumericFormat,
+    theme: Draw.ThemeName,
+  ): (self: Tree<number>) => string[]
+} = dual(
+  3,
+  (
+    self: Tree<number>,
+    format: NumericFormat,
+    theme: Draw.ThemeName,
+  ): string[] =>
+    pipe(
+      self,
+      map(
+        n =>
+          themePrefix[theme] +
+          (n > MAX_ROMAN ? n.toLocaleString() : formatRoman(format)(n)),
+      ),
+      drawTree[theme],
+      Array.map(flow(trimEnd, suffix('\n'))),
     ),
-    drawTree[theme],
-    Array.map(flow(trimEnd, suffix('\n'))),
-  )
+)

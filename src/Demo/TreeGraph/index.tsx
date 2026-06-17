@@ -1,9 +1,8 @@
 import {GraphView} from '#GraphView'
-import {TreeCode} from '#model'
-import {useAppSelector} from '#store'
+import {selectDot, useAppSelector} from '#store'
 import type {StyledProps} from '#util'
 
 export const TreeGraph = ({className, style}: StyledProps) => {
-  const dot = useAppSelector(TreeCode.selectDot)
+  const dot = useAppSelector(selectDot)
   return <GraphView {...{style, className, dot}} />
 }

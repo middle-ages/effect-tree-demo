@@ -17,6 +17,8 @@ const [formatSelector, themeSelector] = [
   pluck('theme')<TreeStyle>,
 ]
 
+export type StyleSlice = typeof styleSlice
+
 export const styleSlice = createSlice({
   name: 'style',
   initialState,

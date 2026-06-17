@@ -1,65 +1,32 @@
-export {}
+import {DecodeResponse, type DecodeRequest} from './message'
 
-import {
-  isDecodeRequest,
-  isWorkerMessage,
-  type DecodeRequest,
-  type DecodeMessage,
-  type DecodeResponse,
-} from './message'
+const buildWorker = () =>
+  new Worker(new URL('./worker.js', import.meta.url), {
+    type: 'module',
+    name: 'effect-tree-demo',
+  })
 
-//export const buildWorker = () => {
-//  /* eslint-disable unicorn/relative-url-style */
-//  return new Worker(new URL('./worker.js', import.meta.url), {
-//    type: 'module',
-//    name: 'effect-tree-demo',
-//  })
-//}
-
-export const decode = ({format, theme, code}: DecodeRequest): WorkerResult => {
+export const decode = (
+  request: DecodeRequest,
+): [Promise<DecodeResponse>, () => void] => {
   const worker = buildWorker()
-  const removeErrorListener = addListener('error', (e: unknown) => {
-    throw e
-  })(worker)
+  const terminate = () => {
+    worker.terminate()
+  }
+  return [
+    new Promise<DecodeResponse>(resolve => {
+      worker.postMessage(request)
+      worker.onerror = function (
+        this: AbstractWorker,
+        event: ErrorEvent,
+      ): void {
+        throw new Error(event.message)
+      }
 
-  return {
-    worker,
-    terminate: () => {
-      worker.terminate()
-    },
-    result: new Promise<DecodeResponse>(resolve => {
-      const removeMessageListener = addListener(
-        'message',
-        (e: MessageEvent) => {
-          removeErrorListener()
-          removeMessageListener()
-
-          const response = handleDecodeResponse(e)
-          resolve(response)
-        },
-      )(worker)
-
-      worker.postMessage(requestMessage(format, theme, code))
+      worker.onmessage = ({data}: MessageEvent<DecodeResponse>): void => {
+        resolve(data)
+      }
     }),
-  }
-}
-
-interface EventTypes {
-  error: ErrorEvent
-  message: MessageEvent
-}
-
-function addListener<Event extends keyof EventTypes>(
-  event: Event,
-  listener: (event: EventTypes[Event]) => void,
-) {
-  return (worker: Worker): (() => void) => {
-    worker.addEventListener(event, e => {
-      listener(e)
-    })
-
-    return () => {
-      worker.removeEventListener(event, listener)
-    }
-  }
+    terminate,
+  ]
 }

@@ -1,11 +1,10 @@
-import {TreeCode} from '#model'
-import {useAppSelector} from '#store'
+import {selectCode, useAppSelector} from '#store'
 import {useHorizontalScroll} from '#useHorizontalScroll'
 import {Codec} from 'effect-tree'
 import {DigitEditor} from './DigitEditor'
 
 export const CodeEditor = () => {
-  const code = useAppSelector(TreeCode.selectCode)
+  const code = useAppSelector(selectCode)
   const ref = useHorizontalScroll()
   const maxDigit = Codec.Prufer.computeNodeCount(code)
 

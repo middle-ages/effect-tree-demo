@@ -389,6 +389,12 @@
         "types": "./src/style/theme/tokens.d.ts",
         "import": "./src/style/theme/tokens.js"
       }
+    },
+    "#worker": {
+      "import": {
+        "types": "./src/worker.d.ts",
+        "import": "./src/worker.js"
+      }
     }
   },
   "publishConfig": {

@@ -23,15 +23,15 @@ export interface TreeCode {
 }
 
 /**
- * A reducer that sets the tree code and requires a new tree code.
+ * A tree code reducer.
  */
-export type Setter = CaseReducer<TreeCode, {payload: number[]; type: string}>
+export type ReducerOf<A> = CaseReducer<TreeCode, {payload: A; type: string}>
 
 /**
  * A reducer that applies some function on the current tree code and requires no
  * payload.
  */
-export type Modifier = CaseReducer<TreeCode, {payload: void; type: string}>
+export type Modifier = ReducerOf<void>
 
 export const initialState: TreeCode = {code: [1, 2, 3]}
 

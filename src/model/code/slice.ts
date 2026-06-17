@@ -5,17 +5,57 @@ import {
   asyncThunkCreator,
   buildCreateSlice,
   createSelector,
-  type PayloadAction,
+  type ReducerCreators,
 } from '@reduxjs/toolkit'
 import {Array} from 'effect'
 import {Codec} from 'effect-tree'
-import {initialState, type SetDigitPayload, type TreeCode} from './action'
+import {
+  initialState,
+  type ReducerOf,
+  type SetDigitPayload,
+  type TreeCode,
+} from './action'
 import {incDecReducers} from './decIncActions'
 import {randomCodeReducers} from './randomActions'
 
+interface BuildReducer<A> {
+  (create: ReducerCreators<TreeCode>): ReducerOf<A>
+}
+
+export type CodeSlice = typeof codeSlice
+
 const codeSelector = pluck('code')<TreeCode>
+
 const treeSelector = createSelector([codeSelector], Codec.Prufer.decode)
-const statsSelector = createSelector([codeSelector, treeSelector], primeStats)
+
+const statsSelector = createSelector(
+  [codeSelector, treeSelector],
+  primeStats.untupled,
+)
+
+const setCodeReducer: BuildReducer<number[]> = create =>
+  create.reducer<number[]>((state, {payload: code}) => ({...state, code}))
+
+const setDigitReducer: BuildReducer<SetDigitPayload> = create =>
+  create.reducer<SetDigitPayload>((state, {payload: {index, digit}}) => ({
+    ...state,
+    code: Array.modify(state.code, index, K(digit)),
+  }))
+
+const setTreeIndexReducer: BuildReducer<string> = create =>
+  create.reducer<string>(({code, ...state}, {payload: index}) => ({
+    ...state,
+    code: Codec.Prufer.fromOrdinal(
+      BigInt(index),
+      Codec.Prufer.computeNodeCount(code),
+    ),
+  }))
+
+const setNodeCountReducer: BuildReducer<number> = create =>
+  create.reducer<number>((state, {payload: nodeCount}) => ({
+    ...state,
+    code: Codec.Prufer.getFirstCodeFor(nodeCount),
+  }))
 
 export const codeSlice = buildCreateSlice({
   creators: {asyncThunk: asyncThunkCreator},
@@ -23,33 +63,10 @@ export const codeSlice = buildCreateSlice({
   name: 'code',
   initialState,
   reducers: create => ({
-    setCode: create.reducer(
-      (state, {payload: code}: PayloadAction<number[]>) => ({
-        ...state,
-        code,
-      }),
-    ),
-    setDigit: create.reducer(
-      (state, {payload: {index, digit}}: PayloadAction<SetDigitPayload>) => ({
-        ...state,
-        code: Array.modify(state.code, index, K(digit)),
-      }),
-    ),
-    setTreeIndex: create.reducer(
-      ({code, ...state}, {payload: index}: PayloadAction<string>) => ({
-        ...state,
-        code: Codec.Prufer.fromOrdinal(
-          BigInt(index),
-          Codec.Prufer.computeNodeCount(code),
-        ),
-      }),
-    ),
-    setNodeCount: create.reducer(
-      (state, {payload: nodeCount}: PayloadAction<number>) => ({
-        ...state,
-        code: Codec.Prufer.getFirstCodeFor(nodeCount),
-      }),
-    ),
+    setCode: setCodeReducer(create),
+    setDigit: setDigitReducer(create),
+    setTreeIndex: setTreeIndexReducer(create),
+    setNodeCount: setNodeCountReducer(create),
     ...incDecReducers(create),
     ...randomCodeReducers(create),
   }),

@@ -1,4 +1,4 @@
-import {tupled} from '#Function'
+import {dual} from '#Function'
 import {pluck} from '#Record'
 import type {BaseItem} from '#types'
 import {Array, flow, K} from '#util'
@@ -91,21 +91,28 @@ const stats: Stats = pipe(
   Record.fromEntries,
 )
 
-export const primeStats = (code: number[], tree: Tree<number>): PrimedStats =>
-  pipe(
-    stats,
-    Record.mapEntries(({compute, ...stat}, key) => [
-      key,
-      {...stat, value: compute({code, tree}).toString()},
-    ]),
-  )
+const _primeStats: {
+  (code: number[], tree: Tree<number>): PrimedStats
+  (tree: Tree<number>): (code: number[]) => PrimedStats
+} = dual(
+  2,
+  (code: number[], tree: Tree<number>): PrimedStats =>
+    pipe(
+      stats,
+      Record.mapEntries(({compute, ...stat}, key) => [
+        key,
+        {...stat, value: compute({code, tree}).toString()},
+      ]),
+    ),
+)
+
+export const primeStats = Object.assign(_primeStats, {
+  untupled: (code: number[], tree: Tree<number>): PrimedStats =>
+    _primeStats(code, tree),
+})
 
 export const stringStats = (primed: PrimedStats): StringStats =>
   pipe(primed, Record.map(pluck('value')))
-
-primeStats.tupled = tupled(primeStats) as (
-  pair: readonly [code: number[], tree: Tree<number>],
-) => PrimedStats
 
 function make(id: StatId, label: string, title: string) {
   return (
