@@ -1,12 +1,12 @@
-/* eslint-disable unicorn/prefer-add-event-listener */
 import {Codec} from 'effect-tree'
 import {
   handleDecodeRequest,
+  type DecodeMessage,
   type DecodeRequest,
   type DecodeResponse,
 } from './message'
-import {drawRomanTree} from './roman'
-import {primeStats} from './stats'
+import {drawRomanTree} from '../model/roman'
+import {primeStats} from '../model/stats'
 
 globalThis.global = globalThis
 //@ts-expect-error
@@ -15,7 +15,9 @@ globalThis.window = globalThis
 // @ts-expect-error
 window['__vite_plugin_react_preamble_installed__'] = true
 
-globalThis.onmessage = (event: MessageEvent) => {
+globalThis.onmessage = ({
+  data,
+}: MessageEvent<DecodeMessage | Record<string, string>>) => {
   const response = handleDecodeRequest(
     (request: DecodeRequest): DecodeResponse => {
       const {code, format, theme} = request

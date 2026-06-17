@@ -5,8 +5,7 @@ import {twMerge} from 'tailwind-merge'
 import {useMeasure, type UseMeasure} from '#useMeasure'
 
 export interface WithClassName<As extends HTMLElementType>
-  extends Omit<HasElement<As>, 'as'>,
-    StyledPropsWithChildren {}
+  extends Omit<HasElement<As>, 'as'>, StyledPropsWithChildren {}
 
 /**
  * Given a tag name and a base class name, returns a component with a single

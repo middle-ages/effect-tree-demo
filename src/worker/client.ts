@@ -1,8 +1,11 @@
+export {}
+
 import {
-  type DecodeResponse,
-  handleDecodeResponse,
-  requestMessage,
+  isDecodeRequest,
+  isWorkerMessage,
   type DecodeRequest,
+  type DecodeMessage,
+  type DecodeResponse,
 } from './message'
 
 export interface WorkerResult {

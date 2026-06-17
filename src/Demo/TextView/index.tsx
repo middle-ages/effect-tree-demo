@@ -1,7 +1,7 @@
 import {withClassName} from '#compinators'
-import {TreeCode, type PrimedStat} from '#model'
+import {linesSelector, TreeCode, type PrimedStat} from '#model'
 import {ScrollPanel} from '#ScrollPanel'
-import {linesSelector, useAppSelector} from '#store'
+import {useAppSelector} from '#store'
 import {Fragment} from 'react/jsx-runtime'
 
 type TreeStats = Record<'nodeCount' | 'maxDegree' | 'maxDepth', PrimedStat>
