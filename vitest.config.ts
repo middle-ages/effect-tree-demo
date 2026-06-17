@@ -11,7 +11,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   plugins: [
     react({
-      exclude: new RegExp('/src/tree/worker.js'),
+      exclude: new RegExp('/src/worker/worker.js'),
       jsxRuntime: 'automatic',
       babel: {
         plugins: ['babel-plugin-react-compiler'],

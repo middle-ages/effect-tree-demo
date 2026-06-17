@@ -5,7 +5,7 @@ import {defineConfig} from 'vite'
 export default defineConfig({
   plugins: [
     react({
-      exclude: new RegExp('/src/tree/worker.js'),
+      exclude: new RegExp('/src/worker/worker.js'),
       babel: {
         plugins: ['babel-plugin-react-compiler'],
       },

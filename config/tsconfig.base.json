@@ -14,10 +14,7 @@
     "allowJs": false,
     "checkJs": false,
 
-    "moduleDetection": "force",
-    "allowSyntheticDefaultImports": true,
     "noUncheckedSideEffectImports": true,
     "verbatimModuleSyntax": true,
-    "esModuleInterop": true
   }
 }

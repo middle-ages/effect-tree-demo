@@ -8,19 +8,13 @@ import {
   type DecodeResponse,
 } from './message'
 
-export interface WorkerResult {
-  worker: Worker
-  terminate: () => void
-  result: Promise<DecodeResponse>
-}
-
-export const buildWorker = () => {
-  /* eslint-disable unicorn/relative-url-style */
-  return new Worker(new URL('./worker.js', import.meta.url), {
-    type: 'module',
-    name: 'effect-tree-demo',
-  })
-}
+//export const buildWorker = () => {
+//  /* eslint-disable unicorn/relative-url-style */
+//  return new Worker(new URL('./worker.js', import.meta.url), {
+//    type: 'module',
+//    name: 'effect-tree-demo',
+//  })
+//}
 
 export const decode = ({format, theme, code}: DecodeRequest): WorkerResult => {
   const worker = buildWorker()

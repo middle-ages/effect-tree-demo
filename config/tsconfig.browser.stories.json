@@ -1,4 +1,5 @@
 {
+  "display": "browser.stories",
   "extends": ["./tsconfig.browser.json"],
   "compilerOptions": {
     "noEmit": true,
@@ -13,9 +14,7 @@
     "../src/storybook/**/*.ts",
     "../src/storybook/**/*.tsx",
     "../src/**/stories/**/*.ts",
-    "../src/**/stories/**/*.tsx",
-    "../vitest.shims.d.ts",
-    "../vitest.config.ts",
+    "../src/**/stories/**/*.tsx"
   ],
   "mdx": {
     "checkMdx": true
