@@ -2,12 +2,18 @@ import {BigIntInput} from '#BigIntInput'
 import {FixedNumeric} from '#FixedNumeric'
 import {NumericView} from '#NumericView'
 import {Stack} from '#Stack'
-import {MAX_NODE_COUNT, TreeCode} from '#model'
 import {flow, type StyledPropsWithChildren} from '#util'
 import {type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
-import {selectStats, useAppDispatch, useAppSelector} from '#store'
+import {
+  setNodeCount,
+  setTreeIndex,
+  selectStats,
+  useAppDispatch,
+  useAppSelector,
+} from '#store'
 import {unlines} from '#String'
+import {MAX_NODE_COUNT} from '#model'
 
 export const StatsView = () => {
   const {
@@ -23,7 +29,7 @@ export const StatsView = () => {
       <Row prefix='Tree #'>
         <BigIntInput
           value={treeIndex}
-          onChange={flow(TreeCode.setTreeIndex, dispatch)}
+          onChange={flow(setTreeIndex, dispatch)}
           min={'1'}
           max={treeCount}
           title={unlines.rest(
@@ -55,7 +61,7 @@ export const StatsView = () => {
           min={2}
           max={MAX_NODE_COUNT}
           title='Number of nodes in the tree.'
-          onChange={flow(TreeCode.setNodeCount, dispatch)}
+          onChange={flow(setNodeCount, dispatch)}
           className='mx-1'
         />
         {`node labeled tree${isFirst ? '' : 's'}.`}

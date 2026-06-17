@@ -1,3 +1,4 @@
+export * from './store/style'
 export {store, type AppStore, type AppDispatch} from './store/store'
 export {useAppDispatch, useAppSelector} from './store/hooks'
 export {

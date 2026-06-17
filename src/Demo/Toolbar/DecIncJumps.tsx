@@ -1,15 +1,16 @@
 import {Button} from '#Button'
 import {Pill} from '#Pill'
 import {Repeater} from '#Repeater'
+import * as store from '#store'
 import {
-  type JumpKey,
-  useAppDispatch,
-  useAppSelector,
-  type ModifyAction,
   type DecIncJumpKey,
   type DirectionKey,
+  type JumpKey,
+  type ModifyAction,
   getDecIncActions,
   selectCode,
+  useAppDispatch,
+  useAppSelector,
 } from '#store'
 import {mapTuple3} from '#Tuple'
 import {type StyledProps, pipe} from '#util'
@@ -47,8 +48,12 @@ const JumpButton = ({
 }) => {
   const code = useAppSelector(selectCode)
   const dispatch = useAppDispatch()
-  const onClick = useCallback(() => dispatch([id]()), [dispatch, id])
-  const props = {...buildState(code), id, title, onClick}
+  const props = {
+    ...buildState(code),
+    id,
+    title,
+    onClick: useCallback(() => dispatch(store[id]()), [dispatch, id]),
+  }
 
   return canRepeat ? (
     <Repeater.Square {...props}>{label}</Repeater.Square>
