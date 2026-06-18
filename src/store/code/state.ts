@@ -1,15 +1,22 @@
 import {pairMap} from '#Pair'
-import {Codec} from 'effect-tree'
 import {singleton} from '#Record'
-import {MAX_NODE_COUNT} from '#model'
-import {pipe} from '#util'
-import {disabledProps, enabledProps} from '#types'
+import {MAX_NODE_COUNT} from '#model/stats'
+import {type DisabledProps} from '#types'
+import {pipe} from '#Function'
 import type {Predicate} from 'effect'
+import {Codec} from 'effect-tree'
 import type {StateBuilder} from '../state'
 
 const {Prufer} = Codec
 
 export const maxNodeCountMessage: string = `𝓶𝓪𝔁=${MAX_NODE_COUNT.toLocaleString()}`
+
+const disabledProps = (disabledNote: string): DisabledProps => ({
+  isDisabled: true,
+  disabledNote,
+})
+
+const enabledProps: DisabledProps = {isDisabled: false}
 
 const [firstCodeTitle, lastCodeTitle] = pipe(
   ['first', 'last'],

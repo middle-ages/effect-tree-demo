@@ -1,15 +1,12 @@
 import {DecodeResponse, type DecodeRequest} from './message'
 
-const buildWorker = () =>
-  new Worker(new URL('./worker.js', import.meta.url), {
-    type: 'module',
-    name: 'effect-tree-demo',
-  })
-
 export const decode = (
   request: DecodeRequest,
 ): [Promise<DecodeResponse>, () => void] => {
-  const worker = buildWorker()
+  const worker = new Worker(new URL('./worker.js', import.meta.url), {
+    type: 'module',
+  })
+  console.log(worker)
   const terminate = () => {
     worker.terminate()
   }
@@ -20,7 +17,11 @@ export const decode = (
         this: AbstractWorker,
         event: ErrorEvent,
       ): void {
-        throw new Error(event.message)
+        console.log('worker')
+        console.log(this)
+        console.log('event')
+        console.log(event)
+        //        throw new Error(event.message)
       }
 
       worker.onmessage = ({data}: MessageEvent<DecodeResponse>): void => {

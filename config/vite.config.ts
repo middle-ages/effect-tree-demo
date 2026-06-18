@@ -1,21 +1,20 @@
-import react from '@vitejs/plugin-react'
 import tailwindCss from '@tailwindcss/vite'
 import {defineConfig} from 'vite'
+import react, {reactCompilerPreset} from '@vitejs/plugin-react'
+import babel from '@rolldown/plugin-babel'
 
 export default defineConfig({
-  plugins: [
-    react({
-      exclude: new RegExp('/src/worker/worker.js'),
-      babel: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
-    }),
-    tailwindCss(),
-  ],
   worker: {format: 'es'},
+  plugins: [
+    react(),
+    tailwindCss(),
+    babel({
+      presets: [reactCompilerPreset()],
+    }),
+  ],
   build: {
     outDir: 'docs',
-    cssTarget: 'chrome141',
+    cssTarget: 'chrome144',
   },
   base: '/effect-tree-demo/',
 })

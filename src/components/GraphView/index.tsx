@@ -39,6 +39,7 @@ const Measured = ({
 
   return (
     <div
+      // Double click resets zoom.
       onDoubleClick={reset}
       className={twMerge(
         'flex fill-container justify-center',

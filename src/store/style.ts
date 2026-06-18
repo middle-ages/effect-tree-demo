@@ -1,7 +1,7 @@
 import {square} from '#Pair'
 import {fromEntries, toEntries} from '#Record'
 import {formats} from '#model'
-import {simpleItem, type SelectItem} from '#types'
+import {type SelectItem} from '#types'
 import {Array, pipe, String} from 'effect'
 import {Draw} from 'effect-tree'
 
@@ -10,6 +10,15 @@ export const numericFormatSelectItems: SelectItem[] = pipe(
   toEntries,
   Array.map(([key, props]) => ({key, ...props})),
 )
+
+const simpleItem = <const Id extends string = string>(
+  label: Id,
+): SelectItem => ({
+  id: label,
+  label,
+  icon: '',
+  title: '',
+})
 
 const themeToSelectItem = pipe(
   Draw.themeNames,

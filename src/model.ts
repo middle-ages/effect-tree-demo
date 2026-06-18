@@ -1,5 +1,3 @@
-export * as TreeStyle from './model/style/index'
 export * from './model/arbitrary'
 export * from './model/roman/index'
 export * from './model/stats'
-export * as TreeCode from './model/code/index'

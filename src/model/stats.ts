@@ -1,8 +1,8 @@
-import {dual} from '#Function'
-import {pluck} from '#Record'
+import * as Array from '#Array'
+import {getFirst} from '#Tuple'
+import {dual, K, flow, pipe} from '#Function'
+import {fromEntries, pluck, map as mapRecord, mapEntries} from '#Record'
 import type {BaseItem} from '#types'
-import {Array, flow, K} from '#util'
-import {pipe, Record, Tuple} from 'effect'
 import {
   Codec,
   maximumNodeDegree,
@@ -67,7 +67,7 @@ const stats: Stats = pipe(
       'treeIndex',
       'Ordinal',
       'Index of current tree in ordered set of all trees in this node count.',
-    )(flow(pluck('code'), Prufer.toOrdinal, Tuple.getFirst)),
+    )(flow(pluck('code'), Prufer.toOrdinal, getFirst)),
 
     make(
       'maxNodes',
@@ -88,7 +88,7 @@ const stats: Stats = pipe(
     )(flow(pluck('tree'), maximumNodeDegree, BigInt)),
   ],
   Array.map(stat => [stat.id, stat] as const),
-  Record.fromEntries,
+  fromEntries,
 )
 
 const _primeStats: {
@@ -99,7 +99,7 @@ const _primeStats: {
   (code: number[], tree: Tree<number>): PrimedStats =>
     pipe(
       stats,
-      Record.mapEntries(({compute, ...stat}, key) => [
+      mapEntries(({compute, ...stat}, key) => [
         key,
         {...stat, value: compute({code, tree}).toString()},
       ]),
@@ -112,7 +112,7 @@ export const primeStats = Object.assign(_primeStats, {
 })
 
 export const stringStats = (primed: PrimedStats): StringStats =>
-  pipe(primed, Record.map(pluck('value')))
+  pipe(primed, mapRecord(pluck('value')))
 
 function make(id: StatId, label: string, title: string) {
   return (

@@ -1,8 +1,9 @@
+import * as Array from '#Array'
 import {dual, type EndoOf} from '#Function'
 import {mapEntries} from '#Record'
 import {segmentString, suffix, trimEnd, unwords} from '#String'
 import type {SelectItem} from '#types'
-import {Array, flow, pipe} from '#util'
+import {flow, pipe} from 'effect'
 import {drawTree, map, type Draw, type Tree} from 'effect-tree'
 
 export const MAX_ROMAN = 3_999
