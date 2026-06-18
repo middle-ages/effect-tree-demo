@@ -2,7 +2,7 @@ import {unlines, unwords} from '#String'
 import {px, SizePx} from '#util'
 import {Graphviz} from '@hpcc-js/wasm-graphviz'
 
-const nodeSizeInches = 1 / 10
+const nodeSizeInches = 1 / 16
 const levelHeightInches = 1 / 2
 const arrowSizeInches = 0
 
@@ -41,12 +41,12 @@ export const dotToSvg =
     return {svg, requiredPx, isOverflowX}
   }
 
-const node = (label: string, color: string): string =>
+const node = (label: string): string =>
   unwords.comma.rest(
     'label=""',
     'shape=circle',
     'style=filled',
-    `color="${color}"`,
+    `color="black"`,
     `fillcolor="white"`,
     `width=${nodeSizeInches.toFixed(2)}`,
     `height=${nodeSizeInches.toFixed(2)}`,
@@ -66,10 +66,10 @@ const styleDot = (dot: string): string => {
     .split('\n')
     .map(line =>
       line.includes('" -> "')
-        ? line.replace('[label=""]', `[${edge('#333')}]`)
+        ? line.replace('[label=""]', `[${edge('#444')}]`)
         : line.replace(
             /\[label="(.+)"\]/,
-            (_, label: string) => `[${node(label, '#888')}]`,
+            (_, label: string) => `[${node(label)}]`,
           ),
     )
 

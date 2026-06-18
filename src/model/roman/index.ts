@@ -1,6 +1,6 @@
 import {dual, type EndoOf} from '#Function'
 import {mapEntries} from '#Record'
-import {suffix, segmentString, trimEnd, unwords} from '#String'
+import {segmentString, suffix, trimEnd, unwords} from '#String'
 import type {SelectItem} from '#types'
 import {Array, flow, pipe} from '#util'
 import {drawTree, map, type Draw, type Tree} from 'effect-tree'
@@ -42,6 +42,11 @@ const _formats: Record<NumericFormat, Omit<SelectItem, 'id'>> = {
     label: 'ASCII Caps',
     title: 'Use uppercase ASCII emulation of Roman numerals.',
   },
+  none: {
+    icon: '╼',
+    label: 'Single glyph',
+    title: 'Show all nodes using the same glyph.',
+  },
 }
 
 export const formats: Record<NumericFormat, SelectItem> = pipe(
@@ -49,7 +54,7 @@ export const formats: Record<NumericFormat, SelectItem> = pipe(
   mapEntries((entry, id) => [id, {id, ...entry}]),
 )
 
-export const numericFormats = ['decimal', ...romanFormats] as const
+export const numericFormats = ['decimal', ...romanFormats, 'none'] as const
 
 export type RomanFormat = (typeof romanFormats)[number]
 export type NumericFormat = (typeof numericFormats)[number]
@@ -138,38 +143,12 @@ export const formatRoman =
   (n: number): string => {
     if (format === 'decimal') {
       return n.toLocaleString()
+    } else if (format === 'none') {
+      return '╼'
     }
     const f = convertFormat(format)
     return pipe(n, toRoman, segmentString, Array.map(f), unwords)
   }
-
-const themePrefix: Record<Draw.ThemeName, string> = {
-  dashed: '╴',
-  dashedWide: '╴',
-  dotted: '╴',
-  double: ' ',
-  hDouble: ' ',
-  hThick: '╸',
-  hThickDashed: '╸',
-  hThickDashedWide: '╸',
-  hThickDotted: '╸',
-  round: '╴',
-  thick: '╸',
-  thickDashed: '╸',
-  thickDashedWide: '╸',
-  thickDotted: '╸',
-  thin: '╴',
-  unix: '',
-  unixRound: '',
-  space: '',
-  bullets: ' ',
-  ascii: ' ',
-  vDouble: '╴',
-  vThick: '╴',
-  vThickDashed: '╴',
-  vThickDashedWide: '╴',
-  vThickDotted: '╴',
-}
 
 export const drawRomanTree: {
   (self: Tree<number>, format: NumericFormat, theme: Draw.ThemeName): string[]
@@ -186,11 +165,7 @@ export const drawRomanTree: {
   ): string[] =>
     pipe(
       self,
-      map(
-        n =>
-          themePrefix[theme] +
-          (n > MAX_ROMAN ? n.toLocaleString() : formatRoman(format)(n)),
-      ),
+      map(n => (n > MAX_ROMAN ? n.toLocaleString() : formatRoman(format)(n))),
       drawTree[theme],
       Array.map(flow(trimEnd, suffix('\n'))),
     ),
