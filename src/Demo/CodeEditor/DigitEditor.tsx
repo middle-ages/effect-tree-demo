@@ -1,6 +1,5 @@
-import {TreeCode} from '#model'
 import {NumericInput} from '#NumericInput'
-import {useAppDispatch} from '#store'
+import {useAppDispatch, setDigit} from '#store'
 import {pipe, type StyledProps} from '#util'
 
 interface Props extends StyledProps {
@@ -28,9 +27,7 @@ export const DigitEditor = ({
       title={`Digit #${(index + 1).toString()}/${codeLength.toString()}.`}
       min={1}
       max={maxDigit}
-      onChange={(digit, index) =>
-        pipe({digit, index}, TreeCode.setDigit, dispatch)
-      }
+      onChange={(digit, index) => pipe({digit, index}, setDigit, dispatch)}
     />
   )
 }
