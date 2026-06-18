@@ -82,9 +82,3 @@ export const bigCommaFormat = (n: bigint): string =>
     reverse,
     join(','),
   )
-
-export const fixBigIntJson = () => {
-  BigInt.prototype.toJSON = function () {
-    return this.toString()
-  }
-}

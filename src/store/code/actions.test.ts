@@ -41,7 +41,7 @@ describe('decNodeCountActions', () => {
   })
 
   test('decHalfNodeCount', () => {
-    expect(decHalfNodeCount.apply([1, 2, 3, 4])).toEqual([2])
+    expect(decHalfNodeCount.apply([1, 1, 1, 1, 1, 1])).toEqual([2, 2, 2])
   })
 
   test('decNodeCount', () => {
