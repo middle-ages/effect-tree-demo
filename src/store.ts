@@ -9,7 +9,12 @@ export {
   selectDot,
 } from './store/selectors'
 export * from './store/dataSlice'
-export {type ModifyAction} from './store/state'
+export {
+  type SetDigitPayload,
+  type RootState,
+  type RootDataState,
+  type ModifyAction,
+} from './store/state'
 export {
   type DecIncAction,
   type DecIncActions,

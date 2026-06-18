@@ -1,12 +1,13 @@
 import {useEffect, useState} from 'react'
 import {decode} from './client'
 import {DecodeRequest, type DecodeResponse} from './message'
-import type {RootState} from '#model'
+import type {RootDataState} from '#store'
 
 export const useTreeWorker = ({
-  code: {code},
-  style: {format, theme},
-}: RootState): DecodeResponse | undefined => {
+  code,
+  format,
+  theme,
+}: RootDataState): DecodeResponse | undefined => {
   const [response, setResponse] = useState<DecodeResponse>()
 
   useEffect(() => {

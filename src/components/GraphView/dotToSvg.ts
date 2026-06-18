@@ -1,5 +1,5 @@
 import {unlines, unwords} from '#String'
-import {px, SizePx} from '#util'
+import {K, px, SizePx} from '#util'
 import {Graphviz} from '@hpcc-js/wasm-graphviz'
 
 const nodeSizeInches = 1 / 16
@@ -41,17 +41,15 @@ export const dotToSvg =
     return {svg, requiredPx, isOverflowX}
   }
 
-const node = (label: string): string =>
-  unwords.comma.rest(
-    'label=""',
-    'shape=circle',
-    'style=filled',
-    `color="black"`,
-    `fillcolor="white"`,
-    `width=${nodeSizeInches.toFixed(2)}`,
-    `height=${nodeSizeInches.toFixed(2)}`,
-    `tooltip="${label}"`,
-  )
+const node: string = unwords.comma.rest(
+  'label=""',
+  'shape=circle',
+  'style=filled',
+  `color="black"`,
+  `fillcolor="white"`,
+  `width=${nodeSizeInches.toFixed(2)}`,
+  `height=${nodeSizeInches.toFixed(2)}`,
+)
 
 const edge = (color: string): string =>
   unwords.comma.rest(
@@ -66,11 +64,8 @@ const styleDot = (dot: string): string => {
     .split('\n')
     .map(line =>
       line.includes('" -> "')
-        ? line.replace('[label=""]', `[${edge('#444')}]`)
-        : line.replace(
-            /\[label="(.+)"\]/,
-            (_, label: string) => `[${node(label)}]`,
-          ),
+        ? line.replace('[label=""]', `[${edge('#777')}]`)
+        : line.replace(/\[label="(.+)"\]/, K(`[${node}]`)),
     )
 
   const lines = unlines(styledDot).replace(
