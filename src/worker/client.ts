@@ -3,7 +3,7 @@ import {DecodeResponse, type DecodeRequest} from './message'
 export const decode = (
   request: DecodeRequest,
 ): [Promise<DecodeResponse>, () => void] => {
-  const worker = new Worker(new URL('./worker.js', import.meta.url), {
+  const worker = new Worker(new URL('./worker', import.meta.url), {
     type: 'module',
   })
   console.log(worker)
