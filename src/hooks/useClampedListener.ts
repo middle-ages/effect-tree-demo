@@ -27,7 +27,7 @@ export const useClampedListener = <N extends number | string>(
 
       dispatcher(
         value as N,
-        [...(target.parentElement?.children ?? [])].indexOf(target),
+        Array.from(target.parentElement?.children ?? []).indexOf(target),
       )
     },
     [dispatcher, isNumber, min, max],

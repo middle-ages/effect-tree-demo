@@ -24,19 +24,17 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
     disableWhatsNewNotifications: true,
-    builder: {
-      name: '@storybook/builder-vite',
-      options: {
-        viteConfigPath: 'vitest.config.ts',
-      },
-    },
+    //    builder: {
+    //      name: '@storybook/builder-vite',
+    //      options: {
+    //        viteConfigPath: './storybook/vitest.config.ts',
+    //      },
+    //    },
   },
 
   framework: {
     name: '@storybook/react-vite',
-    options: {
-      strictMode: true,
-    },
+    options: {strictMode: true},
   },
 
   addons: [

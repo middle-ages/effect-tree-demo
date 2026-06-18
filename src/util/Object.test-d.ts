@@ -1,5 +1,5 @@
-import type {FromEntries, InvertedObject, KeyList, ValueList} from './Object'
 import {expectTypeOf, test} from '@effect/vitest'
+import type {FromEntries, InvertedObject} from './Object'
 
 interface MyObject {
   readonly one: '1'
@@ -18,17 +18,6 @@ type Entries = readonly [
   readonly ['two', '2'],
   readonly ['three', '3'],
 ]
-
-type Keys = readonly ['one', 'two', 'three']
-type Values = readonly ['1', '2', '3']
-
-test('KeyList', () => {
-  expectTypeOf<KeyList<MyObject>>().toEqualTypeOf<Keys>()
-})
-
-test('ValueList', () => {
-  expectTypeOf<ValueList<MyObject>>().toEqualTypeOf<Values>()
-})
 
 test('FromEntries', () => {
   expectTypeOf<FromEntries<Entries>>().toEqualTypeOf<MyObject>()

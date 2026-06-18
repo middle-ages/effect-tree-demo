@@ -39,8 +39,8 @@ export const DecodeResponse = (
   lines: string[],
   stats: PrimedStats,
 ): DecodeResponse => ({
-  _tag: 'effect-tree-demo-response',
   ...request,
+  _tag: 'effect-tree-demo-response',
   tree,
   lines,
   stats,

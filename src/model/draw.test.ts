@@ -1,5 +1,5 @@
 import {test, expect, describe} from 'vitest'
-import {formatRoman, toRoman} from './index'
+import {formatRoman, toRoman} from './draw'
 
 test('toRoman', () => {
   expect(toRoman(1_234)).toBe('ⅯⅭⅭⅩⅩⅩⅣ')

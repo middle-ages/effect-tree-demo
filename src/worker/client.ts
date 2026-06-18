@@ -6,7 +6,6 @@ export const decode = (
   const worker = new Worker(new URL('./worker', import.meta.url), {
     type: 'module',
   })
-  console.log(worker)
   const terminate = () => {
     worker.terminate()
   }
@@ -17,11 +16,7 @@ export const decode = (
         this: AbstractWorker,
         event: ErrorEvent,
       ): void {
-        console.log('worker')
-        console.log(this)
-        console.log('event')
-        console.log(event)
-        //        throw new Error(event.message)
+        throw new Error(event.message)
       }
 
       worker.onmessage = ({data}: MessageEvent<DecodeResponse>): void => {

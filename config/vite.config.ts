@@ -5,13 +5,7 @@ import babel from '@rolldown/plugin-babel'
 
 export default defineConfig({
   worker: {format: 'es'},
-  plugins: [
-    react(),
-    tailwindCss(),
-    babel({
-      presets: [reactCompilerPreset()],
-    }),
-  ],
+  plugins: [react(), tailwindCss(), babel({presets: [reactCompilerPreset()]})],
   build: {
     outDir: 'docs',
     cssTarget: 'chrome144',

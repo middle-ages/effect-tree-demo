@@ -1,18 +1,6 @@
-import {type NonEmptyArray, map} from 'effect/Array'
+import {map} from 'effect/Array'
 import {swap} from 'effect/Tuple'
 import {type Simplify, type UnionToIntersection} from 'effect/Types'
-import {type Tail, type UnionToTuple} from './Tuple'
-
-/** `Object.keys` for literal records */
-export const typedKeys = <const T extends object>(o: T): KeyList<T> =>
-  Object.keys(o) as KeyList<T>
-
-typedKeys.nonEmpty = <T extends Record<PropertyKey, unknown>>(o: T) =>
-  Object.keys(o as object) as unknown as NonEmptyArray<keyof T>
-
-/** `Object.values` for literal records */
-export const typedValues = <const T extends object>(o: T) =>
-  Object.values(o) as ValueList<T>
 
 /** `Object.fromEntries` for literal records */
 export const typedFromEntries = <
@@ -39,22 +27,6 @@ export const invert = <K extends string, V extends string>(o: Record<K, V>) =>
 export type ObjectToUnion<T extends object> = {
   [K in keyof T]: Record<K, T[K]>
 }[keyof T]
-
-/**
- * Type of the key array of a literal record type
- *
- *
- * ```ts
- * interface Foo {
- *   a: number;
- *   b: string;
- * }
- *
- * type Keys = KeyList<Foo>; // ["a", "b"]
- * // Keys[number] ≡ keyof Foo
- * ```
- **/
-export type KeyList<T extends object> = UnionToTuple<keyof T>
 
 /**
  * The inverted object of `T`.
@@ -90,32 +62,6 @@ export type FromEntries<
     >
   >
 >
-
-/**
- * ```ts
- * interface Foo {
- *   a: number;
- *   b: string;
- * }
- * type Res = ValueList<Foo>; // [number, string]
- * ```
- */
-export type ValueList<T extends object> = _ValueList<
-  T,
-  KeyList<T> & readonly PropertyKey[]
->
-
-type _ValueList<
-  Source extends object,
-  Keys extends readonly PropertyKey[],
-  Carry extends readonly unknown[] = [],
-> = Keys['length'] extends 0
-  ? Carry
-  : _ValueList<
-      Omit<Source, Keys[0]>,
-      Tail<KeyList<Source>> & readonly PropertyKey[],
-      readonly [...Carry, Source[Keys[0] & keyof Source]]
-    >
 
 export type PartialOrUndefined<T> = {
   [K in keyof T]?: T[K] | undefined

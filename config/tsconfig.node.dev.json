@@ -11,6 +11,6 @@
     "../.storybook/main.ts",
     "../.storybook/manager.ts",
     "../.storybook/theme.ts",
-    "../vitest.config.ts",
+    "../.storybook/vitest.config.ts",
   ]
 }
