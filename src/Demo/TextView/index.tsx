@@ -17,8 +17,8 @@ export const TextView = () => {
     useAppSelector(selectLines),
   ]
   return (
-    <div className='relative size-full min-w-48 overflow-hidden p-0.5 contain-strict'>
-      <ScrollPanel className='scroller-focus z-1 rounded-sm border-inset-2 bg-paper before:top-[0.5px]'>
+    <div className='relative h-full min-w-48 p-px'>
+      <ScrollPanel className='scroller-focus z-1 rounded-md border-inset-2 bg-paper before:top-[0.5px]'>
         <pre className='px-1 font-mono text-smallest text-ink'>{lines}</pre>
       </ScrollPanel>
       <Overlay {...stats} />

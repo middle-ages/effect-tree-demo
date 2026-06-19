@@ -1,7 +1,7 @@
 export const IncNodeCount = (
   <svg
     viewBox='0 0 22 22'
-    className='w-5 pr-1 pl-1'
+    className='w-4.5 min-w-4.5 px-1'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>
     <path fill='currentColor' d='m7.2 0v7.2H0V12h7.2v7.2H12V12h7.2V7.2H12V0z' />

@@ -1,6 +1,6 @@
 export const FirstCode = (
   <svg
-    className='w-7 pr-1.5 pl-1.5'
+    className='w-6.5 min-w-6.5 pr-1.5 pl-1.5'
     viewBox='0 0 32 17'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>

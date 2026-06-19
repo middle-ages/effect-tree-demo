@@ -1,7 +1,7 @@
 export const LastNodeCount = (
   <svg
     viewBox='0 0 55 16'
-    className='w-9 pt-0.5 pr-1 pl-0.75'
+    className='w-8 min-w-8 pt-0.5 pr-1 pl-0.75'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>
     <path

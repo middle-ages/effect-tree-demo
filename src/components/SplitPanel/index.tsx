@@ -13,12 +13,7 @@ interface Props extends StyledProps {
   leftStyle?: CSSProperties
 }
 
-const strutClass =
-  'h-[calc((100%-2rem-var(--spacing))/2)] button-base rounded-none mx-1 last:-scale-y-100 cursor-ew-resize opacity-30 group-hover:opacity-50 w-1 dom-play group-active:opacity-100 contain-strict'
-
-const strut = <div className={strutClass} />
-
-const splitterWidthPx = 12
+const splitterWidth = '12px'
 
 export const SplitPanel = ({
   left,
@@ -63,16 +58,15 @@ export const SplitPanel = ({
       </div>
       <button
         {...{ref}}
-        style={{width: splitterWidthPx}}
+        style={{width: splitterWidth}}
         onDoubleClick={resetToMinLeftWidth}
         tabIndex={-1}
-        className={`group cursor-ew-resize flex-col justify-items-center px-0.5 ring-0 outline-none select-none`}>
-        {strut}
-        <div
-          className={`button group-hover:button-hover h-10 cursor-ew-resize pb-1 text-center text-xl text-fg-control-disabled group-active:group-hover:button-active`}>
+        className={`group flex h-full cursor-ew-resize flex-col px-0.5 text-fg-control/50 ring-0 outline-none select-none`}>
+        <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-raised group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
+        <div className='button h-10 cursor-ew-resize group-hover:button-raised group-active:button-active'>
           :
         </div>
-        {strut}
+        <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-raised group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
       </button>
       <div className={rightClassName}>{right}</div>
     </div>
@@ -83,8 +77,7 @@ const leftWidthCalc = (
   xPx: number,
   [left, right]: [minWidthLeftPx: number, minWidthRightPx: number],
 ) => {
-  const desired = `${px(xPx)} - ${px(splitterWidthPx)}`
-  const clampMin = `max(${px(left)}, ${desired})`
-  const maxLimit = `100cqw - ${px(right)} - ${px(splitterWidthPx)}`
+  const clampMin = `max(${px(left)}, ${px(xPx)} - ${splitterWidth})`
+  const maxLimit = `100cqw - ${px(right)} - ${splitterWidth}`
   return `min(${maxLimit}, ${clampMin})`
 }

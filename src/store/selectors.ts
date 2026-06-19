@@ -45,28 +45,22 @@ export const selectStats: OutputSelector<
 export const selectDot: OutputSelector<[RootSelector<Branch<number>>], string> =
   createSelector([selectTree], Codec.treeToGraphViz)
 
-export const selectIsFirstCode: OutputSelector<
-  [RootSelector<number[]>],
-  boolean
-> = createSelector([selectCode], Codec.Prufer.isFirstCode)
+const selectIsFirstCode: OutputSelector<[RootSelector<number[]>], boolean> =
+  createSelector([selectCode], Codec.Prufer.isFirstCode)
 
-export const selectIsLastCode: OutputSelector<
-  [RootSelector<number[]>],
-  boolean
-> = createSelector([selectCode], Codec.Prufer.isLastCode)
+const selectIsLastCode: OutputSelector<[RootSelector<number[]>], boolean> =
+  createSelector([selectCode], Codec.Prufer.isLastCode)
 
-export const selectIsFirstNodeCount: OutputSelector<
+const selectIsFirstNodeCount: OutputSelector<
   [RootSelector<number[]>],
   boolean
 > = createSelector([selectCode], code => code.length === 0)
 
-export const selectIsLastNodeCount: OutputSelector<
-  [RootSelector<number[]>],
-  boolean
-> = createSelector(
-  [selectCode],
-  code => Codec.Prufer.computeNodeCount(code) >= MAX_NODE_COUNT,
-)
+const selectIsLastNodeCount: OutputSelector<[RootSelector<number[]>], boolean> =
+  createSelector(
+    [selectCode],
+    code => Codec.Prufer.computeNodeCount(code) >= MAX_NODE_COUNT,
+  )
 
 type GuardOutputSelector = OutputSelector<
   readonly Selector<RootState>[],

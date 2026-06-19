@@ -1,7 +1,7 @@
 export const FirstNodeCount = (
   <svg
     viewBox='-5 0 20 15'
-    className='w-5 px-1'
+    className='w-5 min-w-5 px-1'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>
     <path

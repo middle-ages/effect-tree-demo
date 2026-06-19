@@ -56,9 +56,11 @@ const JumpButton = ({
   }
 
   return canRepeat ? (
-    <Repeater.Square {...props}>{label}</Repeater.Square>
+    <Repeater.Square className='min-w-10.5 contain-strict' {...props}>
+      {label}
+    </Repeater.Square>
   ) : (
-    <Button.Focus {...props} className='p-0'>
+    <Button.Focus {...props} className='min-w-9.5 contain-strict'>
       {label}
     </Button.Focus>
   )

@@ -1,6 +1,6 @@
 export const LastCode = (
   <svg
-    className='w-9 px-1'
+    className='w-8 min-w-8 px-1'
     viewBox='-5 -4 30 17'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>

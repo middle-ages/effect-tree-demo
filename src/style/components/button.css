@@ -19,7 +19,7 @@
 @utility button-base {
   @apply flex-center h-row-smaller truncate *:truncate;
   @apply squircle border outset-xy-dim control;
-  @apply text-small select-none text-inset;
+  @apply text-[14px] select-none text-inset;
   @apply cursor-pointer dom-play;
 }
 
@@ -96,7 +96,7 @@
 }
 
 @utility pill-panel {
-  @apply box-content flex w-full min-w-fit;
+  @apply box-content flex w-full min-w-fit first:ml-px last:mr-px;
   @apply squircle-full dark-border border-[0.5px] *:flex-1;
 
   > * {
