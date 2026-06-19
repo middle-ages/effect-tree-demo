@@ -5,11 +5,16 @@ import {
   type NumericFormat,
   type PrimedStats,
 } from '#model'
-import {createSelector, type OutputSelector} from '@reduxjs/toolkit'
+import {
+  createSelector,
+  type OutputSelector,
+  type Selector,
+} from '@reduxjs/toolkit'
 import {Boolean} from 'effect'
 import {Codec, type Branch, type Draw} from 'effect-tree'
 import {selectCode, selectFormat, selectTheme} from './dataSlice'
-import type {RootSelector, TreeStyle} from './data'
+import type {RootSelector, RootState, TreeStyle} from './data'
+import type {GuardSelector} from './guard'
 
 export const selectStyle: OutputSelector<
   [RootSelector<NumericFormat>, RootSelector<Draw.ThemeName>],
@@ -62,21 +67,26 @@ export const selectIsLastNodeCount: OutputSelector<
   code => Codec.Prufer.computeNodeCount(code) >= MAX_NODE_COUNT,
 )
 
-export const selectIsFirstTree: OutputSelector<
-  [RootSelector<boolean>, RootSelector<boolean>],
+type GuardOutputSelector = OutputSelector<
+  readonly Selector<RootState>[],
   boolean
-> = createSelector([selectIsFirstCode, selectIsFirstNodeCount], Boolean.and)
+>
 
-export const selectIsLastTree: OutputSelector<
-  [RootSelector<boolean>, RootSelector<boolean>],
-  boolean
-> = createSelector([selectIsLastCode, selectIsLastNodeCount], Boolean.and)
-
-export const guardSelectors = {
+const guardSelectors = {
   selectIsFirstCode,
   selectIsLastCode,
   selectIsFirstNodeCount,
   selectIsLastNodeCount,
-  selectIsFirstTree,
-  selectIsLastTree,
-} as const
+  selectIsFirstTree: createSelector(
+    [selectIsFirstCode, selectIsFirstNodeCount],
+    Boolean.and,
+  ),
+  selectIsLastTree: createSelector(
+    [selectIsLastCode, selectIsLastNodeCount],
+    Boolean.and,
+  ),
+} as const satisfies Record<GuardSelector, GuardOutputSelector>
+
+export const guardSelector = <Key extends GuardSelector>(
+  selector: Key,
+): (typeof guardSelectors)[Key] => guardSelectors[selector]

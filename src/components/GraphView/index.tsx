@@ -5,7 +5,7 @@ import {PointPx, type StyledProps} from '#util'
 import {Graphviz} from '@hpcc-js/wasm-graphviz'
 import {use, useMemo} from 'react'
 import {twMerge} from 'tailwind-merge'
-import {dotToSvg} from './dotToSvg'
+import {dotToSvg} from '#model'
 import {withMeasure} from '#compinators'
 
 interface Props extends UseMeasure, StyledProps {

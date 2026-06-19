@@ -2,16 +2,17 @@ import type {NumericFormat} from '#model'
 import {type ReducerCreators} from '@reduxjs/toolkit'
 import {Codec, Draw} from 'effect-tree'
 import type {Simplify} from 'type-fest'
-import {incDecReducers, randomCodeReducers, type DecIncJumpKey} from './code'
-import type {RandomCodeKey} from './randomActions'
+import type {AnyDecIncKey, RandomCodeKey} from './action'
 import type {
   BuildReducer,
-  VoidDataReducer,
   DataReducer,
   RootDataState,
   SetDigitPayload,
+  VoidDataReducer,
 } from './data'
 import * as State from './data'
+import {incDecReducers} from './decIncActions'
+import {randomCodeReducers} from './randomActions'
 
 const setCode: BuildReducer<number[]> = create =>
   create.reducer<number[]>((state, {payload: code}) =>
@@ -80,7 +81,7 @@ interface _Reducers
   extends
     CodeSetters,
     StyleSetters,
-    Record<RandomCodeKey | DecIncJumpKey, VoidDataReducer> {}
+    Record<RandomCodeKey | AnyDecIncKey, VoidDataReducer> {}
 
 export type Reducers = Simplify<_Reducers>
 

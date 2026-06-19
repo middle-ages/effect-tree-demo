@@ -1,5 +1,7 @@
 import {unlines, unwords} from '#String'
-import {K, px, SizePx} from '#util'
+import {px} from '#Css'
+import {K} from '#Function'
+import {SizePx} from '#react/size'
 import {Graphviz} from '@hpcc-js/wasm-graphviz'
 
 const nodeSizeInches = 1 / 16
@@ -7,8 +9,6 @@ const levelHeightInches = 1 / 2
 const arrowSizeInches = 0
 
 const sizeRe = /width="(?<w>\d+)pt" height="(?<h>\d+)pt"/
-
-export const svgPadPx = 5
 
 export interface DotToSvg {
   svg: string

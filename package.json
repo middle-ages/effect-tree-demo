@@ -334,10 +334,16 @@
         "import": "./src/storybook.js"
       }
     },
-    "#Number": {
+    "#Array": {
       "import": {
-        "types": "./src/util/Number.d.ts",
-        "import": "./src/util/Number.js"
+        "types": "./src/util/Array.d.ts",
+        "import": "./src/util/Array.js"
+      }
+    },
+    "#Css": {
+      "import": {
+        "types": "./src/util/css.d.ts",
+        "import": "./src/util/css.js"
       }
     },
     "#Function": {
@@ -346,22 +352,10 @@
         "import": "./src/util/Function.js"
       }
     },
-    "#Array": {
+    "#Number": {
       "import": {
-        "types": "./src/util/Array.d.ts",
-        "import": "./src/util/Array.js"
-      }
-    },
-    "#String": {
-      "import": {
-        "types": "./src/util/String.d.ts",
-        "import": "./src/util/String.js"
-      }
-    },
-    "#Tuple": {
-      "import": {
-        "types": "./src/util/Tuple.d.ts",
-        "import": "./src/util/Tuple.js"
+        "types": "./src/util/Number.d.ts",
+        "import": "./src/util/Number.js"
       }
     },
     "#Pair": {
@@ -376,10 +370,28 @@
         "import": "./src/util/Record.js"
       }
     },
+    "#String": {
+      "import": {
+        "types": "./src/util/String.d.ts",
+        "import": "./src/util/String.js"
+      }
+    },
+    "#Tuple": {
+      "import": {
+        "types": "./src/util/Tuple.d.ts",
+        "import": "./src/util/Tuple.js"
+      }
+    },
     "#react": {
       "import": {
         "types": "./src/util/react.d.ts",
         "import": "./src/util/react.js"
+      }
+    },
+    "#react/*": {
+      "import": {
+        "types": "./src/util/react/*.d.ts",
+        "import": "./src/util/react/*.js"
       }
     },
     "#util": {

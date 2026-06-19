@@ -5,6 +5,7 @@ import type {BaseItem} from '#types'
 import type {ReducerCreators} from '@reduxjs/toolkit'
 import type {VoidDataReducer} from './data'
 import {type Guard} from './guard'
+import type {Simplify} from 'effect/Types'
 
 /**
  * A tree action that modifies the current tree code and serves as a model for
@@ -28,6 +29,7 @@ export type DirectionKey = (typeof directionKeys)[number]
 export type TargetKey = (typeof targetKeys)[number]
 export type ActionMap = typeof actionMap
 export type RandomCodeKey = (typeof actionMap.random)[number]
+export type AnyDecIncKey = Simplify<DecIncKey>
 
 export type DecIncKey<
   Target extends TargetKey = TargetKey,
