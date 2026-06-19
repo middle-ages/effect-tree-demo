@@ -26,7 +26,7 @@ export const StylePanel = () => {
 
   return (
     <Details label='Appearance'>
-      <div className='grid grid-cols-[10ch_1fr] gap-x-2 gap-y-0.5 contain-content'>
+      <div className='grid grid-cols-[10ch_1fr] gap-x-2 gap-y-0.5'>
         <Row label='Label format'>
           <Select<NumericFormat>
             value={{...formats[format], id: format}}
@@ -49,7 +49,7 @@ export const StylePanel = () => {
 }
 
 const Row = ({label, children}: {label: string} & PropsWithChildren) => (
-  <label className='subgrid-2 h-fit pb-0.75 select-none *:last:-translate-x-px'>
+  <label className='subgrid-2 pb-0.75 select-none *:last:-translate-x-px'>
     <div>{label}</div>
     <div className='h-row-smallest'>{children}</div>
   </label>
