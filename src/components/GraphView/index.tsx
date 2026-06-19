@@ -42,7 +42,7 @@ const Measured = ({
       // Double click resets zoom.
       onDoubleClick={reset}
       className={twMerge(
-        'flex fill-container justify-center',
+        'flex fill-container justify-center contain-strict',
         isDragging ? 'cursor-grabbing' : 'cursor-grab',
       )}
       {...{ref}}>

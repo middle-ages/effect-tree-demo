@@ -29,7 +29,7 @@ const Row = ({
   title,
   children,
 }: PropsWithChildren<{label: string; title: string}>) => (
-  <div className='subgrid-2 h-fit select-none'>
+  <div className='select-content subgrid-2 h-fit'>
     <div className={twMerge('text-fg-control', rowLineHeight)} {...{title}}>
       {label}
     </div>

@@ -28,6 +28,7 @@ export const DigitEditor = ({
       min={1}
       max={maxDigit}
       onChange={(digit, index) => pipe({digit, index}, setDigit, dispatch)}
+      style={{contentVisibility: 'auto'}}
     />
   )
 }
