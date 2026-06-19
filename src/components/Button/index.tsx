@@ -4,12 +4,14 @@ import type {Types} from 'effect'
 import {type RefCallback} from 'react'
 import {twMerge} from 'tailwind-merge'
 
-interface _BaseProps extends DisabledItemProps {
+interface _BaseProps extends Omit<DisabledItemProps, 'isDisabled'> {
   ref?: RefCallback<HTMLButtonElement>
   isFocusable?: boolean
 
   /** Control button active pseudo state externally. */
   isActive?: boolean | undefined
+
+  isDisabled?: boolean | undefined
 
   /** If true wraps children in a div. */
   isWrapped?: boolean
@@ -26,7 +28,7 @@ const _Button = ({
   id,
   ref,
   title: propsTitle,
-  isDisabled,
+  isDisabled = false,
   disabledNote = '',
   isActive = false,
   isFocusable = true,

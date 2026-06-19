@@ -32,4 +32,10 @@ export type {
   ActionList,
 } from './store/action'
 export {actionMap, targetKeys, directionKeys} from './store/action'
-export {type GuardSelector, type Guard, disabledProps} from './store/guard'
+export {
+  randomGuard,
+  type GuardSelector,
+  type Guard,
+  normalizeGuard,
+  disabledProps,
+} from './store/guard'

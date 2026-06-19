@@ -4,7 +4,10 @@ import {unwords} from '#String'
 import {MAX_NODE_COUNT} from '#model/stats'
 import {type DisabledProps} from '#types'
 
-export type Guard = [selector: GuardSelector, disabledNote: string]
+export type Guard = [
+  selector: GuardSelector | 'selectConstantTrue',
+  disabledNote: string,
+]
 
 export type GuardSelector = `selectIs${
   | 'FirstCode'
@@ -16,6 +19,9 @@ export type GuardSelector = `selectIs${
 
 export type Edge = 'first' | 'last'
 export type Signal = 'code' | 'nodeCount' | 'tree'
+
+export const normalizeGuard = (guard?: Guard): Guard =>
+  guard === undefined ? ['selectConstantTrue', ''] : guard
 
 export const maxNodeCountMessage = `𝓶𝓪𝔁=${MAX_NODE_COUNT.toLocaleString()}`
 
@@ -43,12 +49,12 @@ const [firstCodeTitle, lastCodeTitle] = pipe(
 
 const [firstTreeTitle, lastTreeTitle] = [
   unwords.spaced.rest(
-    `${cannotBuild} with a code smaller than the smallest possible'
-    'Prüfer-encodable tree.`,
+    `${cannotBuild} with a code smaller than the smallest possible`,
+    'Prüfer-encodable tree.',
   ),
   unwords.spaced.rest(
-    `${cannotBuild} with a code larger than the largest possible'
-    'Prüfer code for a tree of node count ${maxNodeCountMessage}.`,
+    `${cannotBuild} with a code larger than the largest possible`,
+    `Prüfer code for a tree of node count ${maxNodeCountMessage}.`,
   ),
 ]
 
@@ -56,7 +62,7 @@ export const guard: Record<Edge, Record<Signal, Guard>> = {
   first: {
     code: ['selectIsFirstCode', firstCodeTitle],
     nodeCount: ['selectIsFirstNodeCount', firstNodeCountTitle],
-    tree: ['selectIsLastTree', firstTreeTitle],
+    tree: ['selectIsFirstTree', firstTreeTitle],
   },
   last: {
     code: ['selectIsLastCode', lastCodeTitle],

@@ -11,12 +11,12 @@ export const Toolbar = () => (
     <Row
       label='Prüfer code'
       title='Jump between different codes at the current node count.'>
-      <DecIncJumps jump='code' />
+      <DecIncJumps target='code' />
     </Row>
     <Row
       label='Node count'
       title='Jump to between trees with different node counts.'>
-      <DecIncJumps jump='nodeCount' />
+      <DecIncJumps target='nodeCount' />
     </Row>
     <Row label='Randomize' title='Jump to random trees.'>
       <RandomJumps />

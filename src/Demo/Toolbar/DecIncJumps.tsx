@@ -1,23 +1,21 @@
+import * as Array from '#Array'
 import {Button} from '#Button'
+import {pipe} from '#Function'
 import {Pill} from '#Pill'
+import {type StyledProps} from '#react/props'
 import {Repeater} from '#Repeater'
 import * as store from '#store'
 import {
-  type DecIncJumpKey,
   type DirectionKey,
-  type JumpKey,
-  type ModifyAction,
   getDecIncActions,
-  selectCode,
+  type TargetKey,
   useAppDispatch,
   useAppSelector,
 } from '#store'
-import {mapTuple3} from '#Tuple'
-import {type StyledProps, pipe} from '#util'
 import {useCallback} from 'react'
 
 interface Props extends StyledProps {
-  jump: JumpKey
+  target: TargetKey
 }
 
 export const DecIncJumps = (props: Props) => (
@@ -31,25 +29,27 @@ interface DirectionProps extends Props {
   direction: DirectionKey
 }
 
-export const DirectionJumps = ({jump, direction, ...props}: DirectionProps) => (
+const DirectionJumps = ({target, direction, ...props}: DirectionProps) => (
   <Pill {...props}>
     {pipe(
       direction,
-      getDecIncActions(jump),
-      mapTuple3(action => <JumpButton key={action.id} {...{action}} />),
+      getDecIncActions(target),
+      Array.map(action => <JumpButton key={action.id} {...{action}} />),
     )}
   </Pill>
 )
 
 const JumpButton = ({
-  action: {id, title, label, canRepeat, buildState},
+  action: {id, title, label, canRepeat, guard},
 }: {
-  action: ModifyAction<DecIncJumpKey>
+  action: store.Action<store.AnyDecIncKey>
 }) => {
-  const code = useAppSelector(selectCode)
   const dispatch = useAppDispatch()
+  const [selector, disabledNote] = store.guardSelector(guard)
+  const guardResult = useAppSelector(selector)
+  const disabledState = store.disabledProps(guardResult, disabledNote)
   const props = {
-    ...buildState(code),
+    ...disabledState,
     id,
     title,
     onClick: useCallback(() => dispatch(store[id]()), [dispatch, id]),

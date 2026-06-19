@@ -1,38 +1,44 @@
 import {Button} from '#Button'
-import {type EndoOf} from '#Function'
+import {pipe, type EndoOf} from '#Function'
 import {Pill} from '#Pill'
 import {type ButtonNotification} from '#pointer'
+import {type StyledProps} from '#react/props'
+import * as store from '#store'
+import {randomCodeActions, useAppDispatch, useAppSelector} from '#store'
 import {usePrimaryButton} from '#usePointerButton'
-import {pipe, type StyledProps} from '#util'
-import {type CSSProperties} from 'react'
+import {useCallback, type CSSProperties} from 'react'
 import * as rx from 'rxjs'
 import {twMerge} from 'tailwind-merge'
-import {
-  randomCodeActions,
-  selectCode,
-  useAppDispatch,
-  useAppSelector,
-  type AppDispatch,
-} from '#store'
-import * as store from '#store'
 
 interface Props extends StyledProps {}
 
 const [randomCode, randomBoth, randomNodes] = randomCodeActions
 
 export const RandomJumps = ({className, style}: Props) => {
-  const code = useAppSelector(selectCode)
   const dispatch = useAppDispatch()
+  const dispatcher = useCallback<EndoOf<rx.Observable<ButtonNotification>>>(
+    source =>
+      pipe(
+        source,
+        rx.tap(({isClick}: ButtonNotification) => {
+          if (isClick) {
+            dispatch(store.randomBoth())
+          }
+        }),
+      ),
+    [dispatch],
+  )
 
-  const [{buttonState}, ref] = usePrimaryButton(tapSetCode(dispatch))
+  const [{buttonState}, ref] = usePrimaryButton(dispatcher)
+  const [selector, disabledNote] = store.guardSelector(randomCode.guard)
+  const guardResult = useAppSelector(selector)
+  const disabledState = store.disabledProps(guardResult, disabledNote)
   const isActive = buttonState === 'down'
 
   return (
     <Pill className={twMerge('items-baseline', className)} {...{style}}>
       <Button.Focus
-        {...randomCode}
-        {...{isActive}}
-        {...randomCode.buildState(code)}
+        {...{...disabledState, ...randomCode, isActive}}
         isWrapped
         onClick={() => {
           dispatch(store.randomCode())
@@ -43,7 +49,6 @@ export const RandomJumps = ({className, style}: Props) => {
         {...randomBoth}
         {...{isActive, ref}}
         isWrapped
-        isDisabled={false}
         isFocusable
         className='cross-pill'
         style={{cornerShape: 'notch'} as CSSProperties}>
@@ -53,7 +58,6 @@ export const RandomJumps = ({className, style}: Props) => {
         {...randomNodes}
         {...{isActive}}
         isWrapped
-        isDisabled={false}
         onClick={() => {
           dispatch(store.randomNodes())
         }}>
@@ -62,15 +66,3 @@ export const RandomJumps = ({className, style}: Props) => {
     </Pill>
   )
 }
-
-const tapSetCode: (
-  dispatch: AppDispatch,
-) => EndoOf<rx.Observable<ButtonNotification>> = dispatch => source =>
-  pipe(
-    source,
-    rx.tap(({isClick}: ButtonNotification) => {
-      if (isClick) {
-        dispatch(store.randomBoth())
-      }
-    }),
-  )

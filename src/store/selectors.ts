@@ -14,7 +14,8 @@ import {Boolean} from 'effect'
 import {Codec, type Branch, type Draw} from 'effect-tree'
 import {selectCode, selectFormat, selectTheme} from './dataSlice'
 import type {RootSelector, RootState, TreeStyle} from './data'
-import type {GuardSelector} from './guard'
+import {normalizeGuard, type Guard, type GuardSelector} from './guard'
+import {constTrue} from '#Function'
 
 export const selectStyle: OutputSelector<
   [RootSelector<NumericFormat>, RootSelector<Draw.ThemeName>],
@@ -72,6 +73,11 @@ type GuardOutputSelector = OutputSelector<
   boolean
 >
 
+const selectConstantTrue: OutputSelector<[], boolean> = createSelector(
+  [],
+  constTrue,
+)
+
 const guardSelectors = {
   selectIsFirstCode,
   selectIsLastCode,
@@ -87,6 +93,12 @@ const guardSelectors = {
   ),
 } as const satisfies Record<GuardSelector, GuardOutputSelector>
 
-export const guardSelector = <Key extends GuardSelector>(
-  selector: Key,
-): (typeof guardSelectors)[Key] => guardSelectors[selector]
+export const guardSelector = (
+  maybeGuard?: Guard,
+): [GuardOutputSelector | typeof selectConstantTrue, string] => {
+  const [key, disabledNote] = normalizeGuard(maybeGuard)
+  return [
+    key === 'selectConstantTrue' ? selectConstantTrue : guardSelectors[key],
+    disabledNote,
+  ]
+}
