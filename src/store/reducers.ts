@@ -3,15 +3,15 @@ import {type ReducerCreators} from '@reduxjs/toolkit'
 import {Codec, Draw} from 'effect-tree'
 import type {Simplify} from 'type-fest'
 import {incDecReducers, randomCodeReducers, type DecIncJumpKey} from './code'
-import type {RandomCodeKey} from './code/randomActions'
+import type {RandomCodeKey} from './randomActions'
 import type {
   BuildReducer,
-  Modifier,
-  ReducerOf,
+  VoidDataReducer,
+  DataReducer,
   RootDataState,
   SetDigitPayload,
-} from './state'
-import * as State from './state'
+} from './data'
+import * as State from './data'
 
 const setCode: BuildReducer<number[]> = create =>
   create.reducer<number[]>((state, {payload: code}) =>
@@ -51,10 +51,10 @@ const setTheme: BuildReducer<Draw.ThemeName> = create =>
   )
 
 interface CodeSetters {
-  setCode: ReducerOf<number[]>
-  setDigit: ReducerOf<SetDigitPayload>
-  setTreeIndex: ReducerOf<string>
-  setNodeCount: ReducerOf<number>
+  setCode: DataReducer<number[]>
+  setDigit: DataReducer<SetDigitPayload>
+  setTreeIndex: DataReducer<string>
+  setNodeCount: DataReducer<number>
 }
 
 const codeSetters = (create: ReducerCreators<RootDataState>): CodeSetters => ({
@@ -65,8 +65,8 @@ const codeSetters = (create: ReducerCreators<RootDataState>): CodeSetters => ({
 })
 
 interface StyleSetters {
-  setFormat: ReducerOf<NumericFormat>
-  setTheme: ReducerOf<Draw.ThemeName>
+  setFormat: DataReducer<NumericFormat>
+  setTheme: DataReducer<Draw.ThemeName>
 }
 
 const styleSetters = (
@@ -80,7 +80,7 @@ interface _Reducers
   extends
     CodeSetters,
     StyleSetters,
-    Record<RandomCodeKey | DecIncJumpKey, Modifier> {}
+    Record<RandomCodeKey | DecIncJumpKey, VoidDataReducer> {}
 
 export type Reducers = Simplify<_Reducers>
 

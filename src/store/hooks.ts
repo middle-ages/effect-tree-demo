@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux'
-import {type RootState} from './state'
+import {type RootState} from './data'
 import {type AppDispatch} from './store'
 
 export const [useAppSelector, useAppDispatch] = [

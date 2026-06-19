@@ -12,7 +12,7 @@ import {
   type RootDataState,
   type RootSelector,
   type RootState,
-} from './state'
+} from './data'
 
 const dataSelectors = {
   selectCode: pluckCode,

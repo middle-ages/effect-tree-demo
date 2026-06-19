@@ -14,7 +14,7 @@ export {
   type RootState,
   type RootDataState,
   type ModifyAction,
-} from './store/state'
+} from './store/data'
 export {
   type DecIncAction,
   type DecIncActions,
@@ -23,5 +23,5 @@ export {
   getDecIncActions,
   randomCodeActions,
   type DirectionKey,
-  type JumpKey,
+  type TargetKey as JumpKey,
 } from './store/code'
