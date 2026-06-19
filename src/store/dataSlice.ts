@@ -5,11 +5,11 @@ import {createSlice, type Slice} from '@reduxjs/toolkit'
 import type {Draw} from 'effect-tree'
 import {reducers, type Reducers} from './reducers'
 import {
-  initialState,
+  initialDataState,
   pluckCode,
   pluckFormat,
   pluckTheme,
-  type RootDataState,
+  type DataState,
   type RootSelector,
   type RootState,
 } from './data'
@@ -18,13 +18,13 @@ const dataSelectors = {
   selectCode: pluckCode,
   selectFormat: pluckFormat,
   selectTheme: pluckTheme,
-  selectData: identity<RootDataState>,
+  selectData: identity<DataState>,
 }
 
 type DataSelectors = typeof dataSelectors
 
 export type DataSlice = Slice<
-  RootDataState,
+  DataState,
   Reducers,
   'data',
   'data',
@@ -33,7 +33,7 @@ export type DataSlice = Slice<
 
 export const dataSlice: DataSlice = createSlice({
   name: 'data',
-  initialState,
+  initialState: initialDataState,
   reducers,
   selectors: dataSelectors,
 })
@@ -47,7 +47,7 @@ export const [selectCode, selectFormat, selectTheme, selectData]: [
   RootSelector<number[]>,
   RootSelector<NumericFormat>,
   RootSelector<Draw.ThemeName>,
-  RootSelector<RootDataState>,
+  RootSelector<DataState>,
 ] = [
   dataAdapter.selectCode,
   dataAdapter.selectFormat,

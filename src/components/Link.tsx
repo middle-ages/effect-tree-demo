@@ -15,7 +15,7 @@ export const Link = ({children, className, href, ...rest}: Props) => (
     href={href.toString()}
     rel='noreferrer'
     className={twMerge(
-      'mb-1 block h-4.5 w-fit squircle',
+      'mb-0.75 ml-0.5 inline-block h-4.5 w-fit squircle',
       'text-smaller leading-4.5 whitespace-nowrap',
       className,
     )}
@@ -28,7 +28,6 @@ Link.PruferPaper = () => {
   return (
     <Link
       href={new URL(paper)}
-      className='px-1'
       title="“Prüfer Encoding and a Proof of Cayley's Tree Formula”">
       Prüfer Code
     </Link>

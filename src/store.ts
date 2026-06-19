@@ -6,16 +6,16 @@ export * from './store/dataSlice'
 export type {
   SetDigitPayload,
   RootState,
-  RootDataState,
+  DataState as RootDataState,
   TreeStyle,
   BuildReducer,
   VoidDataReducer,
   DataReducer,
   RootSelector,
-  RootDataSelector,
+  DataSelector as RootDataSelector,
   TreeCode,
 } from './store/data'
-export {initialState} from './store/data'
+export {initialDataState as initialState} from './store/data'
 export {getDecIncActions} from './store/decIncActions'
 export {randomCodeActions} from './store/randomActions'
 export type {

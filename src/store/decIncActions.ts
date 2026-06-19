@@ -17,7 +17,7 @@ import {
   type DirectionKey,
   type TargetKey,
 } from './action'
-import {type RootDataState, type VoidDataReducer} from './data'
+import {type DataState, type VoidDataReducer} from './data'
 import {guard, maxNodeCountMessageBy} from './guard'
 import {
   decHalfCode,
@@ -164,7 +164,7 @@ export const getDecIncActions =
   }
 
 export const incDecReducers = (
-  create: ReducerCreators<RootDataState>,
+  create: ReducerCreators<DataState>,
 ): Record<DecIncKey, VoidDataReducer> =>
   pipe(
     ['code', 'nodeCount'] as const,

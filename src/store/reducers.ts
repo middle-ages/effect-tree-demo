@@ -6,7 +6,7 @@ import type {AnyDecIncKey, RandomCodeKey} from './action'
 import type {
   BuildReducer,
   DataReducer,
-  RootDataState,
+  DataState,
   SetDigitPayload,
   VoidDataReducer,
 } from './data'
@@ -58,7 +58,7 @@ interface CodeSetters {
   setNodeCount: DataReducer<number>
 }
 
-const codeSetters = (create: ReducerCreators<RootDataState>): CodeSetters => ({
+const codeSetters = (create: ReducerCreators<DataState>): CodeSetters => ({
   setCode: setCode(create),
   setDigit: setDigit(create),
   setTreeIndex: setTreeIndex(create),
@@ -70,9 +70,7 @@ interface StyleSetters {
   setTheme: DataReducer<Draw.ThemeName>
 }
 
-const styleSetters = (
-  create: ReducerCreators<RootDataState>,
-): StyleSetters => ({
+const styleSetters = (create: ReducerCreators<DataState>): StyleSetters => ({
   setFormat: setFormat(create),
   setTheme: setTheme(create),
 })
@@ -85,7 +83,7 @@ interface _Reducers
 
 export type Reducers = Simplify<_Reducers>
 
-export const reducers = (create: ReducerCreators<RootDataState>): Reducers => ({
+export const reducers = (create: ReducerCreators<DataState>): Reducers => ({
   ...codeSetters(create),
   ...styleSetters(create),
   ...incDecReducers(create),

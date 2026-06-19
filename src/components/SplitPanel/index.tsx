@@ -14,7 +14,7 @@ interface Props extends StyledProps {
 }
 
 const strutClass =
-  'h-[calc((100%-2rem-var(--spacing))/2)] button-base rounded-none mx-1 last:-scale-y-100 cursor-ew-resize opacity-30 group-hover:opacity-50 w-1 dom-play group-active:opacity-100'
+  'h-[calc((100%-2rem-var(--spacing))/2)] button-base rounded-none mx-1 last:-scale-y-100 cursor-ew-resize opacity-30 group-hover:opacity-50 w-1 dom-play group-active:opacity-100 contain-strict'
 
 const strut = <div className={strutClass} />
 

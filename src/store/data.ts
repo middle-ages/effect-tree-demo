@@ -1,14 +1,31 @@
 import {K} from '#Function'
-import type {NumericFormat} from '#model'
+import {
+  drawRomanTree,
+  primeStats,
+  type NumericFormat,
+  type PrimedStats,
+} from '#model'
 import {pluck} from '#Record'
 import type {CaseReducer, ReducerCreators, Selector} from '@reduxjs/toolkit'
 import {Array} from 'effect'
-import type {Draw} from 'effect-tree'
+import {type Draw, type Tree, Codec} from 'effect-tree'
 
-export const initialState: RootDataState = {
-  code: [1, 2, 3, 4, 3, 2, 1],
+export const initialDataState: DataState = {
+  code: [],
   format: 'decimal',
   theme: 'unixRound',
+}
+
+const initialTree = Codec.Prufer.decode(initialDataState.code)
+
+export const initialComputedState: ComputedState = {
+  tree: initialTree,
+  lines: drawRomanTree(
+    initialTree,
+    initialDataState.format,
+    initialDataState.theme,
+  ),
+  stats: primeStats(initialDataState.code, initialTree),
 }
 
 export interface TreeCode {
@@ -21,18 +38,21 @@ export interface TreeStyle {
 }
 
 export interface RootState {
-  data: RootDataState
+  data: DataState
 }
 
-export interface RootDataState extends TreeStyle, TreeCode {}
+export interface DataState extends TreeStyle, TreeCode {}
+
+export interface ComputedState {
+  tree: Tree<number>
+  lines: string[]
+  stats: PrimedStats
+}
 
 export type RootSelector<A> = Selector<RootState, A>
-export type RootDataSelector<A> = Selector<RootDataState, A>
+export type DataSelector<A> = Selector<DataState, A>
 
-export type DataReducer<A> = CaseReducer<
-  RootDataState,
-  {payload: A; type: string}
->
+export type DataReducer<A> = CaseReducer<DataState, {payload: A; type: string}>
 
 /**
  * A reducer that applies some function on the current tree code and requires no
@@ -41,7 +61,7 @@ export type DataReducer<A> = CaseReducer<
 export type VoidDataReducer = DataReducer<void>
 
 export interface BuildReducer<A> {
-  (create: ReducerCreators<RootDataState>): DataReducer<A>
+  (create: ReducerCreators<DataState>): DataReducer<A>
 }
 
 export interface SetDigitPayload {
@@ -50,31 +70,31 @@ export interface SetDigitPayload {
 }
 
 export const [pluckData, pluckCode, pluckFormat, pluckTheme]: [
-  (state: RootState) => RootDataState,
-  (self: RootDataState) => number[],
-  (self: RootDataState) => NumericFormat,
-  (self: RootDataState) => Draw.ThemeName,
+  (state: RootState) => DataState,
+  (self: DataState) => number[],
+  (self: DataState) => NumericFormat,
+  (self: DataState) => Draw.ThemeName,
 ] = [pluck('data'), pluck('code'), pluck('format'), pluck('theme')]
 
 export const setCode = (
-  {code: _, ...state}: RootDataState,
+  {code: _, ...state}: DataState,
   code: number[],
-): RootDataState => ({...state, code})
+): DataState => ({...state, code})
 
 export const setFormat = (
-  {format: _, ...state}: RootDataState,
+  {format: _, ...state}: DataState,
   format: NumericFormat,
-): RootDataState => ({...state, format})
+): DataState => ({...state, format})
 
 export const setTheme = (
-  {theme: _, ...state}: RootDataState,
+  {theme: _, ...state}: DataState,
   theme: Draw.ThemeName,
-): RootDataState => ({...state, theme})
+): DataState => ({...state, theme})
 
 export const setDigit = (
-  {code, ...state}: RootDataState,
+  {code, ...state}: DataState,
   {digit, index}: SetDigitPayload,
-): RootDataState => ({
+): DataState => ({
   ...state,
   code: Array.modify(code, index, K(digit)),
 })

@@ -7,7 +7,7 @@ import {MAX_NODE_COUNT, sampleNodeCountAndCode, samplePruferCode} from '#model'
 import {Array, pipe, Tuple} from '#util'
 import type {ReducerCreators} from '@reduxjs/toolkit'
 import {toReducer, type Action, type RandomCodeKey} from './action'
-import {type RootDataState, type VoidDataReducer} from './data'
+import {type DataState, type VoidDataReducer} from './data'
 import {randomGuard as guard, maxNodeCountMessage} from './guard'
 import {randomNodes} from './helpers'
 
@@ -45,7 +45,7 @@ export const randomCodeActions: Tuple3<Action<RandomCodeKey>> = [
 ]
 
 export const randomCodeReducers: (
-  create: ReducerCreators<RootDataState>,
+  create: ReducerCreators<DataState>,
 ) => Record<RandomCodeKey, VoidDataReducer> = create =>
   pipe(
     randomCodeActions,
