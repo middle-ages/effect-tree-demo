@@ -39,3 +39,4 @@ export {
   normalizeGuard,
   disabledProps,
 } from './store/guard'
+export * from './store/computedSlice'

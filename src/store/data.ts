@@ -8,10 +8,15 @@ import {
 import {pluck} from '#Record'
 import type {CaseReducer, ReducerCreators, Selector} from '@reduxjs/toolkit'
 import {Array} from 'effect'
-import {type Draw, type Tree, Codec} from 'effect-tree'
+import {Codec, type Branch, type Draw} from 'effect-tree'
 
 export const initialDataState: DataState = {
-  code: [],
+  code: [
+    11, 12, 13, 14, 15, 14, 13, 12, 11, 9, 1, 9, 1, 2, 3, 4, 5, 4, 3, 2, 1, 9,
+    1, 9, 11, 12, 13, 14, 15, 14, 13, 12, 11, 9, 1, 9, 1, 2, 3, 4, 5, 4, 3, 2,
+    1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+  ],
   format: 'decimal',
   theme: 'unixRound',
 }
@@ -39,12 +44,13 @@ export interface TreeStyle {
 
 export interface RootState {
   data: DataState
+  computed: ComputedState
 }
 
 export interface DataState extends TreeStyle, TreeCode {}
 
 export interface ComputedState {
-  tree: Tree<number>
+  tree: Branch<number>
   lines: string[]
   stats: PrimedStats
 }
@@ -69,12 +75,25 @@ export interface SetDigitPayload {
   index: number
 }
 
-export const [pluckData, pluckCode, pluckFormat, pluckTheme]: [
+export const [pluckData, pluckComputed, pluckCode, pluckFormat, pluckTheme]: [
   (state: RootState) => DataState,
+  (state: RootState) => ComputedState,
   (self: DataState) => number[],
   (self: DataState) => NumericFormat,
   (self: DataState) => Draw.ThemeName,
-] = [pluck('data'), pluck('code'), pluck('format'), pluck('theme')]
+  (self: ComputedState) => Branch<number>,
+  (self: ComputedState) => string[],
+  (self: ComputedState) => PrimedStats,
+] = [
+  pluck('data'),
+  pluck('computed'),
+  pluck('code'),
+  pluck('format'),
+  pluck('theme'),
+  pluck('tree'),
+  pluck('lines'),
+  pluck('stats'),
+]
 
 export const setCode = (
   {code: _, ...state}: DataState,

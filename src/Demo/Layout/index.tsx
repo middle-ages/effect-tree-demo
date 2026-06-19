@@ -36,7 +36,7 @@ export const Layout = ({
 
     {/** Body */}
     <SplitPanel
-      className='-mt-0.5 flex-1 px-1 contain-strict'
+      className='-mt-0.5 flex-1 pr-0.5 pl-1 contain-strict'
       minWidthsPx={[380, 280]}
       leftClassName='flex-gap-col pr-0.5 contain-strict'
       rightClassName='min-h-[4lh] size-container overflow-hidden contain-strict'
