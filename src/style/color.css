@@ -1,10 +1,10 @@
 @import './theme/light.css';
 @theme {
   --color-border-left: var(--color-line-light);
-  --color-border-top-dim: --alpha(var(--color-border-top) / 70%);
-  --color-border-right-dim: --alpha(var(--color-border-right) / 70%);
-  --color-border-bottom-dim: --alpha(var(--color-border-bottom) / 70%);
-  --color-border-left-dim: --alpha(var(--color-border-left) / 70%);
+  --color-border-top-dim: --alpha(var(--color-border-top) / 60%);
+  --color-border-right-dim: --alpha(var(--color-border-right) / 60%);
+  --color-border-bottom-dim: --alpha(var(--color-border-bottom) / 60%);
+  --color-border-left-dim: --alpha(var(--color-border-left) / 60%);
   --color-input-hover: var(--color-light);
   --color-scroll-highest: --alpha(var(--color-ink) / 75%);
   --color-scroll-higher: --alpha(var(--color-ink) / 50%);

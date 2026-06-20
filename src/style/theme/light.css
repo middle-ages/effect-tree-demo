@@ -34,11 +34,11 @@
   --color-text-shadow-dark: #ffffff44;
   --color-text-shadow-darker: #bbbbbb33;
   --color-text-shadow-darkest: #99999944;
-  --button-gradient-highest-base: #e0e1e2;
+  --button-gradient-highest-base: #ddddde;
   --button-gradient-high-base: #d8d9da;
   --button-gradient-low-base: #d3d4d5;
   --button-gradient-lowest-base: #cececf;
-  --button-gradient-highest-active: #b5b5b5;
+  --button-gradient-highest-active: #bfbfbf;
   --button-gradient-high-active: #cccdcf;
   --button-gradient-low-active: #d2d2d2;
   --button-gradient-lowest-active: #dbdbdb;

@@ -30,8 +30,8 @@
 
   background: linear-gradient(
     var(--button-gradient-highest),
-    var(--button-gradient-high) 25%,
-    var(--button-gradient-low) 60%,
+    var(--button-gradient-high) 35%,
+    var(--button-gradient-low) 70%,
     var(--button-gradient-lowest) 100%
   );
 }

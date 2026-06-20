@@ -49,11 +49,11 @@ export const tokens = {
     textShadowDarkest: '#99999944',
   },
   button: {
-    gradientHighestBase: '#e0e1e2',
+    gradientHighestBase: '#ddddde',
     gradientHighBase: '#d8d9da',
     gradientLowBase: '#d0d2d4',
     gradientLowestBase: '#cccdce',
-    gradientHighestActive: '#b5b5b5',
+    gradientHighestActive: '#bfbfbf',
     gradientHighActive: '#cccdcf',
     gradientLowActive: '#d2d2d2',
     gradientLowestActive: '#dbdbdb',
