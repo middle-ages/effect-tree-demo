@@ -61,12 +61,12 @@ export const SplitPanel = ({
         style={{width: splitterWidth}}
         onDoubleClick={resetToMinLeftWidth}
         tabIndex={-1}
-        className='group flex h-full cursor-ew-resize flex-col px-0.5 ring-0 outline-none select-none hover:*:nth-[2]:contrast-110 hover:*:nth-[2]:saturate-200'>
-        <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
-        <div className='button min-h-12 cursor-ew-resize pb-1 text-2xl leading-12 text-fg-control/70 group-hover:text-fg-control/85 group-hover:button-hover group-active:button-active'>
+        className='group flex h-full cursor-ew-resize flex-col px-0.5 ring-0 brightness-105 outline-none select-none hover:*:brightness-95 active:*:brightness-94'>
+        <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-80 group-active:border group-active:opacity-100' />
+        <div className='button-base min-h-12 cursor-ew-resize border pb-1 text-2xl leading-12 text-fg-control/60 button-raised group-hover:text-fg-control-hover group-hover:contrast-107 group-active:text-fg-control group-active:brightness-90!'>
           :
         </div>
-        <div className='mx-auto grow rounded-b-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
+        <div className='mx-auto grow rounded-b-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-80 group-active:border group-active:opacity-100' />
       </button>
       <div className={rightClassName}>{right}</div>
     </div>
@@ -81,8 +81,3 @@ const leftWidthCalc = (
   const maxLimit = `100cqw - ${px(right)} - ${splitterWidth}`
   return `min(${maxLimit}, ${clampMin})`
 }
-
-/*
-
- group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80
-*/
