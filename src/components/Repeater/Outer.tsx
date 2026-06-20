@@ -25,8 +25,8 @@ export const Outer = ({
     isFocusable
     title={`${title} Hold for ½ a second to repeat.`}
     className={twMerge(
-      'button flex h-row-smaller w-full border leading-4',
-      'pr-5 pl-1 text-center *:relative',
+      'flex w-full',
+      'pr-5 pl-1 text-center',
       isRounded ? 'rounded-full rounded-shape' : 'rounded-none',
       !isRounded && 'border-l-line-darkest',
       className,

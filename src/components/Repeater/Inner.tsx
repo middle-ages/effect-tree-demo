@@ -21,14 +21,11 @@ export const Inner = ({
     {...{id, ref, isActive, isDisabled, onClick}}
     isFocusable={false}
     className={twMerge(
-      'size-3.5 border-[1.5px] p-[0.6px]',
+      'size-4 pl-px text-smallest leading-3',
       'rounded-full rounded-shape',
-      'enabled:hover:*:bg-[#444]',
-      'disabled:*:bg-[#888]',
-      'enabled:*:bg-[#666]',
-      'duration-200 outline-none *:duration-200',
+      'opacity-90 outline-none',
     )}
     title='Click or hold outside to repeat.'>
-    <div className={'size-full scale-110 arrow-circle'} />
+    ⟳
   </Button>
 )

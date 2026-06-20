@@ -49,15 +49,14 @@ export const tokens = {
     textShadowDarkest: '#99999944',
   },
   button: {
-    gradientHighestBase: '#e8e6ec',
-    gradientHighBase: '#dfdde2',
-    gradientLowBase: '#d6d4d9',
-    gradientLowestBase: '#d2d0d4',
-
-    gradientHighestActive: '#cbc8cb',
-    gradientHighActive: '#d3d0d3',
-    gradientLowActive: '#dcdadc',
-    gradientLowestActive: '#e4dce0',
+    gradientHighestBase: '#eaebed',
+    gradientHighBase: '#e0e2e8',
+    gradientLowBase: '#dfdddd',
+    gradientLowestBase: '#d0d0d0',
+    gradientHighestActive: '#c0c0c4',
+    gradientHighActive: '#cacacc',
+    gradientLowActive: '#d2d2d2',
+    gradientLowestActive: '#d6d6d8',
   },
 } as const satisfies Record<string, Record<string, string>>
 

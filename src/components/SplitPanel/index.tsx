@@ -61,12 +61,12 @@ export const SplitPanel = ({
         style={{width: splitterWidth}}
         onDoubleClick={resetToMinLeftWidth}
         tabIndex={-1}
-        className={`group flex h-full cursor-ew-resize flex-col px-0.5 text-fg-control/50 ring-0 outline-none select-none`}>
-        <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-raised group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
-        <div className='button h-10 cursor-ew-resize group-hover:button-raised group-active:button-active'>
+        className={`group hover:*:nth-[2]:saturate-200 hover:*:nth-[2]:contrast-110 flex h-full cursor-ew-resize flex-col px-0.5 text-fg-control/50 ring-0 outline-none select-none`}>
+        <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
+        <div className='button h-10 cursor-ew-resize group-active:button-active group-hover:button-hover'>
           :
         </div>
-        <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-raised group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
+        <div className='mx-auto grow rounded-b-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
       </button>
       <div className={rightClassName}>{right}</div>
     </div>
@@ -81,3 +81,8 @@ const leftWidthCalc = (
   const maxLimit = `100cqw - ${px(right)} - ${splitterWidth}`
   return `min(${maxLimit}, ${clampMin})`
 }
+
+/*
+
+ group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80
+*/

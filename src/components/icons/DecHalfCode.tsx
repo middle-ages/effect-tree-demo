@@ -1,6 +1,6 @@
 export const DecHalfCode = (
   <svg
-    className='w-4.5 min-w-4.5 pr-1.5 pl-0.5'
+    className='w-4.5 min-w-4.5 pr-1 pl-1'
     viewBox='0 0 24 16'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>

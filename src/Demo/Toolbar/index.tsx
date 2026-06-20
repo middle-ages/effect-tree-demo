@@ -33,8 +33,6 @@ const Row = ({
     <div className={twMerge('text-fg-control', rowLineHeight)} {...{title}}>
       {label}
     </div>
-    <div className={twMerge('flex-center contain-strict', rowHeight)}>
-      {children}
-    </div>
+    <div className={twMerge('flex-center h-5', rowHeight)}>{children}</div>
   </div>
 )

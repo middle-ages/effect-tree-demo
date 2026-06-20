@@ -1,9 +1,9 @@
 import {ProjectLink} from '#ProjectLink'
 
 export const header = (
-  <div className='size-container mt-px h-row-small contain-strict'>
+  <div className='align-center size-container flex h-row-small min-w-64 place-content-center contain-strict'>
     <ProjectLink />
-    <div className={`px-3 text-center leading-row-small text-inset`}>
+    <div className='w-fit px-3 text-center leading-7 text-inset'>
       Prüfer Calculator
     </div>
   </div>
