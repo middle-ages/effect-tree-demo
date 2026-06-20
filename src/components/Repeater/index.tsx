@@ -1,12 +1,10 @@
 import {noop} from '#Function'
-import {ms} from '#Css'
 import type {DisabledItemProps} from '#types'
 import {useImmediateRepeatButton, useRepeatButton} from '#usePointerButton'
 import {assumeProp} from 'react-compinators'
+import {twMerge} from 'tailwind-merge'
 import {Inner} from './Inner'
 import {Outer} from './Outer'
-import type {CSSProperties} from 'react'
-import {twMerge} from 'tailwind-merge'
 
 interface Props extends DisabledItemProps {
   isRounded?: boolean
@@ -29,9 +27,7 @@ export const Repeater = ({
     useImmediateRepeatButton(onClick)
 
   return (
-    <div
-      {...{style}}
-      className='relative h-5.5 w-full min-w-fit focus-within:z-1'>
+    <div {...{style}} className='relative w-full min-w-fit focus-within:z-1'>
       <Outer
         ref={parentRef}
         className={twMerge('h-5.5 w-full', className)}
