@@ -1,8 +1,9 @@
 import {Button} from '#Button'
+import type {StyledProps} from '#react/props'
 import type {RefCallback} from 'react'
 import {twMerge} from 'tailwind-merge'
 
-interface Props {
+interface Props extends StyledProps {
   id: string
   ref: RefCallback<HTMLElement>
   isRepeating: boolean
@@ -16,16 +17,19 @@ export const Inner = ({
   isRepeating: isActive,
   onClick,
   isDisabled = false,
+  className,
+  ...props
 }: Props) => (
   <Button
-    {...{id, ref, isActive, isDisabled, onClick}}
+    {...{...props, id, ref, isActive, isDisabled, onClick}}
     isFocusable={false}
     className={twMerge(
-      'size-4 pl-px text-smallest leading-3',
-      'rounded-full rounded-shape',
-      'opacity-90 outline-none',
+      'absolute top-0 right-1 m-0 rounded-full p-0 rounded-shape',
+      className,
     )}
     title='Click or hold outside to repeat.'>
-    ⟳
+    <div className='size-4 overflow-hidden rounded-full pl-[1.5px] text-sm leading-4 rounded-shape'>
+      ⟳
+    </div>
   </Button>
 )

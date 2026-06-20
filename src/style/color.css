@@ -3,8 +3,8 @@
   --color-border-left: var(--color-line-light);
   --color-border-top-dim: --alpha(var(--color-border-top) / 75%);
   --color-border-right-dim: --alpha(var(--color-border-right) / 75%);
-  --color-border-bottom-dim: --alpha(var(--color-border-bottom) / 75%);
-  --color-border-left-dim: --alpha(var(--color-border-left) / 75%);
+  --color-border-bottom-dim: --alpha(var(--color-border-bottom) / 50%);
+  --color-border-left-dim: --alpha(var(--color-border-left) / 50%);
   --color-input-hover: var(--color-light);
   --color-scroll-highest: --alpha(var(--color-ink) / 75%);
   --color-scroll-higher: --alpha(var(--color-ink) / 50%);

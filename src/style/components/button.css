@@ -1,5 +1,5 @@
 @utility button-active {
-  @apply border inset-xy control-active text-outset;
+  @apply inset-xy control-active text-outset;
   @apply translate-y-[0.5px];
 
   --button-gradient-highest: var(--button-gradient-highest-active);
@@ -16,10 +16,10 @@
 }
 
 @utility button-base {
-  @apply flex-center truncate *:truncate;
-  @apply squircle border outset-xy-dim control overflow-none;
-  @apply text-[14px] leading-row-[18px] select-none text-inset;
-  @apply cursor-pointer dom-play;
+  @apply m-0 flex-center truncate p-0 *:truncate;
+  @apply squircle border outset-xy control;
+  @apply text-[13px] leading-4.5 select-none text-inset;
+  @apply h-4.5 max-h-4.5 min-h-4.5 cursor-pointer dom-play;
 }
 
 @utility button-raised {
@@ -30,8 +30,8 @@
 
   background: linear-gradient(
     var(--button-gradient-highest),
-    var(--button-gradient-high) 20%,
-    var(--button-gradient-low) 70%,
+    var(--button-gradient-high) 40%,
+    var(--button-gradient-low) 80%,
     var(--button-gradient-lowest) 100%
   );
 }
@@ -101,8 +101,8 @@
 @utility pill-panel {
   @apply flex w-full min-w-fit first:ml-px last:mr-px;
   @apply squircle-shape *:flex-1;
-  @apply first:rounded-l-full border-r-light;
-  @apply first:rounded-r-full border-l-light;
+  @apply border-r-light first:rounded-l-full;
+  @apply border-l-light first:rounded-r-full;
 
   > * {
     &:focus-visible {

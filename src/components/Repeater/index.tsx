@@ -1,9 +1,11 @@
-import { noop } from '#Function'
-import type { DisabledItemProps } from '#types'
-import { useImmediateRepeatButton, useRepeatButton } from '#usePointerButton'
-import { assumeProp } from 'react-compinators'
-import { Inner } from './Inner'
-import { Outer } from './Outer'
+import {noop} from '#Function'
+import {ms} from '#Css'
+import type {DisabledItemProps} from '#types'
+import {useImmediateRepeatButton, useRepeatButton} from '#usePointerButton'
+import {assumeProp} from 'react-compinators'
+import {Inner} from './Inner'
+import {Outer} from './Outer'
+import type {CSSProperties} from 'react'
 
 interface Props extends DisabledItemProps {
   isRounded?: boolean
@@ -40,13 +42,11 @@ export const Repeater = ({
         }}>
         {children}
       </Outer>
-      <div className='absolute top-1 right-0.5 rounded-full'>
-        <Inner
-          id={`${id}-repeat`}
-          ref={childRef}
-          {...{isRepeating, onClick, isDisabled, disabledNote}}
-        />
-      </div>
+      <Inner
+        id={`${id}-repeat`}
+        ref={childRef}
+        {...{isRepeating, onClick, isDisabled, disabledNote}}
+      />
     </div>
   )
 }

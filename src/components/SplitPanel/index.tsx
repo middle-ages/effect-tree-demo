@@ -13,7 +13,7 @@ interface Props extends StyledProps {
   leftStyle?: CSSProperties
 }
 
-const splitterWidth = '12px'
+const splitterWidth = '1rem'
 
 export const SplitPanel = ({
   left,
@@ -61,9 +61,9 @@ export const SplitPanel = ({
         style={{width: splitterWidth}}
         onDoubleClick={resetToMinLeftWidth}
         tabIndex={-1}
-        className={`group hover:*:nth-[2]:saturate-200 hover:*:nth-[2]:contrast-110 flex h-full cursor-ew-resize flex-col px-0.5 text-fg-control/50 ring-0 outline-none select-none`}>
+        className='group flex h-full cursor-ew-resize flex-col px-0.5 ring-0 outline-none select-none hover:*:nth-[2]:contrast-110 hover:*:nth-[2]:saturate-200'>
         <div className='mx-auto grow rounded-t-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />
-        <div className='button h-10 cursor-ew-resize group-active:button-active group-hover:button-hover'>
+        <div className='button min-h-14 cursor-ew-resize pb-1.5 text-2xl leading-5 text-fg-control/70 group-hover:text-fg-control/85 group-hover:button-hover group-active:button-active'>
           :
         </div>
         <div className='mx-auto grow rounded-b-sm border-2 inset-xy opacity-50 dom-play group-hover:opacity-100 group-hover:button-hover group-active:button-active group-active:border-[1.5px] group-active:opacity-80' />

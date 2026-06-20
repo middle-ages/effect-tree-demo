@@ -36,7 +36,7 @@ export const RandomJumps = ({className, style}: Props) => {
   const isActive = buttonState === 'down'
 
   return (
-    <Pill className={twMerge('items-baseline', className)} {...{style}}>
+    <Pill className={twMerge('items-baseline *:h-5 *:leading-4', className)} {...{style}}>
       <Button.Focus
         {...{...disabledState, ...randomCode, isActive}}
         isWrapped
