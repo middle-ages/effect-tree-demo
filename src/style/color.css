@@ -15,7 +15,7 @@
 
 @utility text-inset {
   text-shadow:
-    0px 1px 1px var(--color-text-shadow-lightest),
+    0px 1px 1px var(--color-text-shadow-lighter),
     0.5px 1.5px 2px var(--color-text-shadow-dark);
 }
 

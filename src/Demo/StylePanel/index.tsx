@@ -49,7 +49,7 @@ export const StylePanel = () => {
 }
 
 const Row = ({label, children}: {label: string} & PropsWithChildren) => (
-  <label className='subgrid-2 pr-px pb-1 select-none'>
+  <label className='subgrid-2 pr-px select-none first:pb-1 last:pb-0.5'>
     <div>{label}</div>
     <div className='h-row-smallest'>{children}</div>
   </label>

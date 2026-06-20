@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --transition-duration: 200ms;
+    --transition-duration: 300ms;
     interpolate-size: allow-keywords;
   }
 

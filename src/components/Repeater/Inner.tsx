@@ -24,7 +24,7 @@ export const Inner = ({
     {...{...props, id, ref, isActive, isDisabled, onClick}}
     isFocusable={false}
     className={twMerge(
-      'absolute top-0.5 right-0.5 rounded-full rounded-shape',
+      'absolute top-0.5 right-0.5 rounded-full outset-xy rounded-shape',
       className,
     )}
     title='Click or hold outside to repeat.'>

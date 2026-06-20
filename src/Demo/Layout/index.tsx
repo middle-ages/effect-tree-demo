@@ -37,7 +37,7 @@ export const Layout = ({
     {/** Body */}
     <SplitPanel
       className='-mt-0.5 flex-1 px-1 contain-strict'
-      minWidthsPx={[368, 280]}
+      minWidthsPx={[360, 280]}
       leftClassName='pr-px flex-gap-col contain-strict'
       rightClassName='min-h-[4lh] size-container overflow-hidden contain-strict'
       left={
@@ -50,7 +50,7 @@ export const Layout = ({
           <div className='size-container min-h-lh flex-1 overflow-hidden rounded-md border-inset-2 bg-paper contain-strict'>
             {graphPanel}
           </div>
-          <VerticalPanel className='-mt-0.5'>{stylePanel}</VerticalPanel>
+          <VerticalPanel>{stylePanel}</VerticalPanel>
         </>
       }
       right={content}

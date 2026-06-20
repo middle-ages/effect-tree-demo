@@ -1,6 +1,7 @@
 @utility button-active {
-  @apply inset-xy control-active brightness-95 contrast-105 text-outset;
+  @apply inset-xy control-active brightness-90 contrast-110 text-outset;
   @apply translate-y-[0.5px];
+  --transition-duration: 120ms;
 
   --button-gradient-highest: var(--button-gradient-highest-active);
   --button-gradient-high: var(--button-gradient-high-active);
@@ -17,9 +18,10 @@
 
 @utility button-base {
   @apply m-0 flex-center truncate p-0 *:truncate;
-  @apply squircle border outset-xy-dim control;
+  @apply border outset-xy-dim control;
   @apply text-[13px] leading-4.5 select-none text-inset;
   @apply cursor-pointer dom-play;
+  --transition-duration: 300ms;
 }
 
 @utility button-raised {
@@ -30,8 +32,8 @@
 
   background: linear-gradient(
     var(--button-gradient-highest),
-    var(--button-gradient-high) 35%,
-    var(--button-gradient-low) 70%,
+    var(--button-gradient-high) 20%,
+    var(--button-gradient-low) 80%,
     var(--button-gradient-lowest) 100%
   );
 }
@@ -56,7 +58,7 @@
 }
 
 @utility button-hover {
-  @apply brightness-90 contrast-150 saturate-150;
+  @apply brightness-90 contrast-150 saturate-200;
 }
 
 @utility button-hover-vertical {
@@ -68,12 +70,12 @@
     @apply button-base button-states bg-dark;
 
     &:hover:not(:disabled) {
-      @apply control-hover saturate-50;
+      @apply control-hover saturate-110;
     }
 
     &:active:not(:disabled),
     &[data-state='active']:not(:disabled) {
-      @apply button-active;
+      @apply button-active brightness-92;
     }
   }
 
@@ -104,7 +106,8 @@
 
 @utility pill-panel {
   @apply flex w-full min-w-fit first:ml-px last:mr-px;
-  @apply squircle-shape *:flex-1;
+  @apply *:flex-1;
+  @apply gap-px;
 
   > * {
     &:focus-visible {
@@ -118,11 +121,11 @@
   }
 
   > *:first-child {
-    @apply rounded-l-full rounded-r-none;
+    @apply rounded-l-lg rounded-r-none;
   }
 
   > *:last-child {
-    @apply rounded-l-none rounded-r-full;
+    @apply rounded-l-none rounded-r-lg;
   }
 
   > *:not(:first-child):not(:last-child) {

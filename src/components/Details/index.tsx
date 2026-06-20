@@ -13,24 +13,24 @@ export const Details = ({label, children, style, className}: Props) => {
 
   return (
     <>
-      <div className={twMerge('relative min-h-4', className)}>
+      <div className={twMerge('relative', className)}>
         <button
           {...{onClick, style}}
           tabIndex={-1}
-          className='button-flat flex h-4 w-full cursor-pointer border-0 px-px focus-none'>
+          className='button-flat flex h-4 w-full cursor-pointer rounded-sm border-0 px-px focus-none active:border'>
           <Rule />
           <div
             className='size-6 flex-none -translate-y-1 rounded-full leading-6 text-fg-control-hover duration-300 text-inset-deep'
             style={
               {
                 transform: `${transform} scale(0.65)`,
-                background: `linear-gradient(90deg, #c1c1c5, var(--color-dark), #f9f9fb)`,
+                background: `linear-gradient(90deg, #d1d1d5, var(--color-dark), #f0f1f3)`,
               } as CSSProperties
             }>
             ❰
           </div>
-          <Rule className='w-2' />
-          <div className='w-fit flex-none px-0.5 text-smaller text-fg-control/80'>
+          <Rule className='w-1' />
+          <div className='-mt-0.5 w-fit flex-none px-0.5 text-smaller text-fg-control/80'>
             {label}
           </div>
           <Rule className='w-stretch mt-0.5 mr-0.5 w-full flex-1' />

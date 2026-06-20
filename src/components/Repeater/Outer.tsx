@@ -28,7 +28,6 @@ export const Outer = ({
       'border',
       'pr-5 pl-1 text-center',
       isRounded ? 'rounded-full rounded-shape' : 'rounded-none',
-      !isRounded && 'border-l-line-darkest',
       className,
     )}>
     {children}
