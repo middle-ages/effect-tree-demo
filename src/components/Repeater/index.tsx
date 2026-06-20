@@ -34,7 +34,7 @@ export const Repeater = ({
       className='relative h-5.5 w-full min-w-fit focus-within:z-1'>
       <Outer
         ref={parentRef}
-        className={twMerge('h-5.5', className)}
+        className={twMerge('h-5.5 w-full', className)}
         isActive={isRepeating || innerState === 'down'}
         {...{isDisabled, disabledNote}}
         {...{

@@ -56,7 +56,7 @@
 }
 
 @utility button-hover {
-  @apply brightness-102 contrast-107 saturate-200;
+  @apply brightness-102 contrast-115 saturate-250;
 }
 
 @layer components {

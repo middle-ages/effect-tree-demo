@@ -37,7 +37,7 @@ export const RandomJumps = ({className, style}: Props) => {
 
   return (
     <Pill
-      className={twMerge('items-baseline rounded-full', className)}
+      className={twMerge('h-6 items-baseline rounded-full *:h-5.5', className)}
       {...{style}}>
       <Button.Focus
         {...{...disabledState, ...randomCode, isActive}}
