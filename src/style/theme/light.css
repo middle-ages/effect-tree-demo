@@ -10,7 +10,7 @@
   --color-ring: #506acf;
   --color-border-top: #f2ebed;
   --color-border-right: #dad4d8;
-  --color-border-bottom: #bcb9ba;
+  --color-border-bottom: #c0c3c6;
   --color-app: #ebebf3;
   --color-light: #f0f0f5;
   --color-dark: #e1e1e6;
@@ -38,8 +38,8 @@
   --button-gradient-high-base: #dcddde;
   --button-gradient-low-base: #d0d3d6;
   --button-gradient-lowest-base: #c6c8ca;
-  --button-gradient-highest-active: #c0c0c4;
-  --button-gradient-high-active: #cacacc;
+  --button-gradient-highest-active: #b5b5b5;
+  --button-gradient-high-active: #cccdcf;
   --button-gradient-low-active: #d2d2d2;
-  --button-gradient-lowest-active: #d6d6d8;
+  --button-gradient-lowest-active: #dbdbdb;
 }

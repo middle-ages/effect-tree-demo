@@ -6,6 +6,7 @@ import {assumeProp} from 'react-compinators'
 import {Inner} from './Inner'
 import {Outer} from './Outer'
 import type {CSSProperties} from 'react'
+import {twMerge} from 'tailwind-merge'
 
 interface Props extends DisabledItemProps {
   isRounded?: boolean
@@ -28,9 +29,12 @@ export const Repeater = ({
     useImmediateRepeatButton(onClick)
 
   return (
-    <div {...{style}} className='relative w-full min-w-fit focus-within:z-1'>
+    <div
+      {...{style}}
+      className='relative h-5.5 w-full min-w-fit focus-within:z-1'>
       <Outer
         ref={parentRef}
+        className={twMerge('h-5.5', className)}
         isActive={isRepeating || innerState === 'down'}
         {...{isDisabled, disabledNote}}
         {...{
@@ -38,7 +42,6 @@ export const Repeater = ({
           title,
           isRounded,
           onClick,
-          className,
         }}>
         {children}
       </Outer>

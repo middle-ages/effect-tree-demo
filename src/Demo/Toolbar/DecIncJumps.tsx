@@ -13,6 +13,7 @@ import {
   useAppSelector,
 } from '#store'
 import {useCallback} from 'react'
+import {twMerge} from 'tailwind-merge'
 
 interface Props extends StyledProps {
   target: TargetKey
@@ -29,8 +30,20 @@ interface DirectionProps extends Props {
   direction: DirectionKey
 }
 
-const DirectionJumps = ({target, direction, ...props}: DirectionProps) => (
-  <Pill {...props}>
+const DirectionJumps = ({
+  target,
+  direction,
+  className,
+  ...props
+}: DirectionProps) => (
+  <Pill
+    {...props}
+    className={twMerge(
+      'h-6 *:h-5.5',
+      'first:rounded-l-full first:rounded-r-none first:border-r-0',
+      'last:rounded-l-none last:rounded-r-full last:border-l-0',
+      className,
+    )}>
     {pipe(
       direction,
       getDecIncActions(target),
@@ -56,11 +69,11 @@ const JumpButton = ({
   }
 
   return canRepeat ? (
-    <Repeater.Square className='min-w-10.5 h-5' {...props}>
+    <Repeater.Square className='min-w-10.5' {...props}>
       {label}
     </Repeater.Square>
   ) : (
-    <Button.Focus {...props} className='min-w-10 h-5'>
+    <Button.Focus {...props} className='min-w-10'>
       {label}
     </Button.Focus>
   )

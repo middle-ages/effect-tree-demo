@@ -1,5 +1,5 @@
 @utility button-active {
-  @apply inset-xy control-active text-outset;
+  @apply inset-xy control-active brightness-90 contrast-110 text-outset;
   @apply translate-y-[0.5px];
 
   --button-gradient-highest: var(--button-gradient-highest-active);
@@ -19,7 +19,7 @@
   @apply m-0 flex-center truncate p-0 *:truncate;
   @apply squircle border outset-xy control;
   @apply text-[13px] leading-4.5 select-none text-inset;
-  @apply h-4.5 max-h-4.5 min-h-4.5 cursor-pointer dom-play;
+  @apply cursor-pointer dom-play;
 }
 
 @utility button-raised {
@@ -56,7 +56,7 @@
 }
 
 @utility button-hover {
-  @apply contrast-105 saturate-200;
+  @apply brightness-102 contrast-107 saturate-200;
 }
 
 @layer components {
@@ -99,10 +99,8 @@
 }
 
 @utility pill-panel {
-  @apply flex w-full min-w-fit first:ml-px last:mr-px;
+  @apply flex w-full min-w-fit bg-[#aaa] first:ml-px last:mr-px;
   @apply squircle-shape *:flex-1;
-  @apply border-r-light first:rounded-l-full;
-  @apply border-l-light first:rounded-r-full;
 
   > * {
     &:focus-visible {
@@ -115,8 +113,16 @@
     @apply w-full;
   }
 
+  > *:first-child {
+    @apply rounded-l-full rounded-r-none;
+  }
+
+  > *:last-child {
+    @apply rounded-l-none rounded-r-full;
+  }
+
   > *:not(:first-child):not(:last-child) {
-    @apply rounded-none border-l-line-darkest!;
+    @apply rounded-none;
 
     &.cross-pill {
       @apply relative z-1 mx-[-1rch] px-2.5;

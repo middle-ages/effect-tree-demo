@@ -18,7 +18,7 @@ export const tokens = {
 
     borderTop: '#f2ebed',
     borderRight: '#dad4d8',
-    borderBottom: '#bcb9ba',
+    borderBottom: '#c0c3c6',
 
     app: '#ebebf3',
     light: '#f0f0f5',
@@ -53,10 +53,10 @@ export const tokens = {
     gradientHighBase: '#e0e2e3',
     gradientLowBase: '#dadcde',
     gradientLowestBase: '#d0d2d6',
-    gradientHighestActive: '#c0c0c4',
-    gradientHighActive: '#cacacc',
+    gradientHighestActive: '#b5b5b5',
+    gradientHighActive: '#cccdcf',
     gradientLowActive: '#d2d2d2',
-    gradientLowestActive: '#d6d6d8',
+    gradientLowestActive: '#dbdbdb',
   },
 } as const satisfies Record<string, Record<string, string>>
 
