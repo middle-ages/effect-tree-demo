@@ -1,7 +1,7 @@
 @layer base {
   select {
-    @apply relative h-[calc(100%-2px)] w-[calc(100%-2px)] px-2;
-    @apply box-border text-[15px];
+    @apply relative h-6 w-[calc(100%-2px)] px-2;
+    @apply text-[15px];
     @apply squircle border-[1.5px] inset-xy-dim input-control;
     @apply dom-play;
 

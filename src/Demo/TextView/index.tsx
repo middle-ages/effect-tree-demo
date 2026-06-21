@@ -17,7 +17,7 @@ export const TextView = () => {
     useAppSelector(selectComputedLines),
   ]
   return (
-    <div className='relative h-full min-w-48 p-px'>
+    <div className='relative h-full min-w-48'>
       <ScrollPanel className='scroller-focus z-1 rounded-md border-inset-2 bg-paper before:top-[0.5px]'>
         <pre className='px-1 font-mono text-smallest text-ink'>{lines}</pre>
       </ScrollPanel>

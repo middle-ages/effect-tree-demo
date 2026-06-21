@@ -38,8 +38,8 @@ export const Layout = ({
     <SplitPanel
       className='flex-1'
       minWidthsPx={[350, 280]}
-      leftClassName='pr-px flex-gap-col'
-      rightClassName='min-h-[4lh] size-container overflow-hidden'
+      leftClassName='pr-[1.5px] flex-gap-col'
+      rightClassName='p-px pr-0.5 min-h-[4lh] size-container'
       left={
         <>
           <VerticalPanel>
@@ -47,7 +47,7 @@ export const Layout = ({
             {HRule}
             {toolbar}
           </VerticalPanel>
-          <div className='size-container min-h-lh flex-1 overflow-hidden rounded-md border-inset-2 bg-paper'>
+          <div className='size-container flex-1 *:rounded-md *:border-inset-2'>
             {graphPanel}
           </div>
           <VerticalPanel>{stylePanel}</VerticalPanel>
@@ -57,7 +57,7 @@ export const Layout = ({
     />
 
     {/** Footer */}
-    <div className='h-20 pr-px'>{footer}</div>
+    <div className='h-20'>{footer}</div>
   </div>
 )
 

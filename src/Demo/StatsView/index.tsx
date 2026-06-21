@@ -25,7 +25,7 @@ export const StatsView = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <div className='flex flex-col gap-1 *:max-h-6 *:min-h-6'>
+    <div className='flex flex-col *:h-row-small *:pr-px'>
       <Row prefix='Tree #'>
         <BigIntInput
           value={treeIndex}
@@ -39,7 +39,7 @@ export const StatsView = () => {
         />
       </Row>
       <Stack
-        className='relative h-row-small *:first:absolute-0'
+        className='relative *:first:absolute-0'
         top={isFirst ? 'single' : 'many'}
         subNodes={{
           single,
@@ -54,7 +54,7 @@ export const StatsView = () => {
         }}
       />
 
-      <div className='flex h-row-small items-baseline leading-row-small whitespace-nowrap'>
+      <div className='flex items-baseline whitespace-nowrap'>
         possible
         <FixedNumeric
           value={Number(nodeCount)}
@@ -77,7 +77,7 @@ const Row = ({
   prefix,
 }: StyledPropsWithChildren & {prefix: ReactNode}) => (
   <div
-    className='flex h-row-small items-baseline gap-1 whitespace-nowrap'
+    className='flex items-baseline gap-1 overflow-hidden whitespace-nowrap'
     {...{style}}>
     <div className='leading-row-small'>{prefix}</div>
     <div className={twMerge('flex-1', className)}>{children}</div>
