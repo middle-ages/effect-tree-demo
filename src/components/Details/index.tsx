@@ -17,10 +17,10 @@ export const Details = ({label, children, style, className}: Props) => {
         <button
           {...{onClick, style}}
           tabIndex={-1}
-          className='button-flat flex h-4 w-full cursor-pointer rounded-sm border-0 px-px focus-none active:border'>
+          className='button-flat mb-1 flex h-4.75 w-full cursor-pointer rounded-sm border-0 focus-none active:border'>
           <Rule />
           <div
-            className='size-6 flex-none -translate-y-1 rounded-full leading-6 text-fg-control-hover duration-300 text-inset-deep'
+            className='w-6 flex-none -translate-y-0.75 rounded-full leading-6 text-fg-control-hover duration-300 text-inset-deep'
             style={
               {
                 transform: `${transform} scale(0.65)`,
@@ -30,10 +30,10 @@ export const Details = ({label, children, style, className}: Props) => {
             ❰
           </div>
           <Rule className='w-1' />
-          <div className='-mt-0.5 w-fit flex-none px-0.5 text-smaller text-fg-control/80'>
+          <div className='-mt-0.5 w-fit flex-none text-smaller text-fg-control/80'>
             {label}
           </div>
-          <Rule className='w-stretch mt-0.5 mr-0.5 w-full flex-1' />
+          <Rule className='w-stretch mt-0.5 ml-0.5 w-full flex-1' />
         </button>
       </div>
       <div

@@ -16,7 +16,7 @@ export const tokens = {
     ringInner: '#cfdaff',
     ring: '#506acf',
 
-    borderTop: '#f2ebed',
+    borderTop: '#e5e6e7',
     borderRight: '#dad4d8',
     borderBottom: '#c0c3c6',
 
@@ -42,17 +42,17 @@ export const tokens = {
     scrollBottom: '#4065732a',
 
     textShadowLightest: '#ffffffcc',
-    textShadowLighter: '#ffffff99',
+    textShadowLighter: '#ffffff99 ',
     textShadowLight: '#ffffff66',
     textShadowDark: '#ffffff44',
     textShadowDarker: '#bbbbbb33',
     textShadowDarkest: '#99999944',
   },
   button: {
-    gradientHighestBase: '#e4e6eb',
-    gradientHighBase: '#dcdddf',
-    gradientLowBase: '#d5d6d8',
-    gradientLowestBase: '#cdcfd3',
+    gradientHighestBase: '#e2e3e8',
+    gradientHighBase: '#dcddde',
+    gradientLowBase: '#d1d1d3',
+    gradientLowestBase: '#cdcdce',
     gradientHighestActive: '#bfbfbf',
     gradientHighActive: '#cccdcf',
     gradientLowActive: '#d2d2d2',

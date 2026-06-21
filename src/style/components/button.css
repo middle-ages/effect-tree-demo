@@ -18,7 +18,7 @@
 
 @utility button-base {
   @apply m-0 flex-center truncate p-0 *:truncate;
-  @apply border outset-xy-dim control;
+  @apply border outset-xy text-fg-control;
   @apply text-[13px] leading-4.5 select-none text-inset;
   @apply cursor-pointer dom-play;
   --transition-duration: 300ms;
@@ -58,7 +58,7 @@
 }
 
 @utility button-hover {
-  @apply brightness-90 contrast-150 saturate-200;
+  @apply brightness-90 contrast-150 saturate-150;
 }
 
 @utility button-hover-vertical {
@@ -76,6 +76,7 @@
     &:active:not(:disabled),
     &[data-state='active']:not(:disabled) {
       @apply button-active brightness-92;
+      @apply translate-y-0!;
     }
   }
 

@@ -39,8 +39,9 @@ const DirectionJumps = ({
   <Pill
     {...props}
     className={twMerge(
-      'mt-[-0.5px] h-6 *:h-[calc(100%-1px)]',
-      'border-top-0 border-b-0',
+      'h-6 *:h-[calc(100%-1px)]',
+      'last:border-l-[0.5px]',
+      'first:border-r-[0.5px]',
       'last:border-l-border-right-dim!',
       'first:border-r-border-bottom',
       'first:rounded-l-lg first:rounded-r-none',

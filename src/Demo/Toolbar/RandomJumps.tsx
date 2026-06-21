@@ -38,7 +38,7 @@ export const RandomJumps = ({className, style}: Props) => {
   return (
     <Pill
       className={twMerge(
-        'mt-[-0.5px] h-6 *:h-[calc(100%-1px)]',
+        'h-6 *:h-[calc(100%-1px)]',
         'items-baseline rounded-lg',
         className,
       )}

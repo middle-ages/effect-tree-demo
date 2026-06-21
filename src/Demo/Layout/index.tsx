@@ -42,7 +42,7 @@ export const Layout = ({
       rightClassName='min-h-[4lh] size-container overflow-hidden contain-strict'
       left={
         <>
-          <VerticalPanel>
+          <VerticalPanel className='pb-1'>
             {stats}
             {HRule}
             {toolbar}
@@ -61,4 +61,4 @@ export const Layout = ({
   </div>
 )
 
-const VerticalPanel = withClassName.div('dark-col rounded-md p-1')
+const VerticalPanel = withClassName.div('dark-col rounded-md px-1 pt-1')
