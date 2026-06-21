@@ -8,18 +8,18 @@ import {twMerge} from 'tailwind-merge'
 interface Props extends StyledPropsWithChildren {
   label: string
 }
-export const Details = ({label, children, style, className}: Props) => {
+export const Details = ({label, children, ...props}: Props) => {
   const {transform, increment: onClick, isOdd: isExpanded} = useRotate(180)
 
   return (
     <>
       <button
-        {...{onClick, style}}
+        {...{...props, onClick}}
         tabIndex={-1}
-        className='button-flat flex max-h-4.75 min-h-4.75 w-full cursor-pointer rounded-sm border-0 focus-none active:border'>
+        className='button-flat flex max-h-4.5 min-h-4.5 w-full cursor-pointer rounded-sm border-0 focus-none active:border'>
         <Rule />
         <div
-          className='mt-px size-6 flex-none rounded-full leading-6 text-fg-control-hover duration-300 text-inset-deep'
+          className='size-6 flex-none rounded-full leading-6 text-fg-control-hover duration-300 text-inset-deep'
           style={
             {
               transform: `translateY(-3px) ${transform} scale(0.65)`,
@@ -29,7 +29,7 @@ export const Details = ({label, children, style, className}: Props) => {
           ❰
         </div>
         <Rule className='mr-0.5 w-2' />
-        <div className='h-5 w-fit flex-none text-smaller leading-5 text-fg-control/80'>
+        <div className='h-5 w-fit flex-none text-smaller leading-4.5 text-fg-control/80'>
           {label}
         </div>
         <Rule className='w-stretch ml-0.5 w-full flex-1' />
@@ -37,7 +37,7 @@ export const Details = ({label, children, style, className}: Props) => {
       <div
         className={twMerge(
           'overflow-hidden dom-play *:dom-play',
-          isExpanded ? 'h-fit max-h-15 min-h-15 pt-1.5' : 'h-0',
+          isExpanded ? 'pt-1.5' : 'h-0 scale-y-0',
         )}>
         {children}
       </div>
