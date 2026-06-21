@@ -1,3 +1,4 @@
+import {withClassName} from '#compinators'
 import {pluck} from '#Record'
 import {useDrag} from '#useDrag'
 import {flow, px, type StyledProps} from '#util'
@@ -62,11 +63,11 @@ export const SplitPanel = ({
         onDoubleClick={resetToMinLeftWidth}
         tabIndex={-1}
         className='group flex h-full cursor-ew-resize flex-col px-0.5 ring-0 brightness-105 outline-none select-none hover:*:brightness-95 active:*:brightness-97'>
-        <div className='mx-auto grow rounded-t-sm border-3 inset-xy opacity-80 dom-play group-hover:opacity-90 group-active:border-2 group-active:opacity-100' />
+        <Strut className='rounded-t-sm' />
         <div className='button-base min-h-12 cursor-ew-resize squircle rounded-full pb-1 text-2xl leading-12 text-fg-control/60 button-raised group-hover:text-fg-control-hover group-hover:contrast-107 group-active:text-fg-control group-active:brightness-90!'>
           :
         </div>
-        <div className='mx-auto grow rounded-b-sm border-3 inset-xy opacity-80 dom-play group-hover:opacity-90 group-active:border-2 group-active:opacity-100' />
+        <Strut className='rounded-b-sm' />
       </button>
       <div className={rightClassName}>{right}</div>
     </div>
@@ -81,3 +82,14 @@ const leftWidthCalc = (
   const maxLimit = `100cqw - ${px(right)} - ${splitterWidth}`
   return `min(${maxLimit}, ${clampMin})`
 }
+
+const Strut = withClassName.div(
+  twMerge(
+    'mx-auto grow',
+    'border-2 px-[0.5px]',
+    'bg-fg-control/20 inset-xy dom-play opacity-50',
+    'group-hover:opacity-65',
+    'group-active:border group-active:opacity-100',
+    'group-active:px-0.5 group-active:bg-fg-control/10',
+  ),
+)

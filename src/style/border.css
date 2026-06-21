@@ -27,5 +27,5 @@
 }
 
 @utility border-inset-2 {
-  @apply border-2 inset-xy;
+  @apply border-2 inset-xy-dim;
 }

@@ -17,8 +17,9 @@ export const tokens = {
     ring: '#506acf',
 
     borderTop: '#e5e6e7',
-    borderRight: '#dad4d8',
-    borderBottom: '#c0c3c6',
+    borderLeft: '#d2d6d9',
+    borderRight: '#c4c7ca',
+    borderBottom: '#a9aaac',
 
     app: '#ebebf3',
     light: '#f0f0f5',
