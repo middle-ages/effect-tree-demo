@@ -1,7 +1,13 @@
 import {withClassName} from '#compinators'
 import {type PrimedStat} from '#model'
 import {ScrollPanel} from '#ScrollPanel'
-import {selectLines, selectStats, useAppSelector} from '#store'
+import {
+  selectComputedLines,
+  selectComputedStats,
+  selectLines,
+  selectStats,
+  useAppSelector,
+} from '#store'
 import {Fragment} from 'react/jsx-runtime'
 
 type TreeStats = Record<'nodeCount' | 'maxDegree' | 'maxDepth', PrimedStat>
@@ -13,8 +19,8 @@ const Value = withClassName.span('text-small font-serif text-ink text-right')
 
 export const TextView = () => {
   const [stats, lines] = [
-    useAppSelector(selectStats),
-    useAppSelector(selectLines),
+    useAppSelector(selectComputedStats),
+    useAppSelector(selectComputedLines),
   ]
   return (
     <div className='relative h-full min-w-48 p-px'>

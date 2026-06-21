@@ -1,19 +1,29 @@
 import * as Record from '#Record'
 import {createListenerMiddleware, isAnyOf} from '@reduxjs/toolkit'
 import {pipe} from '#Function'
-import {codeActions} from './dataSlice'
+import {actions, codeActions} from './dataSlice'
+import {type RootState} from './data'
+import {decode, DecodeRequest} from '#worker'
+import {setComputed} from './computedSlice'
 
 export const listenerMiddleware = (() => {
   const middleWare = createListenerMiddleware()
 
   middleWare.startListening({
-    predicate: isAnyOf(...Record.typedValues(codeActions)),
-    effect: (action, listenerApi) => {
-      console.log(action.type)
-
-      return new Promise(resolve => {
-        resolve()
-      })
+    predicate: isAnyOf(...Record.typedValues(actions)),
+    effect: async (_, listenerApi) => {
+      const {data} = listenerApi.getState() as RootState
+      const [promise] = decode(
+        DecodeRequest(data.code, data.format, data.theme),
+      )
+      const result = await promise
+      listenerApi.dispatch(
+        setComputed({
+          tree: result.tree,
+          lines: result.lines,
+          stats: result.stats,
+        }),
+      )
     },
   })
 

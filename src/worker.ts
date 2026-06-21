@@ -1,2 +1,3 @@
 export {useTreeWorker} from './worker/useTreeWorker'
-export type {DecodeResponse} from './worker/message'
+export {DecodeRequest, type DecodeResponse} from './worker/message'
+export {decode} from './worker/client'

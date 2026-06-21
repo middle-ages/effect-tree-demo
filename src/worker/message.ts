@@ -1,6 +1,6 @@
 import type {NumericFormat, PrimedStats} from '#model'
 import type {RootDataState} from '#store'
-import type {Draw, Tree} from 'effect-tree'
+import type {Draw, Branch} from 'effect-tree'
 
 interface Message<Tag extends string> {
   _tag: Tag
@@ -11,7 +11,7 @@ export interface DecodeRequest
 
 export interface DecodeResponse
   extends RootDataState, Message<'effect-tree-demo-response'> {
-  tree: Tree<number>
+  tree: Branch<number>
   lines: string[]
   stats: PrimedStats
 }
@@ -35,7 +35,7 @@ export const DecodeRequest = (
 
 export const DecodeResponse = (
   request: RootDataState,
-  tree: Tree<number>,
+  tree: Branch<number>,
   lines: string[],
   stats: PrimedStats,
 ): DecodeResponse => ({
