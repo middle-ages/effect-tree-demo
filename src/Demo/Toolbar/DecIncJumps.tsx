@@ -20,29 +20,24 @@ interface Props extends StyledProps {
 }
 
 export const DecIncJumps = (props: Props) => (
-  <>
+  <Pill {...props}>
     <DirectionJumps key='dec' direction='dec' {...props} />
     <DirectionJumps key='inc' direction='inc' {...props} />
-  </>
+  </Pill>
 )
 
 interface DirectionProps extends Props {
   direction: DirectionKey
 }
 
-const DirectionJumps = ({
-  target,
-  direction,
-  className,
-  ...props
-}: DirectionProps) => (
-  <Pill {...props}>
+const DirectionJumps = ({target, direction}: DirectionProps) => (
+  <>
     {pipe(
       direction,
       getDecIncActions(target),
       Array.map(action => <JumpButton key={action.id} {...{action}} />),
     )}
-  </Pill>
+  </>
 )
 
 const JumpButton = ({
