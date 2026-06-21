@@ -154,14 +154,10 @@ export const getDecIncActions =
   <Target extends TargetKey>(target: Target) =>
   <Direction extends DirectionKey>(
     direction: Direction,
-  ): ActionList<Target, Direction> => {
-    console.log('getDecIncActions')
-    console.log(decIncActions)
-    console.log({target, direction})
-    return Object.values(
+  ): ActionList<Target, Direction> =>
+    Object.values(
       decIncActions[target][direction] as ActionGroup<Target, Direction>,
     ) as unknown[] & ActionList<Target, Direction>
-  }
 
 export const incDecReducers = (
   create: ReducerCreators<DataState>,

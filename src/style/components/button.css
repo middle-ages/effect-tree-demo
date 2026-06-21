@@ -21,7 +21,6 @@
   @apply border outset-xy text-fg-control;
   @apply text-[13px] leading-4.5 select-none text-inset;
   @apply cursor-pointer dom-play;
-  --transition-duration: 300ms;
 }
 
 @utility button-raised {

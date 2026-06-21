@@ -1,9 +1,10 @@
 @utility numeric-base {
-  @apply font-serif text-smaller;
-  @apply squircle input-control dom-play;
+  @apply font-serif;
+  @apply squircle input-control text-smaller dom-play;
+  --transition-duration: 150ms;
 
   :focus {
-    --transition-duration: 150ms;
+    --transition-duration: 50;
   }
 }
 

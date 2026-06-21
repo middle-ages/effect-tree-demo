@@ -1,18 +1,17 @@
 @layer base {
   input {
-    @apply border-[1.5px] inset-xy-dim;
-    @apply h-row-smaller leading-row-small;
+    @apply h-5.5! overflow-hidden border-[1.5px] inset-xy-dim;
 
     &:hover {
       @apply inset-xy input-control-hover;
-
-      &::-webkit-inner-spin-button {
-        @apply contrast-90;
-      }
     }
 
     &::-webkit-inner-spin-button {
-      @apply -mt-px -mr-0.5 ml-1 scale-[80%];
+      @apply contrast-90;
+    }
+
+    &::-webkit-inner-spin-button {
+      @apply -mr-0.5 ml-1 scale-[95%];
       @apply contrast-80;
       @apply cursor-pointer dom-play;
       opacity: 1 !important;

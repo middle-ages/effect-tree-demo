@@ -39,7 +39,6 @@ const _Button = ({
   children,
 }: ButtonProps) => {
   const title = isDisabled ? disabledNote : propsTitle
-  console.log({isActive, isDisabled})
 
   return (
     <button
