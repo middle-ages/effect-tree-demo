@@ -1,6 +1,6 @@
 @utility button-active {
   @apply inset-xy control-active brightness-90 contrast-110 text-outset;
-  @apply translate-y-[0.5px];
+  @apply *:translate-y-[0.5px];
   --transition-duration: 120ms;
 
   --button-gradient-highest: var(--button-gradient-highest-active);
@@ -21,6 +21,15 @@
   @apply border outset-xy text-fg-control;
   @apply text-[13px] leading-4.5 select-none text-inset;
   @apply cursor-pointer dom-play;
+  &,
+  ** {
+    transition:
+      all var(--transition-duration) ease-in-out,
+      --button-gradient-highest var(--transition-duration) ease-in-out,
+      --button-gradient-high var(--transition-duration) ease-in-out,
+      --button-gradient-low var(--transition-duration) ease-in-out,
+      --button-gradient-lowest var(--transition-duration) ease-in-out;
+  }
 }
 
 @utility button-raised {
@@ -64,6 +73,18 @@
   @apply brightness-105 contrast-105;
 }
 
+@utility push-button {
+  &:hover:not(:disabled):not(:active) {
+    @apply button-hover;
+  }
+
+  path,
+  rect {
+    @apply text-fg-control dom-play;
+    filter: drop-shadow(0px 2px 1px var(--color-text-shadow-lightest));
+  }
+}
+
 @layer components {
   .button-flat {
     @apply button-base button-states bg-dark;
@@ -80,33 +101,26 @@
   }
 
   .button {
-    @apply button-base button-states button-raised;
+    @apply button-base max-h-6 min-h-6 button-states push-button button-raised;
+  }
 
-    &:hover:not(:disabled):not(:active) {
-      @apply button-hover;
-    }
-
-    &,
-    * {
-      transition:
-        all var(--transition-duration) ease-in-out,
-        --button-gradient-highest var(--transition-duration) ease-in-out,
-        --button-gradient-high var(--transition-duration) ease-in-out,
-        --button-gradient-low var(--transition-duration) ease-in-out,
-        --button-gradient-lowest var(--transition-duration) ease-in-out;
-    }
-
-    path,
-    rect {
-      @apply text-fg-control dom-play;
-      filter: drop-shadow(0px 2px 1px var(--color-text-shadow-lightest));
+  .button-inner {
+    @apply button-base size-fit button-states push-button button-raised;
+    @apply absolute top-[2.5px] right-0.75;
+    @apply rounded-full rounded-shape;
+    > * {
+      @apply size-4 overflow-hidden px-0.5;
+      @apply text-sm leading-4;
     }
   }
 }
 
 @utility pill-panel {
-  @apply flex w-full *:flex-1;
-  @apply border inset-xy;
+  @apply box-content flex max-h-6 min-h-6 w-full *:flex-1;
+  @apply border border-orange-500;
+  /*
+  inset-xy;
+  */
 
   > * {
     &:focus-visible {
@@ -114,11 +128,7 @@
     }
   }
 
-  > *:first-child,
-  > *:last-child {
-    @apply w-full;
-  }
-
+  /*
   > *:first-child {
     @apply rounded-l-lg rounded-r-none;
   }
@@ -126,6 +136,7 @@
   > *:last-child {
     @apply rounded-l-none rounded-r-lg;
   }
+    */
 
   > *:not(:first-child):not(:last-child) {
     @apply rounded-none;

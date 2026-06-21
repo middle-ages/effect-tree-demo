@@ -25,9 +25,9 @@ export const Outer = ({
     isFocusable
     title={`${title} Hold for ½ a second to repeat.`}
     className={twMerge(
-      'border',
+      'w-full min-h-6 max-h-6',
       'pr-2.75 text-center',
-      isRounded ? 'rounded-full rounded-shape' : 'rounded-none',
+//      isRounded ? 'rounded-full rounded-shape' : 'rounded-none',
       className,
     )}>
     {children}

@@ -36,18 +36,7 @@ const DirectionJumps = ({
   className,
   ...props
 }: DirectionProps) => (
-  <Pill
-    {...props}
-    className={twMerge(
-      'h-6 *:h-[calc(100%-1px)]',
-      'last:border-l-[0.5px]',
-      'first:border-r-[0.5px]',
-      'last:border-l-border-right-dim!',
-      'first:border-r-border-bottom',
-      'first:rounded-l-[9px] first:rounded-r-none',
-      'last:rounded-l-none last:rounded-r-[9px]',
-      className,
-    )}>
+  <Pill {...props}>
     {pipe(
       direction,
       getDecIncActions(target),
@@ -73,12 +62,25 @@ const JumpButton = ({
   }
 
   return canRepeat ? (
-    <Repeater.Square className='w-9' {...props}>
-      {label}
-    </Repeater.Square>
+    <Repeater.Square {...props}>{label}</Repeater.Square>
   ) : (
-    <Button.Focus {...props} className='w-9.5'>
+    <Button.Focus {...props} className='min-w-9'>
       {label}
     </Button.Focus>
   )
 }
+
+/*
+
+    className={twMerge(
+      'h-6 *:h-[calc(100%-1px)]',
+      'last:border-l-[0.5px]',
+      'first:border-r-[0.5px]',
+      'last:border-l-border-right-dim!',
+      'first:border-r-border-bottom',
+      'first:rounded-l-[9px] first:rounded-r-none',
+      'last:rounded-l-none last:rounded-r-[9px]',
+      className,
+    )}>
+
+*/

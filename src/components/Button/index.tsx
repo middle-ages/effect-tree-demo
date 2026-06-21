@@ -15,6 +15,9 @@ interface _BaseProps extends Omit<DisabledItemProps, 'isDisabled'> {
 
   /** If true wraps children in a div. */
   isWrapped?: boolean
+
+  /** By default `button`. */
+  baseClassName?: string
 }
 
 interface _ButtonProps extends _BaseProps {
@@ -33,6 +36,7 @@ const _Button = ({
   isActive = false,
   isFocusable = true,
   isWrapped = false,
+  baseClassName = 'button',
   className,
   style,
   onClick,
@@ -43,7 +47,7 @@ const _Button = ({
   return (
     <button
       className={twMerge(
-        'button',
+        baseClassName,
         isFocusable ? 'focusable' : 'focus-none',
         className,
       )}

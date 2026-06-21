@@ -27,10 +27,14 @@ export const Repeater = ({
     useImmediateRepeatButton(onClick)
 
   return (
-    <div {...{style}} className='relative focus-within:z-1'>
+    <div
+      {...{style}}
+      className={twMerge(
+        'relative max-h-6 min-h-6 min-w-10.5 focus-within:z-1',
+        className,
+      )}>
       <Outer
         ref={parentRef}
-        className={twMerge('h-full min-w-full!', className)}
         isActive={isRepeating || innerState === 'down'}
         {...{isDisabled, disabledNote}}
         {...{
