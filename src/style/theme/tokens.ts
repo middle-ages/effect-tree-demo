@@ -16,10 +16,10 @@ export const tokens = {
     ringInner: '#cfdaff',
     ring: '#506acf',
 
-    borderTop: '#e5e6e7',
-    borderLeft: '#d2d6d9',
-    borderRight: '#c4c7ca',
-    borderBottom: '#a9aaac',
+    borderTop: '#e7e8ea',
+    borderLeft: '#dadcdf',
+    borderRight: '#c0c2c4',
+    borderBottom: '#a5a7a9',
 
     app: '#ebebf3',
     light: '#f0f0f5',

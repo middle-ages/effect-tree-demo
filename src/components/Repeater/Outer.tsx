@@ -9,25 +9,17 @@ interface Props extends StyledPropsWithChildren, DisabledProps {
   ref: RefCallback<HTMLElement>
   title: string
   isActive: boolean
-  isRounded?: boolean
   onClick: () => void
 }
 
-export const Outer = ({
-  title,
-  className,
-  isRounded = false,
-  children,
-  ...props
-}: Props) => (
+export const Outer = ({title, className, children, ...props}: Props) => (
   <Button
     {...props}
     isFocusable
     title={`${title} Hold for ½ a second to repeat.`}
     className={twMerge(
-      'w-full min-h-6 max-h-6',
+      'max-h-6 min-h-6 w-full',
       'pr-2.75 text-center',
-//      isRounded ? 'rounded-full rounded-shape' : 'rounded-none',
       className,
     )}>
     {children}

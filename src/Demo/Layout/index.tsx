@@ -30,13 +30,13 @@ export const Layout = ({
   className,
   style,
 }: Props) => (
-  <div className={twMerge('flex h-cqh flex-col', className)} {...{style}}>
+  <div className={twMerge('flex h-cqh flex-col px-1', className)} {...{style}}>
     {/** Header */}
     {header}
 
     {/** Body */}
     <SplitPanel
-      className='flex-1 px-1'
+      className='flex-1'
       minWidthsPx={[350, 280]}
       leftClassName='pr-px flex-gap-col'
       rightClassName='min-h-[4lh] size-container overflow-hidden'
@@ -57,7 +57,7 @@ export const Layout = ({
     />
 
     {/** Footer */}
-    <div className='mr-1.25 ml-0.5 h-20 pl-px'>{footer}</div>
+    <div className='h-20 pr-px'>{footer}</div>
   </div>
 )
 

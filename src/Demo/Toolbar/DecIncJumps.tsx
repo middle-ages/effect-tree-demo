@@ -13,7 +13,6 @@ import {
   useAppSelector,
 } from '#store'
 import {useCallback} from 'react'
-import {twMerge} from 'tailwind-merge'
 
 interface Props extends StyledProps {
   target: TargetKey

@@ -1,13 +1,7 @@
 import {withClassName} from '#compinators'
 import {type PrimedStat} from '#model'
 import {ScrollPanel} from '#ScrollPanel'
-import {
-  selectComputedLines,
-  selectComputedStats,
-  selectLines,
-  selectStats,
-  useAppSelector,
-} from '#store'
+import {selectComputedLines, selectComputedStats, useAppSelector} from '#store'
 import {Fragment} from 'react/jsx-runtime'
 
 type TreeStats = Record<'nodeCount' | 'maxDegree' | 'maxDepth', PrimedStat>

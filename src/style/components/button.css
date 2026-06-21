@@ -17,8 +17,8 @@
 }
 
 @utility button-base {
-  @apply m-0 flex-center truncate p-0 *:truncate;
-  @apply border outset-xy text-fg-control;
+  @apply flex-center truncate;
+  @apply border outset-xy-dim text-fg-control;
   @apply text-[13px] leading-4.5 select-none text-inset;
   @apply cursor-pointer dom-play;
   &,
@@ -105,8 +105,8 @@
   }
 
   .button-inner {
-    @apply button-base size-fit button-states push-button button-raised;
-    @apply absolute top-[2.5px] right-0.75;
+    @apply button-base button-states push-button button-raised;
+    @apply absolute top-0.75 right-0.75;
     @apply rounded-full rounded-shape;
     > * {
       @apply size-4 overflow-hidden px-0.5;
@@ -117,10 +117,7 @@
 
 @utility pill-panel {
   @apply box-content flex max-h-6 min-h-6 w-full *:flex-1;
-  @apply rounded-lg border border-orange-500;
-  /*
-  inset-xy;
-  */
+  @apply rounded-lg border inset-xy-dim border-b-white/50;
 
   > * {
     &:focus-visible {
@@ -141,15 +138,11 @@
 
     &.cross-pill {
       @apply relative z-1 mx-[-1rch] px-2.5;
-      @apply rounded-[1rch/33.33%] border-r border-l;
-      @apply border-t-border-right-dim;
-      @apply border-r-line-darkest border-l-line-darkest;
-
-      transition-delay: calc(var(--transition-duration) / 2);
-      transition-duration: calc(var(--transition-duration) * 2 / 3);
+      @apply rounded-[1rch/33.33%] border;
+      @apply border-l-line-darkest;
 
       &:active {
-        @apply inset-y border-r-line-light border-l-line-light;
+        @apply border-r-line-light border-l-line-light;
       }
     }
   }

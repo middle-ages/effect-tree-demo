@@ -48,7 +48,6 @@ export const SplitPanel = ({
       {...{style}}
       className={twMerge(
         'flex',
-        'overflow-hidden',
         'place-content-stretch *:not-last:no-flex *:last:flex-1',
         className,
       )}>

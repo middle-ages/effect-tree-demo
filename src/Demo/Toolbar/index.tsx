@@ -7,7 +7,7 @@ const rowHeight = 'h-row-small'
 const rowLineHeight = 'leading-row-small'
 
 export const Toolbar = () => (
-  <div className='grid w-full grid-cols-[9ch_1fr] gap-x-1 gap-y-px'>
+  <div className='grid w-full grid-cols-[9ch_1fr] gap-x-1 gap-y-0.5'>
     <Row
       label='Prüfer code'
       title='Jump between different codes at the current node count.'>

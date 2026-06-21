@@ -9,7 +9,7 @@ export const CodeEditor = () => {
   const maxDigit = Codec.Prufer.computeNodeCount(code)
 
   return (
-    <div className='relative ml-px h-12 overflow-hidden rounded-t-sm'>
+    <div className='relative ml-px box-content h-12 overflow-hidden rounded-sm border border-line-light/25 border-b-line-light'>
       <div
         {...{ref}}
         className='scrollable-x flex h-12 items-center-safe gap-1 bg-darker inner-shadow select-none'>
