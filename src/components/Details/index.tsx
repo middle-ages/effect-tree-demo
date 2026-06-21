@@ -29,7 +29,7 @@ export const Details = ({label, children, style, className}: Props) => {
             }>
             ❰
           </div>
-          <Rule className='w-1' />
+          <Rule className='mr-0.5 w-2' />
           <div className='-mt-0.5 w-fit flex-none text-smaller text-fg-control/80'>
             {label}
           </div>

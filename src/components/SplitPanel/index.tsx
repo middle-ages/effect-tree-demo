@@ -62,11 +62,11 @@ export const SplitPanel = ({
         onDoubleClick={resetToMinLeftWidth}
         tabIndex={-1}
         className='group flex h-full cursor-ew-resize flex-col px-0.5 ring-0 brightness-105 outline-none select-none hover:*:brightness-95 active:*:brightness-97'>
-        <div className='mx-auto grow rounded-t-sm border-3 inset-xy opacity-70 dom-play group-hover:opacity-90 group-active:border-2 group-active:opacity-100' />
+        <div className='mx-auto grow rounded-t-sm border-3 inset-xy opacity-80 dom-play group-hover:opacity-90 group-active:border-2 group-active:opacity-100' />
         <div className='button-base min-h-12 cursor-ew-resize squircle rounded-full pb-1 text-2xl leading-12 text-fg-control/60 button-raised group-hover:text-fg-control-hover group-hover:contrast-107 group-active:text-fg-control group-active:brightness-90!'>
           :
         </div>
-        <div className='mx-auto grow rounded-b-sm border-3 inset-xy opacity-70 dom-play group-hover:opacity-90 group-active:border-2 group-active:opacity-100' />
+        <div className='mx-auto grow rounded-b-sm border-3 inset-xy opacity-80 dom-play group-hover:opacity-90 group-active:border-2 group-active:opacity-100' />
       </button>
       <div className={rightClassName}>{right}</div>
     </div>

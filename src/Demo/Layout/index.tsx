@@ -61,4 +61,4 @@ export const Layout = ({
   </div>
 )
 
-const VerticalPanel = withClassName.div('dark-col rounded-md py-1 px-1.5')
+const VerticalPanel = withClassName.div('dark-col rounded-md p-1.5')
