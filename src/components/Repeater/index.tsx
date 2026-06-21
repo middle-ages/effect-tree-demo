@@ -30,7 +30,7 @@ export const Repeater = ({
     <div {...{style}} className='relative focus-within:z-1'>
       <Outer
         ref={parentRef}
-        className={twMerge('size-full', className)}
+        className={twMerge('h-full min-w-full!', className)}
         isActive={isRepeating || innerState === 'down'}
         {...{isDisabled, disabledNote}}
         {...{

@@ -1,6 +1,6 @@
 export const IncHalfNodeCount = (
   <svg
-    className='w-5 min-w-5 pr-0.5 pl-1'
+    className='max-w-3.5 min-w-3.5 -translate-x-0.5'
     viewBox='0 0 21 18'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>

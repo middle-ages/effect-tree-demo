@@ -44,8 +44,8 @@ const DirectionJumps = ({
       'first:border-r-[0.5px]',
       'last:border-l-border-right-dim!',
       'first:border-r-border-bottom',
-      'first:rounded-l-lg first:rounded-r-none',
-      'last:rounded-l-none last:rounded-r-lg',
+      'first:rounded-l-[9px] first:rounded-r-none',
+      'last:rounded-l-none last:rounded-r-[9px]',
       className,
     )}>
     {pipe(
@@ -73,11 +73,11 @@ const JumpButton = ({
   }
 
   return canRepeat ? (
-    <Repeater.Square className='min-w-9' {...props}>
+    <Repeater.Square className='w-9' {...props}>
       {label}
     </Repeater.Square>
   ) : (
-    <Button.Focus {...props} className='min-w-8'>
+    <Button.Focus {...props} className='w-9.5'>
       {label}
     </Button.Focus>
   )

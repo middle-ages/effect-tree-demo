@@ -26,7 +26,7 @@ export const Outer = ({
     title={`${title} Hold for ½ a second to repeat.`}
     className={twMerge(
       'border',
-      'pr-5 pl-1 text-center',
+      'pr-2.75 text-center',
       isRounded ? 'rounded-full rounded-shape' : 'rounded-none',
       className,
     )}>
