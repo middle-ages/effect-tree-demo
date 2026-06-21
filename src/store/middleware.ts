@@ -1,6 +1,6 @@
 import {createListenerMiddleware} from '@reduxjs/toolkit'
 import {pipe} from '#Function'
-import {selectCode, setCode, setNodeCount} from './dataSlice'
+import {selectCode, setCode} from './dataSlice'
 
 export const listenerMiddleware = (() => {
   const middleWare = createListenerMiddleware()

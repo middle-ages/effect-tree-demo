@@ -1,7 +1,13 @@
 import {identity, pipe} from '#Function'
 import {pluck} from '#Record'
 import type {NumericFormat} from '#model'
-import {createSlice, type Slice} from '@reduxjs/toolkit'
+import {
+  createSlice,
+  type ActionCreator,
+  type ActionCreatorWithoutPayload,
+  type ActionCreatorWithPayload,
+  type Slice,
+} from '@reduxjs/toolkit'
 import type {Draw} from 'effect-tree'
 import {reducers, type Reducers} from './reducers'
 import {
@@ -12,6 +18,7 @@ import {
   type DataState,
   type RootSelector,
   type RootState,
+  type SetDigitPayload,
 } from './data'
 
 const dataSelectors = {
@@ -85,3 +92,41 @@ export const {
   setFormat,
   setTheme,
 } = dataSlice.actions
+
+type NoPayload<Id extends string> = ActionCreatorWithoutPayload<Id>
+type WithPayload<Payload, Id extends string> = ActionCreatorWithPayload<
+  Payload,
+  Id
+>
+
+export interface Actions {
+  setCode: WithPayload<number[], 'data/setCode'>
+  setDigit: WithPayload<SetDigitPayload, 'data/setDigit'>
+  setTreeIndex: WithPayload<string, 'data/setTreeIndex'>
+  setNodeCount: WithPayload<number, 'data/setNodeCount'>
+  firstCode: NoPayload<'data/firstCode'>
+  decHalfCode: NoPayload<'data/decHalfCode'>
+  decCode: NoPayload<'data/decCode'>
+  incCode: NoPayload<'data/incCode'>
+  incHalfCode: NoPayload<'data/incHalfCode'>
+  lastCode: NoPayload<'data/lastCode'>
+  firstNodeCount: NoPayload<'data/firstNodeCount'>
+  decHalfNodeCount: NoPayload<'data/decHalfNodeCount'>
+  decNodes: NoPayload<'data/decNodes'>
+  incNodes: NoPayload<'data/incNodes'>
+  incHalfNodeCount: NoPayload<'data/incHalfNodeCount'>
+  lastNodeCount: NoPayload<'data/lastNodeCount'>
+  randomCode: NoPayload<'data/randomCode'>
+  randomBoth: NoPayload<'data/randomBoth'>
+  randomNodes: NoPayload<'data/randomNodes'>
+  setFormat: ActionCreatorWithPayload<NumericFormat, 'data/setFormat'>
+  setTheme: ActionCreatorWithPayload<Draw.ThemeName, 'data/setTheme'>
+}
+
+export const actions = dataSlice.actions
+
+/*
+
+ActionCreatorWithoutPayload<"data/firstCode">
+ActionCreatorWithPayload<"a
+*/
