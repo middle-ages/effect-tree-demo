@@ -105,9 +105,8 @@
 }
 
 @utility pill-panel {
-  @apply flex w-full min-w-fit first:ml-px last:mr-px;
-  @apply *:flex-1;
-  @apply gap-px;
+  @apply flex w-full *:flex-1;
+  @apply border inset-xy;
 
   > * {
     &:focus-visible {
