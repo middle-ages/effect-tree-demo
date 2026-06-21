@@ -36,18 +36,18 @@ export const Layout = ({
 
     {/** Body */}
     <SplitPanel
-      className='-mt-0.5 flex-1 px-1 contain-strict'
+      className='flex-1 px-1'
       minWidthsPx={[360, 280]}
-      leftClassName='pr-px flex-gap-col contain-strict'
-      rightClassName='min-h-[4lh] size-container overflow-hidden contain-strict'
+      leftClassName='pr-px flex-gap-col'
+      rightClassName='min-h-[4lh] size-container overflow-hidden'
       left={
         <>
-          <VerticalPanel className='pb-1'>
+          <VerticalPanel>
             {stats}
             {HRule}
             {toolbar}
           </VerticalPanel>
-          <div className='size-container min-h-lh flex-1 overflow-hidden rounded-md border-inset-2 bg-paper contain-strict'>
+          <div className='size-container min-h-lh flex-1 overflow-hidden rounded-md border-inset-2 bg-paper'>
             {graphPanel}
           </div>
           <VerticalPanel>{stylePanel}</VerticalPanel>
@@ -57,8 +57,8 @@ export const Layout = ({
     />
 
     {/** Footer */}
-    <div className='mr-1.25 ml-0.5 h-20 pl-px contain-strict'>{footer}</div>
+    <div className='mr-1.25 ml-0.5 h-20 pl-px'>{footer}</div>
   </div>
 )
 
-const VerticalPanel = withClassName.div('dark-col rounded-md px-1 pt-1')
+const VerticalPanel = withClassName.div('dark-col rounded-md py-1 px-1.5')

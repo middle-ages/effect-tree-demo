@@ -29,7 +29,7 @@ export const TextView = () => {
 const Overlay = ({nodeCount, maxDegree, maxDepth}: TreeStats) => (
   <div
     className='absolute top-1.5 z-0 grid size-fit auto-rows-[1.75rem] grid-cols-[min-content_4rch] opacity-60'
-    style={{left: 'max(100% - 15.5rch, 0.5rch)'}}>
+    style={{left: 'max(100% - 15rch, 0.5rch)'}}>
     {[nodeCount, maxDegree, maxDepth].map(({id, label, title, value}) => (
       <Fragment key={id}>
         <div {...{title}} className='subgrid-2 cursor-default *:bg-paper/90'>

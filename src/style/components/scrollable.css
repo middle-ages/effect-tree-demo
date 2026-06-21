@@ -32,7 +32,7 @@
 
 @utility scroll-area {
   container-type: size scroll-state;
-  scrollbar-color: var(--color-line-light) #f0f0f7;
+  scrollbar-color: var(--color-line-light) #e6e7e7;
   scrollbar-gutter: stable;
 }
 

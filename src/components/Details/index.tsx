@@ -17,13 +17,13 @@ export const Details = ({label, children, style, className}: Props) => {
         <button
           {...{onClick, style}}
           tabIndex={-1}
-          className='button-flat mb-1 flex h-4.75 w-full cursor-pointer rounded-sm border-0 focus-none active:border'>
+          className='button-flat flex h-4.75 w-[calc(100%-2px)] cursor-pointer rounded-sm border-0 focus-none active:border'>
           <Rule />
           <div
-            className='w-6 flex-none -translate-y-0.75 rounded-full leading-6 text-fg-control-hover duration-300 text-inset-deep'
+            className='w-6 flex-none rounded-full leading-6 text-fg-control-hover duration-300 text-inset-deep'
             style={
               {
-                transform: `${transform} scale(0.65)`,
+                transform: `translateY(-3px) ${transform} scale(0.65)`,
                 background: `linear-gradient(90deg, #d1d1d5, var(--color-dark), #f0f1f3)`,
               } as CSSProperties
             }>
@@ -33,15 +33,15 @@ export const Details = ({label, children, style, className}: Props) => {
           <div className='-mt-0.5 w-fit flex-none text-smaller text-fg-control/80'>
             {label}
           </div>
-          <Rule className='w-stretch mt-0.5 ml-0.5 w-full flex-1' />
+          <Rule className='w-stretch ml-0.5 w-full flex-1' />
         </button>
       </div>
       <div
         className={twMerge(
           'overflow-hidden dom-play *:dom-play',
-          isExpanded ? 'h-fit' : 'h-0',
+          isExpanded ? 'mt-0.5 h-fit' : 'h-0',
         )}>
-        <div className='pt-1'>{children}</div>
+        {children}
       </div>
     </>
   )

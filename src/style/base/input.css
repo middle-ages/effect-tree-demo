@@ -1,6 +1,6 @@
 @layer base {
   input {
-    @apply border-[1.5px] inset-xy-dim pt-0.5;
+    @apply border-[1.5px] inset-xy-dim;
     @apply h-row-smaller leading-row-small;
 
     &:hover {

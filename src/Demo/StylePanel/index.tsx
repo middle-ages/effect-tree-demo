@@ -26,7 +26,7 @@ export const StylePanel = () => {
 
   return (
     <Details label='Appearance'>
-      <div className='grid grid-cols-[10ch_1fr] gap-x-2 gap-y-1'>
+      <div className='my-px grid grid-cols-[10ch_1fr] gap-x-2 gap-y-1.5'>
         <Row label='Label format'>
           <Select<NumericFormat>
             value={{...formats[format], id: format}}
