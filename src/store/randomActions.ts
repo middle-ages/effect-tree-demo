@@ -11,6 +11,9 @@ import {type DataState, type VoidDataReducer} from './data'
 import {randomGuard as guard, maxNodeCountMessage} from './guard'
 import {randomNodes} from './helpers'
 
+export const randomCodeActionNames = ['randomBoth', 'randomNodes'] as const
+export type RandomCodeActionName = (typeof randomCodeActionNames)[number]
+
 export type RandomCodeReducers = Record<RandomCodeKey, VoidDataReducer>
 
 export const randomCodeActions: Tuple3<Action<RandomCodeKey>> = [

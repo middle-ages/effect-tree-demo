@@ -1,8 +1,11 @@
 import type {EndoOf} from '#Function'
-import type {TypedValues} from '#Record'
+import * as Record from '#Record'
 import type {RootDataState} from '#store'
 import type {BaseItem} from '#types'
-import type {ReducerCreators} from '@reduxjs/toolkit'
+import type {
+  ActionCreatorWithoutPayload,
+  ReducerCreators,
+} from '@reduxjs/toolkit'
 import type {VoidDataReducer} from './data'
 import {type Guard} from './guard'
 import type {Simplify} from 'effect/Types'
@@ -46,6 +49,13 @@ export type CodeAction<Direction extends DirectionKey = DirectionKey> = Action<
 export type NodeCountAction<Direction extends DirectionKey = DirectionKey> =
   Action<DecIncKey<'nodeCount', Direction>>
 
+export type NoPayloadAction<Id extends string> = ActionCreatorWithoutPayload<Id>
+export type NoPayloadActionName = (typeof noPayloadActionNames)[number]
+
+export type NoPayloadActions = {
+  [Name in NoPayloadActionName]: NoPayloadAction<`data/${Name}`>
+}
+
 /**
  * ```ts
  * type DecCodeActions = DirectionTargetActions<'dec', 'code'>
@@ -65,7 +75,7 @@ export type DefinitionGroup<
 export type ActionList<
   Target extends TargetKey = TargetKey,
   Direction extends DirectionKey = DirectionKey,
-> = TypedValues<ActionGroup<Target, Direction>>
+> = Record.TypedValues<ActionGroup<Target, Direction>>
 
 export const actionMap = {
   decInc: {
@@ -80,6 +90,20 @@ export const actionMap = {
   },
   random: ['randomCode', 'randomBoth', 'randomNodes'],
 } as const
+
+export const decIncActionNames = [
+  ...actionMap.decInc.code.dec,
+  ...actionMap.decInc.code.inc,
+  ...actionMap.decInc.nodeCount.dec,
+  ...actionMap.decInc.nodeCount.inc,
+] as const
+
+export const randomActionNames = actionMap.random
+
+export const noPayloadActionNames = [
+  ...decIncActionNames,
+  ...randomActionNames,
+] as const
 
 export const buildAction = <Id extends string>(
   action: Omit<Action<Id>, 'id'>,

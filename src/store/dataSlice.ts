@@ -1,15 +1,14 @@
 import {identity, pipe} from '#Function'
-import {pluck} from '#Record'
+import * as Record from '#Record'
+import * as Struct from 'effect/Struct'
 import type {NumericFormat} from '#model'
 import {
   createSlice,
-  type ActionCreator,
-  type ActionCreatorWithoutPayload,
   type ActionCreatorWithPayload,
   type Slice,
 } from '@reduxjs/toolkit'
 import type {Draw} from 'effect-tree'
-import {reducers, type Reducers} from './reducers'
+import {noPayloadActionNames, type NoPayloadActions} from './action'
 import {
   initialDataState,
   pluckCode,
@@ -20,6 +19,7 @@ import {
   type RootState,
   type SetDigitPayload,
 } from './data'
+import {reducers, type Reducers} from './reducers'
 
 const dataSelectors = {
   selectCode: pluckCode,
@@ -46,7 +46,7 @@ export const dataSlice: DataSlice = createSlice({
 })
 
 export const dataAdapter = pipe(
-  pluck('data')<RootState>,
+  Record.pluck('data')<RootState>,
   dataSlice.getSelectors<RootState>,
 )
 
@@ -93,40 +93,47 @@ export const {
   setTheme,
 } = dataSlice.actions
 
-type NoPayload<Id extends string> = ActionCreatorWithoutPayload<Id>
 type WithPayload<Payload, Id extends string> = ActionCreatorWithPayload<
   Payload,
   Id
 >
 
-export interface Actions {
+interface CodePayloadActions {
   setCode: WithPayload<number[], 'data/setCode'>
   setDigit: WithPayload<SetDigitPayload, 'data/setDigit'>
   setTreeIndex: WithPayload<string, 'data/setTreeIndex'>
   setNodeCount: WithPayload<number, 'data/setNodeCount'>
-  firstCode: NoPayload<'data/firstCode'>
-  decHalfCode: NoPayload<'data/decHalfCode'>
-  decCode: NoPayload<'data/decCode'>
-  incCode: NoPayload<'data/incCode'>
-  incHalfCode: NoPayload<'data/incHalfCode'>
-  lastCode: NoPayload<'data/lastCode'>
-  firstNodeCount: NoPayload<'data/firstNodeCount'>
-  decHalfNodeCount: NoPayload<'data/decHalfNodeCount'>
-  decNodes: NoPayload<'data/decNodes'>
-  incNodes: NoPayload<'data/incNodes'>
-  incHalfNodeCount: NoPayload<'data/incHalfNodeCount'>
-  lastNodeCount: NoPayload<'data/lastNodeCount'>
-  randomCode: NoPayload<'data/randomCode'>
-  randomBoth: NoPayload<'data/randomBoth'>
-  randomNodes: NoPayload<'data/randomNodes'>
-  setFormat: ActionCreatorWithPayload<NumericFormat, 'data/setFormat'>
-  setTheme: ActionCreatorWithPayload<Draw.ThemeName, 'data/setTheme'>
 }
 
-export const actions = dataSlice.actions
+interface CodeActions extends NoPayloadActions, CodePayloadActions {}
 
-/*
+interface StyleActions {
+  setFormat: WithPayload<NumericFormat, 'data/setFormat'>
+  setTheme: WithPayload<Draw.ThemeName, 'data/setTheme'>
+}
 
-ActionCreatorWithoutPayload<"data/firstCode">
-ActionCreatorWithPayload<"a
-*/
+const noPayloadActions = Struct.pick(
+  dataSlice.actions,
+  ...(noPayloadActionNames as unknown as (keyof typeof dataSlice.actions)[]),
+) as NoPayloadActions
+
+console.log(noPayloadActionNames)
+
+export const codePayloadActions: CodePayloadActions = {
+  setCode,
+  setDigit,
+  setTreeIndex,
+  setNodeCount,
+}
+
+export const codeActions: CodeActions = {
+  ...codePayloadActions,
+  ...noPayloadActions,
+}
+
+export const styleActions: StyleActions = {setFormat, setTheme}
+
+export const actions: CodeActions & StyleActions = {
+  ...codeActions,
+  ...styleActions,
+}

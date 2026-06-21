@@ -1,17 +1,17 @@
-import {createListenerMiddleware} from '@reduxjs/toolkit'
+import * as Record from '#Record'
+import {createListenerMiddleware, isAnyOf} from '@reduxjs/toolkit'
 import {pipe} from '#Function'
-import {selectCode, setCode} from './dataSlice'
+import {codeActions} from './dataSlice'
 
 export const listenerMiddleware = (() => {
   const middleWare = createListenerMiddleware()
 
   middleWare.startListening({
-    actionCreator: setNodeCount,
-    effect: async (action, listenerApi) => {
-      console.log({action, listenerApi})
-      console.log('code has changed')
+    predicate: isAnyOf(...Record.typedValues(codeActions)),
+    effect: (action, listenerApi) => {
+      console.log(action.type)
+
       return new Promise(resolve => {
-        console.log('resolved')
         resolve()
       })
     },
