@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {decode} from './client'
-import {DecodeRequest, type DecodeResponse} from './message'
+import {DecodeRequest, type DecodeResponse} from './message/data'
 import type {RootDataState} from '#store'
 
 export const useTreeWorker = ({

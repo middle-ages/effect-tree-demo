@@ -37,6 +37,18 @@ export interface TreeCode {
   code: number[]
 }
 
+export interface TreeBranch {
+  tree: Branch<number>
+}
+
+export interface TreeStats {
+  stats: PrimedStats
+}
+
+export interface TreeLines {
+  lines: string[]
+}
+
 export interface TreeStyle {
   format: NumericFormat
   theme: Draw.ThemeName
@@ -49,11 +61,7 @@ export interface RootState {
 
 export interface DataState extends TreeStyle, TreeCode {}
 
-export interface ComputedState {
-  tree: Branch<number>
-  lines: string[]
-  stats: PrimedStats
-}
+export interface ComputedState extends TreeBranch, TreeStats, TreeLines {}
 
 export type RootSelector<A> = Selector<RootState, A>
 export type DataSelector<A> = Selector<DataState, A>

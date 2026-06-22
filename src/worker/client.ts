@@ -1,4 +1,4 @@
-import {DecodeResponse, type DecodeRequest} from './message'
+import {DecodeResponse, type DecodeRequest} from './message/data'
 
 export const decode = (
   request: DecodeRequest,

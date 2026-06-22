@@ -1,7 +1,7 @@
 import {drawRomanTree} from '#model/draw'
 import {primeStats} from '#model/stats'
 import {Codec} from 'effect-tree'
-import {DecodeResponse, type DecodeRequest} from './message'
+import {DecodeResponse, type DecodeRequest} from './message/data'
 
 self.onmessage = ({data}: MessageEvent<DecodeRequest>) => {
   const {code, format, theme} = data
