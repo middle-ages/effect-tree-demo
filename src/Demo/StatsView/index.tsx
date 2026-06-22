@@ -63,8 +63,17 @@ export const StatsView = () => {
           title='Number of nodes in the tree.'
           onChange={flow(setNodeCount, dispatch)}
           className='mx-1'
+          name='nodeCount'
+          popoverTarget='nodeCountTooltip'
         />
         {`node labeled tree${isFirst ? '' : 's'}.`}
+      </div>
+      <div
+        id='nodeCountTooltip'
+        popover='auto'
+        role='tooltip'
+        className='bg-yellow-100'>
+        Node count tooltip!
       </div>
     </div>
   )

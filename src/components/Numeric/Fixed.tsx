@@ -8,6 +8,9 @@ export interface Props extends StyledProps, Identified {
   value: number
   title: string
   onChange: (n: number, index: number) => void
+  name?: string
+  popoverTarget?: string
+  popoverAction?: string
 }
 
 const paddingLeftPx = 3
