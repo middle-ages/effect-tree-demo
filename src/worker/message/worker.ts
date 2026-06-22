@@ -1,7 +1,7 @@
 import {unwords} from '#String'
 
-export const computeTag = ['tree', 'lines', 'stats'] as const
-export type ComputeTag = (typeof computeTag)[number]
+export const computeTags = ['tree', 'lines', 'stats'] as const
+export type ComputeTag = (typeof computeTags)[number]
 
 export type WorkerTag<Tag extends string = string> = `${WorkerPrefix}${Tag}`
 

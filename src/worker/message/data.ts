@@ -7,10 +7,7 @@ import type {
   TreeStyle,
 } from '#store'
 import type {Simplify} from 'type-fest'
-import {DataMessage, dataTag, type DataTag} from './worker'
-
-export const computeTag = ['tree', 'lines', 'stats'] as const
-export type ComputeTag = (typeof computeTag)[number]
+import {type ComputeTag, DataMessage, dataTag, type DataTag} from './worker'
 
 type RequestTag<Tag extends ComputeTag = ComputeTag> = DataTag<`request-${Tag}`>
 type ResponseTag<Tag extends ComputeTag = ComputeTag> =

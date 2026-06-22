@@ -1,10 +1,12 @@
-import * as Record from '#Record'
-import {createListenerMiddleware, isAnyOf} from '@reduxjs/toolkit'
 import {pipe} from '#Function'
-import {actions, codeActions} from './dataSlice'
-import {type RootState} from './data'
-import {decode, DecodeRequest} from '#worker'
+import type {PrimedStats} from '#model'
+import * as Record from '#Record'
+import {compute, LinesRequest, StatsRequest, TreeRequest} from '#worker'
+import {createListenerMiddleware, isAnyOf} from '@reduxjs/toolkit'
+import type {Branch} from 'effect-tree'
 import {setComputed} from './computedSlice'
+import {type RootState} from './data'
+import {actions} from './dataSlice'
 
 export const listenerMiddleware = (() => {
   const middleWare = createListenerMiddleware()
@@ -12,18 +14,23 @@ export const listenerMiddleware = (() => {
   middleWare.startListening({
     predicate: isAnyOf(...Record.typedValues(actions)),
     effect: async (_, listenerApi) => {
-      const {data} = listenerApi.getState() as RootState
-      const [promise] = decode(
-        DecodeRequest(data.code, data.format, data.theme),
+      listenerApi.cancelActiveListeners()
+
+      const {
+        data: {code, ...style},
+      } = listenerApi.getState() as RootState
+
+      const tree: Branch<number> = await pipe({code}, TreeRequest, compute)
+
+      const lines: string[] = await pipe(
+        {tree, ...style},
+        LinesRequest,
+        compute,
       )
-      const result = await promise
-      listenerApi.dispatch(
-        setComputed({
-          tree: result.tree,
-          lines: result.lines,
-          stats: result.stats,
-        }),
-      )
+
+      const stats: PrimedStats = await pipe({tree, code}, StatsRequest, compute)
+
+      listenerApi.dispatch(setComputed({tree, lines, stats}))
     },
   })
 

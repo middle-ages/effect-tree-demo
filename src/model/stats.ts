@@ -1,6 +1,12 @@
 import * as Array from '#Array'
 import {dual, flow, K, pipe} from '#Function'
-import {fromEntries, mapEntries, map as mapRecord, pluck} from '#Record'
+import {
+  toEntries,
+  fromEntries,
+  mapEntries,
+  map as mapRecord,
+  pluck,
+} from '#Record'
 import {getFirst} from '#Tuple'
 import type {BaseItem} from '#types'
 import {
@@ -126,3 +132,17 @@ function make(id: StatId, label: string, title: string) {
     compute,
   })
 }
+
+export const abortablePrimeStats =
+  (code: number[], tree: Tree<number>) =>
+  (signal: AbortSignal): PrimedStats => {
+    const result = {} as PrimedStats
+    for (const statEntry of toEntries(stats)) {
+      const [statKey, {compute, ...stat}]: [StatId, Stat] = statEntry
+      result[statKey] = {...stat, value: compute({code, tree}).toString()}
+      if (signal.aborted) {
+        return result
+      }
+    }
+    return result
+  }

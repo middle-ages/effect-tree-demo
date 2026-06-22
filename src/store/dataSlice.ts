@@ -126,11 +126,17 @@ export const codePayloadActions: CodePayloadActions = {
   setNodeCount,
 }
 
+/**
+ * Actions that change only the tree code.
+ */
 export const codeActions: CodeActions = {
   ...codePayloadActions,
   ...noPayloadActions,
 }
 
+/**
+ * Actions that change only the tree style.
+ */
 export const styleActions: StyleActions = {setFormat, setTheme}
 
 export const actions: CodeActions & StyleActions = {
