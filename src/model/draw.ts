@@ -151,7 +151,7 @@ export const formatRoman =
     return pipe(n, toRoman, segmentString, Array.map(f), unwords)
   }
 
-export const drawRomanTree: {
+const _drawRomanTree: {
   (self: Tree<number>, format: NumericFormat, theme: Draw.ThemeName): string[]
   (
     format: NumericFormat,
@@ -171,3 +171,15 @@ export const drawRomanTree: {
       Array.map(flow(trimEnd, suffix('\n'))),
     ),
 )
+
+export const drawRomanTree = Object.assign(_drawRomanTree, {
+  named: ({
+    tree,
+    format,
+    theme,
+  }: {
+    tree: Tree<number>
+    format: NumericFormat
+    theme: Draw.ThemeName
+  }): string[] => _drawRomanTree(tree, format, theme),
+})

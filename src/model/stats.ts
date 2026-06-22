@@ -1,7 +1,7 @@
 import * as Array from '#Array'
+import {dual, flow, K, pipe} from '#Function'
+import {fromEntries, mapEntries, map as mapRecord, pluck} from '#Record'
 import {getFirst} from '#Tuple'
-import {dual, K, flow, pipe} from '#Function'
-import {fromEntries, pluck, map as mapRecord, mapEntries} from '#Record'
 import type {BaseItem} from '#types'
 import {
   Codec,
@@ -108,6 +108,8 @@ const _primeStats: {
 
 export const primeStats = Object.assign(_primeStats, {
   untupled: (code: number[], tree: Tree<number>): PrimedStats =>
+    _primeStats(code, tree),
+  named: ({code, tree}: {code: number[]; tree: Tree<number>}): PrimedStats =>
     _primeStats(code, tree),
 })
 
