@@ -18,7 +18,7 @@
 
 @utility button-base {
   @apply flex-center truncate;
-  @apply border outset-xy-dim text-fg-control;
+  @apply border outset-xy text-fg-control;
   @apply text-[13px] leading-4.5 select-none text-inset;
   @apply cursor-pointer dom-play;
   &,
@@ -87,16 +87,16 @@
 
 @layer components {
   .button-flat {
-    @apply button-base button-states bg-dark;
+    @apply button-base bg-dark;
 
     &:hover:not(:disabled) {
-      @apply control-hover saturate-110;
+      @apply control-hover brightness-99 saturate-105;
     }
 
     &:active:not(:disabled),
     &[data-state='active']:not(:disabled) {
-      @apply button-active brightness-92;
-      @apply translate-y-0!;
+      @apply button-active translate-y-[0.5px];
+      @apply *:translate-y-0;
     }
   }
 
@@ -117,7 +117,7 @@
 
 @utility pill-panel {
   @apply box-content flex max-h-6 min-h-6 w-full *:flex-1;
-  @apply rounded-lg border inset-xy-dim border-b-white/50;
+  @apply rounded-lg border inset-xy border-b-white/50;
 
   > * {
     &:focus-visible {

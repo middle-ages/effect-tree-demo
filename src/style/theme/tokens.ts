@@ -25,7 +25,7 @@ export const tokens = {
     light: '#f0f0f5',
     dark: '#e1e1e6',
     darker: '#e2e0e4',
-    paper: '#f4f3f2',
+    paper: '#f2eeed',
     inputActive: '#fcfafd',
 
     control: '#eceaee',

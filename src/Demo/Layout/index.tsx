@@ -30,7 +30,9 @@ export const Layout = ({
   className,
   style,
 }: Props) => (
-  <div className={twMerge('flex h-cqh flex-col px-1', className)} {...{style}}>
+  <div
+    className={twMerge('content-strict flex h-cqh flex-col px-1', className)}
+    {...{style}}>
     {/** Header */}
     {header}
 
@@ -38,16 +40,16 @@ export const Layout = ({
     <SplitPanel
       className='flex-1'
       minWidthsPx={[350, 280]}
-      leftClassName='pr-[1.5px] flex-gap-col'
-      rightClassName='p-px pr-0.5 min-h-[4lh] size-container'
+      leftClassName='pr-[1.5px] flex-gap-col content-strict'
+      rightClassName='p-px pr-0.5 min-h-[4lh] size-container content-strict'
       left={
         <>
-          <VerticalPanel>
+          <VerticalPanel className='*:last:mt-px'>
             {stats}
             {HRule}
             {toolbar}
           </VerticalPanel>
-          <div className='size-container flex-1 *:rounded-md *:border-inset-2'>
+          <div className='content-strict size-container flex-1 *:rounded-md *:border-inset-2'>
             {graphPanel}
           </div>
           <VerticalPanel>{stylePanel}</VerticalPanel>
@@ -61,4 +63,6 @@ export const Layout = ({
   </div>
 )
 
-const VerticalPanel = withClassName.div('dark-col rounded-md p-1.5')
+const VerticalPanel = withClassName.div(
+  'dark-col rounded-md p-1.5 pt-1 content-strict',
+)

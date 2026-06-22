@@ -117,8 +117,6 @@ const noPayloadActions = Struct.pick(
   ...(noPayloadActionNames as unknown as (keyof typeof dataSlice.actions)[]),
 ) as NoPayloadActions
 
-console.log(noPayloadActionNames)
-
 export const codePayloadActions: CodePayloadActions = {
   setCode,
   setDigit,
