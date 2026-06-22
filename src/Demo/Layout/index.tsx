@@ -4,6 +4,7 @@ import {SplitPanel} from '#SplitPanel'
 import {twMerge} from 'tailwind-merge'
 import {HRule} from '#HRule'
 import {withClassName} from '#compinators'
+import type {Pair} from '#Pair'
 
 interface Props
   extends
@@ -18,6 +19,8 @@ interface Props
       | 'graphPanel',
       ReactNode
     > {}
+
+const minWidthsPx: Pair<number> = [350, 280]
 
 export const Layout = ({
   header,
@@ -38,8 +41,8 @@ export const Layout = ({
 
     {/** Body */}
     <SplitPanel
+      {...{minWidthsPx}}
       className='flex-1'
-      minWidthsPx={[350, 280]}
       leftClassName='pr-[1.5px] flex-gap-col content-strict'
       rightClassName='p-px pr-0.5 min-h-[4lh] size-container content-strict'
       left={

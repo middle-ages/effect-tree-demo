@@ -11,6 +11,7 @@ import {
   selectStats,
   useAppDispatch,
   useAppSelector,
+  selectLeftWidthPx,
 } from '#store'
 import {unlines} from '#String'
 import {MAX_NODE_COUNT} from '#model'
@@ -23,6 +24,9 @@ export const StatsView = () => {
   } = useAppSelector(selectStats)
   const isFirst = treeCount === '1'
   const dispatch = useAppDispatch()
+
+  const leftWidthPx = useAppSelector(selectLeftWidthPx)
+  console.log(leftWidthPx)
 
   return (
     <div className='content-strict flex flex-col *:h-row-small *:pr-px'>

@@ -32,8 +32,12 @@
 
 @utility scroll-area {
   container-type: size scroll-state;
-  scrollbar-color: var(--color-line-light) #e6e7e7;
+  scrollbar-color: #cacacc #f0f0f280;
   scrollbar-gutter: stable;
+  &:hover,
+  &:focus {
+    scrollbar-color: #888 #f9fafc80;
+  }
 }
 
 @layer components {

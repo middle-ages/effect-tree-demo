@@ -21,8 +21,7 @@ export const tokens = {
     borderRight: '#c0c2c4',
     borderBottom: '#a5a7a9',
 
-    app: '#ebebf3',
-    light: '#f0f0f5',
+    app: '#ecedf3',
     dark: '#e1e1e6',
     darker: '#e2e0e4',
     paper: '#f2eeed',

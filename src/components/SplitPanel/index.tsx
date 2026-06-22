@@ -1,19 +1,20 @@
 import {withClassName} from '#compinators'
-import {SizePx} from '#react/size'
-import {pluck} from '#Record'
-import {useMeasure} from '#useMeasure'
-import {useDrag} from '#useDrag'
-import {flow, pipe} from '#Function'
 import {px} from '#Css'
+import {flow, pipe} from '#Function'
+import type {Pair} from '#Pair'
 import {type StyledProps} from '#react/props'
+import {pluck} from '#Record'
 import {
   selectLeftWidthPx,
   setLeftWidthPx,
   useAppDispatch,
   useAppSelector,
 } from '#store'
+import {useDrag} from '#useDrag'
+import {useMeasure} from '#useMeasure'
 import {
   useCallback,
+  useEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -25,7 +26,7 @@ import {twMerge} from 'tailwind-merge'
 interface Props extends StyledProps {
   left: ReactNode
   right: ReactNode
-  minWidthsPx: [left: number, right: number]
+  minWidthsPx: Pair<number>
   leftClassName?: string
   rightClassName?: string
   leftStyle?: CSSProperties
@@ -37,30 +38,34 @@ const splitterWidth = px(splitterWidthPx)
 export const SplitPanel = ({
   left,
   right,
-  minWidthsPx: [minLeftWidthPx, minRightWidthPx],
+  minWidthsPx,
   leftClassName,
   rightClassName,
   leftStyle,
   style,
   className,
 }: Props) => {
+  const [minLeftWidthPx] = minWidthsPx
   const [xPx, setXPx] = useState(minLeftWidthPx)
   const expandedPx = useRef(minLeftWidthPx)
-
-  //  const dispatch = useAppDispatch()
+  const [, buttonRef] = useDrag(flow(pluck('xPx'), setXPx))
+  const previousLeftWidthPx = useAppSelector(selectLeftWidthPx)
 
   const {
     ref: parentRef,
     sizePx: {widthPx: parentWidthPx},
   } = useMeasure()
 
-  const [, buttonRef] = useDrag(flow(pluck('xPx'), setXPx))
-  const leftWidthPx = leftWidthCalc(xPx, parentWidthPx, [
-    minLeftWidthPx,
-    minRightWidthPx,
-  ])
+  const leftWidthPx = computeLeftWidthPx(minWidthsPx)(parentWidthPx, xPx)
+  const dispatch = useAppDispatch()
 
-  // handle double click
+  useEffect(() => {
+    if (leftWidthPx !== previousLeftWidthPx) {
+      pipe({leftWidthPx}, setLeftWidthPx, dispatch)
+    }
+  }, [dispatch, leftWidthPx, previousLeftWidthPx])
+
+  // handle double click to toggle to min width and back
   const resetToMinLeftWidth: () => void = useCallback(() => {
     setXPx(old => {
       if (old === minLeftWidthPx) {
@@ -80,7 +85,6 @@ export const SplitPanel = ({
         'flex place-content-stretch *:not-last:no-flex *:last:flex-1',
         className,
       )}>
-      {' '}
       <div
         style={{
           ...leftStyle,
@@ -96,16 +100,14 @@ export const SplitPanel = ({
   )
 }
 
-const leftWidthCalc = (
-  xPx: number,
-  parentWidthPx: number,
-  [left, right]: [minWidthLeftPx: number, minWidthRightPx: number],
-): number => {
-  const clampMinPx = Math.max(left, xPx - splitterWidthPx)
-  const adjustedRightPx = right + splitterWidthPx
-  const maxLimit = parentWidthPx - adjustedRightPx
-  return Math.min(maxLimit, clampMinPx)
-}
+const computeLeftWidthPx =
+  ([left, right]: Pair<number>) =>
+  (parentWidthPx: number, xPx: number): number => {
+    const clampMinPx = Math.max(left, xPx - splitterWidthPx)
+    const adjustedRightPx = right + splitterWidthPx
+    const maxLimit = parentWidthPx - adjustedRightPx
+    return Math.min(maxLimit, clampMinPx)
+  }
 
 const SplitterButton = ({
   buttonRef,
