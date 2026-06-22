@@ -22,13 +22,12 @@ export const tokens = {
     borderBottom: '#a5a7a9',
 
     app: '#ecedf3',
-    dark: '#e1e1e6',
+    dark: '#dedddc',
     darker: '#e2e0e4',
     paper: '#f2eeed',
     inputActive: '#fcfafd',
 
-    control: '#eceaee',
-    controlHover: '#f3edf5',
+    controlHover: '#edeaed',
     controlDisabled: '#e3e0e9',
     controlActive: '#dedcdf',
 

@@ -88,14 +88,15 @@
 @layer components {
   .button-flat {
     @apply button-base bg-dark;
+    @apply border border-transparent;
 
-    &:hover:not(:disabled) {
-      @apply control-hover brightness-99 saturate-105;
+    &:hover {
+      @apply control-hover text-fg-control-hover;
     }
 
-    &:active:not(:disabled),
-    &[data-state='active']:not(:disabled) {
-      @apply button-active translate-y-[0.5px];
+    &:active,
+    &[data-state='active'] {
+      @apply inset-px button-active translate-y-[0.5px] bg-[#d8d9db];
       @apply *:translate-y-0;
     }
   }

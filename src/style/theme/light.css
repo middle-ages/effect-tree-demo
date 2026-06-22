@@ -13,13 +13,11 @@
   --color-border-right: #c0c2c4;
   --color-border-bottom: #a5a7a9;
   --color-app: #ecedf3;
-  --color-light: var(--color-app);
   --color-dark: #dedddc;
   --color-darker: #e2e0e4;
   --color-paper: #f2eeed;
   --color-input-active: #fcfafd;
-  --color-control: #434343;
-  --color-control-hover: #f3edf5;
+  --color-control-hover: #edeaed;
   --color-control-disabled: #e3e0e9;
   --color-control-active: #dedcdf;
   --color-a: #000574;
