@@ -33,6 +33,8 @@ export const initialComputedState: ComputedState = {
   stats: primeStats(initialDataState.code, initialTree),
 }
 
+export const initialAppState: AppState = {leftWidthPx: 100}
+
 export interface TreeCode {
   code: number[]
 }
@@ -57,11 +59,16 @@ export interface TreeStyle {
 export interface RootState {
   data: DataState
   computed: ComputedState
+  app: AppState
 }
 
 export interface DataState extends TreeStyle, TreeCode {}
 
 export interface ComputedState extends TreeBranch, TreeStats, TreeLines {}
+
+export interface AppState {
+  leftWidthPx: number
+}
 
 export type RootSelector<A> = Selector<RootState, A>
 export type DataSelector<A> = Selector<DataState, A>

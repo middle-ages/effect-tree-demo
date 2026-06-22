@@ -44,3 +44,4 @@ export {
   disabledProps,
 } from './store/guard'
 export * from './store/computedSlice'
+export * from './store/appSlice'
