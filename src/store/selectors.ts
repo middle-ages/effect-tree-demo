@@ -42,9 +42,6 @@ export const selectStats: OutputSelector<
   PrimedStats
 > = createSelector([selectCode, selectTree], primeStats.untupled)
 
-export const selectDot: OutputSelector<[RootSelector<Branch<number>>], string> =
-  createSelector([selectTree], Codec.treeToGraphViz)
-
 const selectIsFirstCode: OutputSelector<[RootSelector<number[]>], boolean> =
   createSelector([selectCode], Codec.Prufer.isFirstCode)
 

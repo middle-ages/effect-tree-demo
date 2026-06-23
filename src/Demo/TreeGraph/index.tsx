@@ -2,12 +2,10 @@ import {withMeasure} from '#compinators'
 import {GraphView} from '#GraphView'
 import {dotToSvg} from '#model'
 import type {StyledProps} from '#react/props'
-import {selectDot, useAppSelector} from '#store'
+import {useAppSelector} from '#store'
 import type {UseMeasure} from '#useMeasure'
 import {Graphviz} from '@hpcc-js/wasm-graphviz'
 import {use} from 'react'
-
-const graphvizLoading: Promise<Graphviz> = Graphviz.load()
 
 interface Props extends UseMeasure, StyledProps {}
 

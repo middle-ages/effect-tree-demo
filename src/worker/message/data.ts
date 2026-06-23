@@ -13,19 +13,25 @@ type RequestTag<Tag extends ComputeTag = ComputeTag> = DataTag<`request-${Tag}`>
 type ResponseTag<Tag extends ComputeTag = ComputeTag> =
   DataTag<`response-${Tag}`>
 
-export type DataRequest = TreeRequest | LinesRequest | StatsRequest
-export type DataResponse = TreeResponse | LinesResponse | StatsResponse
+export type DataRequest = TreeRequest | LinesRequest | StatsRequest | SvgRequest
+export type DataResponse =
+  | TreeResponse
+  | LinesResponse
+  | StatsResponse
+  | SvgResponse
 
 export interface RequestMap {
   tree: TreeCode
   lines: TreeBranch & TreeStyle
   stats: TreeBranch & TreeCode
+  svg: TreeBranch
 }
 
 export interface ResponseMap {
   tree: TreeBranch['tree']
   lines: TreeLines['lines']
   stats: TreeStats['stats']
+  svg: string
 }
 
 export interface RequestMessage<
@@ -44,26 +50,41 @@ export interface ResponseMessage<Tag extends ComputeTag> extends DataMessage<
 interface _TreeRequest extends RequestMessage<'tree'> {}
 interface _LinesRequest extends RequestMessage<'lines'> {}
 interface _StatsRequest extends RequestMessage<'stats'> {}
+interface _SvgRequest extends RequestMessage<'svg'> {}
 
 export type TreeRequest = Simplify<_TreeRequest>
 export type LinesRequest = Simplify<_LinesRequest>
 export type StatsRequest = Simplify<_StatsRequest>
+export type SvgRequest = Simplify<_SvgRequest>
 
 export interface TreeResponse extends ResponseMessage<'tree'> {}
 export interface LinesResponse extends ResponseMessage<'lines'> {}
 export interface StatsResponse extends ResponseMessage<'stats'> {}
+export interface SvgResponse extends ResponseMessage<'svg'> {}
 
-export const [TreeRequest, LinesRequest, StatsRequest]: [
+export const [TreeRequest, LinesRequest, StatsRequest, SvgRequest]: [
   (payload: RequestMap['tree']) => TreeRequest,
   (payload: RequestMap['lines']) => LinesRequest,
   (payload: RequestMap['stats']) => StatsRequest,
-] = [buildRequest('tree'), buildRequest('lines'), buildRequest('stats')]
+  (payload: RequestMap['svg']) => SvgRequest,
+] = [
+  buildRequest('tree'),
+  buildRequest('lines'),
+  buildRequest('stats'),
+  buildRequest('svg'),
+]
 
-export const [TreeResponse, LinesResponse, StatsResponse]: [
+export const [TreeResponse, LinesResponse, StatsResponse, SvgResponse]: [
   (request: TreeRequest) => (payload: ResponseMap['tree']) => TreeResponse,
   (request: LinesRequest) => (payload: ResponseMap['lines']) => LinesResponse,
   (request: StatsRequest) => (payload: ResponseMap['stats']) => StatsResponse,
-] = [buildResponse('tree'), buildResponse('lines'), buildResponse('stats')]
+  (request: SvgRequest) => (payload: ResponseMap['svg']) => SvgResponse,
+] = [
+  buildResponse('tree'),
+  buildResponse('lines'),
+  buildResponse('stats'),
+  buildResponse('svg'),
+]
 
 export function buildRequest<const Tag extends ComputeTag>(tag: Tag) {
   return (payload: RequestMap[Tag]) =>
@@ -87,27 +108,13 @@ export const matchDataRequest =
     onTree: (request: TreeRequest) => R,
     onLines: (request: LinesRequest) => R,
     onStats: (request: StatsRequest) => R,
+    onSvg: (request: SvgRequest) => R,
   ) =>
   (self: DataRequest): R =>
     self._tag.endsWith('-tree')
       ? onTree(self as TreeRequest)
       : self._tag.endsWith('-lines')
         ? onLines(self as LinesRequest)
-        : onStats(self as StatsRequest)
-
-export const matchDataResponse =
-  <R>({
-    onTree,
-    onLines,
-    onStats,
-  }: {
-    onTree: (response: TreeResponse) => R
-    onLines: (response: LinesResponse) => R
-    onStats: (response: StatsResponse) => R
-  }) =>
-  (self: DataResponse): R =>
-    self._tag.endsWith('-tree')
-      ? onTree(self as TreeResponse)
-      : self._tag.endsWith('-lines')
-        ? onLines(self as LinesResponse)
-        : onStats(self as StatsResponse)
+        : self._tag.endsWith('-stats')
+          ? onStats(self as StatsRequest)
+          : onSvg(self as SvgRequest)

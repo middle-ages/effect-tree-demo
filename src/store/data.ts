@@ -31,7 +31,6 @@ export const initialComputedState: ComputedState = {
     initialDataState.theme,
   ),
   stats: primeStats(initialDataState.code, initialTree),
-  dot: '',
   svg: '',
 }
 
@@ -53,10 +52,6 @@ export interface TreeLines {
   lines: string[]
 }
 
-export interface TreeDot {
-  dot: string
-}
-
 export interface TreeSvg {
   svg: string
 }
@@ -75,7 +70,7 @@ export interface RootState {
 export interface DataState extends TreeStyle, TreeCode {}
 
 export interface ComputedState
-  extends TreeBranch, TreeStats, TreeLines, TreeDot, TreeSvg {}
+  extends TreeBranch, TreeStats, TreeLines, TreeSvg {}
 
 export interface AppState {
   leftWidthPx: number
@@ -111,21 +106,19 @@ export const [
   pluckTree,
   pluckLines,
   pluckStats,
-  pluckDot,
   pluckSvg,
   pluckLeftWidthPx,
 ]: [
   (state: RootState) => DataState,
   (state: RootState) => ComputedState,
   (state: RootState) => AppState,
-  (self: DataState) => number[],
-  (self: DataState) => NumericFormat,
-  (self: DataState) => Draw.ThemeName,
-  (self: ComputedState) => Branch<number>,
-  (self: ComputedState) => string[],
-  (self: ComputedState) => PrimedStats,
-  (self: ComputedState) => string,
-  (self: ComputedState) => string,
+  (self: TreeCode) => number[],
+  (self: TreeStyle) => NumericFormat,
+  (self: TreeStyle) => Draw.ThemeName,
+  (self: TreeBranch) => Branch<number>,
+  (self: TreeLines) => string[],
+  (self: TreeStats) => PrimedStats,
+  (self: TreeSvg) => string,
   (self: AppState) => number,
 ] = [
   pluck('data'),
@@ -137,7 +130,6 @@ export const [
   pluck('tree'),
   pluck('lines'),
   pluck('stats'),
-  pluck('dot'),
   pluck('svg'),
   pluck('leftWidthPx'),
 ]
@@ -179,11 +171,6 @@ export const setStats = (
   {stats: _, ...state}: ComputedState,
   stats: PrimedStats,
 ): ComputedState => ({...state, stats})
-
-export const setDot = (
-  {dot: _, ...state}: ComputedState,
-  dot: string,
-): ComputedState => ({...state, dot})
 
 export const setSvg = (
   {svg: _, ...state}: ComputedState,

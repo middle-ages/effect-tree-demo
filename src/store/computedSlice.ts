@@ -23,7 +23,6 @@ interface SelectorDefinitions extends SliceSelectors<ComputedState> {
   selectTree: (state: ComputedState) => Branch<number>
   selectLines: (state: ComputedState) => string[]
   selectStats: (state: ComputedState) => PrimedStats
-  selectDot: (state: ComputedState) => string
   selectSvg: (state: ComputedState) => string
 }
 
@@ -31,7 +30,6 @@ const selectors: SelectorDefinitions = {
   selectTree: data.pluckTree,
   selectLines: data.pluckLines,
   selectStats: data.pluckStats,
-  selectDot: data.pluckDot,
   selectSvg: data.pluckSvg,
 }
 
@@ -47,10 +45,6 @@ const reducers = (create: ReducerCreators<ComputedState>) => ({
 
   setStats: create.reducer<PrimedStats>((state, {payload}) =>
     data.setStats(state, payload),
-  ),
-
-  setDot: create.reducer<string>((state, {payload}) =>
-    data.setDot(state, payload),
   ),
 
   setSvg: create.reducer<string>((state, {payload}) =>
@@ -74,7 +68,6 @@ interface ComputedSelectors {
   selectTree: RootSelector<Branch<number>>
   selectLines: RootSelector<string[]>
   selectStats: RootSelector<PrimedStats>
-  selectDot: RootSelector<string>
   selectSvg: RootSelector<string>
 }
 
@@ -82,9 +75,7 @@ export const {
   selectTree: selectComputedTree,
   selectLines: selectComputedLines,
   selectStats: selectComputedStats,
-  selectDot: selectComputedDot,
   selectSvg: selectComputedSvg,
 }: ComputedSelectors = computedAdapter
 
-export const {setTree, setLines, setStats, setDot, setSvg} =
-  computedSlice.actions
+export const {setTree, setLines, setStats, setSvg} = computedSlice.actions

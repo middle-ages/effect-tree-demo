@@ -1,30 +1,25 @@
 import type {RequestMessage, ResponseMessage} from './message/data'
 import {type ComputeTag} from './message/worker'
-
-let localWorker: Worker | undefined
+import {withWorker} from './pool'
 
 export const compute = <Tag extends ComputeTag>(
   request: RequestMessage<Tag>,
 ): Promise<ResponseMessage<Tag>['payload']> => {
   type Response = ResponseMessage<Tag>
 
-  if (localWorker !== undefined) {
-    localWorker.terminate()
-  }
+  return withWorker(worker => {
+    return new Promise(resolve => {
+      worker.postMessage(request)
+      worker.onerror = function (
+        this: AbstractWorker,
+        event: ErrorEvent,
+      ): void {
+        throw new Error(event.message, {cause: event.error})
+      }
 
-  const worker = new Worker(new URL('./worker/compute', import.meta.url), {
-    type: 'module',
-  })
-  localWorker = worker
-
-  return new Promise<Response['payload']>(resolve => {
-    worker.postMessage(request)
-    worker.onerror = function (this: AbstractWorker, event: ErrorEvent): void {
-      throw new Error(event.message)
-    }
-
-    worker.onmessage = ({data}: MessageEvent<Response>): void => {
-      resolve(data.payload)
-    }
+      worker.onmessage = ({data: {payload}}: MessageEvent<Response>): void => {
+        resolve(payload)
+      }
+    })
   })
 }
