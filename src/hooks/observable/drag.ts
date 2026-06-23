@@ -30,7 +30,7 @@ export const dragObservable =
 
     const slow = pipe(
       move,
-      rx.throttleTime(30, undefined, {leading: true, trailing: true}),
+      rx.throttleTime(20, undefined, {leading: true, trailing: true}),
     )
 
     return pipe(

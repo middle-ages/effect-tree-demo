@@ -39,16 +39,13 @@ export const NumericView = ({
     ? formatExponential(options)(availableWidthPx, value)
     : commaFormatted
 
-  const width = px(Math.min(availableWidthPx, measuredPx))
-  console.log(width)
-
   return (
     <div>
       <div
         {...props}
         title={propsTitle + commaFormatted}
         style={{
-          width: `max(${width}, 100%)`,
+          width: px(Math.min(availableWidthPx, measuredPx)),
           paddingLeft: px(padding),
           paddingRight: px(padding),
         }}

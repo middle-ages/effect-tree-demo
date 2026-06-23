@@ -27,7 +27,7 @@ export const tokens = {
     paper: '#f2eeed',
     inputActive: '#fcfafd',
 
-    controlHover: '#edeaed',
+    controlHover: '#edeaeb',
     controlDisabled: '#e3e0e9',
     controlActive: '#dedcdf',
 

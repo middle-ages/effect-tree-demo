@@ -91,12 +91,12 @@
     @apply border border-transparent;
 
     &:hover {
-      @apply control-hover text-fg-control-hover;
+      @apply control-hover text-fg-control *:nth-[4]:brightness-92 *:nth-[4]:contrast-107;
     }
 
     &:active,
     &[data-state='active'] {
-      @apply inset-px button-active translate-y-[0.5px] bg-[#d8d9db];
+      @apply inset-px button-active translate-y-[0.5px] bg-[#d8d9db] *:text-ink/80!;
       @apply *:translate-y-0;
     }
   }
