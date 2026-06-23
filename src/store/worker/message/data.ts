@@ -5,7 +5,7 @@ import type {
   TreeLines,
   TreeStats,
   TreeStyle,
-} from '#store'
+} from '../../data'
 import type {Simplify} from 'type-fest'
 import {type ComputeTag, DataMessage, dataTag, type DataTag} from './worker'
 

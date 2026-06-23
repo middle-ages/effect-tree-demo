@@ -34,10 +34,7 @@ export const Layout = ({
   style,
 }: Props) => (
   <div
-    className={twMerge(
-      'flex h-cqh flex-col pr-0.5 pl-1 contain-strict',
-      className,
-    )}
+    className={twMerge('flex h-cqh flex-col px-0.5 contain-strict', className)}
     {...{style}}>
     {/** Header */}
     {header}
@@ -46,7 +43,7 @@ export const Layout = ({
     <SplitPanel
       {...{minWidthsPx}}
       className='flex-1 contain-strict'
-      leftClassName='pr-[1.5px] flex-gap-col contain-strict'
+      leftClassName='pl-0.5 pr-[1.5px] flex-gap-col contain-strict'
       rightClassName='p-px pr-px min-h-[4lh] size-container contain-strict *:first:pr-0.5'
       left={
         <>

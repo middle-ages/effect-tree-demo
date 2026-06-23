@@ -1,5 +1,4 @@
-import type {RequestMessage, ResponseMessage} from './message/data'
-import {type ComputeTag} from './message/worker'
+import type {ComputeTag, RequestMessage, ResponseMessage} from './message'
 import {withWorker} from './pool'
 
 export const compute = <Tag extends ComputeTag>(

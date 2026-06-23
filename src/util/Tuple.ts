@@ -35,3 +35,7 @@ export type Tail<A extends readonly unknown[]> = A['length'] extends 0
 export const mapTuple3 =
   <A, B>(f: (a: A, i: number) => B) =>
   ([a, b, c]: Tuple3<A>): Tuple3<B> => [f(a, 0), f(b, 1), f(c, 2)]
+
+export const mapTuple4 =
+  <A, B>(f: (a: A, i: number) => B) =>
+  ([a, b, c, d]: Tuple4<A>): Tuple4<B> => [f(a, 0), f(b, 1), f(c, 2), f(d, 3)]

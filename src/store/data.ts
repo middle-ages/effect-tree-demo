@@ -67,6 +67,10 @@ export interface RootState {
   app: AppState
 }
 
+export interface FromState<Result> {
+  (state: RootState): Result
+}
+
 export interface DataState extends TreeStyle, TreeCode {}
 
 export interface ComputedState

@@ -418,6 +418,12 @@
         "types": "./src/worker.d.ts",
         "import": "./src/worker.js"
       }
+    },
+    "#worker/*": {
+      "import": {
+        "types": "./src/worker/*.d.ts",
+        "import": "./src/worker/*.js"
+      }
     }
   },
   "publishConfig": {

@@ -2,7 +2,7 @@ import {flow, pipe} from '#Function'
 import {dotToSvg, drawRomanTree, primeStats} from '#model'
 import {Graphviz} from '@hpcc-js/wasm-graphviz'
 import {Codec, type Branch} from 'effect-tree'
-import {pluckCode} from '../store/data'
+import {pluckCode} from '../data'
 import {
   buildResponse,
   matchDataRequest,
@@ -12,8 +12,8 @@ import {
   type RequestMessage,
   type ResponseMap,
   type ResponseMessage,
-} from './message/data'
-import type {ComputeTag} from './message/worker'
+  type ComputeTag,
+} from './message'
 
 const graphvizLoading: Promise<Graphviz> = Graphviz.load()
 
