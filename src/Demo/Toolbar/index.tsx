@@ -29,7 +29,7 @@ const Row = ({
   title,
   children,
 }: PropsWithChildren<{label: string; title: string}>) => (
-  <div className='subgrid-2 h-7 w-full contain-strict'>
+  <div className='subgrid-2 h-7'>
     <div
       className={twMerge('text-fg-control contain-strict', rowLineHeight)}
       {...{title}}>
