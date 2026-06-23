@@ -16,7 +16,7 @@ export const Details = ({label, children, ...props}: Props) => {
       <button
         {...{...props, onClick}}
         tabIndex={-1}
-        className='button-flat mx-auto mt-0.5 flex max-h-4.75 min-h-4.75 w-[calc(100%-var(--spacing)/2)] rounded-sm focus-none contain-strict'>
+        className='button-flat mx-auto flex max-h-4.75 min-h-4.75 w-[calc(100%-var(--spacing)/2)] rounded-sm focus-none contain-strict'>
         <Rule />
         <div
           className='size-6 flex-none rounded-full leading-6 duration-300 text-inset-deep'
@@ -37,7 +37,7 @@ export const Details = ({label, children, ...props}: Props) => {
       <div
         className={twMerge(
           'overflow-hidden dom-play *:dom-play',
-          isExpanded ? 'pt-1.5' : 'h-0 scale-y-0',
+          !isExpanded && 'h-0 scale-y-0',
         )}>
         {children}
       </div>

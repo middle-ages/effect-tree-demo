@@ -52,7 +52,7 @@ export const Layout = ({
             {HRule}
             {toolbar}
           </VerticalPanel>
-          <div className='content-strict size-container flex-1 *:rounded-md *:border-inset-2'>
+          <div className='size-container flex-1 *:rounded-md *:border-inset-2'>
             {graphPanel}
           </div>
           <VerticalPanel>{stylePanel}</VerticalPanel>
@@ -66,6 +66,4 @@ export const Layout = ({
   </div>
 )
 
-const VerticalPanel = withClassName.div(
-  'dark-col rounded-md p-1.5 pt-1 content-strict',
-)
+const VerticalPanel = withClassName.div('dark-col rounded-md p-1')
