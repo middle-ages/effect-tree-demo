@@ -18,7 +18,7 @@ export const Outer = ({title, className, children, ...props}: Props) => (
     isFocusable
     title={`${title} Hold for ½ a second to repeat.`}
     className={twMerge(
-      'max-h-6 min-h-6 w-full',
+      'max-h-6 min-h-6 w-full contain-strict',
       'pr-2.75 text-center',
       className,
     )}>
