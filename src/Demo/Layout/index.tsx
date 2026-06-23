@@ -20,7 +20,7 @@ interface Props
       ReactNode
     > {}
 
-const minWidthsPx: Pair<number> = [350, 280]
+const minWidthsPx: Pair<number> = [340, 280]
 
 export const Layout = ({
   header,

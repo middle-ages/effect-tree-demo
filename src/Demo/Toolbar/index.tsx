@@ -7,7 +7,7 @@ const rowHeight = 'h-row-small'
 const rowLineHeight = 'leading-row-small'
 
 export const Toolbar = () => (
-  <div className='content-strict grid w-full grid-cols-[9ch_1fr] gap-x-1 gap-y-0.5'>
+  <div className='max-h-21 min-h-21 grid-cols-[9ch_1fr] gap-x-1 gap-y-0.5 overflow-hidden'>
     <Row
       label='Prüfer code'
       title='Jump between different codes at the current node count.'>
@@ -29,10 +29,14 @@ const Row = ({
   title,
   children,
 }: PropsWithChildren<{label: string; title: string}>) => (
-  <div className='subgrid-2'>
-    <div className={twMerge('text-fg-control', rowLineHeight)} {...{title}}>
+  <div className='subgrid-2 h-7'>
+    <div
+      className={twMerge('text-fg-control contain-strict', rowLineHeight)}
+      {...{title}}>
       {label}
     </div>
-    <div className={twMerge('flex-center', rowHeight)}>{children}</div>
+    <div className={twMerge('flex-center contain-strict', rowHeight)}>
+      {children}
+    </div>
   </div>
 )
