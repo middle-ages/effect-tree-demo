@@ -47,7 +47,7 @@ export const Layout = ({
       {...{minWidthsPx}}
       className='flex-1 contain-strict'
       leftClassName='pr-[1.5px] flex-gap-col contain-strict'
-      rightClassName='p-px pr-0.5 min-h-[4lh] size-container contain-strict'
+      rightClassName='p-px pr-px min-h-[4lh] size-container contain-strict *:first:pr-0.5'
       left={
         <>
           <VerticalPanel>
@@ -65,7 +65,7 @@ export const Layout = ({
     />
 
     {/** Footer */}
-    <div className='h-20'>{footer}</div>
+    <div className='h-20 pr-px'>{footer}</div>
   </div>
 )
 

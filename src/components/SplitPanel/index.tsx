@@ -3,7 +3,7 @@ import {px} from '#Css'
 import {flow, pipe} from '#Function'
 import type {Pair} from '#Pair'
 import {type StyledProps} from '#react/props'
-import {pluck} from '#Record'
+import {pluck, withKey} from '#Record'
 import {
   selectLeftWidthPx,
   setLeftWidthPx,
@@ -32,6 +32,7 @@ interface Props extends StyledProps {
   leftStyle?: CSSProperties
 }
 
+const leftPadPx = 1.5
 const splitterWidthPx = 12
 const splitterWidth = px(splitterWidthPx)
 
@@ -61,7 +62,12 @@ export const SplitPanel = ({
 
   useEffect(() => {
     if (leftWidthPx !== previousLeftWidthPx) {
-      pipe({leftWidthPx}, setLeftWidthPx, dispatch)
+      pipe(
+        leftWidthPx - leftPadPx,
+        withKey('leftWidthPx'),
+        setLeftWidthPx,
+        dispatch,
+      )
     }
   }, [dispatch, leftWidthPx, previousLeftWidthPx])
 

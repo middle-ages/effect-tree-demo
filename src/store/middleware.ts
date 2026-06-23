@@ -4,7 +4,7 @@ import * as Record from '#Record'
 import {compute, LinesRequest, StatsRequest, TreeRequest} from '#worker'
 import {createListenerMiddleware, isAnyOf} from '@reduxjs/toolkit'
 import type {Branch} from 'effect-tree'
-import {setComputed} from './computedSlice'
+import {setStats, setLines, setTree} from './computedSlice'
 import {type RootState} from './data'
 import {actions} from './dataSlice'
 
@@ -21,16 +21,18 @@ export const listenerMiddleware = (() => {
       } = listenerApi.getState() as RootState
 
       const tree: Branch<number> = await pipe({code}, TreeRequest, compute)
+      listenerApi.dispatch(setTree(tree))
 
       const lines: string[] = await pipe(
         {tree, ...style},
         LinesRequest,
         compute,
       )
+      listenerApi.dispatch(setLines(lines))
 
       const stats: PrimedStats = await pipe({tree, code}, StatsRequest, compute)
 
-      listenerApi.dispatch(setComputed({tree, lines, stats}))
+      listenerApi.dispatch(setStats(stats))
     },
   })
 

@@ -15,7 +15,7 @@ export interface NumericViewProps extends Identified {
 
 const padding = 1 * 4
 
-const [edgeWidthPx, minWidthPx] = [66 + 2 * 7.5, 254]
+const [edgeWidthPx, minWidthPx] = [66 + 2 * 6.75, 254]
 
 const options: Partial<MeasureOptions> = {
   isFlat: true,

@@ -31,6 +31,8 @@ export const initialComputedState: ComputedState = {
     initialDataState.theme,
   ),
   stats: primeStats(initialDataState.code, initialTree),
+  dot: '',
+  svg: '',
 }
 
 export const initialAppState: AppState = {leftWidthPx: 100}
@@ -51,6 +53,14 @@ export interface TreeLines {
   lines: string[]
 }
 
+export interface TreeDot {
+  dot: string
+}
+
+export interface TreeSvg {
+  svg: string
+}
+
 export interface TreeStyle {
   format: NumericFormat
   theme: Draw.ThemeName
@@ -64,7 +74,8 @@ export interface RootState {
 
 export interface DataState extends TreeStyle, TreeCode {}
 
-export interface ComputedState extends TreeBranch, TreeStats, TreeLines {}
+export interface ComputedState
+  extends TreeBranch, TreeStats, TreeLines, TreeDot, TreeSvg {}
 
 export interface AppState {
   leftWidthPx: number
@@ -90,24 +101,45 @@ export interface SetDigitPayload {
   index: number
 }
 
-export const [pluckData, pluckComputed, pluckCode, pluckFormat, pluckTheme]: [
+export const [
+  pluckData,
+  pluckComputed,
+  pluckApp,
+  pluckCode,
+  pluckFormat,
+  pluckTheme,
+  pluckTree,
+  pluckLines,
+  pluckStats,
+  pluckDot,
+  pluckSvg,
+  pluckLeftWidthPx,
+]: [
   (state: RootState) => DataState,
   (state: RootState) => ComputedState,
+  (state: RootState) => AppState,
   (self: DataState) => number[],
   (self: DataState) => NumericFormat,
   (self: DataState) => Draw.ThemeName,
   (self: ComputedState) => Branch<number>,
   (self: ComputedState) => string[],
   (self: ComputedState) => PrimedStats,
+  (self: ComputedState) => string,
+  (self: ComputedState) => string,
+  (self: AppState) => number,
 ] = [
   pluck('data'),
   pluck('computed'),
+  pluck('app'),
   pluck('code'),
   pluck('format'),
   pluck('theme'),
   pluck('tree'),
   pluck('lines'),
   pluck('stats'),
+  pluck('dot'),
+  pluck('svg'),
+  pluck('leftWidthPx'),
 ]
 
 export const setCode = (
@@ -132,3 +164,33 @@ export const setDigit = (
   ...state,
   code: Array.modify(code, index, K(digit)),
 })
+
+export const setTree = (
+  {tree: _, ...state}: ComputedState,
+  tree: Branch<number>,
+): ComputedState => ({...state, tree})
+
+export const setLines = (
+  {lines: _, ...state}: ComputedState,
+  lines: string[],
+): ComputedState => ({...state, lines})
+
+export const setStats = (
+  {stats: _, ...state}: ComputedState,
+  stats: PrimedStats,
+): ComputedState => ({...state, stats})
+
+export const setDot = (
+  {dot: _, ...state}: ComputedState,
+  dot: string,
+): ComputedState => ({...state, dot})
+
+export const setSvg = (
+  {svg: _, ...state}: ComputedState,
+  svg: string,
+): ComputedState => ({...state, svg})
+
+export const setLeftWidthPx = (
+  {leftWidthPx: _, ...state}: AppState,
+  leftWidthPx: number,
+): AppState => ({...state, leftWidthPx})

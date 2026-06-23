@@ -1,17 +1,12 @@
 import {pipe} from '#Function'
-import {pluck} from '#Record'
 import {
   createSlice,
   type ReducerCreators,
   type Slice,
   type SliceSelectors,
 } from '@reduxjs/toolkit'
-import {
-  initialAppState,
-  type AppState,
-  type RootSelector,
-  type RootState,
-} from './data'
+import type {AppState, RootSelector, RootState} from './data'
+import * as data from './data'
 
 export type AppSlice = Slice<
   AppState,
@@ -26,29 +21,25 @@ interface SelectorDefinitions extends SliceSelectors<AppState> {
 }
 
 const selectors: SelectorDefinitions = {
-  selectLeftWidthPx: pluck('leftWidthPx'),
+  selectLeftWidthPx: data.pluckLeftWidthPx,
 }
 
 type AppReducers = ReturnType<typeof reducers>
 
 const reducers = (create: ReducerCreators<AppState>) => ({
-  setLeftWidthPx: create.reducer<AppState>((state, {payload}) => ({
-    ...state,
-    ...payload,
-  })),
+  setLeftWidthPx: create.reducer<AppState>((state, {payload: {leftWidthPx}}) =>
+    data.setLeftWidthPx(state, leftWidthPx),
+  ),
 })
 
 export const appSlice: AppSlice = createSlice({
   name: 'app',
-  initialState: initialAppState,
+  initialState: data.initialAppState,
   reducers,
   selectors,
 })
 
-const appAdapter = pipe(
-  pluck('app')<RootState>,
-  appSlice.getSelectors<RootState>,
-)
+const appAdapter = pipe(data.pluckApp, appSlice.getSelectors<RootState>)
 
 interface AppSelectors {
   selectLeftWidthPx: RootSelector<number>
