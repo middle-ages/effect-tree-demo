@@ -87,7 +87,7 @@
 
 @layer components {
   .button-flat {
-    @apply button-base bg-dark;
+    @apply button-base bg-dark contain-strict;
     @apply border border-transparent;
 
     &:hover {
@@ -106,12 +106,17 @@
   }
 
   .button-inner {
-    @apply button-base button-states push-button button-raised;
+    @apply button-base size-4.5 button-states push-button contain-strict button-raised;
     @apply absolute top-0.75 right-0.75;
     @apply rounded-full rounded-shape;
     > * {
       @apply size-4 overflow-hidden px-0.5;
       @apply text-sm leading-4;
+    }
+
+    &:active:not(:disabled),
+    &[data-state='active']:not(:disabled) {
+      @apply button-active translate-y-[0.25px] *:translate-y-0;
     }
   }
 }
