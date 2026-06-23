@@ -46,5 +46,5 @@ export const Details = ({label, children, ...props}: Props) => {
 }
 
 const Rule = ({className = 'w-1'}: {className?: string}) => (
-  <div className={twMerge('mt-1 flex-none', className)}>{HRule}</div>
+  <div className={twMerge('mt-0.5 flex-none', className)}>{HRule}</div>
 )
