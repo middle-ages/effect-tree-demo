@@ -47,7 +47,7 @@ export const Layout = ({
       {...{minWidthsPx}}
       className='flex-1 contain-strict'
       leftClassName='pr-[1.5px] flex-gap-col contain-strict'
-      rightClassName='p-px pr-0.5 min-h-[4lh] size-container'
+      rightClassName='p-px pr-0.5 min-h-[4lh] size-container contain-strict'
       left={
         <>
           <VerticalPanel>
