@@ -37,18 +37,18 @@ type ComputedReducers = ReturnType<typeof reducers>
 
 const reducers = (create: ReducerCreators<ComputedState>) => ({
   setTree: create.reducer<Branch<number>>((state, {payload}) =>
-    data.setTree(state, payload),
+    data.setTree(state)(payload),
   ),
   setLines: create.reducer<string[]>((state, {payload}) =>
-    data.setLines(state, payload),
+    data.setLines(state)(payload),
   ),
 
   setStats: create.reducer<PrimedStats>((state, {payload}) =>
-    data.setStats(state, payload),
+    data.setStats(state)(payload),
   ),
 
   setSvg: create.reducer<string>((state, {payload}) =>
-    data.setSvg(state, payload),
+    data.setSvg(state)(payload),
   ),
 })
 

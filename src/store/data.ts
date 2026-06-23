@@ -1,4 +1,5 @@
-import {K} from '#Function'
+import {constUndefined, K} from '#Function'
+import * as Option from 'effect/Option'
 import {
   drawRomanTree,
   primeStats,
@@ -7,7 +8,8 @@ import {
 } from '#model'
 import {pluck} from '#Record'
 import type {CaseReducer, ReducerCreators, Selector} from '@reduxjs/toolkit'
-import {Array} from 'effect'
+import {pipe} from '#Function'
+import * as Array from '#Array'
 import {Codec, type Branch, type Draw} from 'effect-tree'
 
 export const initialDataState: DataState = {
@@ -100,6 +102,15 @@ export interface SetDigitPayload {
   index: number
 }
 
+export const pluckPayload = <Payload extends {payload: unknown}>({
+  payload,
+}: Payload): Payload['payload'] => payload
+
+export const pluckPayloadOrUndefined = <Payload extends {payload: unknown}>(
+  payload: Option.Option<Payload>,
+): Payload['payload'] | undefined =>
+  pipe(payload, Option.map(pluckPayload), Option.getOrElse(constUndefined))
+
 export const [
   pluckData,
   pluckComputed,
@@ -138,50 +149,45 @@ export const [
   pluck('leftWidthPx'),
 ]
 
-export const setCode = (
-  {code: _, ...state}: DataState,
-  code: number[],
-): DataState => ({...state, code})
+export const setComputedState =
+  ({computed: _, ...state}: RootState) =>
+  (computed: ComputedState): RootState => ({...state, computed})
 
-export const setFormat = (
-  {format: _, ...state}: DataState,
-  format: NumericFormat,
-): DataState => ({...state, format})
+export const setCode =
+  ({code: _, ...state}: DataState) =>
+  (code: number[]): DataState => ({...state, code})
 
-export const setTheme = (
-  {theme: _, ...state}: DataState,
-  theme: Draw.ThemeName,
-): DataState => ({...state, theme})
+export const setFormat =
+  ({format: _, ...state}: DataState) =>
+  (format: NumericFormat): DataState => ({...state, format})
 
-export const setDigit = (
-  {code, ...state}: DataState,
-  {digit, index}: SetDigitPayload,
-): DataState => ({
-  ...state,
-  code: Array.modify(code, index, K(digit)),
-})
+export const setTheme =
+  ({theme: _, ...state}: DataState) =>
+  (theme: Draw.ThemeName): DataState => ({...state, theme})
 
-export const setTree = (
-  {tree: _, ...state}: ComputedState,
-  tree: Branch<number>,
-): ComputedState => ({...state, tree})
+export const setDigit =
+  ({code, ...state}: DataState) =>
+  ({digit, index}: SetDigitPayload): DataState => ({
+    ...state,
+    code: Array.modify(code, index, K(digit)),
+  })
 
-export const setLines = (
-  {lines: _, ...state}: ComputedState,
-  lines: string[],
-): ComputedState => ({...state, lines})
+export const setTree =
+  ({tree: _, ...state}: ComputedState) =>
+  (tree: Branch<number>): ComputedState => ({...state, tree})
 
-export const setStats = (
-  {stats: _, ...state}: ComputedState,
-  stats: PrimedStats,
-): ComputedState => ({...state, stats})
+export const setLines =
+  ({lines: _, ...state}: ComputedState) =>
+  (lines: string[]): ComputedState => ({...state, lines})
 
-export const setSvg = (
-  {svg: _, ...state}: ComputedState,
-  svg: string,
-): ComputedState => ({...state, svg})
+export const setStats =
+  ({stats: _, ...state}: ComputedState) =>
+  (stats: PrimedStats): ComputedState => ({...state, stats})
 
-export const setLeftWidthPx = (
-  {leftWidthPx: _, ...state}: AppState,
-  leftWidthPx: number,
-): AppState => ({...state, leftWidthPx})
+export const setSvg =
+  ({svg: _, ...state}: ComputedState) =>
+  (svg: string): ComputedState => ({...state, svg})
+
+export const setLeftWidthPx =
+  ({leftWidthPx: _, ...state}: AppState) =>
+  (leftWidthPx: number): AppState => ({...state, leftWidthPx})

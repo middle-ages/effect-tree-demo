@@ -16,12 +16,12 @@ import {randomCodeReducers} from './randomActions'
 
 const setCode: BuildReducer<number[]> = create =>
   create.reducer<number[]>((state, {payload: code}) =>
-    State.setCode(state, code),
+    State.setCode(state)(code),
   )
 
 const setDigit: BuildReducer<SetDigitPayload> = create =>
   create.reducer<SetDigitPayload>((state, {payload}) =>
-    State.setDigit(state, payload),
+    State.setDigit(state)(payload),
   )
 
 const setTreeIndex: BuildReducer<string> = create =>
@@ -43,12 +43,12 @@ const setNodeCount: BuildReducer<number> = create =>
 
 const setFormat: BuildReducer<NumericFormat> = create =>
   create.reducer<NumericFormat>((state, {payload}) =>
-    State.setFormat(state, payload),
+    State.setFormat(state)(payload),
   )
 
 const setTheme: BuildReducer<Draw.ThemeName> = create =>
   create.reducer<Draw.ThemeName>((state, {payload}) =>
-    State.setTheme(state, payload),
+    State.setTheme(state)(payload),
   )
 
 interface CodeSetters {

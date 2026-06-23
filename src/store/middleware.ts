@@ -23,7 +23,8 @@ import {
 } from '@reduxjs/toolkit'
 import type {Branch} from 'effect-tree'
 import {setStats, setLines, setTree} from './computedSlice'
-import {pluckCode, pluckData, type FromState, type RootState} from './data'
+import type {FromState, RootState} from './data'
+import * as data from './data'
 import {actions} from './dataSlice'
 import {Option} from 'effect'
 import * as Pair from '#Pair'
@@ -54,51 +55,85 @@ const request =
     return computed.then(respond)
   }
 
-const [requestTree, requestLines, requestStats, requestSvg]: [
-  Request<'tree'>,
-  Request<'lines'>,
-  Request<'stats'>,
-  Request<'svg'>,
-] = [request('tree'), request('lines'), request('stats'), request('svg')]
-
 const computeTree: Compute<'tree'> = state =>
   pipe(
     state,
     request('tree'),
-  )(flow(pluckData, pluckCode, Record.withKey('code'), TreeRequest))
+  )(flow(data.pluckData, data.pluckCode, Record.withKey('code'), TreeRequest))
 
 const computeLines: Compute<'lines'> = state =>
   pipe(
     state,
     request('lines'),
   )(({computed: {tree}, data: {format, theme}}) =>
-    pipe({tree, format, theme}, LinesRequest),
+    LinesRequest({tree, format, theme}),
   )
 
 const computeStats: Compute<'stats'> = state =>
   pipe(
     state,
     request('stats'),
-  )(({computed: {tree}, data: {code}}) => pipe({tree, code}, StatsRequest))
+  )(({computed: {tree}, data: {code}}) => StatsRequest({tree, code}))
 
 const computeSvg: Compute<'svg'> = state =>
-  pipe(state, request('svg'))(({computed: {tree}}) => SvgRequest(tree))
+  pipe(state, request('svg'))(flow(data.pluckComputed, SvgRequest))
+
+const runUnlessAborted =
+  ({signal}: {signal: AbortSignal}) =>
+  <Result>(
+    f: FromState<Promise<Result>>,
+  ): FromState<Promise<Option.Option<Result>>> =>
+  state =>
+    signal.aborted ? Promise.resolve(Option.none()) : f(state).then(Option.some)
+
+const computePromise =
+  (controller: {signal: AbortSignal}) =>
+  (treeState: RootState) =>
+  <Tag extends ComputeTag>(
+    f: Compute<Tag>,
+  ): Promise<ResponseMap[Tag] | undefined> =>
+    pipe(treeState, runUnlessAborted(controller)(f)).then(
+      data.pluckPayloadOrUndefined,
+    )
+
+export const listenerMiddleware = () => {
+  const middleWare = createListenerMiddleware()
+
+  middleWare.startListening({
+    predicate: isAnyOf(...Record.typedValues(actions)),
+    effect: async (_, listener) => {
+      listener.cancelActiveListeners()
+      const state = listener.getState() as RootState
+      const unlessAborted = runUnlessAborted(listener)
+
+      const treeResponse: Branch<number> | undefined = await pipe(
+        state,
+        unlessAborted(computeTree),
+      ).then(data.pluckPayloadOrUndefined)
+
+      if (treeResponse === undefined) return
+      listener.dispatch(setTree(treeResponse))
+
+      const treeState: RootState = pipe(
+        treeResponse,
+        data.setTree(state.computed),
+        data.setComputedState(state),
+      )
+
+      const promise = pipe(treeState, computePromise(listener))
+
+      const [linesPromise, statsPromise, svgPromise]: [
+        Promise<string[] | undefined>,
+        Promise<PrimedStats | undefined>,
+        Promise<string | undefined>,
+      ] = [promise(computeLines), promise(computeStats), promise(computeSvg)]
+    },
+  })
+}
 
 /*
 
 
-const computeSvg = 
-const dispatchers = { 
-  tree:['computed/setTree', computeTree],
-  lines:['computed/setLines',computeLines],
-  stats:['computed/setStats',computeStats],
-} as const
-
-const runUnlessAborted =
-  ({signal}: {signal: AbortSignal}) =>
-  <Result>(f: (state: RootState) => Promise<Result>) =>
-  (state: RootState): Promise<Option.Option<Result>> =>
-    signal.aborted ? Promise.resolve(Option.none()) : f(state).then(Option.some)
 
 export const listenerMiddleware = (() => {
   const middleWare = createListenerMiddleware()
@@ -173,4 +208,9 @@ export const listenerMiddleware = (() => {
           console.log('Child succeeded: ', result.value)
         }
       }
+const dispatchers = { 
+  tree:['computed/setTree', computeTree],
+  lines:['computed/setLines',computeLines],
+  stats:['computed/setStats',computeStats],
+} as const
         */

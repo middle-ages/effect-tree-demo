@@ -28,7 +28,7 @@ type AppReducers = ReturnType<typeof reducers>
 
 const reducers = (create: ReducerCreators<AppState>) => ({
   setLeftWidthPx: create.reducer<AppState>((state, {payload: {leftWidthPx}}) =>
-    data.setLeftWidthPx(state, leftWidthPx),
+    data.setLeftWidthPx(state)(leftWidthPx),
   ),
 })
 
