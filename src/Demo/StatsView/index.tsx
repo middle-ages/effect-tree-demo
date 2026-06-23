@@ -25,7 +25,7 @@ export const StatsView = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <div className='content-strict flex flex-col *:h-row-small *:pr-px'>
+    <div className='flex flex-col'>
       <Row prefix='Tree #'>
         <BigIntInput
           value={treeIndex}
@@ -39,12 +39,11 @@ export const StatsView = () => {
         />
       </Row>
       <Stack
-        className='relative *:first:absolute-0'
         top={isFirst ? 'single' : 'many'}
         subNodes={{
           single,
           many: (
-            <Row prefix='out of all' className='overflow-hidden'>
+            <Row prefix='out of all'>
               <NumericView
                 value={treeCount}
                 title={`Number of trees at this node count: nⁿ⁻² = `}
@@ -64,16 +63,8 @@ export const StatsView = () => {
           onChange={flow(setNodeCount, dispatch)}
           className='mx-1'
           name='nodeCount'
-          popoverTarget='nodeCountTooltip'
         />
         {`node labeled tree${isFirst ? '' : 's'}.`}
-      </div>
-      <div
-        id='nodeCountTooltip'
-        popover='auto'
-        role='tooltip'
-        className='bg-yellow-100'>
-        Node count tooltip!
       </div>
     </div>
   )
@@ -86,11 +77,24 @@ const Row = ({
   prefix,
 }: StyledPropsWithChildren & {prefix: ReactNode}) => (
   <div
-    className='flex items-baseline gap-1 overflow-hidden whitespace-nowrap'
+    className='flex max-h-row-small min-h-row-small items-baseline gap-1 whitespace-nowrap'
     {...{style}}>
     <div className='leading-row-small'>{prefix}</div>
     <div className={twMerge('flex-1', className)}>{children}</div>
   </div>
 )
 
-const single = <Row prefix={<div className='absolute-0'>of the single</div>} />
+const single = <Row prefix={<div className='h-row-small'>of the single</div>} />
+
+/*
+
+      <div
+          popoverTarget='nodeCountTooltip'
+        id='nodeCountTooltip'
+        popover='auto'
+        role='tooltip'
+        className='bg-yellow-100'>
+        Node count tooltip!
+      </div>
+
+*/

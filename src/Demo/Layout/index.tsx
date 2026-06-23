@@ -43,8 +43,8 @@ export const Layout = ({
     <SplitPanel
       {...{minWidthsPx}}
       className='flex-1 contain-strict'
-      leftClassName='pr-[1.5px] flex-gap-col content-strict'
-      rightClassName='p-px pr-0.5 min-h-[4lh] size-container content-strict'
+      leftClassName='pr-[1.5px] flex-gap-col'
+      rightClassName='p-px pr-0.5 min-h-[4lh] size-container'
       left={
         <>
           <VerticalPanel className='*:last:mt-px'>
