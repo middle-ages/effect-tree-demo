@@ -34,7 +34,7 @@ export const Layout = ({
   style,
 }: Props) => (
   <div
-    className={twMerge('content-strict flex h-cqh flex-col px-1', className)}
+    className={twMerge('flex h-cqh flex-col px-1 contain-strict', className)}
     {...{style}}>
     {/** Header */}
     {header}
