@@ -20,7 +20,7 @@ interface Props
       ReactNode
     > {}
 
-const minWidthsPx: Pair<number> = [350, 280]
+const minWidthsPx: Pair<number> = [340, 280]
 
 export const Layout = ({
   header,
@@ -47,7 +47,7 @@ export const Layout = ({
       rightClassName='p-px pr-0.5 min-h-[4lh] size-container'
       left={
         <>
-          <VerticalPanel className='*:last:mt-px'>
+          <VerticalPanel>
             {stats}
             {HRule}
             {toolbar}

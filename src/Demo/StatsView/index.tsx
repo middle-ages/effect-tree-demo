@@ -25,7 +25,7 @@ export const StatsView = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <div className='flex h-21 flex-col contain-strict *:h-row-small'>
+    <div className='flex h-21 flex-col contain-strict *:h-row-small *:first:pr-px'>
       <Row prefix='Tree #'>
         <BigIntInput
           value={treeIndex}
