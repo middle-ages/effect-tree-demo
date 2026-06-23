@@ -1,5 +1,5 @@
 import {bigCommaFormat} from '#Number'
-import {useMeasure} from '#useMeasure'
+import {selectLeftWidthPx, useAppSelector} from '#store'
 import {px, type Identified} from '#util'
 import {twMerge} from 'tailwind-merge'
 import {
@@ -15,6 +15,8 @@ export interface NumericViewProps extends Identified {
 
 const padding = 1 * 4
 
+const [edgeWidthPx, minWidthPx] = [66 + 2 * 9.5, 265]
+
 const options: Partial<MeasureOptions> = {
   isFlat: true,
   padPx: 2 * padding,
@@ -26,26 +28,27 @@ export const NumericView = ({
   value: stringValue,
   ...props
 }: NumericViewProps) => {
-  const {
-    ref,
-    sizePx: {widthPx: availablePx},
-  } = useMeasure()
+  const storedWidthPx = useAppSelector(selectLeftWidthPx) - edgeWidthPx
+  const availableWidthPx = Math.max(storedWidthPx, minWidthPx)
   const value = BigInt(stringValue)
   const measuredPx = measureCommaFormattedWidth(options)(value)
-  const isOverflow = measuredPx >= availablePx
+  const isOverflow = measuredPx >= availableWidthPx
   const commaFormatted = bigCommaFormat(value)
 
   const formatted = isOverflow
-    ? formatExponential(options)(availablePx, value)
+    ? formatExponential(options)(availableWidthPx, value)
     : commaFormatted
 
+  const width = px(Math.min(availableWidthPx, measuredPx))
+  console.log(width)
+
   return (
-    <div {...{ref}}>
+    <div>
       <div
         {...props}
         title={propsTitle + commaFormatted}
         style={{
-          width: Math.min(availablePx, measuredPx),
+          width: `max(${width}, 100%)`,
           paddingLeft: px(padding),
           paddingRight: px(padding),
         }}

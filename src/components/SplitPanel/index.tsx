@@ -120,7 +120,7 @@ const SplitterButton = ({
     {...{ref: buttonRef, onDoubleClick}}
     style={{width: splitterWidth}}
     tabIndex={-1}
-    className='group flex h-full cursor-ew-resize flex-col px-0.5 ring-0 brightness-105 outline-none select-none hover:*:brightness-95 active:*:brightness-97'>
+    className='group flex h-full cursor-ew-resize flex-col px-0.5 focus-none ring-0 brightness-105 hover:*:brightness-95 active:*:brightness-97'>
     <Strut className='rounded-t-sm' />
     <div className='button-base min-h-12 cursor-ew-resize squircle rounded-full pb-1 text-2xl leading-12 text-fg-control/60 button-raised group-hover:text-fg-control-hover group-hover:contrast-107 group-active:text-fg-control group-active:brightness-90!'>
       :

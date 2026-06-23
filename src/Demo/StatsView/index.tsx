@@ -1,20 +1,19 @@
 import {BigIntInput} from '#BigIntInput'
 import {FixedNumeric} from '#FixedNumeric'
+import {MAX_NODE_COUNT} from '#model'
 import {NumericView} from '#NumericView'
 import {Stack} from '#Stack'
+import {
+  selectStats,
+  setNodeCount,
+  setTreeIndex,
+  useAppDispatch,
+  useAppSelector,
+} from '#store'
+import {unlines} from '#String'
 import {flow, type StyledPropsWithChildren} from '#util'
 import {type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
-import {
-  setNodeCount,
-  setTreeIndex,
-  selectStats,
-  useAppDispatch,
-  useAppSelector,
-  selectLeftWidthPx,
-} from '#store'
-import {unlines} from '#String'
-import {MAX_NODE_COUNT} from '#model'
 
 export const StatsView = () => {
   const {
@@ -24,9 +23,6 @@ export const StatsView = () => {
   } = useAppSelector(selectStats)
   const isFirst = treeCount === '1'
   const dispatch = useAppDispatch()
-
-  const leftWidthPx = useAppSelector(selectLeftWidthPx)
-  console.log(leftWidthPx)
 
   return (
     <div className='content-strict flex flex-col *:h-row-small *:pr-px'>

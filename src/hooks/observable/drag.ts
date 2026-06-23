@@ -26,11 +26,15 @@ export const dragObservable =
       rx.fromEvent<PointerEvent<HTMLElement>>(element, 'pointermove'),
       rx.skipUntil(down),
       rx.takeUntil(fromMouseUp(element)),
-      rx.throttleTime(16),
+    )
+
+    const slow = pipe(
+      move,
+      rx.throttleTime(30, undefined, {leading: true, trailing: true}),
     )
 
     return pipe(
-      move,
+      slow,
       rx.map(event => ({
         ...PointPx.fromMouseEvent(event),
         delta: PointPx.zero,

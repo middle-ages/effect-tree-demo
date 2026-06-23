@@ -15,11 +15,9 @@ export const resizeObservable = (
     ),
   )
 
-  const throttled = pipe(resize, rx.throttleTime(32))
-  const debounced = pipe(resize, rx.debounceTime(16))
-
   return pipe(
-    rx.merge(throttled, debounced),
+    resize,
+    rx.throttleTime(30, undefined, {leading: true, trailing: true}),
     rx.distinctUntilChanged(SizePx.equals),
   )
 }
