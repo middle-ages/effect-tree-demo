@@ -1,44 +1,34 @@
 import {flow, pipe} from '#Function'
 import type {PrimedStats} from '#model'
+import * as Pair from '#Pair'
 import * as Record from '#Record'
-import * as Tuple from '#Tuple'
-import {
-  compute,
-  LinesRequest,
-  StatsRequest,
-  TreeRequest,
-  SvgRequest,
-  type ComputeTag,
-  type RequestMap,
-  type RequestMessage,
-  type ResponseMap,
-  buildResponse,
-  type ResponseMessage,
-  computeTags,
-} from './worker'
-import {
-  createListenerMiddleware,
-  isAnyOf,
-  type PayloadAction,
-} from '@reduxjs/toolkit'
+import {createListenerMiddleware, isAnyOf} from '@reduxjs/toolkit'
+import {Option} from 'effect'
 import type {Branch} from 'effect-tree'
-import {setStats, setLines, setTree} from './computedSlice'
+import type {Predicate} from 'effect/Predicate'
+import {setLines, setStats, setSvg, setTree} from './computedSlice'
 import type {FromState, RootState} from './data'
 import * as data from './data'
 import {actions} from './dataSlice'
-import {Option} from 'effect'
-import * as Pair from '#Pair'
-
-type BuildRequest<Tag extends ComputeTag = ComputeTag> = FromState<
-  RequestMessage<Tag>
->
+import {
+  buildResponse,
+  compute,
+  LinesRequest,
+  StatsRequest,
+  SvgRequest,
+  TreeRequest,
+  type ComputeTag,
+  type RequestMessage,
+  type ResponseMap,
+  type ResponseMessage,
+} from './worker'
 
 type Response<Tag extends ComputeTag = ComputeTag> = Promise<
   ResponseMessage<Tag>
 >
 
 type Request<Tag extends ComputeTag = ComputeTag> = FromState<
-  (f: BuildRequest<Tag>) => Response<Tag>
+  (f: FromState<RequestMessage<Tag>>) => Response<Tag>
 >
 
 type Compute<Tag extends ComputeTag = ComputeTag> = FromState<Response<Tag>>
@@ -78,21 +68,26 @@ const computeStats: Compute<'stats'> = state =>
 const computeSvg: Compute<'svg'> = state =>
   pipe(state, request('svg'))(flow(data.pluckComputed, SvgRequest))
 
+const isAborted: Predicate<{signal: AbortSignal}> = controller =>
+  controller.signal.aborted
+
 const runUnlessAborted =
   ({signal}: {signal: AbortSignal}) =>
-  <Result>(
-    f: FromState<Promise<Result>>,
-  ): FromState<Promise<Option.Option<Result>>> =>
-  state =>
-    signal.aborted ? Promise.resolve(Option.none()) : f(state).then(Option.some)
+  <Result>(f: FromState<Promise<Result>>) =>
+  (state: RootState) => {
+    const result = signal.aborted
+      ? Promise.resolve(Option.none())
+      : f(state).then(Option.some)
+    return result
+  }
 
 const computePromise =
   (controller: {signal: AbortSignal}) =>
   (treeState: RootState) =>
   <Tag extends ComputeTag>(
-    f: Compute<Tag>,
+    run: Compute<Tag>,
   ): Promise<ResponseMap[Tag] | undefined> =>
-    pipe(treeState, runUnlessAborted(controller)(f)).then(
+    pipe(treeState, pipe(run, runUnlessAborted(controller))).then(
       data.pluckPayloadOrUndefined,
     )
 
@@ -127,6 +122,31 @@ export const listenerMiddleware = () => {
         Promise<PrimedStats | undefined>,
         Promise<string | undefined>,
       ] = [promise(computeLines), promise(computeStats), promise(computeSvg)]
+
+      if (listener.signal.aborted) return
+
+      const [lines, stats, svg] = await Promise.all([
+        linesPromise,
+        statsPromise,
+        svgPromise,
+      ])
+
+      if (isAborted(listener)) return
+      if (lines !== undefined) {
+        listener.dispatch(setLines(lines))
+      }
+
+      if (isAborted(listener)) return
+      if (stats !== undefined) {
+        listener.dispatch(setStats(stats))
+      }
+
+      if (isAborted(listener)) return
+      if (svg !== undefined) {
+        listener.dispatch(setSvg(svg))
+      }
+
+      if (isAborted(listener)) return
     },
   })
 }
