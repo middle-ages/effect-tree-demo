@@ -13,8 +13,6 @@ export interface Props extends StyledProps, Identified {
   popoverAction?: string
 }
 
-const paddingLeftPx = 3
-
 export const FixedNumeric = ({
   value: rawValue,
   min,
@@ -32,9 +30,8 @@ export const FixedNumeric = ({
       type='number'
       inputMode='numeric'
       {...props}
-      {...{value, onChange}}
-      className={twMerge('w-[5rch] text-right', className)}
-      style={{paddingLeft: px(paddingLeftPx), ...style}}
+      {...{value, style, onChange}}
+      className={twMerge('w-[4.8rch] text-right', className)}
     />
   )
 }

@@ -13,7 +13,6 @@ import {
 import {unlines} from '#String'
 import {flow, type StyledPropsWithChildren} from '#util'
 import {type ReactNode} from 'react'
-import {twMerge} from 'tailwind-merge'
 
 export const StatsView = () => {
   const {
@@ -25,7 +24,7 @@ export const StatsView = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <div className='flex h-21 flex-col contain-strict *:h-row-small *:first:pr-px'>
+    <div className='flex h-21 flex-col contain-strict *:h-row-small *:leading-row-small *:first:pr-px'>
       <Row prefix='Tree #'>
         <BigIntInput
           value={treeIndex}
@@ -44,7 +43,7 @@ export const StatsView = () => {
         subNodes={{
           single,
           many: (
-            <Row className='min-w-fit' prefix='out of all'>
+            <Row prefix={<div className='min-w-16.5'>out of all</div>}>
               <NumericView
                 value={treeCount}
                 title={`Number of trees at this node count: nⁿ⁻² = `}
@@ -54,7 +53,7 @@ export const StatsView = () => {
         }}
       />
 
-      <div className='flex items-baseline leading-row-small whitespace-nowrap'>
+      <div className='flex items-baseline whitespace-nowrap'>
         possible
         <FixedNumeric
           value={Number(nodeCount)}
@@ -77,8 +76,10 @@ const Row = ({
   style,
   prefix,
 }: StyledPropsWithChildren & {prefix: ReactNode}) => (
-  <div className='flex items-baseline gap-1 *:last:flex-1' {...{style}}>
-    <div className='leading-row-small'>{prefix}</div>
+  <div
+    className='flex h-row-small items-baseline gap-1 *:leading-row-small *:last:flex-1'
+    {...{style}}>
+    <div>{prefix}</div>
     <div {...{className}}>{children}</div>
   </div>
 )

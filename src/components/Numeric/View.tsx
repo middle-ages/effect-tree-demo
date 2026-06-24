@@ -13,9 +13,9 @@ export interface NumericViewProps extends Identified {
   value: string
 }
 
-const padding = 1 * 4
-
-const [edgeWidthPx, minWidthPx] = [66 + 2 * 7, 254]
+const padding = 4
+const prefixTextWidth = 17 * 4
+const [edgeWidthPx, minWidthPx] = [prefixTextWidth + 2 * 6.5, 254]
 
 const options: Partial<MeasureOptions> = {
   isFlat: true,
@@ -40,21 +40,19 @@ export const NumericView = ({
     : commaFormatted
 
   return (
-    <div>
-      <div
-        {...props}
-        title={propsTitle + commaFormatted}
-        style={{
-          width: px(Math.min(availableWidthPx, measuredPx)),
-          paddingLeft: px(padding),
-          paddingRight: px(padding),
-        }}
-        className={twMerge(
-          'numeric-view h-row-smaller px-1 leading-row-smaller',
-          isOverflow && 'text-center',
-        )}>
-        {formatted}
-      </div>
+    <div
+      {...props}
+      title={propsTitle + commaFormatted}
+      style={{
+        width: px(Math.min(availableWidthPx, measuredPx)),
+        paddingLeft: px(padding),
+        paddingRight: px(padding),
+      }}
+      className={twMerge(
+        'numeric-view h-row-smaller leading-row-smaller',
+        isOverflow ? 'text-center' : 'px-px',
+      )}>
+      {formatted}
     </div>
   )
 }

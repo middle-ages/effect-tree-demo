@@ -11,7 +11,7 @@ type Props = Types.Simplify<
 >
 
 export const BigIntInput: FC<Props> = assumeProps(Base<string>)({
-  spacingLeftPx: 0.5,
-  spacingRightPx: 0.5,
+  spacingLeftPx: 1,
+  spacingRightPx: 1,
   maximized: true,
 })
