@@ -69,10 +69,10 @@ type ComputedSelectors = {
 }
 
 export const {
-  selectTree: selectComputedTree,
-  selectLines: selectComputedLines,
-  selectStats: selectComputedStats,
-  selectSvg: selectComputedSvg,
+  selectTree,
+  selectLines,
+  selectStats,
+  selectSvg,
 }: ComputedSelectors = computedAdapter
 
 export const {setTree, setLines, setStats, setSvg} = computedSlice.actions

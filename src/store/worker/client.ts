@@ -2,22 +2,13 @@ import {pipe} from '#Function'
 import * as Pair from '#Pair'
 import {computeActions, type ComputePayloadAction} from '../computedSlice'
 import type {FromState, RootState} from '../data'
-import type {
-  ComputeTag,
-  RequestMessage,
-  ResponseMap,
-  ResponseMessage,
-} from './message'
+import type {ComputeTag, RequestMessage, ResponseMessage} from './message'
 import {buildResponse} from './message'
 import {withWorker} from './pool'
 
 export interface Listener<Tag extends ComputeTag> {
   signal: AbortSignal
   dispatch: (payloadAction: ComputePayloadAction<Tag>) => void
-}
-
-interface Compute<Tag extends ComputeTag = ComputeTag> {
-  (f: FromState<RequestMessage<Tag>>): Promise<ResponseMap[Tag] | undefined>
 }
 
 /**
@@ -36,13 +27,10 @@ export const requestCompute =
     )
 
     if (hasAborted(listener)) return
-
     const responseMessage: ResponseMessage<Tag> = await computed.then(respond)
-
     if (hasAborted(listener)) return
 
-    const action = computeActions[tag](responseMessage.payload)
-    listener.dispatch(action)
+    listener.dispatch(computeActions[tag](responseMessage.payload))
 
     return responseMessage.payload
   }

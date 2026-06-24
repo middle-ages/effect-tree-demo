@@ -1,6 +1,8 @@
 import {pipe, type EndoOf, type LazyArg} from '#Function'
 import type {Pair} from '#Pair'
 
+const [poolMin, poolMax] = [10, 20]
+
 export interface WorkerEntry {
   id: string
   worker: Worker
@@ -75,8 +77,6 @@ const filterAvailable = (): WorkerEntry[] => [
     .filter(([, {isBusy}]) => !isBusy)
     .map(([, entry]) => entry),
 ]
-
-const [poolMin, poolMax] = [10, 20]
 
 const poolDelta = () => {
   const size = filterAvailable().length
