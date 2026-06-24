@@ -1,46 +1,15 @@
-import {
-  drawRomanTree,
-  MAX_NODE_COUNT,
-  primeStats,
-  type NumericFormat,
-  type PrimedStats,
-} from '#model'
+import {constTrue} from '#Function'
+import {MAX_NODE_COUNT} from '#model'
 import {
   createSelector,
   type OutputSelector,
   type Selector,
 } from '@reduxjs/toolkit'
 import {Boolean} from 'effect'
-import {Codec, type Branch, type Draw} from 'effect-tree'
-import {selectCode, selectFormat, selectTheme} from './dataSlice'
-import type {RootSelector, RootState, TreeStyle} from './data'
+import {Codec} from 'effect-tree'
+import type {RootSelector, RootState} from './data'
+import {selectCode} from './dataSlice'
 import {normalizeGuard, type Guard, type GuardSelector} from './guard'
-import {constTrue} from '#Function'
-
-export const selectStyle: OutputSelector<
-  [RootSelector<NumericFormat>, RootSelector<Draw.ThemeName>],
-  TreeStyle
-> = createSelector([selectFormat, selectTheme], (format, theme) => ({
-  format,
-  theme,
-}))
-
-export const selectTree: OutputSelector<
-  [RootSelector<number[]>],
-  Branch<number>
-> = createSelector([selectCode], Codec.Prufer.decode)
-
-export const selectLines: OutputSelector<
-  [RootSelector<Branch<number>>, RootSelector<TreeStyle>],
-  string[]
-> = createSelector([selectTree, selectStyle], (tree, {format, theme}) =>
-  drawRomanTree(tree, format, theme),
-)
-
-export const selectStats: OutputSelector<
-  [RootSelector<number[]>, RootSelector<Branch<number>>],
-  PrimedStats
-> = createSelector([selectCode, selectTree], primeStats.untupled)
 
 const selectIsFirstCode: OutputSelector<[RootSelector<number[]>], boolean> =
   createSelector([selectCode], Codec.Prufer.isFirstCode)

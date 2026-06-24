@@ -1,3 +1,4 @@
+import {some} from '#Array'
 import {flow, pipe} from '#Function'
 import type {PrimedStats} from '#model'
 import * as Pair from '#Pair'
@@ -5,90 +6,92 @@ import * as Record from '#Record'
 import {createListenerMiddleware, isAnyOf} from '@reduxjs/toolkit'
 import {Option} from 'effect'
 import type {Branch} from 'effect-tree'
-import type {Predicate} from 'effect/Predicate'
+import * as Predicate from 'effect/Predicate'
 import {setLines, setStats, setSvg, setTree} from './computedSlice'
 import type {FromState, RootState} from './data'
 import * as data from './data'
 import {actions} from './dataSlice'
 import {
   buildResponse,
-  compute,
   LinesRequest,
+  requestCompute,
   StatsRequest,
   SvgRequest,
   TreeRequest,
   type ComputeTag,
+  type Listener,
   type RequestMessage,
   type ResponseMap,
   type ResponseMessage,
+  hasAborted,
 } from './worker'
 
-type Response<Tag extends ComputeTag = ComputeTag> = Promise<
-  ResponseMessage<Tag>
->
+interface ComputeFor<Tag extends ComputeTag> {
+  (
+    listener: Listener<Tag>,
+    state: RootState,
+  ): Promise<ResponseMap[Tag] | undefined>
+}
 
-type Request<Tag extends ComputeTag = ComputeTag> = FromState<
-  (f: FromState<RequestMessage<Tag>>) => Response<Tag>
->
+const dispatchTree: ComputeFor<'tree'> = requestCompute('tree')(
+  flow(data.pluckData, data.pluckCode, Record.withKey('code'), TreeRequest),
+)
 
-type Compute<Tag extends ComputeTag = ComputeTag> = FromState<Response<Tag>>
-
-const request =
-  <Tag extends ComputeTag>(tag: Tag): Request<Tag> =>
-  state =>
-  f => {
-    const [respond, computed] = pipe(
-      state,
-      f,
-      Pair.fanout(buildResponse(tag), compute<Tag>),
-    )
-    return computed.then(respond)
-  }
-
-const computeTree: Compute<'tree'> = state =>
-  pipe(
-    state,
-    request('tree'),
-  )(flow(data.pluckData, data.pluckCode, Record.withKey('code'), TreeRequest))
-
-const computeLines: Compute<'lines'> = state =>
-  pipe(
-    state,
-    request('lines'),
-  )(({computed: {tree}, data: {format, theme}}) =>
+const dispatchRest = (
+  listener: Listener<ComputeTag>,
+  state: RootState,
+): [
+  lines: Promise<string[] | undefined>,
+  stats: Promise<PrimedStats | undefined>,
+  svg: Promise<string | undefined>,
+] => [
+  requestCompute('lines')(({computed: {tree}, data: {format, theme}}) =>
     LinesRequest({tree, format, theme}),
-  )
+  )(listener, state),
 
-const computeStats: Compute<'stats'> = state =>
-  pipe(
-    state,
-    request('stats'),
-  )(({computed: {tree}, data: {code}}) => StatsRequest({tree, code}))
+  requestCompute('stats')(({computed: {tree}, data: {code}}) =>
+    StatsRequest({tree, code}),
+  )(listener, state),
 
-const computeSvg: Compute<'svg'> = state =>
-  pipe(state, request('svg'))(flow(data.pluckComputed, SvgRequest))
+  requestCompute('svg')(flow(data.pluckComputed, SvgRequest))(listener, state),
+]
 
-const isAborted: Predicate<{signal: AbortSignal}> = controller =>
-  controller.signal.aborted
+export const listenerMiddleware = () => {
+  const middleWare = createListenerMiddleware()
 
-const runUnlessAborted =
-  ({signal}: {signal: AbortSignal}) =>
-  <Result>(f: FromState<Promise<Result>>) =>
-  (state: RootState) => {
-    const result = signal.aborted
-      ? Promise.resolve(Option.none())
-      : f(state).then(Option.some)
-    return result
-  }
+  middleWare.startListening({
+    predicate: isAnyOf(...Record.typedValues(actions)),
+    effect: async (_, listener) => {
+      listener.cancelActiveListeners()
+      const previousState = listener.getState() as RootState
+      const tree: Branch<number> | undefined = await dispatchTree(
+        listener,
+        previousState,
+      )
 
-const computePromise =
-  (controller: {signal: AbortSignal}) =>
-  (treeState: RootState) =>
-  <Tag extends ComputeTag>(
-    run: Compute<Tag>,
-  ): Promise<ResponseMap[Tag] | undefined> =>
-    pipe(treeState, pipe(run, runUnlessAborted(controller))).then(
-      data.pluckPayloadOrUndefined,
+      if (tree === undefined) return
+
+      const state: RootState = pipe(
+        tree,
+        data.setTree(previousState.computed),
+        data.setComputedState(previousState),
+      )
+
+      const dispatched = dispatchRest(listener, state)
+
+      await Promise.all([
+        dispatchLines(listener, state),
+        dispatchStats(listener, state),
+        dispatchSvg(listener, state),
+      ])
+    },
+  })
+}
+
+/*
+
+
+
     )
 
 export const listenerMiddleware = () => {
@@ -150,6 +153,7 @@ export const listenerMiddleware = () => {
     },
   })
 }
+  */
 
 /*
 
@@ -234,3 +238,24 @@ const dispatchers = {
   stats:['computed/setStats',computeStats],
 } as const
         */
+
+/*
+const runUnlessAborted =
+  ({signal}: {signal: AbortSignal}) =>
+  <Result>(f: FromState<Promise<Result>>) =>
+  (state: RootState) => {
+    const result = signal.aborted
+      ? Promise.resolve(Option.none())
+      : f(state).then(Option.some)
+    return result
+  }
+
+const computePromise =
+  (controller: {signal: AbortSignal}) =>
+  (treeState: RootState) =>
+  <Tag extends ComputeTag>(
+    run: Compute<Tag>,
+  ): Promise<ResponseMap[Tag] | undefined> =>
+    pipe(treeState, pipe(run, runUnlessAborted(controller))).then(
+      data.pluckPayloadOrUndefined,
+      */

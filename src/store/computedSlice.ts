@@ -3,37 +3,35 @@ import type {PrimedStats} from '#model'
 import {pluck} from '#Record'
 import {
   createSlice,
+  type ActionCreatorWithPayload,
+  type PayloadAction,
   type ReducerCreators,
   type Slice,
-  type SliceSelectors,
 } from '@reduxjs/toolkit'
 import type {Branch} from 'effect-tree'
-import type {ComputedState, RootSelector, RootState} from './data'
+import {
+  type ComputedState,
+  type RootSelector,
+  type RootState,
+  initialComputedState as initialState,
+} from './data'
 import * as data from './data'
+import type {ComputeTag, ResponseMap} from './worker'
 
 export type ComputedSlice = Slice<
   ComputedState,
-  ComputedReducers,
+  ReturnType<typeof reducers>,
   'computed',
   'computed',
-  SelectorDefinitions
+  typeof selectors
 >
 
-interface SelectorDefinitions extends SliceSelectors<ComputedState> {
-  selectTree: (state: ComputedState) => Branch<number>
-  selectLines: (state: ComputedState) => string[]
-  selectStats: (state: ComputedState) => PrimedStats
-  selectSvg: (state: ComputedState) => string
-}
-
-const selectors: SelectorDefinitions = {
+const selectors = {
   selectTree: data.pluckTree,
   selectLines: data.pluckLines,
   selectStats: data.pluckStats,
   selectSvg: data.pluckSvg,
-}
-
-type ComputedReducers = ReturnType<typeof reducers>
+} as const
 
 const reducers = (create: ReducerCreators<ComputedState>) => ({
   setTree: create.reducer<Branch<number>>((state, {payload}) =>
@@ -54,7 +52,7 @@ const reducers = (create: ReducerCreators<ComputedState>) => ({
 
 export const computedSlice: ComputedSlice = createSlice({
   name: 'computed',
-  initialState: data.initialComputedState,
+  initialState,
   reducers,
   selectors,
 })
@@ -64,11 +62,10 @@ const computedAdapter = pipe(
   computedSlice.getSelectors<RootState>,
 )
 
-interface ComputedSelectors {
-  selectTree: RootSelector<Branch<number>>
-  selectLines: RootSelector<string[]>
-  selectStats: RootSelector<PrimedStats>
-  selectSvg: RootSelector<string>
+type ComputedSelectors = {
+  [Tag in ComputeTag as `select${Capitalize<Tag>}`]: RootSelector<
+    ResponseMap[Tag]
+  >
 }
 
 export const {
@@ -79,3 +76,23 @@ export const {
 }: ComputedSelectors = computedAdapter
 
 export const {setTree, setLines, setStats, setSvg} = computedSlice.actions
+
+export type ComputeActionName<Tag extends ComputeTag> =
+  `computed/set${Capitalize<Tag>}`
+
+export type ComputePayloadAction<Tag extends ComputeTag> = PayloadAction<
+  ResponseMap[Tag],
+  ComputeActionName<Tag>
+>
+
+export const computeActions: {
+  [Tag in ComputeTag]: ActionCreatorWithPayload<
+    ResponseMap[Tag],
+    ComputeActionName<Tag>
+  >
+} = {
+  tree: setTree,
+  lines: setLines,
+  stats: setStats,
+  svg: setSvg,
+}
