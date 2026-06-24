@@ -1,7 +1,7 @@
 @utility button-active {
   @apply inset-xy control-active brightness-90 contrast-110 text-outset;
   @apply *:translate-y-[0.5px];
-  --transition-duration: 120ms;
+  --transition-duration: 100ms;
 
   --button-gradient-highest: var(--button-gradient-highest-active);
   --button-gradient-high: var(--button-gradient-high-active);

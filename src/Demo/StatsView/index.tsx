@@ -44,7 +44,7 @@ export const StatsView = () => {
         subNodes={{
           single,
           many: (
-            <Row prefix='out of all'>
+            <Row className='min-w-fit' prefix='out of all'>
               <NumericView
                 value={treeCount}
                 title={`Number of trees at this node count: nⁿ⁻² = `}
@@ -77,9 +77,9 @@ const Row = ({
   style,
   prefix,
 }: StyledPropsWithChildren & {prefix: ReactNode}) => (
-  <div className='flex items-baseline gap-1' {...{style}}>
+  <div className='flex items-baseline gap-1 *:last:flex-1' {...{style}}>
     <div className='leading-row-small'>{prefix}</div>
-    <div className={twMerge('flex-1', className)}>{children}</div>
+    <div {...{className}}>{children}</div>
   </div>
 )
 
