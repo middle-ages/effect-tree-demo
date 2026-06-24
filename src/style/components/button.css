@@ -47,8 +47,8 @@
 }
 
 @utility button-states {
-  &:active:not(:disabled),
-  &[data-state='active']:not(:disabled) {
+  &:active:enabled,
+  &[data-state='active']:enabled {
     @apply button-active;
   }
 
@@ -74,7 +74,7 @@
 }
 
 @utility push-button {
-  &:hover:not(:disabled):not(:active) {
+  &:hover:enabled:not(:active) {
     @apply button-hover;
   }
 
@@ -114,8 +114,8 @@
       @apply text-sm leading-4;
     }
 
-    &:active:not(:disabled),
-    &[data-state='active']:not(:disabled) {
+    &:active:enabled,
+    &[data-state='active']:enabled {
       @apply button-active translate-y-[0.25px] *:translate-y-0;
     }
   }
