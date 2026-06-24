@@ -77,7 +77,7 @@ const Row = ({
   prefix,
 }: StyledPropsWithChildren & {prefix: ReactNode}) => (
   <div
-    className='flex h-row-small items-baseline gap-1 *:leading-row-small *:last:flex-1'
+    className='flex h-row-small items-baseline gap-1 contain-strict *:leading-row-small *:last:flex-1'
     {...{style}}>
     <div>{prefix}</div>
     <div {...{className}}>{children}</div>
