@@ -18,7 +18,7 @@
 
 @utility button-base {
   @apply flex-center truncate contain-strict;
-  @apply border outset-xy text-fg-control;
+  @apply border outset-xy-dim text-fg-control;
   @apply text-[13px] leading-4.5 select-none text-inset;
   @apply cursor-pointer dom-play;
   &,
@@ -107,7 +107,7 @@
 
   .button-inner {
     @apply button-base size-4.5 button-states push-button contain-strict button-raised;
-    @apply absolute top-0.75 right-0.75;
+    @apply absolute top-0.75 right-0.5;
     @apply rounded-full rounded-shape;
     > * {
       @apply size-4 overflow-hidden px-0.5;

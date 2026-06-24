@@ -2,12 +2,11 @@
   select,
   option,
   input,
-  a,
   .focusable,
   .numeric-view {
     @apply focus-base;
 
-    &:focus-visible:not(:disabled) {
+    &:focus-visible:enabled {
       @apply focus-on;
     }
   }
@@ -15,35 +14,48 @@
   .scroller-focus {
     @apply focus-base;
 
-    &:focus-visible:not(:disabled) {
+    &:focus-visible:enabled {
       @apply ring-[1px] outline-[1.7px];
     }
   }
 
-  a,
   select {
-    &:focus:not(:disabled) {
+    &:focus:enabled {
       @apply focus-on;
     }
   }
 
-  .project-link {
-    @apply outline-offset-[-0.5px];
-    @apply focus:ring-offset-[1.5px] focus-visible:ring-offset-[1.5px];
-    @apply focus:ring-offset-ring-inner;
+  a.project-link {
+    @apply focus-base;
+    &:focus {
+      @apply focus-on ring-[1.5px] ring-offset-[1.5px] outline-[1.5px] outline-offset-1;
+    }
+  }
+
+  a {
+    @apply focus-base;
+    &:focus {
+      @apply focus-on ring-[1.5px] ring-offset-0 outline-1 outline-offset-0;
+    }
   }
 }
 
 @utility focus-base {
+  @apply focus-none ring-blue-600/80 outline-blue-300/90;
+  /*
   @apply focus-none ring-ring ring-offset-0 ring-offset-current;
   @apply outline-offset-[-1.5px] outline-ring-inner outline-solid;
   @apply dom-play;
+  */
 }
 
 @utility focus-none {
   @apply ring-0 outline-0;
+  /*
+  @apply ring-0 outline-0;
+  */
 }
 
 @utility focus-on {
-  @apply ring-[0.75px] outline-[1.5px];
+  @apply ring-1 ring-offset-0 outline-[1.5px] -outline-offset-1;
 }

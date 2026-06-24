@@ -15,8 +15,8 @@ export const Link = ({children, className, href, ...rest}: Props) => (
     href={href.toString()}
     rel='noreferrer'
     className={twMerge(
-      'my-0.75 ml-0.5 block h-4.5 w-fit squircle px-1',
-      'text-smaller leading-4.5 whitespace-nowrap',
+      'my-1 ml-1 block h-4 w-fit squircle px-1',
+      'text-smaller whitespace-nowrap',
       className,
     )}
     target='_blank'>

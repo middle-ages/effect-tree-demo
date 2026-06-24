@@ -28,11 +28,11 @@ export const Details = ({label, children, ...props}: Props) => {
           }>
           ❰
         </div>
-        <Rule className='mr-0.5 w-2' />
-        <div className='h-5 w-fit flex-none text-smaller leading-4.25 text-fg-control/80'>
+        <Rule className='w-2' />
+        <div className='mx-0.5 h-5 w-fit flex-none text-smaller leading-4.25 text-fg-control/80'>
           {label}
         </div>
-        <Rule className='w-stretch ml-0.5 w-full flex-1' />
+        <Rule className='w-stretch flex-1' />
       </button>
       <div
         className={twMerge(

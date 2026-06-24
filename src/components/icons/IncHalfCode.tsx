@@ -1,6 +1,6 @@
 export const IncHalfCode = (
   <svg
-    className='max-w-2.75 min-w-2.75 -translate-x-0.5'
+    className='max-w-4.5 min-w-4.5 pr-1.5 pl-0.5'
     viewBox='0 0 24 16'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'>
