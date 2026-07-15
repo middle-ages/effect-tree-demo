@@ -170,12 +170,6 @@
         "import": "./src/components/HRule.js"
       }
     },
-    "#Link": {
-      "import": {
-        "types": "./src/components/Link.d.ts",
-        "import": "./src/components/Link.js"
-      }
-    },
     "#NumericView": {
       "import": {
         "types": "./src/components/Numeric/View.d.ts",
@@ -258,6 +252,12 @@
       "import": {
         "types": "./src/components/Tooltip/index.d.ts",
         "import": "./src/components/Tooltip/index.js"
+      }
+    },
+    "#Tooltip/*": {
+      "import": {
+        "types": "./src/components/Tooltip/*.d.ts",
+        "import": "./src/components/Tooltip/*.js"
       }
     },
     "#useBoolean": {

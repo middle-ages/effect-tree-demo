@@ -6,7 +6,7 @@ import {
 } from '#measure'
 import {bigCommaFormat} from '#Number'
 import {selectLeftWidthPx, useAppSelector} from '#store'
-import {useTooltip} from '#Tooltip'
+import {useTooltipBottom} from '#Tooltip/useTooltip'
 import type {ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
 
@@ -17,7 +17,7 @@ export interface NumericViewProps {
 }
 
 const prefixTextWidth = 16.5 * 4
-const [edgeWidthPx, minWidthPx] = [prefixTextWidth + 2 * 9.5 + 3.5, 264]
+const [edgeWidthPx, minWidthPx] = [prefixTextWidth + 2 * 9.5 + 3.5, 253]
 
 const options: Partial<MeasureOptions> = {
   isFlat: true,
@@ -41,7 +41,7 @@ export const NumericView = ({
     ? formatExponential(options)(availableWidthPx, value)
     : commaFormatted
 
-  const {ref, tooltip, isOpen: isHover} = useTooltip({id, title})
+  const {ref, tooltip, isOpen: isHover} = useTooltipBottom({id, title})
   const isOpen = title !== undefined && isHover
 
   return (

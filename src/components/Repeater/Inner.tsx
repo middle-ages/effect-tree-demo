@@ -1,3 +1,4 @@
+import {Repeat as RepeatIcon} from '#icons/Repeat'
 import {noop} from '#Function'
 import {Button} from '#Button'
 import type {StyledProps} from '#react/props'
@@ -19,7 +20,7 @@ const _Inner = ({id, isRepeating: isActive, ...props}: InnerProps) => (
     isFocusable={false}
     isAnchor={false}
     baseClassName='button-inner'>
-    <div>⟳</div>
+    {RepeatIcon}
   </Button>
 )
 

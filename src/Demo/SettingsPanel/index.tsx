@@ -22,7 +22,7 @@ export const SettingsPanel = () => (
     Content={({isOpen: isFocusable}) => (
       <div
         className={twMerge(
-          'grid auto-rows-7 grid-cols-[7rch_1fr] items-baseline gap-x-2 pt-1 contain-strict',
+          'grid auto-rows-7 grid-cols-[7rch_1fr] items-baseline gap-x-1 pt-1 contain-strict',
           'dom-play *:dom-play',
           heightClass,
         )}>
@@ -43,7 +43,7 @@ export const SettingsPanel = () => (
 )
 
 const Row = ({label, children}: {label: string} & PropsWithChildren) => (
-  <label className='subgrid-2 h-7 contain-size *:select-none'>
+  <label className='subgrid-2 h-row-small contain-size *:select-none'>
     <div className='leading-row-small contain-strict'>{label}</div>
     <div className='h-row-small py-0.5 pl-0.5 contain-strict'>{children}</div>
   </label>

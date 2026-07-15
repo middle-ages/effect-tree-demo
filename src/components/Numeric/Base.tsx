@@ -1,10 +1,10 @@
 import {anchorName, px} from '#Css'
 import {clampBigInput, clampNumericInput} from '#Number'
 import {type StyledProps} from '#react/props'
-import {useTooltip} from '#Tooltip'
 import {useMergeWithRefObject} from '#useMergeRefs'
 import {useMemo, type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
+import {useTooltipBottom} from '#Tooltip/useTooltip'
 import {useOnChange} from './useOnChange'
 
 export interface Props<N extends number | string> extends StyledProps {
@@ -41,7 +41,11 @@ export const Base = <N extends number | string>({
     [isNumeric, max, min],
   )
 
-  const {ref: hoverRef, tooltip, isOpen: isHover} = useTooltip({id, title})
+  const {
+    ref: hoverRef,
+    tooltip,
+    isOpen: isHover,
+  } = useTooltipBottom({id, title})
   const isOpen = title !== undefined && isHover
   const {
     ref: changeRef,

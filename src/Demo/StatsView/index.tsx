@@ -13,13 +13,23 @@ import {
 } from '#store'
 import {type PropsWithChildren, type ReactNode} from 'react'
 
+const rowCount = 3
+const rowHeightSpacing = 7
+
+const rowHeightExpression = `(${rowHeightSpacing.toFixed(2)} * var(--spacing))`
+const rowHeight = `calc(${rowHeightExpression})`
+const totalHeight = `calc(${rowCount.toString()} * ${rowHeightExpression})`
+const rowStyle = {height: rowHeight}
+
 export const StatsView = () => {
   const {treeIndex, treeCount, nodeCount} = useAppSelector(selectStats)
   const isFirst = treeCount === '1'
   const dispatch = useAppDispatch()
 
   return (
-    <div className='h-21 *:h-row-small *:first:pr-[1.5px]'>
+    <div
+      className='contain-strict *:first:pr-[1.5px]'
+      style={{height: totalHeight}}>
       <Row prefix='Tree #'>
         <BigIntInput
           id='treeIndex'
@@ -36,7 +46,7 @@ export const StatsView = () => {
         />
       </Row>
       <Stack
-        className='*:h-row-small'
+        style={rowStyle}
         top={isFirst ? 'single' : 'many'}
         subNodes={{
           single,
@@ -57,7 +67,7 @@ export const StatsView = () => {
         }}
       />
 
-      <div className='flex items-baseline leading-row-small'>
+      <div className='flex items-baseline leading-row-small' style={rowStyle}>
         possible
         <FixedNumeric
           id='nodeCount'
@@ -77,16 +87,18 @@ export const StatsView = () => {
 }
 
 const Text = ({prefix}: {prefix: ReactNode}) => (
-  <span className='inline-block h-row-small leading-row-small whitespace-nowrap'>
+  <span
+    className='inline-block leading-row-small whitespace-nowrap'
+    style={rowStyle}>
     {prefix}
   </span>
 )
 
 const Row = ({children, prefix}: PropsWithChildren<{prefix: ReactNode}>) => (
-  <div className='flex h-row-small items-baseline gap-1.5 *:last:flex-1'>
+  <div className='flex items-baseline gap-1.5 *:last:flex-1' style={rowStyle}>
     <Text {...{prefix}} />
     {children}
   </div>
 )
 
-const single = <Row prefix={<div className='h-row-small'>of the single</div>} />
+const single = <Row prefix={<div style={rowStyle}>of the single</div>} />

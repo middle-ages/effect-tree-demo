@@ -4,6 +4,7 @@ import {Tooltip} from '#Tooltip'
 import {useHover} from '#useHover'
 import type {ReactNode, RefCallback} from 'react'
 import {twMerge} from 'tailwind-merge'
+import type {TooltipDirection} from './Tooltip'
 
 interface Props extends StyledProps {
   id: string
@@ -20,15 +21,16 @@ interface UseTooltip {
 export const useTooltip = ({
   id,
   title,
+  direction,
   className,
   ...props
-}: Props): UseTooltip => {
+}: Props & {direction: TooltipDirection}): UseTooltip => {
   const {ref, isHovered} = useHover()
   const isOpen = useAppSelector(selectShowTooltips) && isHovered
 
   const tooltip = (
     <Tooltip
-      {...{...props, isOpen}}
+      {...{...props, isOpen, direction}}
       anchor={id}
       className={twMerge('text-default! font-normal!', className)}>
       {title}
@@ -37,3 +39,9 @@ export const useTooltip = ({
 
   return {ref, isOpen, tooltip}
 }
+
+export const useTooltipTop = (props: Props): UseTooltip =>
+  useTooltip({...props, direction: 'top'})
+
+export const useTooltipBottom = (props: Props): UseTooltip =>
+  useTooltip({...props, direction: 'bottom'})

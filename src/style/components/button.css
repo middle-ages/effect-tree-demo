@@ -1,7 +1,7 @@
 @layer components {
   .button {
     @apply three-d button-base;
-    @apply h-5 button-text-small leading-5;
+    @apply h-5 button-text-small leading-4.5;
 
     &::before {
       @apply border-transparent;
@@ -128,15 +128,16 @@
 
   .button-inner {
     @apply three-d button-base size-4 focus-none;
-    @apply absolute top-0.5 right-0.75 z-5;
-    @apply rounded-full rounded-shape;
+    @apply absolute top-0.5 right-1 z-5;
+    @apply rounded-full outset-xy-dimmer rounded-shape;
 
     &::before {
       @apply rounded-full;
+      @apply inner-concave;
     }
 
     > * {
-      @apply size-3.5 pl-[1.5px] text-smallest leading-[13.5px];
+      @apply size-3.25 pt-[0.5px] pl-[1.75px];
     }
 
     &:hover:enabled:not(:active) {
@@ -146,6 +147,12 @@
     &:active:enabled,
     &[data-state='active']:enabled {
       @apply button-active translate-y-[0.25px] *:translate-y-0;
+      &::after {
+        @apply rounded-full;
+        box-shadow:
+          inset 1px 1px 1.5px 1px #19131636,
+          inset -1px -1px 3px 1.5px #f0f3f67a;
+      }
     }
 
     &:disabled {
@@ -239,6 +246,14 @@
     var(--button-gradient-high-base) 25%,
     var(--button-gradient-low-base) 70%,
     var(--button-gradient-lowest-base) 100%
+  );
+}
+
+@utility inner-concave {
+  background: linear-gradient(
+    var(--color-border-top),
+    var(--color-border-left) 80%,
+    var(--color-border-bottom-dimmer) 100%
   );
 }
 

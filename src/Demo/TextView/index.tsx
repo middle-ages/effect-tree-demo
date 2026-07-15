@@ -1,10 +1,11 @@
+import * as Array from '#Array'
 import {withClassName} from '#compinators'
-import {anchorName, rem} from '#Css'
+import {anchorName, ch, rem} from '#Css'
 import {primedFromValues, type PrimedStat} from '#model'
 import {ScrollPanel} from '#ScrollPanel'
 import {Spinner} from '#Spinner'
 import {selectLines, selectStats, useAppSelector} from '#store'
-import {useTooltip} from '#Tooltip'
+import {useTooltipBottom} from '#Tooltip/useTooltip'
 import {twMerge} from 'tailwind-merge'
 
 type TreeStats = Record<'nodeCount' | 'maxDegree' | 'maxDepth', PrimedStat>
@@ -31,9 +32,11 @@ export const TextView = () => {
 
   const linesHeight = rem((lines.length - 1) * remPerLine)
   const height = `calc(${linesHeight} + 4 * var(--spacing))`
+  const widestLine = Array.reduce(lines, 0, (p, l) => Math.max(l.length, p))
+  const width = ch(widestLine)
 
   return (
-    <div className='relative size-full min-w-47.25 rounded-md p-[2.5px]'>
+    <div className='relative size-full min-w-47.25 rounded-md contain-layout'>
       {lines.length === 0 ? (
         <div
           className={twMerge(
@@ -45,10 +48,12 @@ export const TextView = () => {
       ) : (
         <>
           <ScrollPanel tabIndex={0} className={parentClassName}>
-            <pre
-              className='w-fit px-1 font-mono text-smallest text-ink contain-content'
-              dangerouslySetInnerHTML={{__html: lines.join('')}}
-              style={{height}}
+            <textarea
+              className='resize-none overflow-hidden px-1 font-mono text-smallest whitespace-pre text-ink focus-none contain-strict'
+              tabIndex={-1}
+              style={{height, minWidth: width, maxWidth: width}}
+              value={lines.join('')}
+              readOnly
             />
           </ScrollPanel>
           <Overlay {...stats} />
@@ -60,8 +65,8 @@ export const TextView = () => {
 
 const Overlay = ({nodeCount, maxDegree, maxDepth}: TreeStats) => (
   <div
-    className='absolute top-1.25 grid size-fit auto-rows-7 grid-cols-[min-content_5rch]'
-    style={{right: 'clamp(2rch, 1%, 2rch)'}}>
+    className='absolute top-1.25 grid size-fit auto-rows-7 grid-cols-[min-content_5rch] contain-layout'
+    style={{right: 'clamp(2.5rch, 1%, 2rch)'}}>
     {[nodeCount, maxDegree, maxDepth].map(stat => (
       <OverlayStat key={stat.id} {...stat} />
     ))}
@@ -77,7 +82,7 @@ const hoveredLabel = twMerge(
 
 const OverlayStat = ({id: baseId, label, title, value}: PrimedStat) => {
   const id = `${baseId}-overlay`
-  const {ref, isOpen, tooltip} = useTooltip({
+  const {ref, isOpen, tooltip} = useTooltipBottom({
     id,
     title,
     className: '*:first:-translate-y-1.5',
@@ -89,7 +94,7 @@ const OverlayStat = ({id: baseId, label, title, value}: PrimedStat) => {
       className={twMerge(
         'subgrid-2 box-content cursor-default',
         'rounded focus-none dom-play',
-        'bg-paper/80',
+        'bg-paper/80 contain-size',
         isOpen && hoveredLabel,
         '*:first:tracking-[0.1px]',
       )}

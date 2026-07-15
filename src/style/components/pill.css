@@ -1,6 +1,6 @@
 @layer components {
   .pill-panel {
-    @apply mx-[1.5px] flex h-6 w-[calc(100%-4px)] p-px;
+    @apply mx-[1.5px] flex h-6 w-[calc(100%-4px)] px-px pt-px;
     @apply inset-xy-dimmer;
     @apply bg-fg-control-disabled/15;
     @apply relative z-20 squircle-full border;

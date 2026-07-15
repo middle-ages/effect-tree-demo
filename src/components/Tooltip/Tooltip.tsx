@@ -1,17 +1,20 @@
-//import {selectShowTooltips, useAppSelector} from '#store'
-
 import {setVar, anchorPosition} from '#Css'
 import type {StyledPropsWithChildren} from '#react/props'
 import {twMerge} from 'tailwind-merge'
 import {useSyncElement} from './useSyncElement'
+import {assumeProp} from 'react-compinators'
+
+export type TooltipDirection = 'top' | 'bottom'
 
 interface Props extends StyledPropsWithChildren {
+  direction: TooltipDirection
   isOpen: boolean
   anchor: string
   tooltipLeft?: string
 }
 
 export const Tooltip = ({
+  direction,
   isOpen,
   anchor,
   tooltipLeft = '50%',
@@ -22,11 +25,22 @@ export const Tooltip = ({
   <div
     id={`${anchor}-popover`}
     ref={useSyncElement(isOpen)}
-    className={twMerge('tooltip-popover', className)}
+    className={twMerge(
+      direction === 'top' ? 'tooltip-popover-top' : 'tooltip-popover-bottom',
+      className,
+    )}
     style={setVar('tooltip-left', tooltipLeft)}
     popover='hint'>
-    <div className='tooltip' style={{...anchorPosition(anchor), ...style}}>
+    <div
+      className={twMerge(
+        'tooltip',
+        direction === 'top' ? 'tooltip-top' : 'tooltip-bottom',
+      )}
+      style={{...anchorPosition(anchor), ...style}}>
       {children}
     </div>
   </div>
 )
+
+Tooltip.Top = assumeProp(Tooltip, 'direction')('top')
+Tooltip.Bottom = assumeProp(Tooltip, 'direction')('bottom')

@@ -63,7 +63,7 @@ export const randomCodeActions: Tuple3<Action<RandomCodeKey>> = [
         {dice} Jump to a random node count between{' '}
         <span className='font-serif'>2</span> and the node count{' '}
         {maxNodeCountMessage} by adding/removing digits to/from the head of the
-        Prüfer code for current tree.
+        Prüfer code for the current tree.
       </div>
     ),
   },

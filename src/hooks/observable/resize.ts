@@ -20,7 +20,7 @@ export const resizeObservable = (
 
   return pipe(
     resize,
-    rx.throttleTime(40, undefined, {leading: true, trailing: true}),
+    rx.throttleTime(30, undefined, {leading: true, trailing: true}),
     rx.distinctUntilChanged(SizePx.equals),
   )
 }

@@ -25,7 +25,7 @@ export const zoomWheelObservable = (
     rx.startWith(wheelObservable.zero),
     rx.map(merge({scale: 1})),
     rx.scan((old, {direction, xPx, yPx, factor, ...current}) => {
-      const {scale: oldScale = 1} = old
+      const {scale: oldScale} = old
       const unclampedScale = (1 + direction * factor) * oldScale
       const scale = clampScale(unclampedScale)
 

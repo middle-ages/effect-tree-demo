@@ -121,6 +121,6 @@ export const selectComputedDigitAndCount = (
 ): OutputSelector<[RootSelector<number[]>], DigitAndCount> =>
   createSelector([selectComputedCode], code => ({
     index,
-    digit: code[index] as number,
+    digit: code[index] ?? 0,
     digitCount: code.length,
   }))

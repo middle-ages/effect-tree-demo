@@ -1,4 +1,4 @@
-import {anchorPosition} from '#Css'
+import {anchorPosition, setVar} from '#Css'
 import type {PropsWithChildren} from 'react'
 import {useInfotip} from './useInfotip'
 
@@ -11,6 +11,7 @@ interface Props extends PropsWithChildren {
 export const Infotip = ({anchor, isOpen, children, onClose}: Props) => (
   <div
     className='infotip-popover'
+    style={setVar('tooltip-left', '50%')}
     {...useInfotip({isOpen, onClose})}
     popover='auto'>
     <div style={anchorPosition(anchor)}>

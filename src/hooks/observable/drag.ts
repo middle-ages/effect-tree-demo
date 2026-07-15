@@ -41,7 +41,7 @@ export const pointerMove =
       rx.fromEvent<O>(element, 'pointermove'),
       rx.skipUntil(down),
       rx.takeUntil(fromMouseUp(element)),
-      rx.throttleTime(20, undefined, {leading: true, trailing: true}),
+      rx.throttleTime(16, undefined, {leading: true, trailing: true}),
     )
 
 const eventToNotification = (

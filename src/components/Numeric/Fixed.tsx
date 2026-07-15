@@ -1,7 +1,7 @@
 import {anchorName} from '#Css'
 import {clampNumericInput} from '#Number'
 import {type StyledProps} from '#react/props'
-import {useTooltip} from '#Tooltip'
+import {useTooltipBottom} from '#Tooltip/useTooltip'
 import {useMergeWithRefObject} from '#useMergeRefs'
 import {useMemo, type ReactNode} from 'react'
 import {twMerge} from 'tailwind-merge'
@@ -30,7 +30,11 @@ export const FixedNumeric = ({
 }: Props) => {
   const clamp = useMemo(() => clampNumericInput({min, max}), [max, min])
 
-  const {ref: hoverRef, tooltip, isOpen: isHover} = useTooltip({id, title})
+  const {
+    ref: hoverRef,
+    tooltip,
+    isOpen: isHover,
+  } = useTooltipBottom({id, title})
   const isOpen = title !== undefined && isHover
   const {
     ref: changeRef,

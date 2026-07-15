@@ -29,7 +29,9 @@ export const horizontalScrollObservable = (
 }
 
 const connect = (element: HTMLElement) =>
-  rx.fromEvent(element, 'scroll').pipe(rx.throttleTime(16, undefined))
+  rx
+    .fromEvent(element, 'scroll')
+    .pipe(rx.throttleTime(16, undefined, {leading: true, trailing: true}))
 
 const toNotification =
   (isScrolling: boolean) =>

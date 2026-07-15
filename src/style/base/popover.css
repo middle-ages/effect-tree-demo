@@ -1,7 +1,4 @@
 @utility tooltip-shape-bottom {
-  /*
-  translate: calc((50% - var(--tooltip-left)) / 2) 0;
-  */
   clip-path: shape(
     from 0 var(--shape),
     line to calc(var(--tooltip-left) - var(--shape)) var(--shape),
@@ -18,11 +15,11 @@
 @utility tooltip-shape-top {
   clip-path: shape(
     from 0 calc(100% - var(--shape)),
-    line to calc(50% - var(--shape)) calc(100% - var(--shape)),
-    arc to calc(50% - 0.5px) 100% of var(--shape) cw small,
-    line to calc(50% + 0.5px) 100%,
-    arc to calc(50% + var(--shape)) calc(100% - var(--shape)) of var(--shape) cw
-      small,
+    line to calc(var(--tooltip-left) - var(--shape)) calc(100% - var(--shape)),
+    arc to calc(var(--tooltip-left) - 0.5px) 100% of var(--shape) cw small,
+    line to calc(var(--tooltip-left) + 0.5px) 100%,
+    arc to calc(var(--tooltip-left) + var(--shape)) calc(100% - var(--shape)) of
+      var(--shape) cw small,
     line to 100% calc(100% - var(--shape)),
     line to 100% 0,
     line to 0 0

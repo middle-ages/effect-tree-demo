@@ -1,11 +1,10 @@
 import {anchorName} from '#Css'
-import {useTooltip} from '#Tooltip'
 import type {DisabledItemProps} from '#types'
 import {useMergeRefPair} from '#useMergeRefs'
 import type {Simplify} from 'effect/Types'
 import {type RefCallback} from 'react'
 import {twMerge} from 'tailwind-merge'
-// type ButtonHTMLAttributes,
+import {useTooltipBottom} from '#Tooltip/useTooltip'
 
 interface _BaseProps extends Omit<DisabledItemProps, 'isDisabled'> {
   ref?: RefCallback<HTMLButtonElement>
@@ -55,7 +54,7 @@ export const Button = ({
     ref: hoverRef,
     tooltip: tooltipNode,
     isOpen: tooltipIsOpen,
-  } = useTooltip({id, title})
+  } = useTooltipBottom({id, title})
   const isOpen = tooltipIsOpen && title !== undefined
   const ref = useMergeRefPair(hoverRef, propsRef)
   const tooltip = title === undefined ? undefined : tooltipNode

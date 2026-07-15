@@ -13,6 +13,7 @@ import {
   type GuardSelector,
 } from './guard'
 import {selectCode} from './slice'
+import type {ReactNode} from 'react'
 
 const selectIsFirstCode: OutputSelector<[RootSelector<number[]>], boolean> =
   createSelector([selectCode], guardPredicateMap.selectIsFirstCode)
@@ -55,7 +56,7 @@ const guardSelectors = {
 
 export const guardSelector = (
   maybeGuard?: Guard,
-): [GuardOutputSelector | typeof selectConstantTrue, string] => {
+): [GuardOutputSelector | typeof selectConstantTrue, ReactNode] => {
   const [key, disabledNote] = normalizeGuard(maybeGuard)
   return [
     key === 'selectConstantTrue' ? selectConstantTrue : guardSelectors[key],

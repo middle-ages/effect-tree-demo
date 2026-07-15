@@ -1,31 +1,39 @@
 import {noop} from '#Function'
 import {pipe} from '#util'
-import {useCallback, useState, type RefCallback} from 'react'
+import {
+  useCallback,
+  useRef,
+  useState,
+  type RefCallback,
+  type RefObject,
+} from 'react'
 import * as rx from 'rxjs'
 import {subscribe} from './observable/helpers'
-import {
-  horizontalScrollObservable,
-  type ScrollNotification,
-} from './observable/horizontalScroll'
+import {horizontalScrollObservable} from './observable/horizontalScroll'
 import {wheelObservable} from './observable/wheel'
 
 export interface UseHorizontalScroll {
   ref: RefCallback<HTMLElement>
+  elementRef: RefObject<HTMLElement | null>
   scrollPx: number
   isScrolling: boolean
 }
 
-const initialState: ScrollNotification = {scrollPx: 0, isScrolling: false}
-
 export const useHorizontalScroll = (): UseHorizontalScroll => {
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState({
+    isScrolling: false,
+    scrollPx: 0,
+  })
   const {scrollPx, isScrolling} = state
+
+  const elementRef = useRef<HTMLElement>(null)
 
   const ref = useCallback((element: HTMLElement | null): (() => void) => {
     if (element === null) {
       return noop
     }
 
+    elementRef.current = element
     const weakElement = new WeakRef(element)
 
     const wheel = pipe(
@@ -50,5 +58,5 @@ export const useHorizontalScroll = (): UseHorizontalScroll => {
     }
   }, [])
 
-  return {ref, scrollPx, isScrolling}
+  return {ref, elementRef, scrollPx, isScrolling}
 }

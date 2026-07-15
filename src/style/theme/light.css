@@ -1,6 +1,6 @@
 @theme {
   --color-ink: #141516;
-  --color-fg-control: #3f3b3d;
+  --color-fg-control: #464244;
   --color-fg-control-hover: #2a292c;
   --color-fg-control-disabled: #9c9a9d;
   --color-line-light: #d4d0d6;
@@ -9,7 +9,7 @@
   --color-ring-inner: #cfdaff;
   --color-ring: #506acf;
   --color-border-top: #e7e8ea;
-  --color-border-left: #d9dbde;
+  --color-border-left: #cfcacb;
   --color-border-right: #bcbec2;
   --color-border-bottom: #a4a0a2;
   --color-app: #ebecf0;
