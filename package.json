@@ -7,7 +7,6 @@
   "author": "Ran Eilam <ran@haag59.com> (https://middle-ages.github.io/)",
   "license": "ISC",
   "scripts": {
-    "storybook": "storybook dev -p 6006",
     "build:theme": "dev/build-theme",
     "dev": "vite -c config/vite.config.ts dev",
     "tailwind:watch": "dev/tailwind-watch",
@@ -19,26 +18,20 @@
     "lint:clean:fix": "dev/lint-fix",
     "test": "dev/test-run",
     "test:watch": "dev/test-watch",
-    "test:storybook": "vitest -c vitest.config.ts --project=storybook",
     "coverage": "dev/coverage",
     "typecheck": "dev/typecheck",
     "circular": "dev/circular",
-    "build-storybook": "storybook build --output-dir docs/storybook",
     "build": "vite -c config/vite.config.ts build",
     "build:all": "dev/build-all",
     "preview": "vite -c config/vite.config.ts preview",
     "chromatic": "dev/chromatic"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^5.2.1",
     "@effect/vitest": "^0.29.0",
     "@eslint-react/eslint-plugin": "^5.11.2",
     "@eslint/js": "^10.0.1",
     "@fast-check/vitest": "^0.4.1",
     "@rolldown/plugin-babel": "^0.2.3",
-    "@storybook/addon-docs": "^10.4.6",
-    "@storybook/addon-vitest": "^10.4.6",
-    "@storybook/react-vite": "^10.4.6",
     "@tailwindcss/cli": "^4.3.2",
     "@tailwindcss/vite": "^4.3.2",
     "@testing-library/jest-dom": "^6.9.1",
@@ -79,8 +72,6 @@
     "playwright": "^1.61.1",
     "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "storybook": "^10.4.6",
-    "storybook-addon-pseudo-states": "^10.4.6",
     "tailwindcss": "^4.3.2",
     "tsx": "^4.23.0",
     "type-fest": "^5.8.0",
@@ -98,6 +89,7 @@
     "@toolwind/corner-shape": "0.0.8-3",
     "effect": "^3.21.4",
     "effect-tree": "^1.0.36",
+    "effect-tree-demo": "link:",
     "react": "^19.2.7",
     "react-compinators": "^1.0.55",
     "react-dom": "^19.2.7",
@@ -366,12 +358,6 @@
       "import": {
         "types": "./src/compinators.d.ts",
         "import": "./src/compinators.js"
-      }
-    },
-    "#storybook": {
-      "import": {
-        "types": "./src/storybook.d.ts",
-        "import": "./src/storybook.js"
       }
     },
     "#Array": {
